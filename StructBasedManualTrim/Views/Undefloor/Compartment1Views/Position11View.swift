@@ -22,16 +22,23 @@ struct Position11View: View {
         .pickerStyle(SegmentedPickerStyle())
 
         switch underFloor.position11.container {
-        case .numberPapa:
-            HStack {
-                Text("\(position)P Cargo kg: ").foregroundColor(.blue)
-                TextField("\(position)P Cargo Weight", text: $underFloor.position11.cargoStringWeight)
-            }
         case .numberOnly:
             HStack {
                 Text("\(position) Cargo kg: ").foregroundColor(.blue)
-                TextField("\(position) Cargo Weight", text: $underFloor.position11.cargoStringWeight)
+                TextField("0 kg",
+                          text: $underFloor.position11.cargoStringWeight)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numberPad)
             }
+        case .numberPapa:
+            HStack {
+                Text("\(position)P Cargo kg: ").foregroundColor(.blue)
+                TextField("0 kg",
+                          text: $underFloor.position11.cargoStringWeight)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numberPad)
+            }
+
         case .leftAndRight:
             Group {
                 Group {
@@ -87,7 +94,7 @@ struct Position11View: View {
                                     .transition(.scale)
                             } else {
                                 Text("AKE: 71kg ")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.accentColor)
                                     .layoutPriority(1)
                                     .transition(.scale)
                             }
@@ -97,7 +104,7 @@ struct Position11View: View {
                     case .cargo:
                         HStack {
                             Text("\(position)L Cargo kg:").foregroundColor(.blue)
-                            TextField("\(position)L Cargo Weight kg:" , text: $underFloor.position11.cargoLeft)
+                            TextField("0 kg" , text: $underFloor.position11.cargoLeft)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad).onAppear()
                         }
@@ -128,10 +135,22 @@ struct Position11View: View {
 
                     case .ake:
                         HStack {
-                            Text("\(position)R Bags:")
-                                .foregroundColor(.blue)
-                                .layoutPriority(1)
-                            TextField("\(position)R Empty", text: $underFloor.position11.bagCountRight.animation()
+                            Button(action: hideKeyboard) {
+                                if underFloor.position11.hasBagsInRight {
+                                    Text("\(position)R Bags")
+                                        .foregroundColor(.accentColor)
+                                        .layoutPriority(1)
+                                        .transition(.scale)
+                                } else {
+                                    Text("\(position)Right")
+                                        .foregroundColor(.black)
+                                        .padding(.trailing, 5)
+                                        .layoutPriority(1)
+                                        .transition(.scale)
+                                }
+                            }
+
+                            TextField("0 Bags", text: $underFloor.position11.bagCountRight.animation()
                                         .onChange(underFloor.position11.animateChangeRight))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
@@ -144,8 +163,8 @@ struct Position11View: View {
                                     .layoutPriority(1)
                                     .transition(.scale)
                             } else {
-                                Text("AKE Wt: 71kg ")
-                                    .foregroundColor(.blue)
+                                Text("AKE: 71kg ")
+                                    .foregroundColor(.accentColor)
                                     .layoutPriority(1)
                                     .transition(.scale)
                             }
@@ -155,7 +174,7 @@ struct Position11View: View {
                     case .cargo:
                         HStack {
                             Text("\(position)R Cargo kg:").foregroundColor(.blue)
-                            TextField("\(position)R Cargo Weight kg" , text: $underFloor.position11.cargoRight)
+                            TextField("0 kg" , text: $underFloor.position11.cargoRight)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
                         }
