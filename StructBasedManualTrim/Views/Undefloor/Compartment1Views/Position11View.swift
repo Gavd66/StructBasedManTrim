@@ -13,7 +13,8 @@ struct Position11View: View {
     var position = 11
     var body: some View {
 
-        Picker("Position \(position)", selection: $underFloor.position11.container.animation()
+        Picker("Position \(position)", selection: $underFloor.position11.container
+                .animation()
                 .onChange(underFloor.position11.applyContainerLogic)) {
             ForEach(Container.allCases, id:\.self) {
                 Text("\(position)\($0.rawValue)")
@@ -24,17 +25,36 @@ struct Position11View: View {
         switch underFloor.position11.container {
         case .numberOnly:
             HStack {
-                Text("\(position) Cargo kg: ").foregroundColor(.blue)
+                Button(action: hideKeyboard) {
+                    if underFloor.position11.hasCargoInPosition {
+                        Text("\(position) Cargo kg: ")
+                    } else {
+                        Text("\(position) Cargo kg: ")
+                            .emptyStyle()
+                    }
+                }
                 TextField("0 kg",
-                          text: $underFloor.position11.cargoStringWeight)
+                          text: $underFloor.position11.cargoStringWeight
+                            .animation()
+                            .onChange(underFloor.position11.animateCargoInPosition))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
             }
         case .numberPapa:
             HStack {
-                Text("\(position)P Cargo kg: ").foregroundColor(.blue)
+                Button(action: hideKeyboard) {
+                    if underFloor.position11.hasCargoInPapa {
+                        Text("\(position)P Cargo kg: ")
+                            .loadedStyle()
+                    } else {
+                        Text("\(position)P Cargo kg: ")
+                            .emptyStyle()
+                    }
+                }
                 TextField("0 kg",
-                          text: $underFloor.position11.cargoStringWeight)
+                          text: $underFloor.position11.cargoPapaStringWeight
+                            .animation()
+                            .onChange(underFloor.position11.animateCargoInPapa))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
             }

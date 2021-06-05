@@ -64,18 +64,19 @@ class MainHold {
 
     @Published var container: Container = .leftAndRight
     @Published var cargoStringWeight = ""
+    @Published var cargoPapaStringWeight = ""
     @Published var bagCountLeft = ""
     @Published var bagCountRight = ""
     @Published var cargoLeft = ""
     @Published var cargoRight = ""
     @Published var positionLeft: Ake = .nilFit
     @Published var positionRight: Ake = .nilFit
-    @Published var setCargoWeight: Container = .numberPapa
     @Published var hasBagsInLeft = false
     @Published var hasBagsInRight = false
     @Published var hasCargoInLeft = false
     @Published var hasCargoInRight = false
-
+    @Published var hasCargoInPosition = false
+    @Published var hasCargoInPapa = false
 
     var bagWeightLeft: Int {
         let bagNumbers = Int(bagCountLeft) ?? 0
@@ -94,24 +95,34 @@ class MainHold {
     }
 
     var cargoWeight: Int {
-        switch setCargoWeight {
-        case .leftAndRight:
-            return 0
-        case .numberOnly:
-            return Int(cargoStringWeight) ?? 0
-        case .numberPapa:
-            return Int(cargoStringWeight) ?? 0
-        }
+        Int(cargoStringWeight) ?? 0
+    }
+    var cargoPapaWeight: Int {
+        Int(cargoPapaStringWeight) ?? 0
     }
 
     var totalWeight: Int {
-        let weight = bagWeightLeft + bagWeightRight + cargoWeightLeft + cargoWeightRight + cargoWeight
+        let weight = bagWeightLeft
+            + bagWeightRight
+            + cargoWeightLeft
+            + cargoWeightRight
+            + cargoWeight
+            + cargoPapaWeight
         print(weight)
         return weight
     }
 
     func applyContainerLogic(_ container: Container) {
-        if container == .numberPapa || container == .numberOnly {
+        switch container {
+        case .leftAndRight:
+            cargoStringWeight = ""
+            cargoPapaStringWeight = ""
+            hasCargoInPosition = false
+            hasCargoInPapa = false
+
+        case .numberOnly:
+            cargoPapaStringWeight = ""
+            hasCargoInPapa = false
             bagCountLeft = ""
             cargoLeft = ""
             bagCountRight = ""
@@ -122,8 +133,20 @@ class MainHold {
             hasBagsInRight = false
             hasCargoInLeft = false
             hasCargoInRight = false
-        } else if container == .leftAndRight {
+
+        case .numberPapa:
             cargoStringWeight = ""
+            hasCargoInPosition = false
+            bagCountLeft = ""
+            cargoLeft = ""
+            bagCountRight = ""
+            cargoRight = ""
+            positionLeft = .nilFit
+            positionRight = .nilFit
+            hasBagsInLeft = false
+            hasBagsInRight = false
+            hasCargoInLeft = false
+            hasCargoInRight = false
         }
     }
 
@@ -163,19 +186,11 @@ class MainHold {
 // for position left right
     // also used to enable the button to dismiss the keyboard
     func animateChangeLeft(_ bagCount: String) {
-        if bagCount == "" {
-            hasBagsInLeft = false
-        } else {
-            hasBagsInLeft = true
-        }
+        hasBagsInLeft = (bagCount == "") ? false: true
     }
 
     func animateChangeRight(_ bagCount: String) {
-        if bagCount == "" {
-            hasBagsInRight = false
-        } else {
-            hasBagsInRight = true
-        }
+        hasBagsInRight = (bagCount == "") ? false: true
     }
 
     func animateCargoChangeLeft(_ cargoRight: String) {
@@ -186,8 +201,13 @@ class MainHold {
         hasCargoInRight = (cargoRight == "") ? false: true
     }
 
-   
+    func animateCargoInPosition(_ cargoWeight: String) {
+        hasCargoInPosition = (cargoStringWeight == "") ? false: true
+    }
 
+    func animateCargoInPapa(_ cargoPapaWeight: String) {
+        hasCargoInPapa = (cargoPapaStringWeight == "") ? false: true
+    }
 }
 
 class BulkHold {
