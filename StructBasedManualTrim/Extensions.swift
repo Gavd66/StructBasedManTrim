@@ -27,14 +27,14 @@ extension View {
 }
 
 extension View {
-    func zeroBagsStyle() -> some View {
-        self.modifier(ZeroBags())
+    func emptyStyle() -> some View {
+        self.modifier(Empty())
     }
 }
 
 extension View {
-    func bagsLoadedStyle() -> some View {
-        self.modifier(BagsLoaded())
+    func loadedStyle() -> some View {
+        self.modifier(Loaded())
     }
 }
 

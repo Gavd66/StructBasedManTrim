@@ -25,37 +25,19 @@ struct NilFit: ViewModifier {
     }
 }
 
-struct ZeroBags: ViewModifier {
+struct Empty: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.black)
-            .padding([.leading, .trailing], 10)
-            .padding([.top, .bottom], 2)
-            .clipShape(Capsule())
-            .overlay(
-                Capsule()
-                    .stroke(Color.gray, lineWidth: 2)
-
-            )
-            .shadow(radius: 4)
             .layoutPriority(1)
             .transition(.scale)
     }
 }
 
-struct BagsLoaded: ViewModifier {
+struct Loaded: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.accentColor)
-            .padding([.leading, .trailing], 10)
-            .padding([.top, .bottom], 2)
-            .clipShape(Capsule())
-            .overlay(
-                Capsule()
-                    .stroke(Color.accentColor, lineWidth: 2)
-
-            )
-            .shadow(radius: 4)
             .layoutPriority(1)
             .transition(.scale)
     }

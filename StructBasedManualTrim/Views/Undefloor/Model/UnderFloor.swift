@@ -73,6 +73,9 @@ class MainHold {
     @Published var setCargoWeight: Container = .numberPapa
     @Published var hasBagsInLeft = false
     @Published var hasBagsInRight = false
+    @Published var hasCargoInLeft = false
+    @Published var hasCargoInRight = false
+
 
     var bagWeightLeft: Int {
         let bagNumbers = Int(bagCountLeft) ?? 0
@@ -117,6 +120,8 @@ class MainHold {
             positionRight = .nilFit
             hasBagsInLeft = false
             hasBagsInRight = false
+            hasCargoInLeft = false
+            hasCargoInRight = false
         } else if container == .leftAndRight {
             cargoStringWeight = ""
         }
@@ -128,8 +133,10 @@ class MainHold {
             cargoLeft = ""
             bagCountLeft = ""
             hasBagsInLeft = false
+            hasCargoInLeft = false
         case .ake:
             cargoLeft = ""
+            hasCargoInLeft = false
         case .cargo:
             bagCountLeft = ""
             hasBagsInLeft = false
@@ -142,8 +149,10 @@ class MainHold {
             cargoRight = ""
             bagCountRight = ""
             hasBagsInRight = false
+            hasCargoInRight = false
         case .ake:
             cargoRight = ""
+            hasCargoInRight = false
         case .cargo:
             bagCountRight = ""
             hasBagsInRight = false
@@ -167,6 +176,14 @@ class MainHold {
         } else {
             hasBagsInRight = true
         }
+    }
+
+    func animateCargoChangeLeft(_ cargoRight: String) {
+        hasCargoInLeft = (cargoLeft == "") ? false: true
+    }
+
+    func animateCargoChangeRight(_ cargoLeft: String) {
+        hasCargoInRight = (cargoRight == "") ? false: true
     }
 
    

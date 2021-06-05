@@ -68,19 +68,15 @@ struct Position11View: View {
                                 if underFloor.position11.hasBagsInLeft {
 
                                     Text("\(position)L Bags")
-                                        .foregroundColor(.accentColor)
-                                        .layoutPriority(1)
-                                        .transition(.scale)
+                                        .loadedStyle()
                                 } else {
                                     Text("\(position)Left")
-                                        .foregroundColor(.black)
-                                        .padding(.trailing, 5)
-                                        .layoutPriority(1)
-                                        .transition(.scale)
+                                        .emptyStyle()
                                 }
                             }
-                           // .allowsHitTesting(underFloor.position11.hideKeyboard)
-                            TextField("0 bags", text: $underFloor.position11.bagCountLeft.animation()
+
+                            TextField("0 bags", text: $underFloor.position11.bagCountLeft
+                                        .animation()
                                         .onChange(underFloor.position11.animateChangeLeft))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
@@ -89,22 +85,29 @@ struct Position11View: View {
                             // Animate the change to make it more noticeable
                             if underFloor.position11.hasBagsInLeft {
                                 Text("Total Wt: \(underFloor.position11.bagWeightLeft) kg")
-                                    .foregroundColor(.accentColor)
-                                    .layoutPriority(1)
-                                    .transition(.scale)
+                                    .loadedStyle()
                             } else {
                                 Text("AKE: 71kg ")
-                                    .foregroundColor(.accentColor)
-                                    .layoutPriority(1)
-                                    .transition(.scale)
+                                    .loadedStyle()
                             }
                         }
                         .font(.system(size: 18))
 
                     case .cargo:
                         HStack {
-                            Text("\(position)L Cargo kg:").foregroundColor(.blue)
-                            TextField("0 kg" , text: $underFloor.position11.cargoLeft)
+                            Button(action: hideKeyboard) {
+                                if underFloor.position11.hasCargoInLeft {
+
+                                    Text("\(position)L Cargo kg:")
+                                        .loadedStyle()
+                                } else {
+                                    Text("\(position)L Cargo kg:")
+                                        .emptyStyle()
+                                }
+                            }
+                            TextField("0 kg" , text: $underFloor.position11.cargoLeft
+                                        .animation()
+                                        .onChange(underFloor.position11.animateCargoChangeLeft))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad).onAppear()
                         }
@@ -132,21 +135,15 @@ struct Position11View: View {
                             Spacer()
                         }
 
-
                     case .ake:
                         HStack {
                             Button(action: hideKeyboard) {
                                 if underFloor.position11.hasBagsInRight {
                                     Text("\(position)R Bags")
-                                        .foregroundColor(.accentColor)
-                                        .layoutPriority(1)
-                                        .transition(.scale)
+                                        .loadedStyle()
                                 } else {
-                                    Text("\(position)Right")
-                                        .foregroundColor(.black)
-                                        .padding(.trailing, 5)
-                                        .layoutPriority(1)
-                                        .transition(.scale)
+                                    Text("\(position)R ")
+                                        .emptyStyle()
                                 }
                             }
 
@@ -159,22 +156,30 @@ struct Position11View: View {
                             // Animate the change to make it more noticeable
                             if underFloor.position11.hasBagsInRight {
                                 Text("Total Wt: \(underFloor.position11.bagWeightRight) kg")
-                                    .foregroundColor(.blue)
-                                    .layoutPriority(1)
-                                    .transition(.scale)
+                                    .loadedStyle()
                             } else {
                                 Text("AKE: 71kg ")
-                                    .foregroundColor(.accentColor)
-                                    .layoutPriority(1)
-                                    .transition(.scale)
+                                    .loadedStyle()
                             }
                         }
                         .font(.system(size: 18))
 
                     case .cargo:
                         HStack {
-                            Text("\(position)R Cargo kg:").foregroundColor(.blue)
-                            TextField("0 kg" , text: $underFloor.position11.cargoRight)
+                            Button(action: hideKeyboard) {
+                                if underFloor.position11.hasCargoInRight {
+
+                                    Text("\(position)R Cargo kg:")
+                                        .loadedStyle()
+                                } else {
+                                    Text("\(position)R Cargo kg:")
+                                        .emptyStyle()
+                                }
+                            }
+                            TextField("0 kg" ,
+                                      text: $underFloor.position11.cargoRight
+                                        .animation()
+                                        .onChange(underFloor.position11.animateCargoChangeRight))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
                         }
