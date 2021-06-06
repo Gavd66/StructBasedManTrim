@@ -11,15 +11,17 @@ import SwiftUI
 struct NilFit: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding([.leading, .trailing], 18)
+            .font(.system(size: 18))
+            .padding([.leading, .trailing], 90)
             .padding([.top,.bottom], 5)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray, lineWidth: 1)
+                    .stroke(Color.gray, lineWidth: 2)
+                    .shadow(radius: 8)
 
             )
-            .shadow(radius: 1)
+
             .layoutPriority(1)
             .transition(.scale)
     }
@@ -28,7 +30,7 @@ struct NilFit: ViewModifier {
 struct Empty: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .foregroundColor(.black)
+            .foregroundColor(.primary)
             .layoutPriority(1)
             .transition(.scale)
     }
@@ -38,16 +40,18 @@ struct Loaded: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.accentColor)
-            .layoutPriority(1)
+           // .layoutPriority(1)
             .transition(.scale)
     }
 }
 
-struct WeightDisplay: ViewModifier {
+struct Capsule: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding([.leading, .trailing], 18)
-            .padding([.top,.bottom], 10)
+            .layoutPriority(1)
+            .font(.system(size: 18))
+            .padding([.leading, .trailing], 10)
+            .padding([.top,.bottom], 5)
             .clipShape(RoundedRectangle(cornerRadius: 5))
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -57,8 +61,8 @@ struct WeightDisplay: ViewModifier {
             )
 
             .foregroundColor(.accentColor)
-            .layoutPriority(1)
-            .padding(.bottom, 5)
+
+            .padding(.bottom, 3)
             .transition(.scale)
     }
 }

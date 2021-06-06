@@ -39,8 +39,8 @@ extension View {
 }
 
 extension View {
-    func weightStyle() -> some View {
-        self.modifier(WeightDisplay())
+    func capsuleStyle() -> some View {
+        self.modifier(Capsule())
     }
 }
 

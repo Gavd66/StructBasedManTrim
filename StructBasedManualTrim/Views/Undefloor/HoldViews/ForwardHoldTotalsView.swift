@@ -12,43 +12,70 @@ struct ForwardHoldTotalsView: View {
     @EnvironmentObject var underFloor: UnderFloor
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+            Text("Compartment 1")
+                .italic()
+                .bold()
+                 Spacer()
+            }
+            HStack {
         VStack(alignment: .center, spacing: 5) {
-            Text("Compartment 1 Total Bag wt")
+            Text("Bags")
             Text("\(underFloor.compartment1TotalBagWeight) kg")
-                .weightStyle()
+                .capsuleStyle()
         }
         VStack(alignment: .center, spacing: 5) {
-            Text("Compartment 1 Total Cargo wt")
+            Text("Cargo")
             Text("\(underFloor.compartment1TotalCargoWeight) kg")
-                .weightStyle()
+                .capsuleStyle()
         }
         VStack(alignment: .center, spacing: 5) {
-            Text("Compartment 1 Total wt")
+            Text("Total")
             Text("\(underFloor.compartment1TotalWeight) kg")
-                .weightStyle()
+                .capsuleStyle()
         }
-        VStack(alignment: .center, spacing: 5) {
-            Text("Compartment 2 Total Bag wt")
-            Text("\(underFloor.compartment2TotalBagWeight) kg")
-                .weightStyle()
+    }
         }
-        VStack(alignment: .center, spacing: 5) {
-            Text("Compartment 2 Total Cargo wt")
-            Text("\(underFloor.compartment2TotalCargoWeight) kg")
-                .weightStyle()
+        VStack {
+            HStack {
+                Spacer()
+                Text("Compartment 2")
+                    .italic()
+                    .bold()
+                Spacer()
+            }
+            HStack {
+                VStack(alignment: .center, spacing: 5) {
+                    Text("Bags")
+                    Text("\(underFloor.compartment2TotalBagWeight) kg")
+                        .capsuleStyle()
+                }
+                VStack(alignment: .center, spacing: 5) {
+                    Text("Cargo")
+                    Text("\(underFloor.compartment2TotalCargoWeight) kg")
+                        .capsuleStyle()
+                }
+                VStack(alignment: .center, spacing: 5) {
+                    Text("Total")
+                    Text("\(underFloor.compartment2TotalWeight) kg")
+                        .capsuleStyle()
+                }
+            }
         }
-        VStack(alignment: .center, spacing: 5) {
-            Text("Compartment 2 Total wt")
-            Text("\(underFloor.compartment2TotalWeight) kg")
-                .weightStyle()
+        HStack {
+            Spacer()
+            VStack(alignment: .center, spacing: 5) {
+                Text("Forward Hold Total")
+                    .italic()
+                    .bold()
+                Text("\(underFloor.forwardHoldTotalWeight) kg")
+                    .capsuleStyle()
+                
+            }
+            Spacer()
         }
-        VStack(alignment: .center, spacing: 5) {
-            Text("Forward Hold Total wt")
-            Text("\(underFloor.forwardHoldTotalWeight) kg")
-                .weightStyle()
-        }
-        }
-        .multilineTextAlignment(.leading)
+        
     }
 }
 

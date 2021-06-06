@@ -178,11 +178,10 @@
 			children = (
 				523A9F5926646507009DC1BA /* StructBasedManualTrimApp.swift */,
 				5220075326690C0E0089A8C1 /* Views */,
-				523A9F6A2664819C009DC1BA /* Extensions.swift */,
+				52A7840D266CF77600D05247 /* Utilities */,
 				523A9F5D26646509009DC1BA /* Assets.xcassets */,
 				523A9F6226646509009DC1BA /* Info.plist */,
 				523A9F5F26646509009DC1BA /* Preview Content */,
-				52200777266AF6A60089A8C1 /* Modifiers.swift */,
 			);
 			path = StructBasedManualTrim;
 			sourceTree = "<group>";
@@ -202,6 +201,15 @@
 				52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */,
 			);
 			path = HoldViews;
+			sourceTree = "<group>";
+		};
+		52A7840D266CF77600D05247 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				523A9F6A2664819C009DC1BA /* Extensions.swift */,
+				52200777266AF6A60089A8C1 /* Modifiers.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

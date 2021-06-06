@@ -21,46 +21,58 @@ struct Position11View: View {
             }
         }
         .pickerStyle(SegmentedPickerStyle())
-        
 
         switch underFloor.position11.container {
         case .numberOnly:
             HStack {
                 Button(action: hideKeyboard) {
                     if underFloor.position11.hasCargoInPosition {
-                        Text("\(position) Cargo kg: ")
+                        Text("\(position) Cargo")
                             .loadedStyle()
                     } else {
-                        Text("\(position) Cargo kg: ")
+                        Text("\(position) Cargo")
                             .emptyStyle()
                     }
                 }
+                .capsuleStyle()
+
                 TextField("0 kg",
                           text: $underFloor.position11.cargoStringWeight
                             .animation()
                             .onChange(underFloor.position11.updateCargoLabel))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
+
+                if underFloor.position11.hasCargoInPosition {
+                    Text("kg")
+                        .loadedStyle()
+                }
             }
         case .numberPapa:
             HStack {
                 Button(action: hideKeyboard) {
                     if underFloor.position11.hasCargoInPapa {
-                        Text("\(position)P Cargo kg: ")
+                        Text("\(position)P Cargo")
                             .loadedStyle()
                     } else {
-                        Text("\(position)P Cargo kg: ")
+                        Text("\(position)P Cargo")
                             .emptyStyle()
                     }
                 }
+                .capsuleStyle()
+
                 TextField("0 kg",
                           text: $underFloor.position11.cargoPapaStringWeight
                             .animation()
                             .onChange(underFloor.position11.updateCargoPapaLabel))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
-            }
 
+                if underFloor.position11.hasCargoInPapa {
+                    Text("kg")
+                        .loadedStyle()
+                }
+            }
         case .leftAndRight:
             Group {
                 Group {
@@ -83,28 +95,26 @@ struct Position11View: View {
                         }
                     case .ake:
                         HStack {
-
-                            // Serperate textfield functions to eliminate bugs
-                            // Button, when no bags entered button is disabled, when bags, button enabled to dismiss keyboard
                             Button(action: hideKeyboard) {
-
                                 if underFloor.position11.hasBagsInLeft {
                                     Text("\(position)L Bags")
                                         .loadedStyle()
                                 } else {
-                                    Text("\(position)Left")
+                                    Text("\(position)L  ")
                                         .emptyStyle()
                                 }
                             }
+                            .capsuleStyle()
 
                             TextField("0 bags", text: $underFloor.position11.bagCountLeft
                                         .animation()
                                         .onChange(underFloor.position11.updateLeftLabels))
+
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
 
                             if underFloor.position11.hasBagsInLeft {
-                                Text("Total Wt: \(underFloor.position11.bagWeightLeft) kg")
+                                Text("\(underFloor.position11.bagWeightLeft) kg")
                                     .loadedStyle()
                             } else {
                                 Text("AKE: 71kg ")
@@ -112,30 +122,42 @@ struct Position11View: View {
                             }
                         }
                         .font(.system(size: 18))
-
                     case .cargo:
                         HStack {
                             Button(action: hideKeyboard) {
                                 if underFloor.position11.hasCargoInLeft {
-
-                                    Text("\(position)L Cargo kg:")
+                                    Text("\(position)L Cargo")
                                         .loadedStyle()
                                 } else {
-                                    Text("\(position)L Cargo kg:")
+                                    Text("\(position)L Cargo")
                                         .emptyStyle()
                                 }
                             }
+                            .capsuleStyle()
+
                             TextField("0 kg" , text: $underFloor.position11.cargoLeft
                                         .animation()
-                                        .onChange(underFloor.position11.updateCargoRightLabels))
+                                        .onChange(
+                                            withAnimation(.easeInOut) {
+                                                underFloor.position11.updateCargoRightLabels
+                                            }
+                                        ))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad).onAppear()
+
+                            if underFloor.position11.hasCargoInLeft {
+                                Text("kg")
+                                    .loadedStyle()
+                            }
                         }
                         .font(.system(size: 18))
                     }
                 } // End Left Group
-                .onTapGesture(count: 2, perform: hideKeyboard)
-                .onLongPressGesture(perform: hideKeyboard)
+                // dismiss the number pad automatically when changing selections
+                .onChange(of: underFloor.position11.left,
+                          perform: dismissAKEKeyBoard)
+                .onChange(of: underFloor.position11.container,
+                          perform: dismissContainerKeyBoard)
 
                 Group {
                     Picker("AKEweight", selection: $underFloor.position11.right.animation()
@@ -154,27 +176,32 @@ struct Position11View: View {
                                 .nilFitStyle()
                             Spacer()
                         }
-
                     case .ake:
                         HStack {
                             Button(action: hideKeyboard) {
                                 if underFloor.position11.hasBagsInRight {
                                     Text("\(position)R Bags")
                                         .loadedStyle()
+                                        .capsuleStyle()
                                 } else {
                                     Text("\(position)R ")
                                         .emptyStyle()
+                                        .capsuleStyle()
                                 }
                             }
 
                             TextField("0 Bags", text: $underFloor.position11.bagCountRight
                                         .animation()
-                                        .onChange(underFloor.position11.updateRightLabels))
+                                        .onChange(
+                                            withAnimation(.easeIn(duration: 2)) {
+                                                underFloor.position11.updateRightLabels
+                                            }
+                            ))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
 
                             if underFloor.position11.hasBagsInRight {
-                                Text("Total Wt: \(underFloor.position11.bagWeightRight) kg")
+                                Text("\(underFloor.position11.bagWeightRight) kg")
                                     .loadedStyle()
                             } else {
                                 Text("AKE: 71kg ")
@@ -182,33 +209,52 @@ struct Position11View: View {
                             }
                         }
                         .font(.system(size: 18))
-
                     case .cargo:
                         HStack {
                             Button(action: hideKeyboard) {
                                 if underFloor.position11.hasCargoInRight {
-
-                                    Text("\(position)R Cargo kg:")
+                                    Text("\(position)R Cargo")
                                         .loadedStyle()
+                                        .capsuleStyle()
                                 } else {
-                                    Text("\(position)R Cargo kg:")
+                                    Text("\(position)R Cargo")
                                         .emptyStyle()
+                                        .capsuleStyle()
                                 }
                             }
-                            TextField("0 kg" ,
-                                      text: $underFloor.position11.cargoRight
+
+                            TextField("0 kg" ,text: $underFloor.position11.cargoRight
                                         .animation()
                                         .onChange(underFloor.position11.updateCargoLeftLabels))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
+
+                            if underFloor.position11.hasCargoInRight {
+                                Text("kg")
+                                    .loadedStyle()
+                            }
                         }
                         .font(.system(size: 18))
                     }
                 } // End Right Group
-                .onTapGesture(count: 2, perform: hideKeyboard)
-                .onLongPressGesture(perform: hideKeyboard)
+                .onChange(of: underFloor.position11.right, perform: dismissAKEKeyBoard)
+                .onChange(of: underFloor.position11.container, perform: dismissContainerKeyBoard)
             } // end L + R group
+
         }
     } // End body
+
+    // Methods to automatically dismiss the numeral keyboard on change of selection
+    func dismissAKEKeyBoard(_ ake: Ake ) {
+        if underFloor.position11.hideKeyboard {
+            hideKeyboard()
+        }
+    }
+
+    func dismissContainerKeyBoard(_ container: Container) {
+        if underFloor.position11.hideKeyboard {
+            hideKeyboard()
+        }
+    }
 }
 
