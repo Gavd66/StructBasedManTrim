@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
    @ObservedObject var position: UnderFloor
+  
     var body: some View {
         NavigationView {
 
@@ -20,14 +21,14 @@ struct ContentView: View {
             Section(header: Text("Position 12")) {
                 Position12View()
             }
-            Section(header: Text("Position 13")) {
-                Position13View()
-            }
-            Section(header: Text("Position 14")) {
-                Position14View()
-            }
+//            Section(header: Text("Position 13")) {
+//                Position13View()
+//            }
+//            Section(header: Text("Position 14")) {
+//                Position14View()
+//            }
 
-            Text("Total Weight: \(position.compartmentOneWeight)")
+            Text("Total Weight: \(position.compartment1TotalWeight)")
         }
         .environmentObject(position)// End Form
            

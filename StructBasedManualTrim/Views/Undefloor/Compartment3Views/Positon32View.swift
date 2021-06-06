@@ -33,7 +33,7 @@ struct Positon32View: View {
         case .leftAndRight:
             Group {
                 Group {
-                    Picker("AKEweight", selection: $underFloor.position32.positionLeft.animation()
+                    Picker("AKEweight", selection: $underFloor.position32.left.animation()
                             .onChange(underFloor.position32.applyPositionLeftLogic)) {
                         ForEach(Ake.allCases, id:\.self) {
                             Text("\(position)L \($0.rawValue)")
@@ -42,7 +42,7 @@ struct Positon32View: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
 
-                    switch underFloor.position32.positionLeft {
+                    switch underFloor.position32.left {
                     case .ake:
                         HStack {
                             Text("\(position)L Bags: ").foregroundColor(.blue)
@@ -62,7 +62,7 @@ struct Positon32View: View {
                 } // End L group
 
                 Group {
-                    Picker("AKEweight", selection: $underFloor.position32.positionRight.animation()
+                    Picker("AKEweight", selection: $underFloor.position32.right.animation()
                             .onChange(underFloor.position32.applyPositionRightLogic)) {
                         ForEach(Ake.allCases, id:\.self) {
                             Text("\(position)R \($0.rawValue)")
@@ -72,7 +72,7 @@ struct Positon32View: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
 
-                    switch underFloor.position32.positionRight {
+                    switch underFloor.position32.right {
                     case .ake:
                         HStack {
                             Text("\(position)R Bags:")

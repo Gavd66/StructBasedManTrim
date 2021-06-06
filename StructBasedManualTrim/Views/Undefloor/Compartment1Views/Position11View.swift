@@ -28,6 +28,7 @@ struct Position11View: View {
                 Button(action: hideKeyboard) {
                     if underFloor.position11.hasCargoInPosition {
                         Text("\(position) Cargo kg: ")
+                            .loadedStyle()
                     } else {
                         Text("\(position) Cargo kg: ")
                             .emptyStyle()
@@ -36,7 +37,7 @@ struct Position11View: View {
                 TextField("0 kg",
                           text: $underFloor.position11.cargoStringWeight
                             .animation()
-                            .onChange(underFloor.position11.animateCargoInPosition))
+                            .onChange(underFloor.position11.updateCargoLabel))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
             }
@@ -54,7 +55,7 @@ struct Position11View: View {
                 TextField("0 kg",
                           text: $underFloor.position11.cargoPapaStringWeight
                             .animation()
-                            .onChange(underFloor.position11.animateCargoInPapa))
+                            .onChange(underFloor.position11.updateCargoPapaLabel))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
             }
@@ -62,7 +63,7 @@ struct Position11View: View {
         case .leftAndRight:
             Group {
                 Group {
-                    Picker("AKEweight", selection: $underFloor.position11.positionLeft.animation()
+                    Picker("AKEweight", selection: $underFloor.position11.left.animation()
                             .onChange(underFloor.position11.applyPositionLeftLogic)) {
                         ForEach(Ake.allCases, id:\.self) {
                             Text("\(position)L \($0.rawValue)")
@@ -70,7 +71,7 @@ struct Position11View: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
 
-                    switch underFloor.position11.positionLeft {
+                    switch underFloor.position11.left {
                     case .nilFit:
 
                         HStack {
@@ -85,8 +86,8 @@ struct Position11View: View {
                             // Serperate textfield functions to eliminate bugs
                             // Button, when no bags entered button is disabled, when bags, button enabled to dismiss keyboard
                             Button(action: hideKeyboard) {
-                                if underFloor.position11.hasBagsInLeft {
 
+                                if underFloor.position11.hasBagsInLeft {
                                     Text("\(position)L Bags")
                                         .loadedStyle()
                                 } else {
@@ -97,12 +98,10 @@ struct Position11View: View {
 
                             TextField("0 bags", text: $underFloor.position11.bagCountLeft
                                         .animation()
-                                        .onChange(underFloor.position11.animateChangeLeft))
+                                        .onChange(underFloor.position11.updateLeftLabels))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
 
-                            // Use logic to display ake tare weight info if no bags
-                            // Animate the change to make it more noticeable
                             if underFloor.position11.hasBagsInLeft {
                                 Text("Total Wt: \(underFloor.position11.bagWeightLeft) kg")
                                     .loadedStyle()
@@ -127,7 +126,7 @@ struct Position11View: View {
                             }
                             TextField("0 kg" , text: $underFloor.position11.cargoLeft
                                         .animation()
-                                        .onChange(underFloor.position11.animateCargoChangeLeft))
+                                        .onChange(underFloor.position11.updateCargoRightLabels))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad).onAppear()
                         }
@@ -138,7 +137,7 @@ struct Position11View: View {
                 .onLongPressGesture(perform: hideKeyboard)
 
                 Group {
-                    Picker("AKEweight", selection: $underFloor.position11.positionRight.animation()
+                    Picker("AKEweight", selection: $underFloor.position11.right.animation()
                             .onChange(underFloor.position11.applyPositionRightLogic)) {
                         ForEach(Ake.allCases, id:\.self) {
                             Text("\(position)R \($0.rawValue)")
@@ -146,7 +145,7 @@ struct Position11View: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
 
-                    switch underFloor.position11.positionRight {
+                    switch underFloor.position11.right {
                     case .nilFit:
                         HStack {
                             Spacer()
@@ -167,13 +166,12 @@ struct Position11View: View {
                                 }
                             }
 
-                            TextField("0 Bags", text: $underFloor.position11.bagCountRight.animation()
-                                        .onChange(underFloor.position11.animateChangeRight))
+                            TextField("0 Bags", text: $underFloor.position11.bagCountRight
+                                        .animation()
+                                        .onChange(underFloor.position11.updateRightLabels))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
 
-                            // Use logic to display ake tare weight info if no bags
-                            // Animate the change to make it more noticeable
                             if underFloor.position11.hasBagsInRight {
                                 Text("Total Wt: \(underFloor.position11.bagWeightRight) kg")
                                     .loadedStyle()
@@ -199,7 +197,7 @@ struct Position11View: View {
                             TextField("0 kg" ,
                                       text: $underFloor.position11.cargoRight
                                         .animation()
-                                        .onChange(underFloor.position11.animateCargoChangeRight))
+                                        .onChange(underFloor.position11.updateCargoLeftLabels))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
                         }
@@ -210,6 +208,6 @@ struct Position11View: View {
                 .onLongPressGesture(perform: hideKeyboard)
             } // end L + R group
         }
-    }
+    } // End body
 }
 

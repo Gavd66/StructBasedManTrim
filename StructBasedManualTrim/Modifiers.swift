@@ -16,10 +16,10 @@ struct NilFit: ViewModifier {
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray, lineWidth: 2)
+                    .stroke(Color.gray, lineWidth: 1)
 
             )
-            .shadow(radius: 4)
+            .shadow(radius: 1)
             .layoutPriority(1)
             .transition(.scale)
     }
