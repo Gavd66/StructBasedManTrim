@@ -68,10 +68,6 @@ enum WeightAlert: Identifiable {
     case aftHoldOverweight
 }
 
-
-
-
-
 class MainHold {
 
     @Published var container: Container = .leftAndRight
@@ -126,6 +122,8 @@ class MainHold {
         print(weight)
         return weight
     }
+
+
 
     func applyContainerLogic(_ container: Container) {
         switch container {
@@ -236,9 +234,12 @@ class BulkHold {
         Int(cargoStringWeight) ?? 0
     }
 
+    var totalBagWeight: Int {
+        bagCount * 18
+    }
+
     var totalWeight: Int {
-        let bagWeight = bagCount * 18
-        return bagWeight + cargoWeight
+        totalBagWeight + cargoWeight
     }
 }
 // TODO: set bool for showing alert if weight exceedance, enable haptics at the same time for overweight

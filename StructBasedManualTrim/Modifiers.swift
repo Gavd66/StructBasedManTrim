@@ -43,3 +43,22 @@ struct Loaded: ViewModifier {
     }
 }
 
+struct WeightDisplay: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding([.leading, .trailing], 18)
+            .padding([.top,.bottom], 10)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray, lineWidth: 1)
+                    .shadow(radius: 3)
+
+            )
+
+            .foregroundColor(.accentColor)
+            .layoutPriority(1)
+            .padding(.bottom, 5)
+            .transition(.scale)
+    }
+}

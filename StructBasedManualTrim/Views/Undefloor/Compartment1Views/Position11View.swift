@@ -21,6 +21,7 @@ struct Position11View: View {
             }
         }
         .pickerStyle(SegmentedPickerStyle())
+        
 
         switch underFloor.position11.container {
         case .numberOnly:

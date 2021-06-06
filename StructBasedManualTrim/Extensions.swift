@@ -38,6 +38,12 @@ extension View {
     }
 }
 
+extension View {
+    func weightStyle() -> some View {
+        self.modifier(WeightDisplay())
+    }
+}
+
 #if canImport(UIKit)
 extension View {
     func hideKeyboard() {

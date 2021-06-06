@@ -207,6 +207,6 @@ struct Position12View: View {
                 .onLongPressGesture(perform: hideKeyboard)
             } // end L + R group
         }
-    }
+    } // End body
 }
 

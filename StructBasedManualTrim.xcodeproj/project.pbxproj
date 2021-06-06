@@ -29,6 +29,9 @@
 		523A9F6926646521009DC1BA /* UnderFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F6826646521009DC1BA /* UnderFloor.swift */; };
 		523A9F6B2664819C009DC1BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F6A2664819C009DC1BA /* Extensions.swift */; };
 		523A9F9426682BE0009DC1BA /* Position11View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F9326682BE0009DC1BA /* Position11View.swift */; };
+		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
+		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
+		52A7840C266CA58F00D05247 /* AftHoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840B266CA58F00D05247 /* AftHoldView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		523A9F6826646521009DC1BA /* UnderFloor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderFloor.swift; sourceTree = "<group>"; };
 		523A9F6A2664819C009DC1BA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		523A9F9326682BE0009DC1BA /* Position11View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position11View.swift; sourceTree = "<group>"; };
+		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
+		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
+		52A7840B266CA58F00D05247 /* AftHoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				523A9F5B26646507009DC1BA /* ContentView.swift */,
+				52A7840B266CA58F00D05247 /* AftHoldView.swift */,
 				52200775266984DB0089A8C1 /* Undefloor */,
 			);
 			path = Views;
@@ -131,6 +138,7 @@
 		52200775266984DB0089A8C1 /* Undefloor */ = {
 			isa = PBXGroup;
 			children = (
+				52A78408266C8D5700D05247 /* HoldViews */,
 				5220075426690C5A0089A8C1 /* Compartment1Views */,
 				5220075526690C6B0089A8C1 /* Compartment2Views */,
 				5220075626690C760089A8C1 /* Compartment3Views */,
@@ -185,6 +193,15 @@
 				523A9F6026646509009DC1BA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		52A78408266C8D5700D05247 /* HoldViews */ = {
+			isa = PBXGroup;
+			children = (
+				52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */,
+				52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */,
+			);
+			path = HoldViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +276,7 @@
 				5220076826690D720089A8C1 /* Position31View.swift in Sources */,
 				5220075A26690CE10089A8C1 /* Position12View.swift in Sources */,
 				5220076626690D5B0089A8C1 /* Position24View.swift in Sources */,
+				52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */,
 				5220075C26690CF30089A8C1 /* Position13View.swift in Sources */,
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
 				523A9F5C26646507009DC1BA /* ContentView.swift in Sources */,
@@ -269,9 +287,11 @@
 				5220077026690DC90089A8C1 /* Positon42View.swift in Sources */,
 				5220076426690D480089A8C1 /* Positon23View.swift in Sources */,
 				5220076E26690DAC0089A8C1 /* Positon41View.swift in Sources */,
+				52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */,
 				523A9F5A26646507009DC1BA /* StructBasedManualTrimApp.swift in Sources */,
 				5220076A26690D820089A8C1 /* Positon32View.swift in Sources */,
 				5220077226690DE30089A8C1 /* Position43View.swift in Sources */,
+				52A7840C266CA58F00D05247 /* AftHoldView.swift in Sources */,
 				5220077426690DF60089A8C1 /* BulkView.swift in Sources */,
 				523A9F6B2664819C009DC1BA /* Extensions.swift in Sources */,
 				523A9F9426682BE0009DC1BA /* Position11View.swift in Sources */,
