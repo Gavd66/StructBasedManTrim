@@ -34,7 +34,7 @@
 		52A7840C266CA58F00D05247 /* AftHoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840B266CA58F00D05247 /* AftHoldView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
 		52A78411266DF96100D05247 /* BulkHoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78410266DF96100D05247 /* BulkHoldView.swift */; };
-		52A78414266E016800D05247 /* IndexUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78413266E016800D05247 /* IndexUnit.swift */; };
+		52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78413266E016800D05247 /* CargoIndexUnit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +67,7 @@
 		52A7840B266CA58F00D05247 /* AftHoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78410266DF96100D05247 /* BulkHoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldView.swift; sourceTree = "<group>"; };
-		52A78413266E016800D05247 /* IndexUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexUnit.swift; sourceTree = "<group>"; };
+		52A78413266E016800D05247 /* CargoIndexUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoIndexUnit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				523A9F6826646521009DC1BA /* UnderFloor.swift */,
-				52A78413266E016800D05247 /* IndexUnit.swift */,
+				52A78413266E016800D05247 /* CargoIndexUnit.swift */,
 			);
 			path = UnderFloorModels;
 			sourceTree = "<group>";
@@ -304,7 +304,7 @@
 				52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */,
 				5220075C26690CF30089A8C1 /* Position13View.swift in Sources */,
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
-				52A78414266E016800D05247 /* IndexUnit.swift in Sources */,
+				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,
 				523A9F5C26646507009DC1BA /* ForwardHoldView.swift in Sources */,
 				5220076226690D2C0089A8C1 /* Position22View.swift in Sources */,
 				523A9F6926646521009DC1BA /* UnderFloor.swift in Sources */,

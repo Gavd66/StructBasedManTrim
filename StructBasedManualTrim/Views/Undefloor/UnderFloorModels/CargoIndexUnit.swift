@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct IndexUnit {
+struct CargoIndexUnit {
 
     func forCompartment1(using weight: Int) -> Double {
 

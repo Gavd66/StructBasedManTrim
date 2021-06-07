@@ -283,7 +283,7 @@ class UnderFloor: ObservableObject {
     @Published var bulkHold = BulkHold()
     @Published var overweight = false
     @Published var weightAlert = WeightAlert.compartment1Overweight
-    var returnIndex = IndexUnit()
+    var returnIndex = CargoIndexUnit()
 
 // investigate logic, take out the conditions and try with outrageoous figures
     var compartment1TotalBagWeight: Int {
