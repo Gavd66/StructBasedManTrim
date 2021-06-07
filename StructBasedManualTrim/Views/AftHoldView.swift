@@ -38,6 +38,7 @@ struct AftHoldView: View {
                 }// End Form
                 .environmentObject(position)
                 .navigationBarTitle(Text("Aft Hold"))
+                .navigationBarItems(leading: Text("Forward Hold"))
                 .navigationBarItems(trailing: Text("Next View"))
 
 //        }

@@ -15,12 +15,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section {
-                    NavigationLink(destination: AftHoldView(position: position)) {
-                        Text("Aft Hold")
-                    }
-                }
-
                 Section(header: Text("Position 11")) {
                     Position11View()
                 }
@@ -50,13 +44,24 @@ struct ContentView: View {
                 Section(header: Text("Forward Hold Totals")) {
                     ForwardHoldTotalsView()
                 }
+                Section {
+                    NavigationLink(destination: AftHoldView(position: position)) {
+                        Text("Aft Hold")
+                    }
+                }
             }
             .environmentObject(position)// End Form
-            .navigationBarTitle("Forward Hold")
-            .navigationBarItems(trailing: Text("AftHold"))
-            
-
+            .navigationBarTitle("Fwd Hold")
+            .navigationBarItems(trailing: NavigationLink (destination: AftHoldView(position: position)) {
+                HStack(spacing: 1) {
+                Text("Aft Hold")
+                    .font(.system(size: 22))
+                    Image(systemName: "chevron.forward")
+                        .font(.system(size: 30))
+                }
+            })
         }
+
 
     }
 
