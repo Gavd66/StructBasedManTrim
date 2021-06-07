@@ -283,6 +283,7 @@ class UnderFloor: ObservableObject {
     @Published var bulkHold = BulkHold()
     @Published var overweight = false
     @Published var weightAlert = WeightAlert.compartment1Overweight
+    var returnIndex = IndexUnit()
 
 // investigate logic, take out the conditions and try with outrageoous figures
     var compartment1TotalBagWeight: Int {
@@ -303,7 +304,7 @@ class UnderFloor: ObservableObject {
        let weight = position11.totalWeight
             + position12.totalWeight
             + position13.totalWeight
-//            + position14.totalWeight
+            + position14.totalWeight
 //        if weight > 15306 {
 //            overweight = true
 //            weightAlert = .compartment1Overweight
@@ -311,6 +312,11 @@ class UnderFloor: ObservableObject {
 //        }
         return weight
     }
+
+    var compartment1IndexUnit: Double {
+        returnIndex.forCompartment1(using: compartment1TotalWeight)
+    }
+
 
     var compartment2TotalBagWeight: Int {
         position21.totalBagWeight
@@ -338,6 +344,10 @@ class UnderFloor: ObservableObject {
 //           // return 0
 //        }
         return weight
+    }
+
+    var compartment2IndexUnit: Double {
+        returnIndex.forCompartment2(using: compartment2TotalWeight)
     }
 
     var forwardHoldTotalWeight: Int {
@@ -374,6 +384,10 @@ class UnderFloor: ObservableObject {
         return weight
     }
 
+    var compartment3IndexUnit: Double {
+        returnIndex.forCompartment3(using: compartment3TotalWeight)
+    }
+
     var compartment4TotalBagWeight: Int {
         position41.totalBagWeight
             + position42.totalBagWeight
@@ -398,6 +412,10 @@ class UnderFloor: ObservableObject {
         return weight
     }
 
+    var compartment4IndexUnit: Double {
+        returnIndex.forCompartment4(using: compartment4TotalWeight)
+    }
+
     var aftHoldTotal: Int {
         let weight = compartment3TotalWeight + compartment4TotalWeight
 //        if weight > 19132  {
@@ -408,13 +426,17 @@ class UnderFloor: ObservableObject {
         return weight
     }
 
-    var bulkHoldTotal: Int {
+    var compartment5TotalWeight: Int {
         let weight = bulkHold.totalWeight
 //        if weight > 2735 {
 //            overweight = true
 //            weightAlert = .compartment5Overweight
 //        }
         return weight
+    }
+
+    var compartment5IndexUnit: Double {
+        returnIndex.forCompartment5(using: compartment5TotalWeight)
     }
 
     static let example = UnderFloor()

@@ -32,7 +32,7 @@ struct BulkHoldTotalView: View {
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Total")
-                    Text("\(underFloor.bulkHoldTotal) kg")
+                    Text("\(underFloor.compartment5TotalWeight) kg")
                         .capsuleStyle()
                 }
             }

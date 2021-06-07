@@ -15,6 +15,24 @@ struct ForwardHoldView: View {
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Weight Index Unit Test")) {
+                    VStack(alignment: .leading, spacing: 10){
+                        Text("C1 kg \(position.compartment1TotalWeight)KG")
+                        Text("C1 IU\(position.compartment1IndexUnit)")
+
+                        Text("C2 kg \(position.compartment2TotalWeight)KG")
+                        Text("C2 IU\(position.compartment2IndexUnit)")
+
+                        Text("C3 kg \(position.compartment3TotalWeight)KG")
+                        Text("C3 IU\(position.compartment3IndexUnit)")
+
+                        Text("C4 kg \(position.compartment4TotalWeight)KG")
+                        Text("C4 IU\(position.compartment4IndexUnit)")
+
+                        Text("C5 kg \(position.compartment5TotalWeight)KG")
+                        Text("C5 IU\(position.compartment5IndexUnit)")
+                    }
+                }
 
                 Section(header: Text("Position 11")) {
                     Position11View()
@@ -22,7 +40,6 @@ struct ForwardHoldView: View {
                 Section(header: Text("Position 12")) {
                     Position12View()
                 }
-
                 Section(header: Text("Position 13")) {
                     Position13View()
                 }
@@ -41,15 +58,9 @@ struct ForwardHoldView: View {
                 Section(header: Text("Position 24")) {
                     Position24View()
                 }
-
                 Section(header: Text("Forward Hold Totals")) {
                     ForwardHoldTotalsView()
-                }
-//                Section {
-//                    NavigationLink(destination: AftHoldView(position: position)) {
-//                        Text("Aft Hold")
-//                    }
-//                }
+                }            
             }
             .environmentObject(position)
             .navigationBarTitle("Fwd Hold")
@@ -59,15 +70,9 @@ struct ForwardHoldView: View {
                     .font(.system(size: 22))
                     Image(systemName: "chevron.forward")
                         .font(.system(size: 30))
-                }
-            })
+                }})
         }
-
-
     }
-
-
-
 }
 
 struct ContentView_Previews: PreviewProvider {
