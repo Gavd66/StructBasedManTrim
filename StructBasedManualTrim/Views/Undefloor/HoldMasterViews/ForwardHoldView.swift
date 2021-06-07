@@ -9,12 +9,13 @@
 // copy the total weight stuff for the aft hold
 import SwiftUI
 
-struct ContentView: View {
+struct ForwardHoldView: View {
    @ObservedObject var position: UnderFloor
   
     var body: some View {
         NavigationView {
             Form {
+
                 Section(header: Text("Position 11")) {
                     Position11View()
                 }
@@ -44,13 +45,13 @@ struct ContentView: View {
                 Section(header: Text("Forward Hold Totals")) {
                     ForwardHoldTotalsView()
                 }
-                Section {
-                    NavigationLink(destination: AftHoldView(position: position)) {
-                        Text("Aft Hold")
-                    }
-                }
+//                Section {
+//                    NavigationLink(destination: AftHoldView(position: position)) {
+//                        Text("Aft Hold")
+//                    }
+//                }
             }
-            .environmentObject(position)// End Form
+            .environmentObject(position)
             .navigationBarTitle("Fwd Hold")
             .navigationBarItems(trailing: NavigationLink (destination: AftHoldView(position: position)) {
                 HStack(spacing: 1) {
@@ -71,6 +72,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(position: .example)
+        ForwardHoldView(position: .example)
     }
 }

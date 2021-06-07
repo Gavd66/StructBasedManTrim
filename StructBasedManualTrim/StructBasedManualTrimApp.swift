@@ -11,7 +11,7 @@ import SwiftUI
 struct StructBasedManualTrimApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(position: UnderFloor.example)
+            ForwardHoldView(position: UnderFloor.example)
         }
     }
 }

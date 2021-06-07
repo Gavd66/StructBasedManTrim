@@ -231,23 +231,33 @@ class MainHold {
 }
 
 class BulkHold {
-    @Published var bagStringCount = ""
+    @Published var itemStringCount = ""
     @Published var cargoStringWeight = ""
+    @Published var hasItemsLoaded = false
+    @Published var hasCargoLoaded = false
 
     var bagCount: Int {
-        Int(bagStringCount) ?? 0
+        Int(itemStringCount) ?? 0
     }
 
     var cargoWeight: Int {
         Int(cargoStringWeight) ?? 0
     }
 
-    var totalBagWeight: Int {
+    var itemWeight: Int {
         bagCount * 18
     }
 
     var totalWeight: Int {
-        totalBagWeight + cargoWeight
+        itemWeight + cargoWeight
+    }
+
+    func updateItemLabels(_ itemLabel: String) {
+        hasItemsLoaded = (itemStringCount == "") ? false: true
+    }
+
+    func updateCargoLabels(_ cargoLabel: String) {
+        hasCargoLoaded = (cargoStringWeight == "") ? false: true
     }
 }
 // TODO: set bool for showing alert if weight exceedance, enable haptics at the same time for overweight
@@ -398,7 +408,7 @@ class UnderFloor: ObservableObject {
         return weight
     }
 
-    var compartmentFiveTotal: Int {
+    var bulkHoldTotal: Int {
         let weight = bulkHold.totalWeight
 //        if weight > 2735 {
 //            overweight = true

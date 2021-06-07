@@ -11,7 +11,7 @@ struct AftHoldView: View {
     @ObservedObject var position: UnderFloor
 
     var body: some View {
-//        NavigationView {
+       NavigationView {
                 Form {
 
                     Section(header: Text("Position 31")) {
@@ -37,11 +37,17 @@ struct AftHoldView: View {
                     }
                 }// End Form
                 .environmentObject(position)
-                .navigationBarTitle(Text("Aft Hold"))
-                .navigationBarItems(leading: Text("Forward Hold"))
-                .navigationBarItems(trailing: Text("Next View"))
+                .navigationBarTitle(Text("Aft Hold"))               
+                .navigationBarItems(trailing: NavigationLink (destination: BulkHoldView(position: position)) {
+                    HStack(spacing: 1) {
+                        Text("Bulk Hold")
+                            .font(.system(size: 22))
+                        Image(systemName: "chevron.forward")
+                            .font(.system(size: 30))
+                    }
+                })
 
-//        }
+       }
     }
 }
 

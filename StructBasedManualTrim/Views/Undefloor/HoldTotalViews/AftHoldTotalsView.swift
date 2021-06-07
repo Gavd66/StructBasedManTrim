@@ -74,6 +74,5 @@ struct AftHoldTotalsView: View {
             }
             Spacer()
         }
-
     }
 }
