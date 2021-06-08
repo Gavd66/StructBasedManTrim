@@ -36,7 +36,7 @@ struct AftHoldTotalsView: View {
                         .capsuleStyle()
                 }
             }
-        }
+        }//
         VStack {
             HStack {
                 Spacer()

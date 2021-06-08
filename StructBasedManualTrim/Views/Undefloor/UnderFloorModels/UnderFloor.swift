@@ -472,6 +472,16 @@ class UnderFloor: ObservableObject {
         returnIndex.forCompartment5(using: compartment5TotalWeight)
     }
 
+    var hasCargo: Bool {
+        if forwardHoldTotalWeight
+            + aftHoldTotal
+            + compartment5TotalWeight == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+
     static let example = UnderFloor()
 }
 

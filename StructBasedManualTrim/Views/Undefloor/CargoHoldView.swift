@@ -7,11 +7,17 @@
 
 import SwiftUI
 
-struct UnderFloorView: View {
+struct CargoHoldView: View {
     @ObservedObject var underFloor: UnderFloor
     var body: some View {
         NavigationView {
             Form {
+
+                Section(header: Text("Cargo Hold Overview").foregroundColor(.primary)) {
+                    EmptyLoadView()
+                    
+                }
+
                 Section(header: Text("Compartment 1").foregroundColor(.primary)) {
                     Position11View()
                     Spacer()
@@ -79,6 +85,6 @@ struct UnderFloorView: View {
 
 struct UnderFloorView_Previews: PreviewProvider {
     static var previews: some View {
-        UnderFloorView(underFloor: .example)
+        CargoHoldView(underFloor: .example)
     }
 }
