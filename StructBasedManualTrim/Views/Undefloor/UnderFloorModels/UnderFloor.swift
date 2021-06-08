@@ -96,13 +96,6 @@ class MainHold: ObservableObject {
     @Published var hideKeyboard = false
     @Published var resetIsPressed = false
 
-    func resetMainHoldToEmpty() {
-        resetIsPressed = true
-        print(resetIsPressed ? "true" : "false")
-
-    }
-
-
     var bagWeightLeft: Int {
         let bagNumbers = Int(bagCountLeft) ?? 0
         return bagNumbers * 18 + left.setAKEWeightLeft
@@ -289,7 +282,7 @@ class BulkHold {
 class UnderFloor: ObservableObject {
     //Set the bool for all positions for hide keyboard as per special requests enabled on cupcake corner and onchange near last project.
     @Published var position11 = MainHold()
-    @Published var position12 = MainHold()
+    @Published var position12 = MainHold() 
     @Published var position13 = MainHold()
     @Published var position14 = MainHold()
     @Published var position21 = MainHold()

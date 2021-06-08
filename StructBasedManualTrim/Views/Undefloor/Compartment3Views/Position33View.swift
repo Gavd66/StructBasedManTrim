@@ -20,6 +20,7 @@ struct Position33View: View {
             }
         }
         .pickerStyle(SegmentedPickerStyle())
+        .onChange(of: underFloor.position33.container, perform: dismissContainerKeyBoard)
 
         switch underFloor.position33.container {
         case .numberOnly:
@@ -47,8 +48,6 @@ struct Position33View: View {
                         .loadedStyle()
                 }
             }
-            .onChange(of: underFloor.position33.container,
-                      perform: dismissContainerKeyBoard)
         case .numberPapa:
             HStack {
                 Button(action: hideKeyboard) {
@@ -243,9 +242,6 @@ struct Position33View: View {
                 .onChange(of: underFloor.position33.right, perform: dismissAKEKeyBoard)
 
             }
-            .onChange(of: underFloor.position33.container,
-                      perform: dismissContainerKeyBoard)// end L + R group
-
         } // Container
 
     } // End body
