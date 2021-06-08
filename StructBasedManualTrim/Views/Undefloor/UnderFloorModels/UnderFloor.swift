@@ -58,7 +58,7 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
 
 enum WeightAlert: Identifiable {
     var id: WeightAlert { self }
-
+    case noAlert
     case compartment1Overweight
     case compartment2Overweight
     case compartment3Overweight
@@ -68,12 +68,20 @@ enum WeightAlert: Identifiable {
     case aftHoldOverweight
 }
 
-class MainHold {
+class MainHold: ObservableObject {
 
     @Published var container: Container = .leftAndRight
     @Published var cargoStringWeight = ""
     @Published var cargoPapaStringWeight = ""
-    @Published var bagCountLeft = ""
+    var bagCountLeft = "" {
+        willSet {
+            objectWillChange.send()
+            if resetIsPressed {
+                print("In buisness")
+            }
+
+        }
+    }
     @Published var bagCountRight = ""
     @Published var cargoLeft = ""
     @Published var cargoRight = ""
@@ -86,6 +94,14 @@ class MainHold {
     @Published var hasCargoInPosition = false
     @Published var hasCargoInPapa = false
     @Published var hideKeyboard = false
+    @Published var resetIsPressed = false
+
+    func resetMainHoldToEmpty() {
+        resetIsPressed = true
+        print(resetIsPressed ? "true" : "false")
+
+    }
+
 
     var bagWeightLeft: Int {
         let bagNumbers = Int(bagCountLeft) ?? 0
@@ -174,6 +190,7 @@ class MainHold {
             bagCountLeft = ""
             hasBagsInLeft = false
             hasCargoInLeft = false
+            hideKeyboard = true
         case .ake:
             cargoLeft = ""
             hasCargoInLeft = false
@@ -236,6 +253,11 @@ class BulkHold {
     @Published var hasItemsLoaded = false
     @Published var hasCargoLoaded = false
 
+    func resetBulkToEmpty() {
+        itemStringCount = ""
+        cargoStringWeight = ""
+    }
+
     var bagCount: Int {
         Int(itemStringCount) ?? 0
     }
@@ -260,12 +282,12 @@ class BulkHold {
         hasCargoLoaded = (cargoStringWeight == "") ? false: true
     }
 }
-// TODO: set bool for showing alert if weight exceedance, enable haptics at the same time for overweight
+// TODO: set bool for showing alert if weight exceedance, enable haptics at the same time for overweight. Day 83 for object will change, haptics a bit after that and optional alerts. Try the enum.
 
 
 
 class UnderFloor: ObservableObject {
-
+    //Set the bool for all positions for hide keyboard as per special requests enabled on cupcake corner and onchange near last project.
     @Published var position11 = MainHold()
     @Published var position12 = MainHold()
     @Published var position13 = MainHold()
@@ -282,10 +304,28 @@ class UnderFloor: ObservableObject {
     @Published var position43 = MainHold()
     @Published var bulkHold = BulkHold()
     @Published var overweight = false
-    @Published var weightAlert = WeightAlert.compartment1Overweight
-    var returnIndex = CargoIndexUnit()
+    @Published var weightAlert = WeightAlert.noAlert
 
-// investigate logic, take out the conditions and try with outrageoous figures
+    var returnIndex = CargoIndexUnit()
+    func resetCargoToEmpty() {
+        withAnimation {
+            position11 = MainHold()
+            position12 = MainHold()
+            position13 = MainHold()
+            position14 = MainHold()
+            position21 = MainHold()
+            position22 = MainHold()
+            position23 = MainHold()
+            position24 = MainHold()
+            position31 = MainHold()
+            position32 = MainHold()
+            position33 = MainHold()
+            position41 = MainHold()
+            position42 = MainHold()
+            position43 = MainHold()
+            bulkHold = BulkHold()
+        }
+    }
     var compartment1TotalBagWeight: Int {
         position11.totalBagWeight
             + position12.totalBagWeight

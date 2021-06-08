@@ -47,6 +47,8 @@ struct Position42View: View {
                         .loadedStyle()
                 }
             }
+            .onChange(of: underFloor.position42.container,
+                      perform: dismissContainerKeyBoard)
         case .numberPapa:
             HStack {
                 Button(action: hideKeyboard) {
@@ -72,6 +74,9 @@ struct Position42View: View {
                         .loadedStyle()
                 }
             }
+            .onChange(of: underFloor.position42.container,
+                      perform: dismissContainerKeyBoard)
+
         case .leftAndRight:
             Group {
                 Group {
@@ -155,8 +160,7 @@ struct Position42View: View {
                 // dismiss the number pad automatically when changing selections
                 .onChange(of: underFloor.position42.left,
                           perform: dismissAKEKeyBoard)
-                .onChange(of: underFloor.position42.container,
-                          perform: dismissContainerKeyBoard)
+
 
                 Group {
                     Picker("AKEweight", selection: $underFloor.position42.right.animation()
@@ -237,10 +241,13 @@ struct Position42View: View {
                     }
                 } // End Right Group
                 .onChange(of: underFloor.position42.right, perform: dismissAKEKeyBoard)
-                .onChange(of: underFloor.position42.container, perform: dismissContainerKeyBoard)
-            } // end L + R group
 
-        }
+            }
+            .onChange(of: underFloor.position42.container,
+                      perform: dismissContainerKeyBoard)// end L + R group
+
+        } // Container
+
     } // End body
 
     // Methods to automatically dismiss the numeral keyboard on change of selection

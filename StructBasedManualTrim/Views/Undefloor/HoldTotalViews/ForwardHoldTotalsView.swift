@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Maybe alert generated here with a binding to pass to the main view ?
 struct ForwardHoldTotalsView: View {
 
     @EnvironmentObject var underFloor: UnderFloor
@@ -70,8 +71,7 @@ struct ForwardHoldTotalsView: View {
                     .italic()
                     .bold()
                 Text("\(underFloor.forwardHoldTotalWeight) kg")
-                    .capsuleStyle()
-                
+                    .capsuleStyle()                
             }
             Spacer()
         }

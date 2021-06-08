@@ -68,10 +68,7 @@ struct BulkView: View {
                 }
             }
             .font(.system(size: 18))
-
-    }
-
-
+        }
     }
 }
 
