@@ -16,7 +16,7 @@ struct BulkView: View {
             HStack {
                 Button(action: hideKeyboard) {
                     if underFloor.bulkHold.hasItemsLoaded {
-                        Text("\(position) Item Numbers:")
+                        Text("\(position) Items:")
                             .loadedStyle()
                     } else {
                         Text("\(position)")
