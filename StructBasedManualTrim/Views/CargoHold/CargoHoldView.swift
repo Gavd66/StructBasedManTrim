@@ -114,29 +114,29 @@ struct CargoHoldView: View {
                     .foregroundColor(.accentColor)
                     .padding()
             })
-            .alert(isPresented: $cargoHold.overweightCondition) {
+            .alert(item: $cargoHold.weightAlertType) { weighAlert in
                 self.feedBack.notificationOccurred(.error)
                 switch cargoHold.weightAlertType {
                 case .compartment1Overweight:
-                   return Alert(
-                    title: Text("Compartment 1 Overweight"),
-                    message: Text("Remove \(total) kg from Compartment 1"),
-                    dismissButton: .default(Text("OK")))
+                    return Alert(
+                        title: Text("Compartment 1 Overweight"),
+                        message: Text("Remove \(total) kg from Compartment 1"),
+                        dismissButton: .default(Text("OK")))
                 case .compartment2Overweight:
-                   return Alert(
-                    title: Text("Compartment 2 Overweight"),
-                    message: Text("Remove \(total) kg from Compartment 2"),
-                    dismissButton: .default(Text("OK")))
+                    return Alert(
+                        title: Text("Compartment 2 Overweight"),
+                        message: Text("Remove \(total) kg from Compartment 2"),
+                        dismissButton: .default(Text("OK")))
                 case .compartment3Overweight:
-                   return Alert(
-                    title: Text("Compartment 3 Overweight"),
-                    message: Text("Remove \(total) kg from Compartment 3"),
-                    dismissButton: .default(Text("OK")))
+                    return Alert(
+                        title: Text("Compartment 3 Overweight"),
+                        message: Text("Remove \(total) kg from Compartment 3"),
+                        dismissButton: .default(Text("OK")))
                 case .compartment4Overweight:
-                   return Alert(
-                    title: Text("Compartment 4 Overweight"),
-                    message: Text("Remove \(total) kg from Compartment 4"),
-                    dismissButton: .default(Text("OK")))
+                    return Alert(
+                        title: Text("Compartment 4 Overweight"),
+                        message: Text("Remove \(total) kg from Compartment 4"),
+                        dismissButton: .default(Text("OK")))
                 case .compartment5Overweight:
                     return Alert(
                         title: Text("Compartment 5 Overweight"),
@@ -152,10 +152,10 @@ struct CargoHoldView: View {
                         title: Text("AftHold is Overweight"),
                         message: Text("Remove \(total) kg in total from Compartments 3 & 4 "),
                         dismissButton: .default(Text("OK")))
+                case .none:
+                    return Alert(title: Text(""))
                 }
-
             }
-
         }
     }
 }
