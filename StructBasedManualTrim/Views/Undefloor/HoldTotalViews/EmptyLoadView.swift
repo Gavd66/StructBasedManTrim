@@ -28,7 +28,7 @@ struct EmptyLoadView: View {
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Aft Hold")
-                    Text("\(underFloor.aftHoldTotal) kg")
+                    Text("\(underFloor.aftHoldTotalWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {

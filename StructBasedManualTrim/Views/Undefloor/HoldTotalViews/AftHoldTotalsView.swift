@@ -69,7 +69,7 @@ struct AftHoldTotalsView: View {
                 Text("Aft Hold Total")
                     .italic()
                     .bold()
-                Text("\(underFloor.aftHoldTotal) kg")
+                Text("\(underFloor.aftHoldTotalWeight) kg")
                     .capsuleStyle()
             }
             Spacer()

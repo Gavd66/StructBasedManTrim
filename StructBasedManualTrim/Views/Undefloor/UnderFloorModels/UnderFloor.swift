@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-
+//MARK:- Enum Container
 enum Container: String, Identifiable, CaseIterable, Codable {
     var id: Container { self }
 
@@ -26,7 +26,7 @@ enum Container: String, Identifiable, CaseIterable, Codable {
         }
     }
 }
-
+//MARK:- Enum Ake
 enum Ake: String, Identifiable, CaseIterable, Codable {
     var id: Ake { self }
     case nilFit = "NIL FIT"
@@ -55,10 +55,10 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
         }
     }
 }
-
+//MARK:- Enum weight Alert
 enum WeightAlert: Identifiable {
     var id: WeightAlert { self }
-    case noAlert
+
     case compartment1Overweight
     case compartment2Overweight
     case compartment3Overweight
@@ -66,22 +66,15 @@ enum WeightAlert: Identifiable {
     case compartment5Overweight
     case forwardHoldOverweight
     case aftHoldOverweight
-}
 
+}
+//MARK:- MainHold Model
 class MainHold: ObservableObject {
 
     @Published var container: Container = .leftAndRight
     @Published var cargoStringWeight = ""
     @Published var cargoPapaStringWeight = ""
-    var bagCountLeft = "" {
-        willSet {
-            objectWillChange.send()
-            if resetIsPressed {
-                print("In buisness")
-            }
-
-        }
-    }
+    @Published var bagCountLeft = ""
     @Published var bagCountRight = ""
     @Published var cargoLeft = ""
     @Published var cargoRight = ""
@@ -96,6 +89,7 @@ class MainHold: ObservableObject {
     @Published var hideKeyboard = false
     @Published var resetIsPressed = false
 
+//MARK:- Weight Calculations
     var bagWeightLeft: Int {
         let bagNumbers = Int(bagCountLeft) ?? 0
         return bagNumbers * 18 + left.setAKEWeightLeft
@@ -134,7 +128,7 @@ class MainHold: ObservableObject {
     }
 
 
-
+// MARK:-Logic Functions
     func applyContainerLogic(_ container: Container) {
         switch container {
         case .leftAndRight:
@@ -213,6 +207,7 @@ class MainHold: ObservableObject {
         }
     }
 
+// MARK:- Label functions
 // Set the bool condition to enable change in display between nil value text( black) and value text(blue)
 
     func updateLeftLabels(_ bagCount: String) {
@@ -240,6 +235,7 @@ class MainHold: ObservableObject {
     }
 }
 
+// MARK:- Bulk Hold
 class BulkHold {
     @Published var itemStringCount = ""
     @Published var cargoStringWeight = ""
@@ -275,12 +271,16 @@ class BulkHold {
         hasCargoLoaded = (cargoStringWeight == "") ? false: true
     }
 }
+
+// Todo after hide keyboard
+
 // TODO: set bool for showing alert if weight exceedance, enable haptics at the same time for overweight. Day 83 for object will change, haptics a bit after that and optional alerts. Try the enum.
 
 
-
+// MARK:-UnderFloor Class
 class UnderFloor: ObservableObject {
-    //Set the bool for all positions for hide keyboard as per special requests enabled on cupcake corner and onchange near last project.
+
+    //MARK:- Properties
     @Published var position11 = MainHold()
     @Published var position12 = MainHold() 
     @Published var position13 = MainHold()
@@ -296,10 +296,163 @@ class UnderFloor: ObservableObject {
     @Published var position42 = MainHold()
     @Published var position43 = MainHold()
     @Published var bulkHold = BulkHold()
-    @Published var overweight = false
-    @Published var weightAlert = WeightAlert.noAlert
+    @Published var overweightCondition = false
+    @Published var weightAlertType = WeightAlert.compartment1Overweight
 
+//MARK:- Cargo Loaded Logic
+    var hasCargo: Bool {
+        if forwardHoldTotalWeight
+            + aftHoldTotalWeight
+            + compartment5TotalWeight == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+//MARK:- Weight Calculations
+
+    var compartment1TotalBagWeight: Int {
+        position11.totalBagWeight
+            + position12.totalBagWeight
+            + position13.totalBagWeight
+            + position14.totalBagWeight
+    }
+    var compartment1TotalCargoWeight: Int {
+        position11.totalCargoWeight
+            + position12.totalCargoWeight
+            + position13.totalCargoWeight
+            + position14.totalCargoWeight
+
+    }
+    var compartment1TotalWeight: Int {
+        position11.totalWeight
+            + position12.totalWeight
+            + position13.totalWeight
+            + position14.totalWeight
+    }
+    var compartment2TotalBagWeight: Int {
+        position21.totalBagWeight
+            + position22.totalBagWeight
+            + position23.totalBagWeight
+            + position24.totalBagWeight
+    }
+    var compartment2TotalCargoWeight: Int {
+        position21.totalCargoWeight
+            + position22.totalCargoWeight
+            + position23.totalCargoWeight
+            + position24.totalCargoWeight
+    }
+    var compartment2TotalWeight: Int {
+        position21.totalWeight
+            + position22.totalWeight
+            + position23.totalWeight
+            + position24.totalWeight
+    }
+    var forwardHoldTotalWeight: Int {
+       compartment1TotalWeight + compartment2TotalWeight
+    }
+    var compartment3TotalBagWeight: Int {
+        position31.totalBagWeight
+            + position32.totalBagWeight
+            + position33.totalBagWeight
+    }
+    var compartment3TotalCargoWeight: Int {
+        position31.totalCargoWeight
+            + position32.totalCargoWeight
+            + position33.totalCargoWeight
+    }
+    var compartment3TotalWeight: Int {
+        position31.totalWeight
+            + position32.totalWeight
+            + position33.totalWeight
+    }
+    var compartment4TotalBagWeight: Int {
+        position41.totalBagWeight
+            + position42.totalBagWeight
+            + position43.totalBagWeight
+    }
+    var compartment4TotalCargoWeight: Int {
+        position41.totalCargoWeight
+            + position42.totalCargoWeight
+            + position43.totalCargoWeight
+    }
+    var compartment4TotalWeight: Int {
+        position41.totalWeight
+            + position42.totalWeight
+            + position43.totalWeight
+    }
+    var aftHoldTotalWeight: Int {
+        compartment3TotalWeight + compartment4TotalWeight
+    }
+    var compartment5TotalWeight: Int {
+        bulkHold.totalWeight
+    }
+
+// MARK: Index Unit Calculations
     var returnIndex = CargoIndexUnit()
+
+    var compartment1IndexUnit: Double {
+        returnIndex.forCompartment1(using: compartment1TotalWeight)
+    }
+    var compartment2IndexUnit: Double {
+        returnIndex.forCompartment2(using: compartment2TotalWeight)
+    }
+    var compartment3IndexUnit: Double {
+        returnIndex.forCompartment3(using: compartment3TotalWeight)
+    }
+    var compartment4IndexUnit: Double {
+        returnIndex.forCompartment4(using: compartment4TotalWeight)
+    }
+    var compartment5IndexUnit: Double {
+        returnIndex.forCompartment5(using: compartment5TotalWeight)
+    }
+
+//MARK:- Weight Protection Methods
+
+    func checkCompartment1Weight(int: Int) {
+        if compartment1TotalWeight > 15306 {
+            overweightCondition = true
+            weightAlertType = .compartment1Overweight
+        }
+    }
+    func checkCompartment2Weight(int: Int) {
+        if compartment2TotalWeight > 12700 {
+            overweightCondition = true
+            weightAlertType = .compartment2Overweight
+        }
+    }
+    func checkCompartment3Weight(int: Int) {
+        if compartment3TotalWeight > 10771 {
+            overweightCondition = true
+            weightAlertType = .compartment3Overweight
+        }
+    }
+    func checkCompartment4Weight(int: Int) {
+        if compartment4TotalWeight > 2600 {
+            overweightCondition = true
+            weightAlertType = .compartment4Overweight
+        }
+    }
+    func checkCompartment5Weight(int: Int) {
+        if compartment5TotalWeight > 2735 {
+            overweightCondition = true
+            weightAlertType = .compartment5Overweight
+        }
+    }
+    func checkForwardHoldWeight(int: Int) {
+        if forwardHoldTotalWeight > 25514 {
+            overweightCondition = true
+            weightAlertType = .forwardHoldOverweight
+        }
+    }
+    func checkAftHoldWeight(int: Int) {
+        if aftHoldTotalWeight > 19132 {
+            overweightCondition = true
+            weightAlertType = .aftHoldOverweight
+        }
+    }
+
+//MARK:- Reset Methods
     func resetCargoToEmpty() {
         withAnimation {
             position11 = MainHold()
@@ -319,168 +472,8 @@ class UnderFloor: ObservableObject {
             bulkHold = BulkHold()
         }
     }
-    var compartment1TotalBagWeight: Int {
-        position11.totalBagWeight
-            + position12.totalBagWeight
-            + position13.totalBagWeight
-            + position14.totalBagWeight
-    }
 
-    var compartment1TotalCargoWeight: Int {
-        position11.totalCargoWeight
-            + position12.totalCargoWeight
-            + position13.totalCargoWeight
-            + position14.totalCargoWeight
-
-    }
-    var compartment1TotalWeight: Int {
-       let weight = position11.totalWeight
-            + position12.totalWeight
-            + position13.totalWeight
-            + position14.totalWeight
-//        if weight > 15306 {
-//            overweight = true
-//            weightAlert = .compartment1Overweight
-//           // return 0
-//        }
-        return weight
-    }
-
-    var compartment1IndexUnit: Double {
-        returnIndex.forCompartment1(using: compartment1TotalWeight)
-    }
-
-
-    var compartment2TotalBagWeight: Int {
-        position21.totalBagWeight
-            + position22.totalBagWeight
-            + position23.totalBagWeight
-            + position24.totalBagWeight
-    }
-
-    var compartment2TotalCargoWeight: Int {
-        position21.totalCargoWeight
-            + position22.totalCargoWeight
-            + position23.totalCargoWeight
-            + position24.totalCargoWeight
-
-    }
-
-    var compartment2TotalWeight: Int {
-       let weight = position21.totalWeight
-            + position22.totalWeight
-            + position23.totalWeight
-            + position24.totalWeight
-//        if weight > 12700 {
-//            overweight = true
-//            weightAlert = .compartment2Overweight
-//           // return 0
-//        }
-        return weight
-    }
-
-    var compartment2IndexUnit: Double {
-        returnIndex.forCompartment2(using: compartment2TotalWeight)
-    }
-
-    var forwardHoldTotalWeight: Int {
-       let weight = compartment1TotalWeight + compartment2TotalWeight
-//        if weight > 25514 {
-//            overweight = true
-//            weightAlert = .forwardHoldOverweight
-//           // return 0
-//        }
-        return weight
-    }
-
-    var compartment3TotalBagWeight: Int {
-        position31.totalBagWeight
-            + position32.totalBagWeight
-            + position33.totalBagWeight
-    }
-
-    var compartment3TotalCargoWeight: Int {
-        position31.totalCargoWeight
-            + position32.totalCargoWeight
-            + position33.totalCargoWeight
-    }
-
-    var compartment3TotalWeight: Int {
-       let weight = position31.totalWeight
-            + position32.totalWeight
-            + position33.totalWeight
-//        if weight > 10771 {
-//            overweight = true
-//            weightAlert = .compartment3Overweight
-//           // return 0
-//        }
-        return weight
-    }
-
-    var compartment3IndexUnit: Double {
-        returnIndex.forCompartment3(using: compartment3TotalWeight)
-    }
-
-    var compartment4TotalBagWeight: Int {
-        position41.totalBagWeight
-            + position42.totalBagWeight
-            + position43.totalBagWeight
-    }
-
-    var compartment4TotalCargoWeight: Int {
-        position41.totalCargoWeight
-            + position42.totalCargoWeight
-            + position43.totalCargoWeight
-    }
-
-    var compartment4TotalWeight: Int {
-       let weight = position41.totalWeight
-            + position42.totalWeight
-            + position43.totalWeight
-//        if weight > 9525 {
-//            overweight = true
-//            weightAlert = .compartment4Overweight
-//            //return 0
-//        }
-        return weight
-    }
-
-    var compartment4IndexUnit: Double {
-        returnIndex.forCompartment4(using: compartment4TotalWeight)
-    }
-
-    var aftHoldTotal: Int {
-        let weight = compartment3TotalWeight + compartment4TotalWeight
-//        if weight > 19132  {
-//            overweight = true
-//            weightAlert = .aftHoldOverweight
-//           // return 0
-//        }
-        return weight
-    }
-
-    var compartment5TotalWeight: Int {
-        let weight = bulkHold.totalWeight
-//        if weight > 2735 {
-//            overweight = true
-//            weightAlert = .compartment5Overweight
-//        }
-        return weight
-    }
-
-    var compartment5IndexUnit: Double {
-        returnIndex.forCompartment5(using: compartment5TotalWeight)
-    }
-
-    var hasCargo: Bool {
-        if forwardHoldTotalWeight
-            + aftHoldTotal
-            + compartment5TotalWeight == 0 {
-            return false
-        } else {
-            return true
-        }
-    }
+ 
 
     static let example = UnderFloor()
 }

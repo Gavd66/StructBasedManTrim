@@ -26,6 +26,7 @@ struct ForwardHoldTotalsView: View {
             Text("\(underFloor.compartment1TotalBagWeight) kg")
                 .capsuleStyle()
         }
+
         VStack(alignment: .center, spacing: 5) {
             Text("Cargo")
             Text("\(underFloor.compartment1TotalCargoWeight) kg")
@@ -35,6 +36,7 @@ struct ForwardHoldTotalsView: View {
             Text("Total")
             Text("\(underFloor.compartment1TotalWeight) kg")
                 .capsuleStyle()
+                
         }
     }
         }
@@ -76,6 +78,6 @@ struct ForwardHoldTotalsView: View {
             Spacer()
         }
         
-    }
+    } 
 }
 

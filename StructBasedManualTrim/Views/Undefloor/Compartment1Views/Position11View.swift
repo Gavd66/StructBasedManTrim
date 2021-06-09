@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Position11View: View {
     @EnvironmentObject var underFloor: UnderFloor
+
     var position = 11
     var body: some View {
 
@@ -43,7 +44,6 @@ struct Position11View: View {
                             .onChange(underFloor.position11.updateCargoLabel))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
-
                 if underFloor.position11.hasCargoInPosition {
                     Text("kg")
                         .loadedStyle()
