@@ -305,7 +305,7 @@ class UnderFloor: ObservableObject {
     @Published var compartment3Enabled = true
     @Published var compartment4Enabled = true
     @Published var compartment5Enabled = true
-    @Published var oveweightAmount = 0
+    @Published var overweightAmount = 0
 
 
 //MARK:- Cargo Loaded Logic
@@ -417,11 +417,12 @@ class UnderFloor: ObservableObject {
     }
 
 //MARK:- Weight Protection Methods
-
+// If any limits are exceeded, use logic to disable all other compartments until the overweight condition is rectified.
     func checkCompartment1Weight(int: Int) {
         if compartment1TotalWeight > 15306 {
             overweightCondition = true
             weightAlertType = .compartment1Overweight
+            overweightAmount = compartment1TotalWeight - 15306
             compartment1Enabled = true
             compartment2Enabled = false
             compartment3Enabled = false
@@ -433,12 +434,14 @@ class UnderFloor: ObservableObject {
             compartment3Enabled = true
             compartment4Enabled = true
             compartment5Enabled = true
+            overweightAmount = 0
      }
     }
     func checkCompartment2Weight(int: Int) {
         if compartment2TotalWeight > 12700 {
             overweightCondition = true
             weightAlertType = .compartment2Overweight
+            overweightAmount = compartment2TotalWeight - 12700
             compartment1Enabled = false
             compartment2Enabled = true
             compartment3Enabled = false
@@ -456,6 +459,7 @@ class UnderFloor: ObservableObject {
         if compartment3TotalWeight > 10771 {
             overweightCondition = true
             weightAlertType = .compartment3Overweight
+            overweightAmount = compartment3TotalWeight - 10771
             compartment1Enabled = false
             compartment2Enabled = false
             compartment3Enabled = true
@@ -470,9 +474,10 @@ class UnderFloor: ObservableObject {
         }
     }
     func checkCompartment4Weight(int: Int) {
-        if compartment4TotalWeight > 2600 {
+        if compartment4TotalWeight > 9525 {
             overweightCondition = true
             weightAlertType = .compartment4Overweight
+            overweightAmount = compartment4TotalWeight - 9525
             compartment1Enabled = false
             compartment2Enabled = false
             compartment3Enabled = false
@@ -491,6 +496,7 @@ class UnderFloor: ObservableObject {
         if compartment5TotalWeight > 2735 {
             overweightCondition = true
             weightAlertType = .compartment5Overweight
+            overweightAmount = compartment5TotalWeight - 2735
             compartment1Enabled = false
             compartment2Enabled = false
             compartment3Enabled = false
@@ -508,7 +514,7 @@ class UnderFloor: ObservableObject {
         if forwardHoldTotalWeight > 25514 {
             overweightCondition = true
             weightAlertType = .forwardHoldOverweight
-
+            overweightAmount = forwardHoldTotalWeight - 25514
             compartment1Enabled = true
             compartment2Enabled = true
             compartment3Enabled = false
@@ -526,12 +532,12 @@ class UnderFloor: ObservableObject {
         if aftHoldTotalWeight > 19132 {
             overweightCondition = true
             weightAlertType = .aftHoldOverweight
-
+            overweightAmount = aftHoldTotalWeight - 19132
             compartment1Enabled = false
             compartment2Enabled = false
-            compartment3Enabled = false
+            compartment3Enabled = true
             compartment4Enabled = true
-            compartment5Enabled = true
+            compartment5Enabled = false
         } else {
             compartment1Enabled = true
             compartment2Enabled = true
