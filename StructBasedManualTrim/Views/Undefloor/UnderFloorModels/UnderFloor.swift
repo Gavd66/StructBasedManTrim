@@ -68,6 +68,7 @@ enum WeightAlert: Identifiable {
     case aftHoldOverweight
 
 }
+
 //MARK:- MainHold Model
 class MainHold: ObservableObject {
 
@@ -88,6 +89,7 @@ class MainHold: ObservableObject {
     @Published var hasCargoInPapa = false
     @Published var hideKeyboard = false
     @Published var resetIsPressed = false
+
 
 //MARK:- Weight Calculations
     var bagWeightLeft: Int {
@@ -298,6 +300,13 @@ class UnderFloor: ObservableObject {
     @Published var bulkHold = BulkHold()
     @Published var overweightCondition = false
     @Published var weightAlertType = WeightAlert.compartment1Overweight
+    @Published var compartment1Enabled = true
+    @Published var compartment2Enabled = true
+    @Published var compartment3Enabled = true
+    @Published var compartment4Enabled = true
+    @Published var compartment5Enabled = true
+    @Published var oveweightAmount = 0
+
 
 //MARK:- Cargo Loaded Logic
     var hasCargo: Bool {
@@ -413,42 +422,122 @@ class UnderFloor: ObservableObject {
         if compartment1TotalWeight > 15306 {
             overweightCondition = true
             weightAlertType = .compartment1Overweight
-        }
+            compartment1Enabled = true
+            compartment2Enabled = false
+            compartment3Enabled = false
+            compartment4Enabled = false
+            compartment5Enabled = false
+        } else {
+            compartment1Enabled = true
+            compartment2Enabled = true
+            compartment3Enabled = true
+            compartment4Enabled = true
+            compartment5Enabled = true
+     }
     }
     func checkCompartment2Weight(int: Int) {
         if compartment2TotalWeight > 12700 {
             overweightCondition = true
             weightAlertType = .compartment2Overweight
+            compartment1Enabled = false
+            compartment2Enabled = true
+            compartment3Enabled = false
+            compartment4Enabled = false
+            compartment5Enabled = false
+        } else {
+            compartment1Enabled = true
+            compartment2Enabled = true
+            compartment3Enabled = true
+            compartment4Enabled = true
+            compartment5Enabled = true
         }
     }
     func checkCompartment3Weight(int: Int) {
         if compartment3TotalWeight > 10771 {
             overweightCondition = true
             weightAlertType = .compartment3Overweight
+            compartment1Enabled = false
+            compartment2Enabled = false
+            compartment3Enabled = true
+            compartment4Enabled = false
+            compartment5Enabled = false
+        } else {
+            compartment1Enabled = true
+            compartment2Enabled = true
+            compartment3Enabled = true
+            compartment4Enabled = true
+            compartment5Enabled = true
         }
     }
     func checkCompartment4Weight(int: Int) {
         if compartment4TotalWeight > 2600 {
             overweightCondition = true
             weightAlertType = .compartment4Overweight
+            compartment1Enabled = false
+            compartment2Enabled = false
+            compartment3Enabled = false
+            compartment4Enabled = true
+            compartment5Enabled = false
+        } else {
+            compartment1Enabled = true
+            compartment2Enabled = true
+            compartment3Enabled = true
+            compartment4Enabled = true
+            compartment5Enabled = true
         }
     }
+
     func checkCompartment5Weight(int: Int) {
         if compartment5TotalWeight > 2735 {
             overweightCondition = true
             weightAlertType = .compartment5Overweight
+            compartment1Enabled = false
+            compartment2Enabled = false
+            compartment3Enabled = false
+            compartment4Enabled = false
+            compartment5Enabled = true
+        } else {
+            compartment1Enabled = true
+            compartment2Enabled = true
+            compartment3Enabled = true
+            compartment4Enabled = true
+            compartment5Enabled = true
         }
     }
     func checkForwardHoldWeight(int: Int) {
         if forwardHoldTotalWeight > 25514 {
             overweightCondition = true
             weightAlertType = .forwardHoldOverweight
+
+            compartment1Enabled = true
+            compartment2Enabled = true
+            compartment3Enabled = false
+            compartment4Enabled = false
+            compartment5Enabled = false
+        } else {
+            compartment1Enabled = true
+            compartment2Enabled = true
+            compartment3Enabled = true
+            compartment4Enabled = true
+            compartment5Enabled = true
         }
     }
     func checkAftHoldWeight(int: Int) {
         if aftHoldTotalWeight > 19132 {
             overweightCondition = true
             weightAlertType = .aftHoldOverweight
+
+            compartment1Enabled = false
+            compartment2Enabled = false
+            compartment3Enabled = false
+            compartment4Enabled = true
+            compartment5Enabled = true
+        } else {
+            compartment1Enabled = true
+            compartment2Enabled = true
+            compartment3Enabled = true
+            compartment4Enabled = true
+            compartment5Enabled = true
         }
     }
 
@@ -472,9 +561,6 @@ class UnderFloor: ObservableObject {
             bulkHold = BulkHold()
         }
     }
-
- 
-
     static let example = UnderFloor()
 }
 

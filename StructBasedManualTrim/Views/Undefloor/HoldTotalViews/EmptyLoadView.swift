@@ -41,7 +41,7 @@ struct EmptyLoadView: View {
         } else {
             HStack {
                 Spacer()
-            Text("No cargo loaded, all cargo holds are empty")
+            Text("No cargo or containers loaded, the entire underfloor is empty")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.accentColor)
                 Spacer()

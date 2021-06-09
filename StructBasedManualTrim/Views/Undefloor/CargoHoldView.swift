@@ -31,6 +31,7 @@ struct CargoHoldView: View {
                 // Weight Validations against limits
                 .onChange(of: underFloor.compartment1TotalWeight, perform: underFloor.checkCompartment1Weight)
                 .onChange(of: underFloor.forwardHoldTotalWeight, perform: underFloor.checkForwardHoldWeight)
+                .allowsHitTesting(underFloor.compartment1Enabled)
 
                 Section(header: Text("Compartment 2").foregroundColor(.primary)) {
                     Position21View()
@@ -44,6 +45,7 @@ struct CargoHoldView: View {
                 }
                 .onChange(of: underFloor.compartment2TotalWeight, perform: underFloor.checkCompartment2Weight)
                 .onChange(of: underFloor.forwardHoldTotalWeight, perform: underFloor.checkForwardHoldWeight)
+                .allowsHitTesting(underFloor.compartment2Enabled)
 
                 Section(header: Text("Forward Hold Totals").foregroundColor(.primary)) {
                     ForwardHoldTotalsView()
@@ -59,6 +61,7 @@ struct CargoHoldView: View {
                 }
                 .onChange(of: underFloor.compartment3TotalWeight, perform: underFloor.checkCompartment3Weight)
                 .onChange(of: underFloor.aftHoldTotalWeight, perform: underFloor.checkAftHoldWeight)
+                .allowsHitTesting(underFloor.compartment3Enabled)
 
                 Section(header: Text("Compartment 4").foregroundColor(.primary)) {
                     Position41View()
@@ -70,6 +73,7 @@ struct CargoHoldView: View {
                 }
                 .onChange(of: underFloor.compartment4TotalWeight, perform: underFloor.checkCompartment4Weight)
                 .onChange(of: underFloor.aftHoldTotalWeight, perform: underFloor.checkAftHoldWeight)
+                .allowsHitTesting(underFloor.compartment4Enabled)
 
                 Section(header: Text("Aft Hold Totals").foregroundColor(.primary)) {
                     AftHoldTotalsView()
@@ -79,6 +83,7 @@ struct CargoHoldView: View {
                     BulkView()
                 }
                 .onChange(of: underFloor.compartment5TotalWeight, perform: underFloor.checkCompartment5Weight)
+                .allowsHitTesting(underFloor.compartment5Enabled)
 
                 Section(header: Text("Bulk Hold Totals").foregroundColor(.primary)) {
                     BulkHoldTotalView()
