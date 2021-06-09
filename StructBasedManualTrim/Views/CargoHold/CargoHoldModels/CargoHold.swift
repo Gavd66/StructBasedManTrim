@@ -55,19 +55,6 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
         }
     }
 }
-//MARK:- Enum weight Alert
-enum WeightAlert: Identifiable {
-    var id: WeightAlert { self }
-
-    case compartment1Overweight
-    case compartment2Overweight
-    case compartment3Overweight
-    case compartment4Overweight
-    case compartment5Overweight
-    case forwardHoldOverweight
-    case aftHoldOverweight
-
-}
 
 //MARK:- MainHold Model
 class MainHold: ObservableObject {
@@ -416,7 +403,87 @@ class CargoHold: ObservableObject {
         returnIndex.forCompartment5(using: compartment5TotalWeight)
     }
 
-//MARK:- Weight Protection Methods
+    //MARK:- Enum weight Alert
+    enum WeightAlert: Identifiable {
+        var id: WeightAlert { self }
+
+        case compartment1Overweight
+        case compartment2Overweight
+        case compartment3Overweight
+        case compartment4Overweight
+        case compartment5Overweight
+        case forwardHoldOverweight
+        case aftHoldOverweight
+
+//        var alert: Alert {
+//            let title: [Self: String] = [
+//                .compartment1Overweight: "Compartment 1 Overweight",
+//                .compartment2Overweight: "Compartment 2 Overweight",
+//                .compartment3Overweight: "Compartment 3 Overweight",
+//                .compartment4Overweight: "Compartment 4 Overweight",
+//                .compartment5Overweight: "Compartment 5 Overweight",
+//                .forwardHoldOverweight: "Forward Hold Overweight",
+//                .aftHoldOverweight: "Aft Hold Overweight"
+//            ]
+//
+//            let message: [Self: String] = [
+//                .compartment1Overweight: "Remove \(overweightAmount)",
+//                .compartment2Overweight: "Compartment 2 Overweight",
+//                .compartment3Overweight: "Compartment 3 Overweight",
+//                .compartment4Overweight: "Compartment 4 Overweight",
+//                .compartment5Overweight: "Compartment 5 Overweight",
+//                .forwardHoldOverweight: "Forward Hold Overweight",
+//                .aftHoldOverweight: "Aft Hold Overweight"
+//
+//            ]
+//        }
+
+        var title: String {
+            switch self {
+            case .compartment1Overweight:
+                return "Compartment 1 Overweight"
+            case .compartment2Overweight:
+                return "Compartment 2 Overweight"
+            case .compartment3Overweight:
+                return "Compartment 3 Overweight"
+            case .compartment4Overweight:
+                return "Compartment 4 Overweight"
+            case .compartment5Overweight:
+                return "Compartment 5 Overweight"
+            case .forwardHoldOverweight:
+                return "Forward Hold Overweight"
+            case .aftHoldOverweight:
+                return "Aft Hold Overweight"
+            }
+        }
+
+        var message: String {
+            switch self {
+            case .compartment1Overweight:
+                return "Remove\(CargoHold().compartment1TotalWeight - 15306) kg"
+            case .compartment2Overweight:
+                return "Remove\(CargoHold().compartment2TotalWeight - 12700) kg"
+            case .compartment3Overweight:
+                return "Remove\(CargoHold().compartment3TotalWeight - 10771) kg"
+            case .compartment4Overweight:
+                return "Remove\(CargoHold().compartment3TotalWeight - 9525) kg"
+            case .compartment5Overweight:
+                return "Remove\(CargoHold().compartment3TotalWeight - 2735) kg"
+            case .forwardHoldOverweight:
+                return "Remove\(CargoHold().compartment3TotalWeight - 25514) kg"
+            case .aftHoldOverweight:
+                return "Remove\(CargoHold().compartment3TotalWeight - 19132) kg"
+            }
+        }
+
+
+        var alert: Alert {
+            return Alert(title: Text(title), message: Text(message), dismissButton: .default(Text("OK")))
+        }
+
+    }
+
+    //MARK:- Weight Protection Methods
 // If any limits are exceeded, use logic to disable all other compartments until the overweight condition is rectified.
 // TODO:-rework logic to maybe reset to nil or the optional alert
     // DO we even need to set the bool, could we just link directly to the weight alert itself using $weight alert ? if it were optional ?
