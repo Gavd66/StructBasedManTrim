@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BulkHoldTotalView: View {
-    @EnvironmentObject var underFloor: UnderFloor
+    @EnvironmentObject var cargoHold: CargoHold
 
     var body: some View {
         VStack {
@@ -22,17 +22,17 @@ struct BulkHoldTotalView: View {
             HStack {
                 VStack(alignment: .center, spacing: 5) {
                     Text("Items")
-                    Text("\(underFloor.bulkHold.itemWeight) kg")
+                    Text("\(cargoHold.bulkHold.itemWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Cargo")
-                    Text("\(underFloor.bulkHold.cargoWeight) kg")
+                    Text("\(cargoHold.bulkHold.cargoWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Total")
-                    Text("\(underFloor.compartment5TotalWeight) kg")
+                    Text("\(cargoHold.compartment5TotalWeight) kg")
                         .capsuleStyle()
                 }
             }

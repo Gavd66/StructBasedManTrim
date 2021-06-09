@@ -280,7 +280,7 @@ class BulkHold {
 
 
 // MARK:-UnderFloor Class
-class UnderFloor: ObservableObject {
+class CargoHold: ObservableObject {
 
     //MARK:- Properties
     @Published var position11 = MainHold()
@@ -567,7 +567,7 @@ class UnderFloor: ObservableObject {
             bulkHold = BulkHold()
         }
     }
-    static let example = UnderFloor()
+    static let example = CargoHold()
 }
 
 

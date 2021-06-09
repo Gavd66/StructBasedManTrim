@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct Position13View: View {
-    @EnvironmentObject var underFloor: UnderFloor
+    @EnvironmentObject var cargoHold: CargoHold
     var position = 13
     var body: some View {
 
-        Picker("Position \(position)", selection: $underFloor.position13.container
+        Picker("Position \(position)", selection: $cargoHold.position13.container
                 .animation()
-                .onChange(underFloor.position13.applyContainerLogic)) {
+                .onChange(cargoHold.position13.applyContainerLogic)) {
             ForEach(Container.allCases, id:\.self) {
                 Text("\(position)\($0.rawValue)")
             }
         }
         .pickerStyle(SegmentedPickerStyle())
-        .onChange(of: underFloor.position13.container, perform: dismissContainerKeyBoard)
+        .onChange(of: cargoHold.position13.container, perform: dismissContainerKeyBoard)
 
-        switch underFloor.position13.container {
+        switch cargoHold.position13.container {
         case .numberOnly:
             HStack {
                 Button(action: hideKeyboard) {
-                    if underFloor.position13.hasCargoInPosition {
+                    if cargoHold.position13.hasCargoInPosition {
                         Text("\(position) Cargo")
                             .loadedStyle()
                     } else {
@@ -37,13 +37,13 @@ struct Position13View: View {
                 .capsuleStyle()
 
                 TextField("0 kg",
-                          text: $underFloor.position13.cargoStringWeight
+                          text: $cargoHold.position13.cargoStringWeight
                             .animation()
-                            .onChange(underFloor.position13.updateCargoLabel))
+                            .onChange(cargoHold.position13.updateCargoLabel))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if underFloor.position13.hasCargoInPosition {
+                if cargoHold.position13.hasCargoInPosition {
                     Text("kg")
                         .loadedStyle()
                 }
@@ -51,7 +51,7 @@ struct Position13View: View {
         case .numberPapa:
             HStack {
                 Button(action: hideKeyboard) {
-                    if underFloor.position13.hasCargoInPapa {
+                    if cargoHold.position13.hasCargoInPapa {
                         Text("\(position)P Cargo")
                             .loadedStyle()
                     } else {
@@ -62,32 +62,32 @@ struct Position13View: View {
                 .capsuleStyle()
 
                 TextField("0 kg",
-                          text: $underFloor.position13.cargoPapaStringWeight
+                          text: $cargoHold.position13.cargoPapaStringWeight
                             .animation()
-                            .onChange(underFloor.position13.updateCargoPapaLabel))
+                            .onChange(cargoHold.position13.updateCargoPapaLabel))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if underFloor.position13.hasCargoInPapa {
+                if cargoHold.position13.hasCargoInPapa {
                     Text("kg")
                         .loadedStyle()
                 }
             }
-            .onChange(of: underFloor.position13.container,
+            .onChange(of: cargoHold.position13.container,
                       perform: dismissContainerKeyBoard)
 
         case .leftAndRight:
             Group {
                 Group {
-                    Picker("AKEweight", selection: $underFloor.position13.left.animation()
-                            .onChange(underFloor.position13.applyPositionLeftLogic)) {
+                    Picker("AKEweight", selection: $cargoHold.position13.left.animation()
+                            .onChange(cargoHold.position13.applyPositionLeftLogic)) {
                         ForEach(Ake.allCases, id:\.self) {
                             Text("\(position)L \($0.rawValue)")
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
 
-                    switch underFloor.position13.left {
+                    switch cargoHold.position13.left {
                     case .nilFit:
 
                         HStack {
@@ -99,7 +99,7 @@ struct Position13View: View {
                     case .ake:
                         HStack {
                             Button(action: hideKeyboard) {
-                                if underFloor.position13.hasBagsInLeft {
+                                if cargoHold.position13.hasBagsInLeft {
                                     Text("\(position)L Bags")
                                         .loadedStyle()
                                 } else {
@@ -109,15 +109,15 @@ struct Position13View: View {
                             }
                             .capsuleStyle()
 
-                            TextField("0 bags", text: $underFloor.position13.bagCountLeft
+                            TextField("0 bags", text: $cargoHold.position13.bagCountLeft
                                         .animation()
-                                        .onChange(underFloor.position13.updateLeftLabels))
+                                        .onChange(cargoHold.position13.updateLeftLabels))
 
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
 
-                            if underFloor.position13.hasBagsInLeft {
-                                Text("\(underFloor.position13.bagWeightLeft) kg")
+                            if cargoHold.position13.hasBagsInLeft {
+                                Text("\(cargoHold.position13.bagWeightLeft) kg")
                                     .loadedStyle()
                             } else {
                                 Text("AKE: 71kg ")
@@ -128,7 +128,7 @@ struct Position13View: View {
                     case .cargo:
                         HStack {
                             Button(action: hideKeyboard) {
-                                if underFloor.position13.hasCargoInLeft {
+                                if cargoHold.position13.hasCargoInLeft {
                                     Text("\(position)L Cargo")
                                         .loadedStyle()
                                 } else {
@@ -138,17 +138,17 @@ struct Position13View: View {
                             }
                             .capsuleStyle()
 
-                            TextField("0 kg" , text: $underFloor.position13.cargoLeft
+                            TextField("0 kg" , text: $cargoHold.position13.cargoLeft
                                         .animation()
                                         .onChange(
                                             withAnimation(.easeInOut) {
-                                                underFloor.position13.updateCargoRightLabels
+                                                cargoHold.position13.updateCargoRightLabels
                                             }
                                         ))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad).onAppear()
 
-                            if underFloor.position13.hasCargoInLeft {
+                            if cargoHold.position13.hasCargoInLeft {
                                 Text("kg")
                                     .loadedStyle()
                             }
@@ -157,20 +157,20 @@ struct Position13View: View {
                     }
                 } // End Left Group
                 // dismiss the number pad automatically when changing selections
-                .onChange(of: underFloor.position13.left,
+                .onChange(of: cargoHold.position13.left,
                           perform: dismissAKEKeyBoard)
 
 
                 Group {
-                    Picker("AKEweight", selection: $underFloor.position13.right.animation()
-                            .onChange(underFloor.position13.applyPositionRightLogic)) {
+                    Picker("AKEweight", selection: $cargoHold.position13.right.animation()
+                            .onChange(cargoHold.position13.applyPositionRightLogic)) {
                         ForEach(Ake.allCases, id:\.self) {
                             Text("\(position)R \($0.rawValue)")
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
 
-                    switch underFloor.position13.right {
+                    switch cargoHold.position13.right {
                     case .nilFit:
                         HStack {
                             Spacer()
@@ -181,7 +181,7 @@ struct Position13View: View {
                     case .ake:
                         HStack {
                             Button(action: hideKeyboard) {
-                                if underFloor.position13.hasBagsInRight {
+                                if cargoHold.position13.hasBagsInRight {
                                     Text("\(position)R Bags")
                                         .loadedStyle()
                                         .capsuleStyle()
@@ -192,18 +192,18 @@ struct Position13View: View {
                                 }
                             }
 
-                            TextField("0 Bags", text: $underFloor.position13.bagCountRight
+                            TextField("0 Bags", text: $cargoHold.position13.bagCountRight
                                         .animation()
                                         .onChange(
                                             withAnimation(.easeIn(duration: 2)) {
-                                                underFloor.position13.updateRightLabels
+                                                cargoHold.position13.updateRightLabels
                                             }
                                         ))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
 
-                            if underFloor.position13.hasBagsInRight {
-                                Text("\(underFloor.position13.bagWeightRight) kg")
+                            if cargoHold.position13.hasBagsInRight {
+                                Text("\(cargoHold.position13.bagWeightRight) kg")
                                     .loadedStyle()
                             } else {
                                 Text("AKE: 71kg ")
@@ -214,7 +214,7 @@ struct Position13View: View {
                     case .cargo:
                         HStack {
                             Button(action: hideKeyboard) {
-                                if underFloor.position13.hasCargoInRight {
+                                if cargoHold.position13.hasCargoInRight {
                                     Text("\(position)R Cargo")
                                         .loadedStyle()
                                         .capsuleStyle()
@@ -225,13 +225,13 @@ struct Position13View: View {
                                 }
                             }
 
-                            TextField("0 kg" ,text: $underFloor.position13.cargoRight
+                            TextField("0 kg" ,text: $cargoHold.position13.cargoRight
                                         .animation()
-                                        .onChange(underFloor.position13.updateCargoLeftLabels))
+                                        .onChange(cargoHold.position13.updateCargoLeftLabels))
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
 
-                            if underFloor.position13.hasCargoInRight {
+                            if cargoHold.position13.hasCargoInRight {
                                 Text("kg")
                                     .loadedStyle()
                             }
@@ -239,7 +239,7 @@ struct Position13View: View {
                         .font(.system(size: 18))
                     }
                 } // End Right Group
-                .onChange(of: underFloor.position13.right, perform: dismissAKEKeyBoard)
+                .onChange(of: cargoHold.position13.right, perform: dismissAKEKeyBoard)
 
             }
         } // Container
@@ -248,13 +248,13 @@ struct Position13View: View {
 
     // Methods to automatically dismiss the numeral keyboard on change of selection
     func dismissAKEKeyBoard(_ ake: Ake ) {
-        if underFloor.position13.hideKeyboard {
+        if cargoHold.position13.hideKeyboard {
             hideKeyboard()
         }
     }
 
     func dismissContainerKeyBoard(_ container: Container) {
-        if underFloor.position13.hideKeyboard {
+        if cargoHold.position13.hideKeyboard {
             hideKeyboard()
         }
     }

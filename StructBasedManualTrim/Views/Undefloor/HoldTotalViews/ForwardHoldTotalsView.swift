@@ -10,7 +10,7 @@ import SwiftUI
 // Maybe alert generated here with a binding to pass to the main view ?
 struct ForwardHoldTotalsView: View {
 
-    @EnvironmentObject var underFloor: UnderFloor
+    @EnvironmentObject var cargoHold: CargoHold
     var body: some View {
         VStack {
             HStack {
@@ -23,18 +23,18 @@ struct ForwardHoldTotalsView: View {
             HStack {
         VStack(alignment: .center, spacing: 5) {
             Text("Bags")
-            Text("\(underFloor.compartment1TotalBagWeight) kg")
+            Text("\(cargoHold.compartment1TotalBagWeight) kg")
                 .capsuleStyle()
         }
 
         VStack(alignment: .center, spacing: 5) {
             Text("Cargo")
-            Text("\(underFloor.compartment1TotalCargoWeight) kg")
+            Text("\(cargoHold.compartment1TotalCargoWeight) kg")
                 .capsuleStyle()
         }
         VStack(alignment: .center, spacing: 5) {
             Text("Total")
-            Text("\(underFloor.compartment1TotalWeight) kg")
+            Text("\(cargoHold.compartment1TotalWeight) kg")
                 .capsuleStyle()
                 
         }
@@ -51,17 +51,17 @@ struct ForwardHoldTotalsView: View {
             HStack {
                 VStack(alignment: .center, spacing: 5) {
                     Text("Bags")
-                    Text("\(underFloor.compartment2TotalBagWeight) kg")
+                    Text("\(cargoHold.compartment2TotalBagWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Cargo")
-                    Text("\(underFloor.compartment2TotalCargoWeight) kg")
+                    Text("\(cargoHold.compartment2TotalCargoWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Total")
-                    Text("\(underFloor.compartment2TotalWeight) kg")
+                    Text("\(cargoHold.compartment2TotalWeight) kg")
                         .capsuleStyle()
                 }
             }
@@ -72,7 +72,7 @@ struct ForwardHoldTotalsView: View {
                 Text("Forward Hold Total")
                     .italic()
                     .bold()
-                Text("\(underFloor.forwardHoldTotalWeight) kg")
+                Text("\(cargoHold.forwardHoldTotalWeight) kg")
                     .capsuleStyle()                
             }
             Spacer()

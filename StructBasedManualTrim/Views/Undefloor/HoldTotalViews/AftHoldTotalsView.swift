@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AftHoldTotalsView: View {
 
-    @EnvironmentObject var underFloor: UnderFloor
+    @EnvironmentObject var cargoHold: CargoHold
     var body: some View {
         VStack {
             HStack {
@@ -22,17 +22,17 @@ struct AftHoldTotalsView: View {
             HStack {
                 VStack(alignment: .center, spacing: 5) {
                     Text("Bags")
-                    Text("\(underFloor.compartment3TotalBagWeight) kg")
+                    Text("\(cargoHold.compartment3TotalBagWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Cargo")
-                    Text("\(underFloor.compartment3TotalCargoWeight) kg")
+                    Text("\(cargoHold.compartment3TotalCargoWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Total")
-                    Text("\(underFloor.compartment3TotalWeight) kg")
+                    Text("\(cargoHold.compartment3TotalWeight) kg")
                         .capsuleStyle()
                 }
             }
@@ -48,17 +48,17 @@ struct AftHoldTotalsView: View {
             HStack {
                 VStack(alignment: .center, spacing: 5) {
                     Text("Bags")
-                    Text("\(underFloor.compartment4TotalBagWeight) kg")
+                    Text("\(cargoHold.compartment4TotalBagWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Cargo")
-                    Text("\(underFloor.compartment4TotalCargoWeight) kg")
+                    Text("\(cargoHold.compartment4TotalCargoWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Total")
-                    Text("\(underFloor.compartment4TotalWeight) kg")
+                    Text("\(cargoHold.compartment4TotalWeight) kg")
                         .capsuleStyle()
                 }
             }
@@ -69,7 +69,7 @@ struct AftHoldTotalsView: View {
                 Text("Aft Hold Total")
                     .italic()
                     .bold()
-                Text("\(underFloor.aftHoldTotalWeight) kg")
+                Text("\(cargoHold.aftHoldTotalWeight) kg")
                     .capsuleStyle()
             }
             Spacer()

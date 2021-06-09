@@ -25,9 +25,10 @@
 		523A9F5A26646507009DC1BA /* StructBasedManualTrimApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F5926646507009DC1BA /* StructBasedManualTrimApp.swift */; };
 		523A9F5E26646509009DC1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523A9F5D26646509009DC1BA /* Assets.xcassets */; };
 		523A9F6126646509009DC1BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 523A9F6026646509009DC1BA /* Preview Assets.xcassets */; };
-		523A9F6926646521009DC1BA /* UnderFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F6826646521009DC1BA /* UnderFloor.swift */; };
+		523A9F6926646521009DC1BA /* CargoHold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F6826646521009DC1BA /* CargoHold.swift */; };
 		523A9F6B2664819C009DC1BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F6A2664819C009DC1BA /* Extensions.swift */; };
 		523A9F9426682BE0009DC1BA /* Position11View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F9326682BE0009DC1BA /* Position11View.swift */; };
+		524DCE38267093EA0020410B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE37267093EA0020410B /* Enums.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -57,9 +58,10 @@
 		523A9F5D26646509009DC1BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		523A9F6026646509009DC1BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		523A9F6226646509009DC1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		523A9F6826646521009DC1BA /* UnderFloor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderFloor.swift; sourceTree = "<group>"; };
+		523A9F6826646521009DC1BA /* CargoHold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoHold.swift; sourceTree = "<group>"; };
 		523A9F6A2664819C009DC1BA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		523A9F9326682BE0009DC1BA /* Position11View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position11View.swift; sourceTree = "<group>"; };
+		524DCE37267093EA0020410B /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -155,7 +157,7 @@
 		52200776266985E30089A8C1 /* UnderFloorModels */ = {
 			isa = PBXGroup;
 			children = (
-				523A9F6826646521009DC1BA /* UnderFloor.swift */,
+				523A9F6826646521009DC1BA /* CargoHold.swift */,
 				52A78413266E016800D05247 /* CargoIndexUnit.swift */,
 			);
 			path = UnderFloorModels;
@@ -214,6 +216,7 @@
 			children = (
 				523A9F6A2664819C009DC1BA /* Extensions.swift */,
 				52200777266AF6A60089A8C1 /* Modifiers.swift */,
+				524DCE37267093EA0020410B /* Enums.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -295,7 +298,7 @@
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
 				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,
 				5220076226690D2C0089A8C1 /* Position22View.swift in Sources */,
-				523A9F6926646521009DC1BA /* UnderFloor.swift in Sources */,
+				523A9F6926646521009DC1BA /* CargoHold.swift in Sources */,
 				5220075E26690D050089A8C1 /* Position14View.swift in Sources */,
 				52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */,
 				5220076C26690D960089A8C1 /* Position33View.swift in Sources */,
@@ -307,6 +310,7 @@
 				523A9F5A26646507009DC1BA /* StructBasedManualTrimApp.swift in Sources */,
 				5220076A26690D820089A8C1 /* Positon32View.swift in Sources */,
 				5220077226690DE30089A8C1 /* Position43View.swift in Sources */,
+				524DCE38267093EA0020410B /* Enums.swift in Sources */,
 				5220077426690DF60089A8C1 /* BulkView.swift in Sources */,
 				523A9F6B2664819C009DC1BA /* Extensions.swift in Sources */,
 				523A9F9426682BE0009DC1BA /* Position11View.swift in Sources */,

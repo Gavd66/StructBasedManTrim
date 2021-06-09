@@ -9,13 +9,13 @@ import SwiftUI
 
 struct BulkView: View {
 
-    @EnvironmentObject var underFloor: UnderFloor
+    @EnvironmentObject var cargoHold: CargoHold
     var position = "Bulk"
     var body: some View {
         Group {
             HStack {
                 Button(action: hideKeyboard) {
-                    if underFloor.bulkHold.hasItemsLoaded {
+                    if cargoHold.bulkHold.hasItemsLoaded {
                         Text("\(position) Items:")
                             .loadedStyle()
                     } else {
@@ -25,14 +25,14 @@ struct BulkView: View {
                 }
                 .capsuleStyle()
 
-                TextField("0 Items", text: $underFloor.bulkHold.itemStringCount
+                TextField("0 Items", text: $cargoHold.bulkHold.itemStringCount
                             .animation()
-                            .onChange(underFloor.bulkHold.updateItemLabels))
+                            .onChange(cargoHold.bulkHold.updateItemLabels))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if underFloor.bulkHold.hasItemsLoaded {
-                    Text("\(underFloor.bulkHold.itemWeight) kg")
+                if cargoHold.bulkHold.hasItemsLoaded {
+                    Text("\(cargoHold.bulkHold.itemWeight) kg")
                         .loadedStyle()
                 } else {
                     Text("No Items")
@@ -43,7 +43,7 @@ struct BulkView: View {
 
             HStack {
                 Button(action: hideKeyboard) {
-                    if underFloor.bulkHold.hasCargoLoaded {
+                    if cargoHold.bulkHold.hasCargoLoaded {
                         Text("\(position) Cargo")
                             .loadedStyle()
                     } else {
@@ -53,13 +53,13 @@ struct BulkView: View {
                 }
                 .capsuleStyle()
 
-                TextField("0 kg", text: $underFloor.bulkHold.cargoStringWeight
+                TextField("0 kg", text: $cargoHold.bulkHold.cargoStringWeight
                             .animation()
-                            .onChange(underFloor.bulkHold.updateCargoLabels))
+                            .onChange(cargoHold.bulkHold.updateCargoLabels))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if underFloor.bulkHold.hasCargoLoaded {
+                if cargoHold.bulkHold.hasCargoLoaded {
                     Text("kg")
                         .loadedStyle()
                 } else {

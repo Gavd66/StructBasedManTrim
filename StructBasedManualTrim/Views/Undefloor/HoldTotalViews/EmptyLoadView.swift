@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct EmptyLoadView: View {
-    @EnvironmentObject var underFloor: UnderFloor
+    @EnvironmentObject var cargoHold: CargoHold
 
     var body: some View {
-        if underFloor.hasCargo {
+        if cargoHold.hasCargo {
         VStack {
             HStack {
                 Spacer()
@@ -23,17 +23,17 @@ struct EmptyLoadView: View {
             HStack {
                 VStack(alignment: .center, spacing: 5) {
                     Text("Fwd Hold")
-                    Text("\(underFloor.forwardHoldTotalWeight) kg")
+                    Text("\(cargoHold.forwardHoldTotalWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Aft Hold")
-                    Text("\(underFloor.aftHoldTotalWeight) kg")
+                    Text("\(cargoHold.aftHoldTotalWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Bulk Hold")
-                    Text("\(underFloor.compartment5TotalWeight) kg")
+                    Text("\(cargoHold.compartment5TotalWeight) kg")
                         .capsuleStyle()
                 }
             }
