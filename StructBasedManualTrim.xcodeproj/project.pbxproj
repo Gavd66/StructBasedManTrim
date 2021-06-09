@@ -29,6 +29,8 @@
 		523A9F6B2664819C009DC1BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F6A2664819C009DC1BA /* Extensions.swift */; };
 		523A9F9426682BE0009DC1BA /* Position11View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A9F9326682BE0009DC1BA /* Position11View.swift */; };
 		524DCE38267093EA0020410B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE37267093EA0020410B /* Enums.swift */; };
+		524DCE3B2670AB570020410B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE3A2670AB570020410B /* MainTabView.swift */; };
+		524DCE3E2670AC190020410B /* PaxCabinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE3D2670AC190020410B /* PaxCabinView.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -62,6 +64,8 @@
 		523A9F6A2664819C009DC1BA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		523A9F9326682BE0009DC1BA /* Position11View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position11View.swift; sourceTree = "<group>"; };
 		524DCE37267093EA0020410B /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		524DCE3A2670AB570020410B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabView.swift; path = ../../../../../../Documents/MainTabView.swift; sourceTree = "<group>"; };
+		524DCE3D2670AC190020410B /* PaxCabinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaxCabinView.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -84,7 +88,9 @@
 		5220075326690C0E0089A8C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				52200775266984DB0089A8C1 /* Undefloor */,
+				524DCE392670AB1D0020410B /* MainView */,
+				52200775266984DB0089A8C1 /* CargoHold */,
+				524DCE3C2670ABD60020410B /* PaxCabin */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,7 +145,7 @@
 			path = BulkView;
 			sourceTree = "<group>";
 		};
-		52200775266984DB0089A8C1 /* Undefloor */ = {
+		52200775266984DB0089A8C1 /* CargoHold */ = {
 			isa = PBXGroup;
 			children = (
 				52A78415266EBB8A00D05247 /* CargoHoldView.swift */,
@@ -149,18 +155,19 @@
 				5220075626690C760089A8C1 /* Compartment3Views */,
 				5220075726690C810089A8C1 /* Compartment4Views */,
 				5220075826690C920089A8C1 /* BulkView */,
-				52200776266985E30089A8C1 /* UnderFloorModels */,
+				52200776266985E30089A8C1 /* CargoHoldModels */,
+				52A7840D266CF77600D05247 /* Utilities */,
 			);
-			path = Undefloor;
+			path = CargoHold;
 			sourceTree = "<group>";
 		};
-		52200776266985E30089A8C1 /* UnderFloorModels */ = {
+		52200776266985E30089A8C1 /* CargoHoldModels */ = {
 			isa = PBXGroup;
 			children = (
 				523A9F6826646521009DC1BA /* CargoHold.swift */,
 				52A78413266E016800D05247 /* CargoIndexUnit.swift */,
 			);
-			path = UnderFloorModels;
+			path = CargoHoldModels;
 			sourceTree = "<group>";
 		};
 		523A9F4D26646507009DC1BA = {
@@ -184,7 +191,6 @@
 			children = (
 				523A9F5926646507009DC1BA /* StructBasedManualTrimApp.swift */,
 				5220075326690C0E0089A8C1 /* Views */,
-				52A7840D266CF77600D05247 /* Utilities */,
 				523A9F5D26646509009DC1BA /* Assets.xcassets */,
 				523A9F6226646509009DC1BA /* Info.plist */,
 				523A9F5F26646509009DC1BA /* Preview Content */,
@@ -198,6 +204,22 @@
 				523A9F6026646509009DC1BA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		524DCE392670AB1D0020410B /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				524DCE3A2670AB570020410B /* MainTabView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		524DCE3C2670ABD60020410B /* PaxCabin */ = {
+			isa = PBXGroup;
+			children = (
+				524DCE3D2670AC190020410B /* PaxCabinView.swift */,
+			);
+			path = PaxCabin;
 			sourceTree = "<group>";
 		};
 		52A78408266C8D5700D05247 /* HoldTotalViews */ = {
@@ -292,6 +314,7 @@
 			files = (
 				5220076826690D720089A8C1 /* Position31View.swift in Sources */,
 				5220075A26690CE10089A8C1 /* Position12View.swift in Sources */,
+				524DCE3B2670AB570020410B /* MainTabView.swift in Sources */,
 				5220076626690D5B0089A8C1 /* Position24View.swift in Sources */,
 				52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */,
 				5220075C26690CF30089A8C1 /* Position13View.swift in Sources */,
@@ -315,6 +338,7 @@
 				523A9F6B2664819C009DC1BA /* Extensions.swift in Sources */,
 				523A9F9426682BE0009DC1BA /* Position11View.swift in Sources */,
 				52F1A3B8266F1A13001A9ECC /* EmptyLoadView.swift in Sources */,
+				524DCE3E2670AC190020410B /* PaxCabinView.swift in Sources */,
 				5220076026690D1B0089A8C1 /* Position21View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

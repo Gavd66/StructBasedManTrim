@@ -10,8 +10,9 @@ import SwiftUI
 
 
 struct CargoHoldView: View {
-    @ObservedObject var cargoHold: CargoHold
+   // @ObservedObject var cargoHold: CargoHold
 
+    @EnvironmentObject var cargoHold: CargoHold
     //Haptic for overweight condition. Prewarm engine as each View Appears
     @State private var feedBack = UINotificationFeedbackGenerator()
 
@@ -36,8 +37,10 @@ struct CargoHoldView: View {
                     Position14View()
                     Spacer()
                 }
+                //Warm Haptic engine as each view appears
                 .onAppear(perform: feedBack.prepare)
                 // Weight Validations against limits
+                // Modifier order matters, check individual limits first
                 .onChange(of: cargoHold.compartment1TotalWeight, perform: cargoHold.checkCompartment1Weight)
                 .onChange(of: cargoHold.forwardHoldTotalWeight, perform: cargoHold.checkForwardHoldWeight)
                 .allowsHitTesting(cargoHold.compartment1Enabled)
@@ -104,7 +107,6 @@ struct CargoHoldView: View {
                 }
                 .onAppear(perform: feedBack.prepare)
             }
-            .environmentObject(cargoHold) // Inject for all views to share
             .navigationBarTitle("Cargo Hold")
             .navigationBarItems(trailing: Button(action: cargoHold.resetCargoToEmpty) {
                 Image(systemName: "trash")

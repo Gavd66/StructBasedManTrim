@@ -279,7 +279,7 @@ class BulkHold {
 // TODO: set bool for showing alert if weight exceedance, enable haptics at the same time for overweight. Day 83 for object will change, haptics a bit after that and optional alerts. Try the enum.
 
 
-// MARK:-UnderFloor Class
+// MARK:-Cargo Hold Class
 class CargoHold: ObservableObject {
 
     //MARK:- Properties
@@ -418,6 +418,11 @@ class CargoHold: ObservableObject {
 
 //MARK:- Weight Protection Methods
 // If any limits are exceeded, use logic to disable all other compartments until the overweight condition is rectified.
+// TODO:-rework logic to maybe reset to nil or the optional alert
+    // DO we even need to set the bool, could we just link directly to the weight alert itself using $weight alert ? if it were optional ?
+    // investigate
+
+
     func checkCompartment1Weight(int: Int) {
         if compartment1TotalWeight > 15306 {
             overweightCondition = true
@@ -511,6 +516,11 @@ class CargoHold: ObservableObject {
         }
     }
     func checkForwardHoldWeight(int: Int) {
+// If compartments 1 and or 2 are over the individual limits sort them out first which may then take care of the forward hold limit.
+        if weightAlertType == .compartment1Overweight ||
+            weightAlertType == .compartment2Overweight {
+            return
+        }
         if forwardHoldTotalWeight > 25514 {
             overweightCondition = true
             weightAlertType = .forwardHoldOverweight
@@ -529,6 +539,12 @@ class CargoHold: ObservableObject {
         }
     }
     func checkAftHoldWeight(int: Int) {
+        // If compartments 3 and or 4 are over the individual limits sort them out first which may then take care of the forward hold limit.
+        if weightAlertType == .compartment3Overweight ||
+            weightAlertType == .compartment4Overweight {
+            return
+        }
+
         if aftHoldTotalWeight > 19132 {
             overweightCondition = true
             weightAlertType = .aftHoldOverweight
