@@ -17,7 +17,7 @@ struct CargoHoldView: View {
     @State private var feedBack = UINotificationFeedbackGenerator()
 
     var total: Text {
-        Text("\(cargoHold.overweightAmount)")
+        Text("\(cargoHold.overWeightAmount)")
     }
 
     var body: some View {
@@ -114,40 +114,40 @@ struct CargoHoldView: View {
                     .foregroundColor(.accentColor)
                     .padding()
             })
-            .alert(item: $cargoHold.weightAlertType) { weighAlert in
+            .alert(item: $cargoHold.overWeightAlert) { weighAlert in
                 self.feedBack.notificationOccurred(.error)
-                switch cargoHold.weightAlertType {
-                case .compartment1Overweight:
+                switch cargoHold.overWeightAlert {
+                case .compartment1:
                     return Alert(
                         title: Text("Compartment 1 Overweight"),
                         message: Text("Remove \(total) kg from Compartment 1"),
                         dismissButton: .default(Text("OK")))
-                case .compartment2Overweight:
+                case .compartment2:
                     return Alert(
                         title: Text("Compartment 2 Overweight"),
                         message: Text("Remove \(total) kg from Compartment 2"),
                         dismissButton: .default(Text("OK")))
-                case .compartment3Overweight:
+                case .compartment3:
                     return Alert(
                         title: Text("Compartment 3 Overweight"),
                         message: Text("Remove \(total) kg from Compartment 3"),
                         dismissButton: .default(Text("OK")))
-                case .compartment4Overweight:
+                case .compartment4:
                     return Alert(
                         title: Text("Compartment 4 Overweight"),
                         message: Text("Remove \(total) kg from Compartment 4"),
                         dismissButton: .default(Text("OK")))
-                case .compartment5Overweight:
+                case .compartment5:
                     return Alert(
                         title: Text("Compartment 5 Overweight"),
                         message: Text("Remove \(total) kg from Compartment 5"),
                         dismissButton: .default(Text("OK")))
-                case .forwardHoldOverweight:
+                case .forwardHold:
                     return Alert(
                         title: Text("Forward Hold Overweight"),
                         message: Text("Remove \(total) kg in total from Compartments 1 & 2 "),
                         dismissButton: .default(Text("OK")))
-                case .aftHoldOverweight:
+                case .aftHold:
                     return Alert(
                         title: Text("AftHold is Overweight"),
                         message: Text("Remove \(total) kg in total from Compartments 3 & 4 "),

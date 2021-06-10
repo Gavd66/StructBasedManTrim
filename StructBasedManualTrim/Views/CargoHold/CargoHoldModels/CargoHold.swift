@@ -285,13 +285,13 @@ class CargoHold: ObservableObject {
     @Published var position42 = MainHold()
     @Published var position43 = MainHold()
     @Published var bulkHold = BulkHold()
-    @Published var weightAlertType: WeightAlert? = nil
+    @Published var overWeightAlert: Underfloor? = nil
     @Published var compartment1Enabled = true
     @Published var compartment2Enabled = true
     @Published var compartment3Enabled = true
     @Published var compartment4Enabled = true
     @Published var compartment5Enabled = true
-    @Published var overweightAmount = 0
+    @Published var overWeightAmount = 0
 
 
 //MARK:- Cargo Loaded Logic
@@ -402,17 +402,37 @@ class CargoHold: ObservableObject {
         returnIndex.forCompartment5(using: compartment5TotalWeight)
     }
 
-    //MARK:- Enum weight Alert
-    enum WeightAlert: Identifiable {
-        var id: WeightAlert { self }
+    //MARK:- Enum Underfloor
 
-        case compartment1Overweight
-        case compartment2Overweight
-        case compartment3Overweight
-        case compartment4Overweight
-        case compartment5Overweight
-        case forwardHoldOverweight
-        case aftHoldOverweight
+    enum Underfloor: Identifiable {
+        var id: Underfloor { self }
+
+        case compartment1
+        case compartment2
+        case compartment3
+        case compartment4
+        case compartment5
+        case forwardHold
+        case aftHold
+
+        var limitWeight: Int {
+            switch self {
+            case .compartment1:
+                return 15306
+            case .compartment2:
+                return 12700
+            case .compartment3:
+                return 10771
+            case .compartment4:
+                return 9525
+            case .compartment5:
+                return 2735
+            case .forwardHold:
+                return 25514
+            case .aftHold:
+                return 19132
+            }
+        }
 
         // if didn't need computed property for overweight amount then could also make entire alert here and call on one line as per https://www.hackingwithswift.com/books/ios-swiftui/binding-an-alert-to-an-optional-string
     }
@@ -424,9 +444,11 @@ class CargoHold: ObservableObject {
     // investigate
     
     func checkCompartment1Weight(int: Int) {
-        if compartment1TotalWeight > 15306 {
-            overweightAmount = compartment1TotalWeight - 15306
-            weightAlertType = .compartment1Overweight
+        if compartment1TotalWeight >
+            Underfloor.compartment1.limitWeight {
+
+            overWeightAlert = .compartment1
+            overWeightAmount = compartment1TotalWeight - Underfloor.compartment1.limitWeight
             compartment1Enabled = true
             compartment2Enabled = false
             compartment3Enabled = false
@@ -438,14 +460,17 @@ class CargoHold: ObservableObject {
             compartment3Enabled = true
             compartment4Enabled = true
             compartment5Enabled = true
-            overweightAmount = 0
-            weightAlertType = nil
+            overWeightAmount = 0
+            overWeightAlert = nil
      }
     }
     func checkCompartment2Weight(int: Int) {
-        if compartment2TotalWeight > 12700 {
-            weightAlertType = .compartment2Overweight
-            overweightAmount = compartment2TotalWeight - 12700
+        if compartment2TotalWeight >
+            Underfloor.compartment2.limitWeight {
+
+            overWeightAlert = .compartment2
+            overWeightAmount = compartment2TotalWeight -
+                Underfloor.compartment2.limitWeight
             compartment1Enabled = false
             compartment2Enabled = true
             compartment3Enabled = false
@@ -457,14 +482,17 @@ class CargoHold: ObservableObject {
             compartment3Enabled = true
             compartment4Enabled = true
             compartment5Enabled = true
-            overweightAmount = 0
-            weightAlertType = nil
+            overWeightAmount = 0
+            overWeightAlert = nil
         }
     }
     func checkCompartment3Weight(int: Int) {
-        if compartment3TotalWeight > 10771 {
-            weightAlertType = .compartment3Overweight
-            overweightAmount = compartment3TotalWeight - 10771
+        if compartment3TotalWeight >
+            Underfloor.compartment3.limitWeight {
+
+            overWeightAlert = .compartment3
+            overWeightAmount = compartment3TotalWeight -
+                Underfloor.compartment3.limitWeight
             compartment1Enabled = false
             compartment2Enabled = false
             compartment3Enabled = true
@@ -476,14 +504,17 @@ class CargoHold: ObservableObject {
             compartment3Enabled = true
             compartment4Enabled = true
             compartment5Enabled = true
-            overweightAmount = 0
-            weightAlertType = nil
+            overWeightAmount = 0
+            overWeightAlert = nil
         }
     }
     func checkCompartment4Weight(int: Int) {
-        if compartment4TotalWeight > 9525 {
-            weightAlertType = .compartment4Overweight
-            overweightAmount = compartment4TotalWeight - 9525
+        if compartment4TotalWeight >
+            Underfloor.compartment4.limitWeight {
+
+            overWeightAlert = .compartment4
+            overWeightAmount = compartment4TotalWeight -
+                Underfloor.compartment4.limitWeight
             compartment1Enabled = false
             compartment2Enabled = false
             compartment3Enabled = false
@@ -495,15 +526,18 @@ class CargoHold: ObservableObject {
             compartment3Enabled = true
             compartment4Enabled = true
             compartment5Enabled = true
-            overweightAmount = 0
-            weightAlertType = nil
+            overWeightAmount = 0
+            overWeightAlert = nil
         }
     }
 
     func checkCompartment5Weight(int: Int) {
-        if compartment5TotalWeight > 2735 {
-            weightAlertType = .compartment5Overweight
-            overweightAmount = compartment5TotalWeight - 2735
+        if compartment5TotalWeight >
+            Underfloor.compartment5.limitWeight {
+
+            overWeightAlert = .compartment5
+            overWeightAmount = compartment5TotalWeight -
+                Underfloor.compartment5.limitWeight
             compartment1Enabled = false
             compartment2Enabled = false
             compartment3Enabled = false
@@ -515,19 +549,22 @@ class CargoHold: ObservableObject {
             compartment3Enabled = true
             compartment4Enabled = true
             compartment5Enabled = true
-            overweightAmount = 0
-            weightAlertType = nil
+            overWeightAmount = 0
+            overWeightAlert = nil
         }
     }
     func checkForwardHoldWeight(int: Int) {
         // Prioritise inidividual limits first
-        if weightAlertType == .compartment1Overweight ||
-            weightAlertType == .compartment2Overweight {
+        if overWeightAlert == .compartment1 ||
+            overWeightAlert == .compartment2 {
             return
         }
-        if forwardHoldTotalWeight > 25514 {
-            weightAlertType = .forwardHoldOverweight
-            overweightAmount = forwardHoldTotalWeight - 25514
+        if forwardHoldTotalWeight >
+            Underfloor.forwardHold.limitWeight {
+
+            overWeightAlert = .forwardHold
+            overWeightAmount = forwardHoldTotalWeight -
+                Underfloor.forwardHold.limitWeight
             compartment1Enabled = true
             compartment2Enabled = true
             compartment3Enabled = false
@@ -539,19 +576,21 @@ class CargoHold: ObservableObject {
             compartment3Enabled = true
             compartment4Enabled = true
             compartment5Enabled = true
-            overweightAmount = 0
-            weightAlertType = nil
+            overWeightAmount = 0
+            overWeightAlert = nil
         }
     }
     func checkAftHoldWeight(int: Int) {
-        if weightAlertType == .compartment3Overweight ||
-            weightAlertType == .compartment4Overweight {
+        if overWeightAlert == .compartment3 ||
+            overWeightAlert == .compartment4 {
             return
         }
-        if aftHoldTotalWeight > 19132 {
-           // overweightCondition = true
-            weightAlertType = .aftHoldOverweight
-            overweightAmount = aftHoldTotalWeight - 19132
+        if aftHoldTotalWeight >
+            Underfloor.aftHold.limitWeight {
+
+            overWeightAlert = .aftHold
+            overWeightAmount = aftHoldTotalWeight -
+                Underfloor.aftHold.limitWeight
             compartment1Enabled = false
             compartment2Enabled = false
             compartment3Enabled = true
@@ -563,8 +602,8 @@ class CargoHold: ObservableObject {
             compartment3Enabled = true
             compartment4Enabled = true
             compartment5Enabled = true
-            overweightAmount = 0
-            weightAlertType = nil
+            overWeightAmount = 0
+            overWeightAlert = nil
         }
     }
 
