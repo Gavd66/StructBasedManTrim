@@ -25,7 +25,9 @@ struct CargoHoldView: View {
             Form {
                 Section(header: Text("Cargo Overview").foregroundColor(.primary)) {
                     EmptyLoadView()
+
                 }
+                
 
                 Section(header: Text("Compartment 1").foregroundColor(.primary)) {
                     Position11View()

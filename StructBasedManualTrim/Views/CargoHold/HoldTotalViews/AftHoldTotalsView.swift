@@ -37,6 +37,9 @@ struct AftHoldTotalsView: View {
                 }
             }
         }//
+        .contextMenu {
+            Text("Compartment 3 Limit \(Underfloor.compartment3.limitWeight) kg")
+        }
         VStack {
             HStack {
                 Spacer()
@@ -63,6 +66,9 @@ struct AftHoldTotalsView: View {
                 }
             }
         }
+        .contextMenu{
+            Text("Compartment 4 limit \(Underfloor.compartment4.limitWeight) kg")
+        }
         HStack {
             Spacer()
             VStack(alignment: .center, spacing: 5) {
@@ -73,6 +79,9 @@ struct AftHoldTotalsView: View {
                     .capsuleStyle()
             }
             Spacer()
+        }
+        .contextMenu {
+            Text("Aft Hold limit \(Underfloor.aftHold.limitWeight) kg")
         }
     }
 }

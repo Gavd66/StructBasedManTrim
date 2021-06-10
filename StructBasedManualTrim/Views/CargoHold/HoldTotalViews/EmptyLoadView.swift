@@ -38,6 +38,14 @@ struct EmptyLoadView: View {
                 }
             }
         }//
+        .contextMenu {
+            VStack {
+            Text("Limits for each Hold")
+                Text("Fwd: \(Underfloor.forwardHold.limitWeight) kg")
+                Text("Aft: \(Underfloor.aftHold.limitWeight) kg")
+                Text("Bulk: \(Underfloor.compartment5.limitWeight) kg")
+            }
+        }
         } else {
             HStack {
                 Spacer()
@@ -45,6 +53,12 @@ struct EmptyLoadView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.accentColor)
                 Spacer()
+            } // End H
+            .contextMenu {
+                VStack {
+                Text("Only displyed if all holds are empty")
+                Text("Use trash to reset to empty when required")
+                }
             }
         }
     }

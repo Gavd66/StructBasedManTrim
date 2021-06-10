@@ -37,6 +37,9 @@ struct BulkHoldTotalView: View {
                 }
             }
         }
+        .contextMenu {
+            Text("Bulk Hold limit \(Underfloor.compartment5.limitWeight) kg")
+        }
     }
 }
 

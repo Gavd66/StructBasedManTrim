@@ -56,6 +56,7 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
     }
 }
 
+
 //MARK:- MainHold Model
 class MainHold: ObservableObject {
 
@@ -224,6 +225,8 @@ class MainHold: ObservableObject {
     }
 }
 
+
+
 // MARK:- Bulk Hold
 class BulkHold {
     @Published var itemStringCount = ""
@@ -260,11 +263,40 @@ class BulkHold {
         hasCargoLoaded = (cargoStringWeight == "") ? false: true
     }
 }
+//MARK:- Enum Underfloor
 
-// Todo after hide keyboard
+enum Underfloor: Identifiable {
+    var id: Underfloor { self }
 
-// TODO: set bool for showing alert if weight exceedance, enable haptics at the same time for overweight. Day 83 for object will change, haptics a bit after that and optional alerts. Try the enum.
+    case compartment1
+    case compartment2
+    case compartment3
+    case compartment4
+    case compartment5
+    case forwardHold
+    case aftHold
 
+    var limitWeight: Int {
+        switch self {
+        case .compartment1:
+            return 15306
+        case .compartment2:
+            return 12700
+        case .compartment3:
+            return 10771
+        case .compartment4:
+            return 9525
+        case .compartment5:
+            return 2735
+        case .forwardHold:
+            return 25514
+        case .aftHold:
+            return 19132
+        }
+    }
+    // if didn't need computed property for overweight amount then could also make entire alert here and call on one line as per https://www.hackingwithswift.com/books/ios-swiftui/binding-an-alert-to-an-optional-string
+
+}
 
 // MARK:-Cargo Hold Class
 class CargoHold: ObservableObject {
@@ -402,40 +434,6 @@ class CargoHold: ObservableObject {
         returnIndex.forCompartment5(using: compartment5TotalWeight)
     }
 
-    //MARK:- Enum Underfloor
-
-    enum Underfloor: Identifiable {
-        var id: Underfloor { self }
-
-        case compartment1
-        case compartment2
-        case compartment3
-        case compartment4
-        case compartment5
-        case forwardHold
-        case aftHold
-
-        var limitWeight: Int {
-            switch self {
-            case .compartment1:
-                return 15306
-            case .compartment2:
-                return 12700
-            case .compartment3:
-                return 10771
-            case .compartment4:
-                return 9525
-            case .compartment5:
-                return 2735
-            case .forwardHold:
-                return 25514
-            case .aftHold:
-                return 19132
-            }
-        }
-
-        // if didn't need computed property for overweight amount then could also make entire alert here and call on one line as per https://www.hackingwithswift.com/books/ios-swiftui/binding-an-alert-to-an-optional-string
-    }
 
     //MARK:- Weight Protection Methods
 // If any limits are exceeded, use logic to disable all other compartments until the overweight condition is rectified.
