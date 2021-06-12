@@ -46,23 +46,7 @@ struct Zone1View: View {
                     }
                 }
 
-                TextField("0 x \(PaxWeight.jMale.weight) kg", text: $cabin.zone1.maleStringNumber
-                            .animation()
-                            .onChange(
-                                withAnimation(.easeIn(duration: 2)) {
-                                    cabin.zone1.updateMaleLables
-                                }
-                            ))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.numberPad)
-
-                if cabin.zone1.hasMalesInZone {
-                    Text("\(cabin.zone1.jMaleWeight) kg")
-                        .loadedStyle()
-                } else {
-                    Text("0 kg ")
-                        .emptyStyle()
-                }
+               JClassMaleView()
             }
             .font(.system(size: 18))
 
@@ -79,24 +63,7 @@ struct Zone1View: View {
                             .capsuleStyle()
                     }
                 }
-
-                TextField("0 x \(PaxWeight.jFemale.weight) kg", text: $cabin.zone1.femaleStringNumber
-                            .animation()
-                            .onChange(
-                                withAnimation(.easeIn(duration: 2)) {
-                                    cabin.zone1.updateFemaleLables
-                                }
-                            ))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.numberPad)
-
-                if cabin.zone1.hasFemalesInZone {
-                    Text("\(cabin.zone1.jFemaleWeight) kg")
-                        .loadedStyle()
-                } else {
-                    Text("0 kg ")
-                        .emptyStyle()
-                }
+               JClassFemaleView()
             }
             .font(.system(size: 18))
 
@@ -114,23 +81,7 @@ struct Zone1View: View {
                     }
                 }
 
-                TextField("0 x \(PaxWeight.jChild.weight) kg", text: $cabin.zone1.childrenStringNumber
-                            .animation()
-                            .onChange(
-                                withAnimation(.easeIn(duration: 2)) {
-                                    cabin.zone1.updateChildLables
-                                }
-                            ))
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.numberPad)
-
-                if cabin.zone1.hasChildrenInZone {
-                    Text("\(cabin.zone1.jChildWeight) kg")
-                        .loadedStyle()
-                } else {
-                    Text("0 kg ")
-                        .emptyStyle()
-                }
+               JClassChildView()
             }
             .font(.system(size: 18))
 //MARK:- Infants
@@ -169,9 +120,11 @@ struct Zone1View: View {
             .font(.system(size: 18))
 // MARK:- Zone 1 Total View
             // Only display once pax numbers are entered
-            if cabin.zone1.isNotEmpty {
+            if cabin.zone1.hasPaxInZone {
+                withAnimation(.easeIn(duration: 5)) {
                 Zone1TotalView()
                     .padding(.top)
+            }
             }
         }// End Zone 1
     }

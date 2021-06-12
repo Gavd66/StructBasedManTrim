@@ -14,32 +14,53 @@ struct PaxCabinView: View {
             Form {
                 // Pax Cabin Group
                 Group {
+
                     Section {
                         EmptyCabinView()
                     }
-                    Section(header: Text("Cabin Zone 1")
-                                .foregroundColor(.primary)) {
-                        Zone1View()
-                            .padding(.bottom)
-                    }
-                    Section(header: Text("Cabin Zone 2")
-                                .foregroundColor(.primary)) {
-                        Zone2View()
-                    }
 
-                    Section(header: Text("Cabin Zone 3")
+                    Section(header: Text("J Class Weights")
                                 .foregroundColor(.primary)) {
-                        Zone3View()
+                        ConfigurationView()
                     }
+                    Section(header:
+                        Text("Cabin Zone 1").foregroundColor(.primary)) {
+                        Zone1View().padding(.bottom)
+                    }
+                    .onChange(of: cabin.zone1.seatsOccupied, perform: cabin.overSeatingCheck)
+                    .allowsHitTesting(cabin.zone1Unlocked)
 
-                    Section(header: Text("Cabin Zone 4")
-                                .foregroundColor(.primary)) {
-                        Zone4View()
+                    Section(header:
+                        Text("Cabin Zone 2").foregroundColor(.primary)) {
+                        Zone2View().padding(.bottom)
                     }
+                    .onChange(of: cabin.zone2.seatsOccupied, perform: cabin.overSeatingCheck)
+                    .allowsHitTesting(cabin.zone2Unlocked)
+
+
+                    Section(header:
+                        Text("Cabin Zone 3").foregroundColor(.primary)) {
+                        Zone3View().padding(.bottom)
+                    }
+                    .onChange(of: cabin.zone3.seatsOccupied, perform: cabin.overSeatingCheck)
+                    .allowsHitTesting(cabin.zone3Unlocked)
+
+
+                    Section(header:
+                        Text("Cabin Zone 4").foregroundColor(.primary)) {
+                        Zone4View().padding(.bottom)
+                    }
+                    .onChange(of: cabin.zone4.seatsOccupied, perform: cabin.overSeatingCheck)
+                    .allowsHitTesting(cabin.zone4Unlocked)
+
                 }// End Pax Cabin Group
 
             }
             .navigationTitle("Persons on Board")
+            .alert(item: $cabin.seatingError) { seatingError in
+                Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .default(Text("OK")))
+
+            }
         }
     }
 }

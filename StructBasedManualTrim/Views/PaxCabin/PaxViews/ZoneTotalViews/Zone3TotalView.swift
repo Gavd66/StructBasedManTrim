@@ -10,16 +10,33 @@ import SwiftUI
 struct Zone3TotalView: View {
     @EnvironmentObject var cabin: Cabin
     var body: some View {
+
         VStack(alignment: .center) {
             HStack {
                 Spacer()
-                Text("Zone 3 Total Weight")
+                Text("\(Seats.inZone3.rawValue)")
                     .italic()
                     .bold()
                 Spacer()
             }
-            Text("\(cabin.zone3TotalWeight) kg")
-                .capsuleStyle()
+            .padding(.bottom, 5)
+            HStack {
+                Spacer()
+                VStack(alignment: .center) {
+                    Text(" Total Pax")
+                    Text("\(cabin.zone3.totalPax)")
+                        .capsuleStyle()
+                }
+                .multilineTextAlignment(.center)
+                Spacer()
+                VStack {
+                    Text("Total Weight")
+                    Text("\(cabin.zone3TotalWeight) kg")
+                        .capsuleStyle()
+                }
+                .multilineTextAlignment(.center)
+                Spacer()
+            }
 
         }
     }

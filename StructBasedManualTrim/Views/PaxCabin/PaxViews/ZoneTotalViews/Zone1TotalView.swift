@@ -14,13 +14,40 @@ struct Zone1TotalView: View {
         VStack(alignment: .center) {
             HStack {
                 Spacer()
-                Text("Zone 1 Total Weight")
+                Text("\(Seats.inZone1.rawValue)")
                     .italic()
                     .bold()
                 Spacer()
             }
-            Text("\(cabin.zone1TotalWeight) kg")
-                .capsuleStyle()
+            .padding(.bottom, 5)
+            HStack {
+                Spacer()
+                VStack(alignment: .center) {
+                    Text(" Total Pax")
+                    Text("\(cabin.zone1.totalPax)")
+                        .capsuleStyle()
+                }
+                .multilineTextAlignment(.center)
+                Spacer()
+                if cabin.configuration == .standard {
+                    VStack {
+                        Text("Total Weight")
+                        Text("\(cabin.zone1StandardWeight) kg")
+                            .capsuleStyle()
+                    }
+                    .multilineTextAlignment(.center)
+                } else if cabin.configuration == .domestic {
+                    VStack {
+                        Text("Total Weight")
+                        Text("\(cabin.zone1DomesticWeight) kg")
+                            .capsuleStyle()
+                    }
+                    .multilineTextAlignment(.center)
+                }
+
+
+                Spacer()
+            }
             
         }
     }

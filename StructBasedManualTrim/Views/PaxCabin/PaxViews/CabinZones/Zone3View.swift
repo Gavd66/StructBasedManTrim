@@ -170,7 +170,7 @@ struct Zone3View: View {
             .font(.system(size: 18))
             // MARK:- Zone 3 Total View
             // Only display once pax numbers are entered
-            if cabin.zone3.isNotEmpty {
+            if cabin.zone3.hasPaxInZone {
                 Zone3TotalView()
                     .padding(.top)
             }
