@@ -1,29 +1,34 @@
 //
-//  Zone2View.swift
+//  EcconomyViewModel.swift
 //  StructBasedManualTrim
 //
-//  Created by Gavin Dorward on 10/6/21.
+//  Created by Gavin Dorward on 13/6/21.
 //
 
 import SwiftUI
 
-struct Zone2View: View {
+struct EcconomyModel: View {
     @EnvironmentObject  var cabin: Cabin
     var number = 2
+    var boundTo: Binding<Pax>
+    var forZone: Pax
+    var zoneTotal: Seats
+
+
     var body: some View {
 
         //MARK:- Zone 2
-        Picker("Zone \(number) ", selection: $cabin.zone2.paxInCabin
+        Picker("Zone\(number)", selection: boundTo.paxInCabin
                 .animation()
-                .onChange(cabin.zone2.applyCabinLogic)) {
+                .onChange(forZone.applyCabinLogic)) {
             ForEach(CabinOccupency.allCases, id: \.self){
                 Text("Zone\(number)\($0.rawValue)")
             }
         }
         .pickerStyle(SegmentedPickerStyle())
-        .onChange(of: cabin.zone2.paxInCabin, perform: dismissCabinKeyBoard)
+        .onChange(of: forZone.paxInCabin, perform: dismissCabinKeyBoard)
 
-        switch cabin.zone2.paxInCabin {
+        switch forZone.paxInCabin {
         case .empty:
             HStack {
                 Spacer()
@@ -32,10 +37,10 @@ struct Zone2View: View {
                 Spacer()
             }
         case .paxCarried:
-//MARK:- Males
+            //MARK:- Males
             HStack {
                 Button(action: hideKeyboard) {
-                    if cabin.zone2.hasMalesInZone {
+                    if forZone.hasMalesInZone {
                         Text("\(HasMales.some.rawValue)")
                             .loadedStyle()
                             .capsuleStyle()
@@ -46,18 +51,18 @@ struct Zone2View: View {
                     }
                 }
 
-                TextField("0 x \(PaxWeight.yMale.weight) kg", text: $cabin.zone2.maleStringNumber
+                TextField("0 x \(PaxWeight.yMale.weight) kg", text: boundTo.maleStringNumber
                             .animation()
                             .onChange(
                                 withAnimation(.easeIn(duration: 2)) {
-                                    cabin.zone2.updateMaleLables
+                                    forZone.updateMaleLables
                                 }
                             ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if cabin.zone2.hasMalesInZone {
-                    Text("\(cabin.zone2.yMaleWeight) kg")
+                if forZone.hasMalesInZone {
+                    Text("\(forZone.yMaleWeight) kg")
                         .loadedStyle()
                 } else {
                     Text("0 kg ")
@@ -66,10 +71,10 @@ struct Zone2View: View {
             }
             .font(.system(size: 18))
 
-//MARK:- Females
+            //MARK:- Females
             HStack {
                 Button(action: hideKeyboard) {
-                    if cabin.zone2.hasFemalesInZone {
+                    if forZone.hasFemalesInZone {
                         Text("\(HasFemales.some.rawValue)")
                             .loadedStyle()
                             .capsuleStyle()
@@ -80,17 +85,17 @@ struct Zone2View: View {
                     }
                 }
 
-                TextField("0 x \(PaxWeight.yFemale.weight) kg", text: $cabin.zone2.femaleStringNumber
+                TextField("0 x \(PaxWeight.yFemale.weight) kg", text: boundTo.femaleStringNumber
                             .animation()
                             .onChange(
                                 withAnimation(.easeIn(duration: 2)) {
-                                    cabin.zone2.updateFemaleLables
+                                    forZone.updateFemaleLables
                                 }
                             ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if cabin.zone2.hasFemalesInZone {
+                if forZone.hasFemalesInZone {
                     Text("\(cabin.zone2.yFemaleWeight) kg")
                         .loadedStyle()
                 } else {
@@ -100,10 +105,10 @@ struct Zone2View: View {
             }
             .font(.system(size: 18))
 
-//MARK:- Children
+            //MARK:- Children
             HStack {
                 Button(action: hideKeyboard) {
-                    if cabin.zone2.hasChildrenInZone {
+                    if forZone.hasChildrenInZone {
                         Text("\(HasChildren.some.rawValue)")
                             .loadedStyle()
                             .capsuleStyle()
@@ -114,18 +119,18 @@ struct Zone2View: View {
                     }
                 }
 
-                TextField("0 x \(PaxWeight.yChild.weight) kg", text: $cabin.zone2.childrenStringNumber
+                TextField("0 x \(PaxWeight.yChild.weight) kg", text: boundTo.childrenStringNumber
                             .animation()
                             .onChange(
                                 withAnimation(.easeIn(duration: 2)) {
-                                    cabin.zone2.updateChildLables
+                                    forZone.updateChildLables
                                 }
                             ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if cabin.zone2.hasChildrenInZone {
-                    Text("\(cabin.zone2.yChildWeight) kg")
+                if forZone.hasChildrenInZone {
+                    Text("\(forZone.yChildWeight) kg")
                         .loadedStyle()
                 } else {
                     Text("0 kg ")
@@ -133,11 +138,11 @@ struct Zone2View: View {
                 }
             }
             .font(.system(size: 18))
-//MARK:- Infants
+            //MARK:- Infants
             // Infants
             HStack {
                 Button(action: hideKeyboard) {
-                    if cabin.zone2.hasInfantsInZone {
+                    if forZone.hasInfantsInZone {
                         Text("\(HasInfants.some.rawValue)")
                             .loadedStyle()
                             .capsuleStyle()
@@ -149,17 +154,17 @@ struct Zone2View: View {
                 }
 
                 TextField("0 x \(PaxWeight.infant.weight)", text:
-                            $cabin.zone2.infantStringNumber
+                            boundTo.infantStringNumber
                             .animation()
                             .onChange(
                                 withAnimation(.easeIn(duration: 2)) {
-                                    cabin.zone2.updateInfantLables
+                                    forZone.updateInfantLables
                                 }
                             ))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if cabin.zone2.hasInfantsInZone {
+                if forZone.hasInfantsInZone {
                     Text("\(cabin.zone2.infantWeight) kg")
                         .loadedStyle()
                 } else {
@@ -168,12 +173,8 @@ struct Zone2View: View {
                 }
             }
             .font(.system(size: 18))
-// MARK:- Zone 2 Total View
-            // Only display once pax numbers are entered
-            if cabin.zone2.hasPaxInZone {
-                Zone2TotalView()
-                    .padding(.top)
-            }
+         
+            TotalsYClassModel(cabin: _cabin, zone: forZone, zoneTotal: zoneTotal)
         }// End Zone 2
     }
     func dismissCabinKeyBoard(_ paxInCabin: CabinOccupency) {
@@ -181,10 +182,7 @@ struct Zone2View: View {
             hideKeyboard()
         }
     }
+
 }
 
-struct Zone2View_Previews: PreviewProvider {
-    static var previews: some View {
-        Zone2View()
-    }
-}
+

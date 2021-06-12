@@ -236,6 +236,8 @@ class Pax {
         return result
     }
 
+    static var example = Pax()
+
 }
 //MARK:- Class Cabin
 class Cabin: ObservableObject {
@@ -267,6 +269,13 @@ class Cabin: ObservableObject {
     }
     var zone2TotalWeight: Int {
         zone2.ecconomyWeight
+    }
+    func zoneBuisnessWeight(for zone: Pax) -> Int {
+        zone.buisnessWeight
+    }
+
+    func zoneEcconomylWeight(for zone: Pax) -> Int {
+        zone.ecconomyWeight
     }
     var zone3TotalWeight: Int {
         zone3.ecconomyWeight
@@ -363,6 +372,7 @@ class Cabin: ObservableObject {
             return ""
         }
     }
+static var example = Pax()
 
     //MARK:- Cabin
     func resetCabin() {
