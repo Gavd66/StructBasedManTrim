@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmptyCabinView: View {
+struct EmptyCabinModel: View {
 
     @EnvironmentObject var cabin: Cabin
     var body: some View {
@@ -66,6 +66,6 @@ struct EmptyCabinView: View {
 
 struct EmptyCabinView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyCabinView()
+        EmptyCabinModel()
     }
 }

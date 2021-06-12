@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct TotalsJClassModel: View {
+struct JTotals: View {
     @EnvironmentObject var cabin: Cabin
     var zone: Pax
     var zoneTotal: Seats
-    var zoneWeight: Int
+  
+
     var body: some View {
         if zone.hasPaxInZone {
             withAnimation {

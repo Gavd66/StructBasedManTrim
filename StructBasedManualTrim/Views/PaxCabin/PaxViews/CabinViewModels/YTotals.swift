@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TotalsYClassModel: View {
+struct YTotals: View {
     @EnvironmentObject var cabin: Cabin
     var zone: Pax
     var zoneTotal: Seats

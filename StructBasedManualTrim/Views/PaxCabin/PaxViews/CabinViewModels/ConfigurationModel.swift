@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ConfigurationView: View {
+struct ConfigurationModel: View {
 
     @EnvironmentObject var cabin: Cabin
     var body: some View {
@@ -22,6 +22,6 @@ struct ConfigurationView: View {
 
 struct ConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfigurationView()
+        ConfigurationModel()
     }
 }
