@@ -54,6 +54,7 @@ struct JClassMaleView: View {
 
             }
 
+
         }
     }
 }

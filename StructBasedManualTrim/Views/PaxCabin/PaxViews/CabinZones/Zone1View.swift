@@ -32,6 +32,7 @@ struct Zone1View: View {
                 Spacer()
             }
         case .paxCarried:
+
 //MARK:- Males
             HStack {
                 Button(action: hideKeyboard) {
@@ -45,7 +46,6 @@ struct Zone1View: View {
                             .capsuleStyle()
                     }
                 }
-
                JClassMaleView()
             }
             .font(.system(size: 18))
@@ -80,7 +80,6 @@ struct Zone1View: View {
                             .capsuleStyle()
                     }
                 }
-
                JClassChildView()
             }
             .font(.system(size: 18))
@@ -118,6 +117,7 @@ struct Zone1View: View {
                 }
             }
             .font(.system(size: 18))
+
 // MARK:- Zone 1 Total View
             // Only display once pax numbers are entered
             if cabin.zone1.hasPaxInZone {

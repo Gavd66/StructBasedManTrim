@@ -7,13 +7,14 @@
 
 import SwiftUI
 
+//TODO:- Add infant logic, cabin tables, cabin crew picker and jumpseat picker
 struct PaxCabinView: View {
     @EnvironmentObject var cabin: Cabin
+
     var body: some View {
         NavigationView {
             Form {
-                // Pax Cabin Group
-                Group {
+                Group { // Pax Cabin Group
 
                     Section {
                         EmptyCabinView()
@@ -45,7 +46,6 @@ struct PaxCabinView: View {
                     .onChange(of: cabin.zone3.seatsOccupied, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone3Unlocked)
 
-
                     Section(header:
                         Text("Cabin Zone 4").foregroundColor(.primary)) {
                         Zone4View().padding(.bottom)
@@ -57,6 +57,12 @@ struct PaxCabinView: View {
 
             }
             .navigationTitle("Persons on Board")
+            .navigationBarItems(trailing: Button(action: cabin.resetCabin) {
+                Image(systemName: "trash")
+                    .font(.system(size: 30))
+                    .foregroundColor(.accentColor)
+                    .padding()
+            })
             .alert(item: $cabin.seatingError) { seatingError in
                 Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .default(Text("OK")))
 

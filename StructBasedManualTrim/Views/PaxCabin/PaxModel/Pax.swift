@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: Cabin Crew Enum
 
@@ -360,6 +361,16 @@ class Cabin: ObservableObject {
             return Seats.inZone4.message + " Remove \(zone4.seatsOccupied - Seats.inZone4.maxNumber) pax"
         case .none:
             return ""
+        }
+    }
+
+    //MARK:- Cabin
+    func resetCabin() {
+        withAnimation {
+            zone1 = Pax()
+            zone2 = Pax()
+            zone3 = Pax()
+            zone4 = Pax()
         }
     }
 

@@ -15,6 +15,7 @@
 		521DA42F2674A0C000FBC225 /* JClassMaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA42E2674A0C000FBC225 /* JClassMaleView.swift */; };
 		521DA4312674A88800FBC225 /* JClassFemaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA4302674A88800FBC225 /* JClassFemaleView.swift */; };
 		521DA4332674A98300FBC225 /* JClassChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA4322674A98300FBC225 /* JClassChildView.swift */; };
+		521DA43B2674C94700FBC225 /* CabinCrewViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA43A2674C94700FBC225 /* CabinCrewViews.swift */; };
 		5220075A26690CE10089A8C1 /* Position12View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220075926690CE10089A8C1 /* Position12View.swift */; };
 		5220075C26690CF30089A8C1 /* Position13View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220075B26690CF30089A8C1 /* Position13View.swift */; };
 		5220075E26690D050089A8C1 /* Position14View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220075D26690D050089A8C1 /* Position14View.swift */; };
@@ -62,6 +63,7 @@
 		521DA42E2674A0C000FBC225 /* JClassMaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JClassMaleView.swift; sourceTree = "<group>"; };
 		521DA4302674A88800FBC225 /* JClassFemaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JClassFemaleView.swift; sourceTree = "<group>"; };
 		521DA4322674A98300FBC225 /* JClassChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JClassChildView.swift; sourceTree = "<group>"; };
+		521DA43A2674C94700FBC225 /* CabinCrewViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewViews.swift; sourceTree = "<group>"; };
 		5220075926690CE10089A8C1 /* Position12View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position12View.swift; sourceTree = "<group>"; };
 		5220075B26690CF30089A8C1 /* Position13View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position13View.swift; sourceTree = "<group>"; };
 		5220075D26690D050089A8C1 /* Position14View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position14View.swift; sourceTree = "<group>"; };
@@ -125,12 +127,35 @@
 			path = ZoneTotalViews;
 			sourceTree = "<group>";
 		};
+		521DA4342674C7E000FBC225 /* Cargo Views */ = {
+			isa = PBXGroup;
+			children = (
+				52A78415266EBB8A00D05247 /* CargoHoldView.swift */,
+				52A78408266C8D5700D05247 /* HoldTotalViews */,
+				5220075426690C5A0089A8C1 /* Compartment1Views */,
+				5220075526690C6B0089A8C1 /* Compartment2Views */,
+				5220075626690C760089A8C1 /* Compartment3Views */,
+				5220075726690C810089A8C1 /* Compartment4Views */,
+				5220075826690C920089A8C1 /* BulkView */,
+			);
+			path = "Cargo Views";
+			sourceTree = "<group>";
+		};
+		521DA4352674C8CD00FBC225 /* CabinCrew */ = {
+			isa = PBXGroup;
+			children = (
+				521DA43A2674C94700FBC225 /* CabinCrewViews.swift */,
+			);
+			path = CabinCrew;
+			sourceTree = "<group>";
+		};
 		5220075326690C0E0089A8C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				524DCE392670AB1D0020410B /* MainView */,
 				52200775266984DB0089A8C1 /* CargoHold */,
 				524DCE3C2670ABD60020410B /* PaxCabin */,
+				521DA4352674C8CD00FBC225 /* CabinCrew */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,15 +213,8 @@
 		52200775266984DB0089A8C1 /* CargoHold */ = {
 			isa = PBXGroup;
 			children = (
-				52A78415266EBB8A00D05247 /* CargoHoldView.swift */,
-				52A78408266C8D5700D05247 /* HoldTotalViews */,
-				5220075426690C5A0089A8C1 /* Compartment1Views */,
-				5220075526690C6B0089A8C1 /* Compartment2Views */,
-				5220075626690C760089A8C1 /* Compartment3Views */,
-				5220075726690C810089A8C1 /* Compartment4Views */,
-				5220075826690C920089A8C1 /* BulkView */,
+				521DA4342674C7E000FBC225 /* Cargo Views */,
 				52200776266985E30089A8C1 /* CargoHoldModels */,
-				52A7840D266CF77600D05247 /* Utilities */,
 			);
 			path = CargoHold;
 			sourceTree = "<group>";
@@ -231,6 +249,7 @@
 			children = (
 				523A9F5926646507009DC1BA /* StructBasedManualTrimApp.swift */,
 				5220075326690C0E0089A8C1 /* Views */,
+				52A7840D266CF77600D05247 /* Utilities */,
 				523A9F5D26646509009DC1BA /* Assets.xcassets */,
 				523A9F6226646509009DC1BA /* Info.plist */,
 				523A9F5F26646509009DC1BA /* Preview Content */,
@@ -404,6 +423,7 @@
 				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,
 				524DCE422671A94F0020410B /* Pax.swift in Sources */,
 				5220076226690D2C0089A8C1 /* Position22View.swift in Sources */,
+				521DA43B2674C94700FBC225 /* CabinCrewViews.swift in Sources */,
 				521DA42D26749BC100FBC225 /* ConfigurationView.swift in Sources */,
 				523A9F6926646521009DC1BA /* CargoHold.swift in Sources */,
 				5220075E26690D050089A8C1 /* Position14View.swift in Sources */,
