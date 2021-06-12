@@ -7,53 +7,54 @@
 
 import SwiftUI
 
-struct TotalBuisModel: View {
+struct TotalsJClassModel: View {
     @EnvironmentObject var cabin: Cabin
     var zone: Pax
     var zoneTotal: Seats
     var zoneWeight: Int
     var body: some View {
         if zone.hasPaxInZone {
-
-            VStack(alignment: .center) {
-                HStack {
-                    Spacer()
-                    Text("\(zoneTotal.rawValue)")
-                        .italic()
-                        .bold()
-                    Spacer()
-                }
-                .padding(.bottom, 5)
-                HStack {
-                    Spacer()
-                    VStack(alignment: .center) {
-                        Text(" Total Pax")
-                        Text("\(zone.totalPax)")
-                            .capsuleStyle()
+            withAnimation {
+                VStack(alignment: .center) {
+                    HStack {
+                        Spacer()
+                        Text("\(zoneTotal.rawValue)")
+                            .italic()
+                            .bold()
+                        Spacer()
                     }
-                    .multilineTextAlignment(.center)
-                    Spacer()
-                    // If zone 1 weight depends on Configuration need to provide an option for that, all other cases use ecconomy weights
-
-                    if cabin.configuration == .standard {
-                        VStack {
-                            Text("Total Weight")
-                            Text("\(cabin.zoneBuisnessWeight(for: zone)) kg")
+                    .padding(.bottom, 5)
+                    HStack {
+                        Spacer()
+                        VStack(alignment: .center) {
+                            Text(" Total Pax")
+                            Text("\(zone.totalPax)")
                                 .capsuleStyle()
                         }
                         .multilineTextAlignment(.center)
-                    } else {
-                        VStack {
-                            Text("Total Weight")
-                            Text("\(cabin.zoneEcconomylWeight(for: zone)) kg")
-                                .capsuleStyle()
+                        Spacer()
+                        // If zone 1 weight depends on Configuration need to provide an option for that, all other cases use ecconomy weights
+
+                        if cabin.configuration == .standard {
+                            VStack {
+                                Text("Total Weight")
+                                Text("\(cabin.zoneBuisnessWeight(for: zone)) kg")
+                                    .capsuleStyle()
+                            }
+                            .multilineTextAlignment(.center)
+                        } else {
+                            VStack {
+                                Text("Total Weight")
+                                Text("\(cabin.zoneEcconomylWeight(for: zone)) kg")
+                                    .capsuleStyle()
+                            }
+                            .multilineTextAlignment(.center)
                         }
-                        .multilineTextAlignment(.center)
+                        Spacer()
                     }
-                    Spacer()
                 }
+                .padding(.top)
             }
-            .padding(.top)
         }
     }
 }

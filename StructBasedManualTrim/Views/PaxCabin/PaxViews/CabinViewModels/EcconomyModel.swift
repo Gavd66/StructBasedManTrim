@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EcconomyModel: View {
     @EnvironmentObject  var cabin: Cabin
-    var number = 2
+    var zoneNumber: Int
     var boundTo: Binding<Pax>
     var forZone: Pax
     var zoneTotal: Seats
@@ -18,11 +18,11 @@ struct EcconomyModel: View {
     var body: some View {
 
         //MARK:- Zone 2
-        Picker("Zone\(number)", selection: boundTo.paxInCabin
+        Picker("Zone\(zoneNumber)", selection: boundTo.paxInCabin
                 .animation()
                 .onChange(forZone.applyCabinLogic)) {
             ForEach(CabinOccupency.allCases, id: \.self){
-                Text("Zone\(number)\($0.rawValue)")
+                Text("Zone\(zoneNumber)\($0.rawValue)")
             }
         }
         .pickerStyle(SegmentedPickerStyle())
@@ -32,7 +32,7 @@ struct EcconomyModel: View {
         case .empty:
             HStack {
                 Spacer()
-                Text("Zone\(number) Empty")
+                Text("Zone\(zoneNumber) Empty")
                     .nilFitStyle()
                 Spacer()
             }

@@ -13,36 +13,37 @@ struct TotalsYClassModel: View {
     var zoneTotal: Seats
     var body: some View {
         if zone.hasPaxInZone {
-
-            VStack(alignment: .center) {
-                HStack {
-                    Spacer()
-                    Text("\(zoneTotal.rawValue)")
-                        .italic()
-                        .bold()
-                    Spacer()
-                }
-                .padding(.bottom, 5)
-                HStack {
-                    Spacer()
-                    VStack(alignment: .center) {
-                        Text(" Total Pax")
-                        Text("\(zone.totalPax)")
-                            .capsuleStyle()
+            withAnimation {
+                VStack(alignment: .center) {
+                    HStack {
+                        Spacer()
+                        Text("\(zoneTotal.rawValue)")
+                            .italic()
+                            .bold()
+                        Spacer()
                     }
-                    .multilineTextAlignment(.center)
-                    Spacer()
-                        VStack {
-                            Text("Total Weight")
-                            Text("\(cabin.zoneEcconomylWeight(for: zone)) kg")
+                    .padding(.bottom, 5)
+                    HStack {
+                        Spacer()
+                        VStack(alignment: .center) {
+                            Text(" Total Pax")
+                            Text("\(zone.totalPax)")
                                 .capsuleStyle()
                         }
                         .multilineTextAlignment(.center)
+                        Spacer()
+                            VStack {
+                                Text("Total Weight")
+                                Text("\(cabin.zoneEcconomylWeight(for: zone)) kg")
+                                    .capsuleStyle()
+                            }
+                            .multilineTextAlignment(.center)
 
-                    Spacer()
+                        Spacer()
+                    }
                 }
-            }
             .padding(.top)
+            }
         }
     }
 }

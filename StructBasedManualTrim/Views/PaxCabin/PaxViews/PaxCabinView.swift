@@ -33,7 +33,7 @@ struct PaxCabinView: View {
 
                     Section(header:
                         Text("Cabin Zone 2").foregroundColor(.primary)) {
-                        EcconomyModel(boundTo: $cabin.zone2, forZone: cabin.zone2, zoneTotal: Seats.inZone2).padding(.bottom)
+                        EcconomyModel(cabin: _cabin, zoneNumber: 2, boundTo: $cabin.zone2, forZone: cabin.zone2, zoneTotal: Seats.inZone2).padding(.bottom)
                     }
                     .onChange(of: cabin.zone2.seatsOccupied, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone2Unlocked)
@@ -41,14 +41,14 @@ struct PaxCabinView: View {
 
                     Section(header:
                         Text("Cabin Zone 3").foregroundColor(.primary)) {
-                        EcconomyModel(boundTo: $cabin.zone3, forZone: cabin.zone3, zoneTotal: Seats.inZone3).padding(.bottom)
+                        EcconomyModel(cabin: _cabin, zoneNumber: 3, boundTo: $cabin.zone3, forZone: cabin.zone3, zoneTotal: Seats.inZone3).padding(.bottom)
                     }
                     .onChange(of: cabin.zone3.seatsOccupied, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone3Unlocked)
 
                     Section(header:
                         Text("Cabin Zone 4").foregroundColor(.primary)) {
-                        EcconomyModel(boundTo: $cabin.zone4, forZone: cabin.zone4, zoneTotal: Seats.inZone4).padding(.bottom)
+                        EcconomyModel(cabin: _cabin, zoneNumber: 4, boundTo: $cabin.zone4, forZone: cabin.zone4, zoneTotal: Seats.inZone4).padding(.bottom)
                     }
                     .onChange(of: cabin.zone4.seatsOccupied, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone4Unlocked)
