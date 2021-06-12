@@ -12,31 +12,43 @@ struct YFemale: View {
     @EnvironmentObject  var cabin: Cabin
     
     var boundTo: Binding<Pax>
-    var forZone: Pax
-    var zoneTotal: Seats
+    var zone: Pax
+    //var zoneTotal: Seats
 
     var body: some View {
         //MARK:- Females
 
-        Group {
+        HStack {
+            Button(action: hideKeyboard) {
+                if zone.hasFemalesInZone {
+                    Text("\(HasFemales.some.rawValue)")
+                        .loadedStyle()
+                        .capsuleStyle()
+                } else {
+                    Text("\(HasFemales.none.rawValue)")
+                        .emptyStyle()
+                        .capsuleStyle()
+                }
+            }
             TextField("0 x \(PaxWeight.yFemale.weight) kg", text: boundTo.femaleStringNumber
                         .animation()
                         .onChange(
                             withAnimation(.easeIn(duration: 2)) {
-                                forZone.updateFemaleLables
+                                zone.updateFemaleLables
                             }
                         ))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
 
-            if forZone.hasFemalesInZone {
-                Text("\(forZone.yFemaleWeight) kg")
+            if zone.hasFemalesInZone {
+                Text("\(zone.yFemaleWeight) kg")
                     .loadedStyle()
             } else {
                 Text("0 kg ")
                     .emptyStyle()
             }
         }
+        .font(.system(size: 18))
     }
 }
 

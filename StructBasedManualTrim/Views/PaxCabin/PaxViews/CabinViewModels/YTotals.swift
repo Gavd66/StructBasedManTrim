@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct YTotals: View {
+
     @EnvironmentObject var cabin: Cabin
     var zone: Pax
-    var zoneTotal: Seats
+    var zoneLimit: Seats
+
     var body: some View {
         if zone.hasPaxInZone {
             withAnimation {
                 VStack(alignment: .center) {
                     HStack {
                         Spacer()
-                        Text("\(zoneTotal.rawValue)")
+                        Text("\(zoneLimit.rawValue)")
                             .italic()
                             .bold()
                         Spacer()

@@ -11,29 +11,41 @@ struct JMale: View {
 
     @EnvironmentObject var cabin: Cabin
     var boundTo: Binding<Pax>
-    var forZone: Pax
+    var zone: Pax
 
     var body: some View {
-        // Possibly put into a group
-        Group {
+        
+        HStack {
+            Button(action: hideKeyboard) {
+                if zone.hasMalesInZone {
+                    Text("\(HasMales.some.rawValue)")
+                        .loadedStyle()
+                        .capsuleStyle()
+                } else {
+                    Text("\(HasMales.none.rawValue)")
+                        .emptyStyle()
+                        .capsuleStyle()
+                }
+            }
             TextField("0 x \(PaxWeight.jMale.weight) kg", text: boundTo.maleStringNumber
                         .animation()
                         .onChange(
                             withAnimation(.easeIn(duration: 2)) {
-                                forZone.updateMaleLables
+                                zone.updateMaleLables
                             }
                         ))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
 
-            if forZone.hasMalesInZone {
-                Text("\(forZone.jMaleWeight) kg")
+            if zone.hasMalesInZone {
+                Text("\(zone.jMaleWeight) kg")
                     .loadedStyle()
             } else {
                 Text("0 kg ")
                     .emptyStyle()
             }
         }
+        .font(.system(size: 18))
     }
 }
 

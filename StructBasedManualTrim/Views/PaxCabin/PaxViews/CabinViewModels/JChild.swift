@@ -12,30 +12,42 @@ struct JChild: View {
     @EnvironmentObject  var cabin: Cabin
 
     var boundTo: Binding<Pax>
-    var forZone: Pax
-    var zoneTotal: Seats
+    var zone: Pax
+
 
     var body: some View {
 
-        Group {
+        HStack {
+            Button(action: hideKeyboard) {
+                if zone.hasChildrenInZone {
+                    Text("\(HasChildren.some.rawValue)")
+                        .loadedStyle()
+                        .capsuleStyle()
+                } else {
+                    Text("\(HasChildren.none.rawValue)")
+                        .emptyStyle()
+                        .capsuleStyle()
+                }
+            }
             TextField("0 x \(PaxWeight.jChild.weight) kg", text: boundTo.childrenStringNumber
                         .animation()
                         .onChange(
                             withAnimation(.easeIn(duration: 2)) {
-                                forZone.updateChildLables
+                                zone.updateChildLables
                             }
                         ))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
 
-            if forZone.hasChildrenInZone {
-                Text("\(forZone.jChildWeight) kg")
+            if zone.hasChildrenInZone {
+                Text("\(zone.jChildWeight) kg")
                     .loadedStyle()
             } else {
                 Text("0 kg ")
                     .emptyStyle()
             }
         }
+        .font(.system(size: 18))
     }
 }
 

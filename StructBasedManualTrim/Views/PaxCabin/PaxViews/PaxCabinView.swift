@@ -26,14 +26,14 @@ struct PaxCabinView: View {
                     }
                     Section(header:
                         Text("Cabin Zone 1").foregroundColor(.primary)) {
-                        JModel(cabin: _cabin, number: 1, boundTo: $cabin.zone1, forZone: cabin.zone1, zoneTotal: Seats.inZone1).padding(.bottom)
+                        JModel(cabin: _cabin, number: 1, bindingZone: $cabin.zone1, zone: cabin.zone1, zoneLimit: Seats.inZone1).padding(.bottom)
                     }
                     .onChange(of: cabin.zone1.seatsOccupied, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone1Unlocked)
 
                     Section(header:
                         Text("Cabin Zone 2").foregroundColor(.primary)) {
-                        YModel(cabin: _cabin, zoneNumber: 2, boundTo: $cabin.zone2, forZone: cabin.zone2, zoneTotal: Seats.inZone2).padding(.bottom)
+                        YModel(cabin: _cabin, zoneNumber: 2, bindingZone: $cabin.zone2, zone: cabin.zone2, zoneLimit: Seats.inZone2).padding(.bottom)
                     }
                     .onChange(of: cabin.zone2.seatsOccupied, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone2Unlocked)
@@ -41,14 +41,14 @@ struct PaxCabinView: View {
 
                     Section(header:
                         Text("Cabin Zone 3").foregroundColor(.primary)) {
-                        YModel(cabin: _cabin, zoneNumber: 3, boundTo: $cabin.zone3, forZone: cabin.zone3, zoneTotal: Seats.inZone3).padding(.bottom)
+                        YModel(cabin: _cabin, zoneNumber: 3, bindingZone: $cabin.zone3, zone: cabin.zone3, zoneLimit: Seats.inZone3).padding(.bottom)
                     }
                     .onChange(of: cabin.zone3.seatsOccupied, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone3Unlocked)
 
                     Section(header:
                         Text("Cabin Zone 4").foregroundColor(.primary)) {
-                        YModel(cabin: _cabin, zoneNumber: 4, boundTo: $cabin.zone4, forZone: cabin.zone4, zoneTotal: Seats.inZone4).padding(.bottom)
+                        YModel(cabin: _cabin, zoneNumber: 4, bindingZone: $cabin.zone4, zone: cabin.zone4, zoneLimit: Seats.inZone4).padding(.bottom)
                     }
                     .onChange(of: cabin.zone4.seatsOccupied, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone4Unlocked)

@@ -12,13 +12,13 @@ struct Infant: View {
     @EnvironmentObject  var cabin: Cabin
 
     var boundTo: Binding<Pax>
-    var forZone: Pax
-    var zoneTotal: Seats
+    var zone: Pax
+
 
     var body: some View {
         HStack {
             Button(action: hideKeyboard) {
-                if forZone.hasInfantsInZone {
+                if zone.hasInfantsInZone {
                     Text("\(HasInfants.some.rawValue)")
                         .loadedStyle()
                         .capsuleStyle()
@@ -34,14 +34,14 @@ struct Infant: View {
                         .animation()
                         .onChange(
                             withAnimation(.easeIn(duration: 2)) {
-                                forZone.updateInfantLables
+                                zone.updateInfantLables
                             }
                         ))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
 
-            if forZone.hasInfantsInZone {
-                Text("\(forZone.infantWeight) kg")
+            if zone.hasInfantsInZone {
+                Text("\(zone.infantWeight) kg")
                     .loadedStyle()
             } else {
                 Text("0 kg ")

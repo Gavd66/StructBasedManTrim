@@ -11,25 +11,25 @@ struct YModel: View {
 
     @EnvironmentObject  var cabin: Cabin
     var zoneNumber: Int
-    var boundTo: Binding<Pax>
-    var forZone: Pax
-    var zoneTotal: Seats
+    var bindingZone: Binding<Pax>
+    var zone: Pax
+    var zoneLimit: Seats
 
 
     var body: some View {
 
         //MARK:- Zone 2
-        Picker("Zone\(zoneNumber)", selection: boundTo.paxInCabin
+        Picker("Zone\(zoneNumber)", selection: bindingZone.paxInCabin
                 .animation()
-                .onChange(forZone.applyCabinLogic)) {
+                .onChange(zone.applyCabinLogic)) {
             ForEach(CabinOccupency.allCases, id: \.self){
                 Text("Zone\(zoneNumber)\($0.rawValue)")
             }
         }
         .pickerStyle(SegmentedPickerStyle())
-        .onChange(of: forZone.paxInCabin, perform: dismissCabinKeyBoard)
+        .onChange(of: zone.paxInCabin, perform: dismissCabinKeyBoard)
 
-        switch forZone.paxInCabin {
+        switch zone.paxInCabin {
         case .empty:
             HStack {
                 Spacer()
@@ -39,62 +39,19 @@ struct YModel: View {
             }
         case .paxCarried:
             //MARK:- Males
-            HStack {
-                Button(action: hideKeyboard) {
-                    if forZone.hasMalesInZone {
-                        Text("\(HasMales.some.rawValue)")
-                            .loadedStyle()
-                            .capsuleStyle()
-                    } else {
-                        Text("\(HasMales.none.rawValue)")
-                            .emptyStyle()
-                            .capsuleStyle()
-                    }
-                }
 
-                YMale(boundTo: boundTo, forZone: forZone)
-            }
-            .font(.system(size: 18))
-
+            YMale(boundTo: bindingZone, zone: zone)
             //MARK:- Females
-            HStack {
-                Button(action: hideKeyboard) {
-                    if forZone.hasFemalesInZone {
-                        Text("\(HasFemales.some.rawValue)")
-                            .loadedStyle()
-                            .capsuleStyle()
-                    } else {
-                        Text("\(HasFemales.none.rawValue)")
-                            .emptyStyle()
-                            .capsuleStyle()
-                    }
-                }
 
-                YFemale(boundTo: boundTo, forZone: forZone, zoneTotal: zoneTotal)
-            }
-            .font(.system(size: 18))
+            YFemale(boundTo: bindingZone, zone: zone)
 
             //MARK:- Children
-            HStack {
-                Button(action: hideKeyboard) {
-                    if forZone.hasChildrenInZone {
-                        Text("\(HasChildren.some.rawValue)")
-                            .loadedStyle()
-                            .capsuleStyle()
-                    } else {
-                        Text("\(HasChildren.none.rawValue)")
-                            .emptyStyle()
-                            .capsuleStyle()
-                    }
-                }
 
-                YChild(boundTo: boundTo, forZone: forZone, zoneTotal: zoneTotal)
-            }
-            .font(.system(size: 18))
+            YChild(boundTo: bindingZone, zone: zone)
             //MARK:- Infants
-            // Infants
-            Infant(boundTo: boundTo, forZone: forZone, zoneTotal: zoneTotal)
-            YTotals(cabin: _cabin, zone: forZone, zoneTotal: zoneTotal)
+
+            Infant(boundTo: bindingZone, zone: zone)
+            YTotals(cabin: _cabin, zone: zone, zoneLimit: zoneLimit)
         }// End Zone 2
     }
     func dismissCabinKeyBoard(_ paxInCabin: CabinOccupency) {
