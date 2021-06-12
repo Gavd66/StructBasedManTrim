@@ -58,25 +58,25 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
 
 
 //MARK:- MainHold Model
-class MainHold: ObservableObject {
+class MainHold {
 
-    @Published var container: Container = .leftAndRight
-    @Published var cargoStringWeight = ""
-    @Published var cargoPapaStringWeight = ""
-    @Published var bagCountLeft = ""
-    @Published var bagCountRight = ""
-    @Published var cargoLeft = ""
-    @Published var cargoRight = ""
-    @Published var left: Ake = .nilFit
-    @Published var right: Ake = .nilFit
-    @Published var hasBagsInLeft = false
-    @Published var hasBagsInRight = false
-    @Published var hasCargoInLeft = false
-    @Published var hasCargoInRight = false
-    @Published var hasCargoInPosition = false
-    @Published var hasCargoInPapa = false
-    @Published var hideKeyboard = false
-    @Published var resetIsPressed = false
+    var container: Container = .leftAndRight
+    var cargoStringWeight = ""
+    var cargoPapaStringWeight = ""
+    var bagCountLeft = ""
+    var bagCountRight = ""
+    var cargoLeft = ""
+    var cargoRight = ""
+    var left: Ake = .nilFit
+    var right: Ake = .nilFit
+    var hasBagsInLeft = false
+    var hasBagsInRight = false
+    var hasCargoInLeft = false
+    var hasCargoInRight = false
+    var hasCargoInPosition = false
+    var hasCargoInPapa = false
+    var hideKeyboard = false
+
 
 
 //MARK:- Weight Calculations
@@ -229,10 +229,10 @@ class MainHold: ObservableObject {
 
 // MARK:- Bulk Hold
 class BulkHold {
-    @Published var itemStringCount = ""
-    @Published var cargoStringWeight = ""
-    @Published var hasItemsLoaded = false
-    @Published var hasCargoLoaded = false
+    var itemStringCount = ""
+    var cargoStringWeight = ""
+    var hasItemsLoaded = false
+    var hasCargoLoaded = false
 
     func resetBulkToEmpty() {
         itemStringCount = ""

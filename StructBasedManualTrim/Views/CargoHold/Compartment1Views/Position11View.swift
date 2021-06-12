@@ -241,7 +241,6 @@ struct Position11View: View {
                     }
                 } // End Right Group
                 .onChange(of: cargoHold.position11.right, perform: dismissAKEKeyBoard)
-
             }           
         } // Container
 

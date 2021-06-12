@@ -28,7 +28,6 @@ struct CargoHoldView: View {
 
                 }
                 
-
                 Section(header: Text("Compartment 1").foregroundColor(.primary)) {
                     Position11View()
                     Spacer()
