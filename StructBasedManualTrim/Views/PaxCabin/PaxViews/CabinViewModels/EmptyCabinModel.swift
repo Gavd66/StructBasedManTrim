@@ -20,26 +20,32 @@ struct EmptyCabinModel: View {
                         .bold()
                     Spacer()
                 }
-//                HStack {
-//                    VStack(alignment:.center, spacing: 5) {
-//                        Text("Pax including Infants")
-//                        Text("M: \(cabin.zone1.males),F: \(cabin.zone1.females), C: \(cabin.zone1.children),I: \(cabin.zone1.infants)")
-//                    }
-//                    VStack(alignment:.center, spacing: 5) {
-//                        Text("Crew")
-//                        Text("Tech: \(cabin.zone1.males),Cabin: \(cabin.zone1.females)")
-//                    }
-//                    VStack(alignment:.center, spacing: 5) {
-//                        Text("Total POB")
-//                        Text("M: \(cabin.zone1.males),F: \(cabin.zone1.females), C: \(cabin.zone1.children),I: \(cabin.zone1.infants)")
-//                    }
-//                    VStack(alignment:.center, spacing: 5) {
-//                        Text("Zone 1 Pax Numbers")
-//                        Text("M: \(cabin.zone1.males),F: \(cabin.zone1.females), C: \(cabin.zone1.children),I: \(cabin.zone1.infants)")
-//                    }
-//
-//
-//                }// End CabinTotal HStack
+                .padding([.bottom, .top], 5)
+                HStack {
+                    Spacer()
+                    VStack(alignment:.center, spacing: 5) {
+                        Text("Pax")
+                        Text("\(cabin.totalPaxNumbers)")
+                            .capsuleStyle()
+                            .multilineTextAlignment(.center)
+                    }
+                    Spacer()
+                    VStack(alignment:.center, spacing: 5) {
+                        Text("Crew")
+                        Text("\(cabin.totalCrewNumber)")
+                            .capsuleStyle()
+                            .multilineTextAlignment(.center)
+                    }
+                    Spacer()
+                    VStack(alignment:.center, spacing: 5) {
+                        Text("Total")
+                        Text("\(cabin.totalPOB)")
+                            .capsuleStyle()
+                            .multilineTextAlignment(.center)
+                    }
+                    Spacer()
+
+                }// End CabinTotal HStack
 
             }// End main Vstack
         } else {

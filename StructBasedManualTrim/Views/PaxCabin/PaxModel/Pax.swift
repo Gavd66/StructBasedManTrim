@@ -20,7 +20,16 @@ enum CabinCrew: String, Identifiable {
     case twelve = "12"
 }
 
-// MARK:- Aircraft Pax Configuration
+//MARK: Enum Jumpseat Configuration
+
+enum Jumpseat: String, Identifiable {
+    var id: Jumpseat { self }
+    case none = "0"
+    case one = "1"
+    case two = "2"
+}
+
+// MARK:- Enum Aircraft Pax Configuration
 enum Configuration: String, Identifiable, CaseIterable {
     var id: Configuration { self }
     case standard = "Standard"
@@ -149,6 +158,7 @@ class Pax {
     var hasInfantsInZone = false
     var hasPeopleInZone = false
     var hideKeyboard = true
+
 //MARK:- Pax Number Calulations
     var males: Int {
         Int(maleStringNumber) ?? 0
@@ -252,6 +262,7 @@ class Cabin: ObservableObject {
     @Published var zone2Unlocked = true
     @Published var zone3Unlocked = true
     @Published var zone4Unlocked = true
+    @Published var jumpseat: Jumpseat = .none
 
     //MARK: Cabin Pax Load Logic
     var hasPax: Bool {
@@ -291,9 +302,24 @@ class Cabin: ObservableObject {
     func zoneEcconomylWeight(for zone: Pax) -> Int {
         zone.ecconomyWeight
     }
-    // MARK:- Pax Number Calulation
+    // MARK:- POB Number Calulation
     var totalPaxNumbers: Int {
         zone1.totalPax + zone2.totalPax + zone3.totalPax + zone4.totalPax
+    }
+
+    var cabinCrewNumber: Int {
+        Int(cabinCrew.rawValue) ?? 0
+    }
+
+    var jumpseatNumber: Int {
+        Int(jumpseat.rawValue) ?? 0
+    }
+
+    var totalCrewNumber: Int {
+        cabinCrewNumber + jumpseatNumber + 2
+    }
+    var totalPOB: Int {
+        totalPaxNumbers + totalCrewNumber
     }
 
 
