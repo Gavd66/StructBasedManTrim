@@ -14,7 +14,6 @@ struct JChild: View {
     var boundTo: Binding<Pax>
     var zone: Pax
 
-
     var body: some View {
 
         HStack {

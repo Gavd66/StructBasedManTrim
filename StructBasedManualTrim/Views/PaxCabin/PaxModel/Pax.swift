@@ -270,13 +270,7 @@ class Cabin: ObservableObject {
     var zone2TotalWeight: Int {
         zone2.ecconomyWeight
     }
-    func zoneBuisnessWeight(for zone: Pax) -> Int {
-        zone.buisnessWeight
-    }
 
-    func zoneEcconomylWeight(for zone: Pax) -> Int {
-        zone.ecconomyWeight
-    }
     var zone3TotalWeight: Int {
         zone3.ecconomyWeight
     }
@@ -288,6 +282,14 @@ class Cabin: ObservableObject {
             + zone2TotalWeight
             + zone3TotalWeight
             + zone4TotalWeight
+    }
+// To allow abstracted generic labels in J and Y models to display weights
+    func zoneBuisnessWeight(for zone: Pax) -> Int {
+        zone.buisnessWeight
+    }
+
+    func zoneEcconomylWeight(for zone: Pax) -> Int {
+        zone.ecconomyWeight
     }
     // MARK:- Pax Number Calulation
     var totalPaxNumbers: Int {
