@@ -12,7 +12,7 @@ struct StructBasedManualTrimApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
-           //CargoHoldView(cargoHold: .example)
+           
         }
     }
 }

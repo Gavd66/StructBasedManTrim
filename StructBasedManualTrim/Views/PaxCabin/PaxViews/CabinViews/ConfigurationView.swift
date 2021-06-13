@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-struct ConfigurationModel: View {
+struct ConfigurationView: View {
 
     @EnvironmentObject var cabin: Cabin
     var body: some View {
-        Picker("Configuration", selection: $cabin.configuration) {
-            ForEach(Configuration.allCases, id: \.self) {
+        Picker("Weights used", selection: $cabin.jWeight) {
+            ForEach(JWeightConfiguration.allCases, id: \.self) {
                 Text("\($0.rawValue)")
             }
         }
-        .pickerStyle(SegmentedPickerStyle())
+       // .pickerStyle(SegmentedPickerStyle())
     }
 }
 
 struct ConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfigurationModel()
+        ConfigurationView()
     }
 }

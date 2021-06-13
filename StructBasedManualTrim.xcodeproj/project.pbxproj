@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		521DA42D26749BC100FBC225 /* ConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA42C26749BC100FBC225 /* ConfigurationModel.swift */; };
+		521DA42D26749BC100FBC225 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA42C26749BC100FBC225 /* ConfigurationView.swift */; };
 		521DA43B2674C94700FBC225 /* CabinCrewViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA43A2674C94700FBC225 /* CabinCrewViews.swift */; };
 		521DA43D2675275500FBC225 /* YModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA43C2675275500FBC225 /* YModel.swift */; };
 		521DA43F2675399300FBC225 /* JModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA43E2675399300FBC225 /* JModel.swift */; };
@@ -20,6 +20,10 @@
 		521DA44D2675599300FBC225 /* JChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA44C2675599300FBC225 /* JChild.swift */; };
 		521DA44F267559AC00FBC225 /* YChild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA44E267559AC00FBC225 /* YChild.swift */; };
 		521DA45126755B4F00FBC225 /* Infant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA45026755B4F00FBC225 /* Infant.swift */; };
+		521DA46726763AF800FBC225 /* Zone1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA46626763AF800FBC225 /* Zone1View.swift */; };
+		521DA469267687B100FBC225 /* Zone2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA468267687B100FBC225 /* Zone2View.swift */; };
+		521DA46B267687C400FBC225 /* Zone3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA46A267687C400FBC225 /* Zone3View.swift */; };
+		521DA46D267687D500FBC225 /* Zone4View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA46C267687D500FBC225 /* Zone4View.swift */; };
 		5220075A26690CE10089A8C1 /* Position12View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220075926690CE10089A8C1 /* Position12View.swift */; };
 		5220075C26690CF30089A8C1 /* Position13View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220075B26690CF30089A8C1 /* Position13View.swift */; };
 		5220075E26690D050089A8C1 /* Position14View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220075D26690D050089A8C1 /* Position14View.swift */; };
@@ -45,7 +49,7 @@
 		524DCE3B2670AB570020410B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE3A2670AB570020410B /* MainTabView.swift */; };
 		524DCE3E2670AC190020410B /* PaxCabinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE3D2670AC190020410B /* PaxCabinView.swift */; };
 		524DCE422671A94F0020410B /* Pax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE412671A94F0020410B /* Pax.swift */; };
-		524DCE4D2671B98B0020410B /* EmptyCabinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE4C2671B98B0020410B /* EmptyCabinModel.swift */; };
+		524DCE4D2671B98B0020410B /* EmptyCabinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE4C2671B98B0020410B /* EmptyCabinView.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -55,7 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		521DA42C26749BC100FBC225 /* ConfigurationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationModel.swift; sourceTree = "<group>"; };
+		521DA42C26749BC100FBC225 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		521DA43A2674C94700FBC225 /* CabinCrewViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewViews.swift; sourceTree = "<group>"; };
 		521DA43C2675275500FBC225 /* YModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YModel.swift; sourceTree = "<group>"; };
 		521DA43E2675399300FBC225 /* JModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JModel.swift; sourceTree = "<group>"; };
@@ -68,6 +72,10 @@
 		521DA44C2675599300FBC225 /* JChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JChild.swift; sourceTree = "<group>"; };
 		521DA44E267559AC00FBC225 /* YChild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YChild.swift; sourceTree = "<group>"; };
 		521DA45026755B4F00FBC225 /* Infant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infant.swift; sourceTree = "<group>"; };
+		521DA46626763AF800FBC225 /* Zone1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zone1View.swift; sourceTree = "<group>"; };
+		521DA468267687B100FBC225 /* Zone2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zone2View.swift; sourceTree = "<group>"; };
+		521DA46A267687C400FBC225 /* Zone3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zone3View.swift; sourceTree = "<group>"; };
+		521DA46C267687D500FBC225 /* Zone4View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zone4View.swift; sourceTree = "<group>"; };
 		5220075926690CE10089A8C1 /* Position12View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position12View.swift; sourceTree = "<group>"; };
 		5220075B26690CF30089A8C1 /* Position13View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position13View.swift; sourceTree = "<group>"; };
 		5220075D26690D050089A8C1 /* Position14View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position14View.swift; sourceTree = "<group>"; };
@@ -95,7 +103,7 @@
 		524DCE3A2670AB570020410B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabView.swift; path = ../../../../../../Documents/MainTabView.swift; sourceTree = "<group>"; };
 		524DCE3D2670AC190020410B /* PaxCabinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaxCabinView.swift; sourceTree = "<group>"; };
 		524DCE412671A94F0020410B /* Pax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pax.swift; sourceTree = "<group>"; };
-		524DCE4C2671B98B0020410B /* EmptyCabinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCabinModel.swift; sourceTree = "<group>"; };
+		524DCE4C2671B98B0020410B /* EmptyCabinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCabinView.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -282,16 +290,20 @@
 			isa = PBXGroup;
 			children = (
 				524DCE3D2670AC190020410B /* PaxCabinView.swift */,
-				524DCE432671B5DB0020410B /* CabinViewModels */,
+				524DCE432671B5DB0020410B /* CabinViews */,
 			);
 			path = PaxViews;
 			sourceTree = "<group>";
 		};
-		524DCE432671B5DB0020410B /* CabinViewModels */ = {
+		524DCE432671B5DB0020410B /* CabinViews */ = {
 			isa = PBXGroup;
 			children = (
-				524DCE4C2671B98B0020410B /* EmptyCabinModel.swift */,
-				521DA42C26749BC100FBC225 /* ConfigurationModel.swift */,
+				524DCE4C2671B98B0020410B /* EmptyCabinView.swift */,
+				521DA42C26749BC100FBC225 /* ConfigurationView.swift */,
+				521DA46626763AF800FBC225 /* Zone1View.swift */,
+				521DA468267687B100FBC225 /* Zone2View.swift */,
+				521DA46A267687C400FBC225 /* Zone3View.swift */,
+				521DA46C267687D500FBC225 /* Zone4View.swift */,
 				521DA43E2675399300FBC225 /* JModel.swift */,
 				521DA43C2675275500FBC225 /* YModel.swift */,
 				521DA44026753A2900FBC225 /* JTotals.swift */,
@@ -304,7 +316,7 @@
 				521DA44E267559AC00FBC225 /* YChild.swift */,
 				521DA45026755B4F00FBC225 /* Infant.swift */,
 			);
-			path = CabinViewModels;
+			path = CabinViews;
 			sourceTree = "<group>";
 		};
 		52A78408266C8D5700D05247 /* HoldTotalViews */ = {
@@ -398,7 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				521DA449267554EB00FBC225 /* YFemale.swift in Sources */,
-				524DCE4D2671B98B0020410B /* EmptyCabinModel.swift in Sources */,
+				524DCE4D2671B98B0020410B /* EmptyCabinView.swift in Sources */,
 				521DA44D2675599300FBC225 /* JChild.swift in Sources */,
 				521DA4452675514500FBC225 /* YMale.swift in Sources */,
 				521DA443267546B300FBC225 /* YTotals.swift in Sources */,
@@ -411,12 +423,15 @@
 				52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */,
 				5220075C26690CF30089A8C1 /* Position13View.swift in Sources */,
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
+				521DA46B267687C400FBC225 /* Zone3View.swift in Sources */,
+				521DA46726763AF800FBC225 /* Zone1View.swift in Sources */,
 				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,
+				521DA46D267687D500FBC225 /* Zone4View.swift in Sources */,
 				521DA4472675531300FBC225 /* JMale.swift in Sources */,
 				524DCE422671A94F0020410B /* Pax.swift in Sources */,
 				5220076226690D2C0089A8C1 /* Position22View.swift in Sources */,
 				521DA43B2674C94700FBC225 /* CabinCrewViews.swift in Sources */,
-				521DA42D26749BC100FBC225 /* ConfigurationModel.swift in Sources */,
+				521DA42D26749BC100FBC225 /* ConfigurationView.swift in Sources */,
 				523A9F6926646521009DC1BA /* CargoHold.swift in Sources */,
 				5220075E26690D050089A8C1 /* Position14View.swift in Sources */,
 				521DA44B267555A100FBC225 /* JFemale.swift in Sources */,
@@ -424,6 +439,7 @@
 				5220076C26690D960089A8C1 /* Position33View.swift in Sources */,
 				5220077026690DC90089A8C1 /* Positon42View.swift in Sources */,
 				5220076426690D480089A8C1 /* Positon23View.swift in Sources */,
+				521DA469267687B100FBC225 /* Zone2View.swift in Sources */,
 				52A78416266EBB8A00D05247 /* CargoHoldView.swift in Sources */,
 				521DA44F267559AC00FBC225 /* YChild.swift in Sources */,
 				5220076E26690DAC0089A8C1 /* Positon41View.swift in Sources */,

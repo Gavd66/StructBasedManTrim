@@ -1,5 +1,5 @@
 //
-//  JClassChildModel.swift
+//  YClassChildModel.swift
 //  StructBasedManualTrim
 //
 //  Created by Gavin Dorward on 13/6/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct JChild: View {
+struct YChild: View {
 
     @EnvironmentObject  var cabin: Cabin
 
@@ -16,19 +16,20 @@ struct JChild: View {
 
     var body: some View {
 
-        HStack {
-            Button(action: hideKeyboard) {
-                if zone.hasChildrenInZone {
-                    Text("\(HasChildren.some.rawValue)")
-                        .loadedStyle()
-                        .capsuleStyle()
-                } else {
-                    Text("\(HasChildren.none.rawValue)")
-                        .emptyStyle()
-                        .capsuleStyle()
+        withAnimation {
+            HStack {
+                Button(action: hideKeyboard) {
+                    if zone.hasChildrenInZone {
+                        Text("\(HasChildren.some.rawValue)")
+                            .loadedStyle()
+                            .capsuleStyle()
+                    } else {
+                        Text("\(HasChildren.none.rawValue)")
+                            .emptyStyle()
+                            .capsuleStyle()
+                    }
                 }
-            }
-            TextField("0 x \(PaxWeight.jChild.weight) kg", text: boundTo.childrenStringNumber
+            TextField("0 x \(PaxWeight.yChild.weight) kg", text: boundTo.childrenStringNumber
                         .animation()
                         .onChange(
                             withAnimation(.easeIn(duration: 2)) {
@@ -39,7 +40,7 @@ struct JChild: View {
                 .keyboardType(.numberPad)
 
             if zone.hasChildrenInZone {
-                Text("\(zone.jChildWeight) kg")
+                Text("\(zone.yChildWeight) kg")
                     .loadedStyle()
             } else {
                 Text("0 kg ")
@@ -47,6 +48,7 @@ struct JChild: View {
             }
         }
         .font(.system(size: 18))
+        }
     }
 }
 

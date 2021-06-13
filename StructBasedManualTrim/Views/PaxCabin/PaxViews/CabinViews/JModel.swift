@@ -4,7 +4,7 @@
 //
 //  Created by Gavin Dorward on 13/6/21.
 //
-
+// Logic to blank all pax and weights if over zone count == true, same for cargo load
 import SwiftUI
 
 struct JModel: View {
@@ -13,9 +13,7 @@ struct JModel: View {
     var number: Int
     var bindingZone: Binding<Pax>
     var zone: Pax
-    var zoneLimit: Seats
-
-
+   
     var body: some View {
 
         //MARK:- Zone 1
@@ -40,33 +38,34 @@ struct JModel: View {
         case .paxCarried:
             //MARK:- Males
 
-                if cabin.configuration == .standard {
+            if cabin.jWeight == .buisness {
                     JMale(boundTo: bindingZone, zone: zone)
                 } else {
                     YMale(boundTo: bindingZone, zone: zone)
                 }
 
+
             //MARK:- Female
 
-                if cabin.configuration == .standard {
+                if cabin.jWeight == .buisness {
                     JFemale(boundTo: bindingZone, zone: zone)
                 } else {
                     YFemale(boundTo: bindingZone, zone: zone)
                 }
 
-
             //MARK:- Children
 
-                if cabin.configuration == .standard {
+                if cabin.jWeight == .buisness {
                     JChild(boundTo: bindingZone, zone: zone)
                 } else {
                     YChild(boundTo: bindingZone, zone: zone)
                 }
 
+            
             //MARK:- Infants
             // Infants
             Infant(boundTo: bindingZone, zone: zone)
-            JTotals(cabin: _cabin, zone: zone, zoneLimit: zoneLimit)
+          
         }// End Zone 2
     }
 

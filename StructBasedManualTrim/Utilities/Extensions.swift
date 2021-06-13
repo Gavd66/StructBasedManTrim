@@ -44,6 +44,12 @@ extension View {
     }
 }
 
+extension View {
+    func pobStyle() -> some View {
+        self.modifier(POB())
+    }
+}
+
 #if canImport(UIKit)
 extension View {
     func hideKeyboard() {

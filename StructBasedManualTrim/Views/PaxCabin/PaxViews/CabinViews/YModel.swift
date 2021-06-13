@@ -13,9 +13,7 @@ struct YModel: View {
     var zoneNumber: Int
     var bindingZone: Binding<Pax>
     var zone: Pax
-    var zoneLimit: Seats
-
-
+  
     var body: some View {
 
         //MARK:- Zone 2
@@ -51,7 +49,7 @@ struct YModel: View {
             //MARK:- Infants
 
             Infant(boundTo: bindingZone, zone: zone)
-            YTotals(cabin: _cabin, zone: zone, zoneLimit: zoneLimit)
+        
         }// End Zone 2
     }
     func dismissCabinKeyBoard(_ paxInCabin: CabinOccupency) {

@@ -30,10 +30,10 @@ enum Jumpseat: String, Identifiable {
 }
 
 // MARK:- Enum Aircraft Pax Configuration
-enum Configuration: String, Identifiable, CaseIterable {
-    var id: Configuration { self }
-    case standard = "Standard"
-    case domestic = "Domestic"
+enum JWeightConfiguration: String, Identifiable, CaseIterable {
+    var id: JWeightConfiguration { self }
+    case buisness = "Buisness"
+    case ecconomy = "Ecconomy"
 }
 //MARK: - Enum Pax Weights
 enum PaxWeight: Identifiable {
@@ -145,19 +145,19 @@ enum Seats: String, Identifiable {
 }
 
 //MARK: - Class Pax
-class Pax {
+class Pax: ObservableObject {
 
-    var maleStringNumber = ""
-    var femaleStringNumber = ""
-    var childrenStringNumber = ""
-    var infantStringNumber = ""
-    var paxInCabin: CabinOccupency = .empty
-    var hasMalesInZone = false
-    var hasFemalesInZone = false
-    var hasChildrenInZone = false
-    var hasInfantsInZone = false
-    var hasPeopleInZone = false
-    var hideKeyboard = true
+     var maleStringNumber = ""
+     var femaleStringNumber = ""
+     var childrenStringNumber = ""
+     var infantStringNumber = ""
+     var paxInCabin: CabinOccupency = .empty
+     var hasMalesInZone = false
+     var hasFemalesInZone = false
+     var hasChildrenInZone = false
+     var hasInfantsInZone = false
+     var hasPeopleInZone = false
+     var hideKeyboard = true
 
 //MARK:- Pax Number Calulations
     var males: Int {
@@ -180,7 +180,8 @@ class Pax {
     }
 // MARK: - Weight Calculations
     var jMaleWeight: Int {
-        males * PaxWeight.jMale.weight
+        objectWillChange.send()
+       return males * PaxWeight.jMale.weight
     }
     var jFemaleWeight: Int {
         females * PaxWeight.jFemale.weight
@@ -224,8 +225,17 @@ class Pax {
             hideKeyboard = true
 
         case .paxCarried:
-            // build logic here
+            maleStringNumber = ""
+            femaleStringNumber = ""
+            childrenStringNumber = ""
+            infantStringNumber = ""
+            hasMalesInZone = false
+            hasFemalesInZone = false
+            hasChildrenInZone = false
+            hasInfantsInZone = false
+            hasPeopleInZone = false
             hideKeyboard = true
+
         }
     }
 
@@ -242,8 +252,12 @@ class Pax {
         hasInfantsInZone = (infantStringNumber != "") ?  true: false
     }
     var hasPaxInZone: Bool {
-        let result = (hasMalesInZone || hasFemalesInZone || hasChildrenInZone || hasInfantsInZone) ? true: false
-        return result
+        objectWillChange.send()
+        if hasMalesInZone || hasFemalesInZone || hasChildrenInZone || hasInfantsInZone {
+            return true
+        } else {
+            return false
+        }
     }
 
     static var example = Pax()
@@ -256,7 +270,7 @@ class Cabin: ObservableObject {
     @Published var zone3 = Pax()
     @Published var zone4 = Pax()
     @Published var cabinCrew = CabinCrew.nine
-    @Published var configuration: Configuration = .standard
+    @Published var jWeight: JWeightConfiguration = .buisness
     @Published var seatingError: Seats? = nil
     @Published var zone1Unlocked = true
     @Published var zone2Unlocked = true
@@ -264,36 +278,24 @@ class Cabin: ObservableObject {
     @Published var zone4Unlocked = true
     @Published var jumpseat: Jumpseat = .none
 
-    //MARK: Cabin Pax Load Logic
     var hasPax: Bool {
-        let result = (zone1.hasPaxInZone || zone2.hasPaxInZone || zone3.hasPaxInZone || zone4.hasPaxInZone) ? true: false
-        return result
+        if (zone1.hasPaxInZone || zone2.hasPaxInZone || zone3.hasPaxInZone || zone4.hasPaxInZone) {
+            return true
+        } else {
+            return false
+        }
     }
-
     //MARK: - Pax Zone Weight Calculations
 
-    var zone1StandardWeight: Int {
+    var totalPaxWeight: Int {
         zone1.buisnessWeight
-    }
-    var zone1DomesticWeight: Int {
-        zone1.ecconomyWeight
-    }
-    var zone2TotalWeight: Int {
-        zone2.ecconomyWeight
+            + zone1.ecconomyWeight
+            + zone2.ecconomyWeight
+            + zone3.ecconomyWeight
+            + zone4.ecconomyWeight
     }
 
-    var zone3TotalWeight: Int {
-        zone3.ecconomyWeight
-    }
-    var zone4TotalWeight: Int {
-        zone4.ecconomyWeight
-    }
-    var totalPaxWeight: Int {
-        zone1StandardWeight
-            + zone2TotalWeight
-            + zone3TotalWeight
-            + zone4TotalWeight
-    }
+
 // To allow abstracted generic labels in J and Y models to display weights
     func zoneBuisnessWeight(for zone: Pax) -> Int {
         zone.buisnessWeight
@@ -304,6 +306,10 @@ class Cabin: ObservableObject {
     }
     // MARK:- POB Number Calulation
     var totalPaxNumbers: Int {
+        zone1.totalPax + zone2.totalPax + zone3.totalPax + zone4.totalPax
+    }
+
+    func totalPax() -> Int {
         zone1.totalPax + zone2.totalPax + zone3.totalPax + zone4.totalPax
     }
 
@@ -402,13 +408,13 @@ class Cabin: ObservableObject {
     }
 static var example = Pax()
 
-    //MARK:- Cabin
+    //MARK:- Cabin Reset
     func resetCabin() {
         withAnimation {
-            zone1 = Pax()
-            zone2 = Pax()
-            zone3 = Pax()
-            zone4 = Pax()
+        zone1 = Pax.init()
+        zone2 = Pax.init()
+        zone3 = Pax.init()
+        zone4 = Pax.init()
         }
     }
 

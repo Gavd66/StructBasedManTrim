@@ -7,38 +7,40 @@
 
 import SwiftUI
 
-struct EmptyCabinModel: View {
+struct EmptyCabinView: View {
 
     @EnvironmentObject var cabin: Cabin
     var body: some View {
+
         if cabin.hasPax {
-            VStack {
+           VStack {
+
                 HStack {
                     Spacer()
-                    Text("POB")
+                    Text("Totals")
                         .italic()
                         .bold()
                     Spacer()
                 }
-                .padding([.bottom, .top], 5)
+
                 HStack {
                     Spacer()
                     VStack(alignment:.center, spacing: 5) {
                         Text("Pax")
-                        Text("\(cabin.totalPaxNumbers)")
+                        Text("\(cabin.totalPax())")
                             .capsuleStyle()
                             .multilineTextAlignment(.center)
                     }
-                    Spacer()
+
                     VStack(alignment:.center, spacing: 5) {
                         Text("Crew")
                         Text("\(cabin.totalCrewNumber)")
                             .capsuleStyle()
                             .multilineTextAlignment(.center)
                     }
-                    Spacer()
+
                     VStack(alignment:.center, spacing: 5) {
-                        Text("Total")
+                        Text("POB")
                         Text("\(cabin.totalPOB)")
                             .capsuleStyle()
                             .multilineTextAlignment(.center)
@@ -48,15 +50,22 @@ struct EmptyCabinModel: View {
                 }// End CabinTotal HStack
 
             }// End main Vstack
+
         } else {
+
+
             VStack(alignment: .center) {
                 HStack {
                     Spacer()
-                    Text("POB: 2. No Cabin Crew or Passengers Carried")
+                    VStack(alignment: .center) {
+                         Text("POB 2")
+                         Text("No Cabin Crew or Passengers Carried")
                         .multilineTextAlignment(.center)
                     Spacer()
+                    }
                 }
             }
+            
             .foregroundColor(.accentColor)
             .contextMenu {
                 VStack {
@@ -67,11 +76,12 @@ struct EmptyCabinModel: View {
         }// End if
 
 
+
     }
 }
 
 struct EmptyCabinView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyCabinModel()
+        EmptyCabinView()
     }
 }
