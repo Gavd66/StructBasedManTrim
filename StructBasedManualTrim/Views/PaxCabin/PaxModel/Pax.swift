@@ -71,7 +71,7 @@ enum PaxWeight: Identifiable {
 enum CabinOccupency: String, Identifiable, CaseIterable {
     var id: CabinOccupency { self }
     case empty = " Empty"
-    case paxCarried = " Pax"
+    case paxCarried = " Load Pax"
 }
 
 enum HasMales: String, Identifiable {
@@ -269,7 +269,7 @@ class Cabin: ObservableObject {
     @Published var zone2 = Pax()
     @Published var zone3 = Pax()
     @Published var zone4 = Pax()
-    @Published var cabinCrew = CabinCrew.nine
+    @Published var cabinCrew = CabinCrew.zero
     @Published var jWeight: JWeightConfiguration = .buisness
     @Published var seatingError: Seats? = nil
     @Published var zone1Unlocked = true

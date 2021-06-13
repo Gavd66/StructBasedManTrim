@@ -71,6 +71,11 @@ struct PaxCabinView: View {
                         YTotals(cabin: _cabin, zone: cabin.zone4, zoneLimit: Seats.inZone4)
                     }
                 }// End Pax Cabin Group
+
+                Section {
+                    EmptyCabinView()
+                }
+
             }
             .navigationTitle("Persons on Board")
             .navigationBarItems(trailing: Button(action: cabin.resetCabin) {

@@ -21,7 +21,7 @@ struct JModel: View {
                 .animation()
                 .onChange(zone.applyCabinLogic)) {
             ForEach(CabinOccupency.allCases, id: \.self){
-                Text("Zone\(number)\($0.rawValue)")
+                Text("\($0.rawValue)")
             }
         }
         .pickerStyle(SegmentedPickerStyle())

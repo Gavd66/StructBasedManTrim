@@ -21,7 +21,7 @@ struct YModel: View {
                 .animation()
                 .onChange(zone.applyCabinLogic)) {
             ForEach(CabinOccupency.allCases, id: \.self){
-                Text("Zone\(zoneNumber)\($0.rawValue)")
+                Text("\($0.rawValue)")
             }
         }
         .pickerStyle(SegmentedPickerStyle())

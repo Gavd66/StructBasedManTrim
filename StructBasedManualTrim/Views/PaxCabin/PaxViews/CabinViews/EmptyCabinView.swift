@@ -13,7 +13,7 @@ struct EmptyCabinView: View {
     var body: some View {
 
         if cabin.hasPax {
-           VStack {
+            VStack {
 
                 HStack {
                     Spacer()
@@ -46,26 +46,31 @@ struct EmptyCabinView: View {
                             .multilineTextAlignment(.center)
                     }
                     Spacer()
-
                 }// End CabinTotal HStack
-
             }// End main Vstack
+            .contextMenu {
+                VStack(alignment: .center) {
+                    Text("Max Pax Capacity 354 including Infants")
+                    Text("Max Infants 22")
+                    Text("Max Cabin Crew Seats 12")
+                }
+                .multilineTextAlignment(.center)
+            }
 
         } else {
 
-
             VStack(alignment: .center) {
+
                 HStack {
                     Spacer()
                     VStack(alignment: .center) {
-                         Text("POB 2")
-                         Text("No Cabin Crew or Passengers Carried")
-                        .multilineTextAlignment(.center)
-                    Spacer()
+                        Text("POB 2")
+                        Text("No Cabin Crew or Passengers Carried")
+                            .multilineTextAlignment(.center)
+                        Spacer()
                     }
                 }
             }
-            
             .foregroundColor(.accentColor)
             .contextMenu {
                 VStack {
@@ -74,9 +79,6 @@ struct EmptyCabinView: View {
                 }
             }
         }// End if
-
-
-
     }
 }
 

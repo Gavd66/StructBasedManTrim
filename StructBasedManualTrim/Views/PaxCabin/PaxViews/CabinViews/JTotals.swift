@@ -55,9 +55,15 @@ struct JTotals: View {
             }
         }
         .animation(.easeIn)
-
-
-
+        .contextMenu {
+            VStack {
+                Text("Seating Capacities")
+                Text("Zone 1: 21")
+                Text("Zone 2: 27")
+                Text("Zone 3: 177")
+                Text("Zone 4: 110")
+            }
+        }
     }// end body
 }
 
