@@ -1,19 +1,19 @@
 //
-//  InfantModel.swift
+//  YInfant.swift
 //  StructBasedManualTrim
 //
-//  Created by Gavin Dorward on 13/6/21.
+//  Created by Gavin Dorward on 14/6/21.
 //
 
 import SwiftUI
 
-struct Infant: View {
+struct YInfant: View {
 
     @EnvironmentObject  var cabin: Cabin
 
     var boundTo: Binding<Pax>
     var zone: Pax
- 
+    
     var body: some View {
         HStack {
             Button(action: hideKeyboard) {
@@ -27,7 +27,7 @@ struct Infant: View {
                         .capsuleStyle()
                 }
             }
-
+            
             TextField("0 x \(PaxWeight.infant.weight)", text:
                         boundTo.infantStringNumber
                         .animation()
@@ -38,7 +38,7 @@ struct Infant: View {
                         ))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
-
+            
             if zone.hasInfantsInZone {
                 Text("\(zone.infantWeight) kg")
                     .loadedStyle()
@@ -50,4 +50,3 @@ struct Infant: View {
         .font(.system(size: 18))
     }
 }
-

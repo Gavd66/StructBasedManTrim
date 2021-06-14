@@ -29,7 +29,7 @@ enum Jumpseat: String, Identifiable {
     case two = "2"
 }
 
-// MARK:- Enum Aircraft Pax Configuration
+// MARK:- Enum Aircraft Jweight setting
 enum JWeightConfiguration: String, Identifiable, CaseIterable {
     var id: JWeightConfiguration { self }
     case buisness = "Buisness"
@@ -104,6 +104,7 @@ enum Seats: String, Identifiable {
     case inZone2 = "Zone 2"
     case inZone3 = "Zone 3"
     case inZone4 = "Zone 4"
+    case infants = "Infants"
 
     var maxNumber: Int {
         switch self {
@@ -115,6 +116,8 @@ enum Seats: String, Identifiable {
             return 177
         case .inZone4:
             return 110
+        case .infants:
+            return 22
         }
     }
 
@@ -140,13 +143,33 @@ enum Seats: String, Identifiable {
                     Too many pax.
                     There are \(self.maxNumber) seats in this zone.
                     """
+        case .infants:
+            return """
+                    Too many infants.
+                    Max allowed is 22 when seated pax numbers
+                    are 332 or less. Max 19 with 335 Pax.
+                    """
         }
     }
 }
 
-//MARK: - Class Pax
-class Pax: ObservableObject {
+enum TapZone {
+    case zone1
+    case zone2
+    case zone3
+    case zone4
+}
 
+
+
+//MARK: - Class Pax
+class Pax: ObservableObject, Equatable {
+    static func == (lhs: Pax, rhs: Pax) -> Bool {
+
+        lhs.id == rhs.id
+    }
+
+     var id = UUID()
      var maleStringNumber = ""
      var femaleStringNumber = ""
      var childrenStringNumber = ""
@@ -158,6 +181,9 @@ class Pax: ObservableObject {
      var hasInfantsInZone = false
      var hasPeopleInZone = false
      var hideKeyboard = true
+     @Published var infantHasChanged = false
+
+
 
 //MARK:- Pax Number Calulations
     var males: Int {
@@ -175,9 +201,17 @@ class Pax: ObservableObject {
     var totalPax: Int {
         males + females + children + infants
     }
-    var seatsOccupied: Int {
+    var seatedPax: Int {
         males + females + children
     }
+
+
+    var totalInfants: Int {
+
+    return infants
+
+    }
+
 // MARK: - Weight Calculations
     var jMaleWeight: Int {
         objectWillChange.send()
@@ -199,6 +233,7 @@ class Pax: ObservableObject {
         children * PaxWeight.yChild.weight
     }
     var infantWeight: Int {
+
         infants * PaxWeight.infant.weight
     }
     var buisnessWeight: Int {
@@ -260,11 +295,15 @@ class Pax: ObservableObject {
         }
     }
 
+   
+
     static var example = Pax()
 
 }
 //MARK:- Class Cabin
 class Cabin: ObservableObject {
+
+
     @Published var zone1 = Pax()
     @Published var zone2 = Pax()
     @Published var zone3 = Pax()
@@ -277,6 +316,8 @@ class Cabin: ObservableObject {
     @Published var zone3Unlocked = true
     @Published var zone4Unlocked = true
     @Published var jumpseat: Jumpseat = .none
+    @Published var zoneTapped = TapZone.zone4
+    @Published var reduceInfantMaxNumber = 0
 
     var hasPax: Bool {
         if (zone1.hasPaxInZone || zone2.hasPaxInZone || zone3.hasPaxInZone || zone4.hasPaxInZone) {
@@ -295,7 +336,6 @@ class Cabin: ObservableObject {
             + zone4.ecconomyWeight
     }
 
-
 // To allow abstracted generic labels in J and Y models to display weights
     func zoneBuisnessWeight(for zone: Pax) -> Int {
         zone.buisnessWeight
@@ -311,6 +351,16 @@ class Cabin: ObservableObject {
 
     func totalPax() -> Int {
         zone1.totalPax + zone2.totalPax + zone3.totalPax + zone4.totalPax
+    }
+
+    func totalInfantNumbers() -> Int {
+        zone1.infants + zone2.infants + zone3.infants + zone4.infants
+    }
+    var totalInfants: Int {
+
+        let total = zone1.infants + zone2.infants + zone3.infants + zone4.infants
+        print(total)
+        return total
     }
 
     var cabinCrewNumber: Int {
@@ -331,20 +381,91 @@ class Cabin: ObservableObject {
 
 
 // MARK: - Seating Logic
-    func overSeatingCheck(_ seats: Int) {
+
+//    func disableZones() {
+//        if seatingError == .none {
+//
+//            zone1Unlocked = true
+//            zone2Unlocked = true
+//            zone3Unlocked = true
+//            zone4Unlocked = true
+//            reduceInfantMaxNumber = 0
+//
+//
+//        } else {
+//
+//            switch zoneTapped {
+//            case .zone1:
+//                zone1Unlocked = true
+//                zone2Unlocked = false
+//                zone3Unlocked = false
+//                zone4Unlocked = false
+//            case .zone2:
+//                zone1Unlocked = false
+//                zone2Unlocked = true
+//                zone3Unlocked = false
+//                zone4Unlocked = false
+//            case .zone3:
+//                zone1Unlocked = false
+//                zone2Unlocked = false
+//                zone3Unlocked = true
+//                zone4Unlocked = false
+//            case .zone4:
+//                zone1Unlocked = false
+//                zone2Unlocked = false
+//                zone3Unlocked = false
+//                zone4Unlocked = true
+//            }
+//        }
+//    }
+// TODO: Stop going in circles
+    func setTappedZone(for zone: Pax) {
+        if zone == zone1 {
+            zoneTapped = .zone1
+        }
+        if zone == zone2 {
+            zoneTapped = .zone2
+        }
+        if zone == zone3 {
+            zoneTapped = .zone3
+        }
+        if zone == zone4 {
+            zoneTapped = .zone4
+        }
+    }
+
+    func validPaxLoad(_ seats: Int) {
         // If over seating in a zone occurs, no other inputs are available until the seating issue is rectified.
         seatingError = nil
-        if zone1.seatsOccupied > Seats.inZone1.maxNumber {
-            seatingError = .inZone1
+        if zone1.seatedPax > Seats.inZone1.maxNumber {
+           seatingError = .inZone1
+           zoneTapped = .zone1
         }
-        if zone2.seatsOccupied > Seats.inZone2.maxNumber {
+        if zone2.seatedPax > Seats.inZone2.maxNumber {
             seatingError = .inZone2
+            zoneTapped = .zone2
         }
-        if zone3.seatsOccupied > Seats.inZone3.maxNumber {
+        if zone3.seatedPax > Seats.inZone3.maxNumber {
             seatingError = .inZone3
+            zoneTapped = .zone3
         }
-        if zone4.seatsOccupied > Seats.inZone4.maxNumber {
+        if zone4.seatedPax > Seats.inZone4.maxNumber {
             seatingError = .inZone4
+            zoneTapped = .zone4
+        }
+
+        if totalPaxNumbers == 333 {
+            reduceInfantMaxNumber = 1
+        }
+        if totalPaxNumbers == 334 {
+            reduceInfantMaxNumber = 2
+        }
+        if totalPaxNumbers == 335 {
+            reduceInfantMaxNumber = 3
+        }
+
+        if totalInfants > Seats.infants.maxNumber - reduceInfantMaxNumber {
+          seatingError = .infants
         }
 
         switch seatingError {
@@ -353,6 +474,12 @@ class Cabin: ObservableObject {
             zone2Unlocked = true
             zone3Unlocked = true
             zone4Unlocked = true
+            zone1.infantHasChanged = false
+            zone2.infantHasChanged = false
+            zone3.infantHasChanged = false
+            zone4.infantHasChanged = false
+            reduceInfantMaxNumber = 0
+
         case .inZone1:
             zone1Unlocked = true
             zone2Unlocked = false
@@ -373,8 +500,41 @@ class Cabin: ObservableObject {
             zone2Unlocked = false
             zone3Unlocked = false
             zone4Unlocked = true
+        case .infants:
+            if zone1.infantHasChanged {
+                zone1Unlocked = true
+                zone2Unlocked = false
+                zone3Unlocked = false
+                zone4Unlocked = false
+            }
+            if  zone2.infantHasChanged {
+                zone1Unlocked = false
+                zone2Unlocked = true
+                zone3Unlocked = false
+                zone4Unlocked = false
+            }
+            if  zone3.infantHasChanged {
+                zone1Unlocked = false
+                zone2Unlocked = false
+                zone3Unlocked = true
+                zone4Unlocked = false
+            }
+            if  zone4.infantHasChanged {
+                zone1Unlocked = false
+                zone2Unlocked = false
+                zone3Unlocked = false
+                zone4Unlocked = true
+            }
+
+            // deactivate the zones where the error didnt occur ?
+
+
+            //disableZones()
         }
+
     }
+
+
     // MARK: - Seating Error Messages
 
     var zoneTitle: String {
@@ -387,6 +547,8 @@ class Cabin: ObservableObject {
             return Seats.inZone3.rawValue
         case .inZone4:
             return Seats.inZone4.rawValue
+        case .infants:
+            return Seats.infants.rawValue
         case .none:
             return ""
         }
@@ -395,13 +557,15 @@ class Cabin: ObservableObject {
     var zoneMessage: String {
         switch seatingError {
         case .inZone1:
-            return Seats.inZone1.message + " Remove \(zone1.seatsOccupied - Seats.inZone1.maxNumber) pax"
+            return Seats.inZone1.message + " Remove \(zone1.seatedPax - Seats.inZone1.maxNumber) pax"
         case .inZone2:
-            return Seats.inZone2.message + " Remove \(zone2.seatsOccupied - Seats.inZone2.maxNumber) pax"
+            return Seats.inZone2.message + " Remove \(zone2.seatedPax - Seats.inZone2.maxNumber) pax"
         case .inZone3:
-            return Seats.inZone3.message + " Remove \(zone3.seatsOccupied - Seats.inZone3.maxNumber) pax"
+            return Seats.inZone3.message + " Remove \(zone3.seatedPax - Seats.inZone3.maxNumber) pax"
         case .inZone4:
-            return Seats.inZone4.message + " Remove \(zone4.seatsOccupied - Seats.inZone4.maxNumber) pax"
+            return Seats.inZone4.message + " Remove \(zone4.seatedPax - Seats.inZone4.maxNumber) pax"
+        case .infants:
+            return Seats.infants.message + "Remove \(totalInfants - Seats.infants.maxNumber - reduceInfantMaxNumber) infants"
         case .none:
             return ""
         }

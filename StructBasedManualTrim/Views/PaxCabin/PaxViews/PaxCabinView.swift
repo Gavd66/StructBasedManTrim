@@ -30,9 +30,13 @@ struct PaxCabinView: View {
                     Section(header: Text("Cabin Zone 1")
                                 .foregroundColor(.primary)) {
                         Zone1View()
+
                     }
-                    .onChange(of: cabin.zone1.seatsOccupied, perform: cabin.overSeatingCheck)
+                    .onChange(of: cabin.zone1.totalPax, perform: cabin.validPaxLoad)
+//                    .onChange(of: cabin.zone1.infants, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone1Unlocked)
+                   // .adaptsToKeyboard()
+
 
                     Section {
                         JTotals(cabin: _cabin, zone: cabin.zone1, zoneLimit: Seats.inZone1)
@@ -41,8 +45,10 @@ struct PaxCabinView: View {
                     Section(header: Text("Cabin Zone 2")
                                 .foregroundColor(.primary)) {
                         Zone2View()
+                            
                     }
-                    .onChange(of: cabin.zone2.seatsOccupied, perform: cabin.overSeatingCheck)
+                    .onChange(of: cabin.zone2.totalPax, perform: cabin.validPaxLoad)
+                   // .onChange(of: cabin.zone2.infants, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone2Unlocked)
 
                     Section {
@@ -53,7 +59,8 @@ struct PaxCabinView: View {
                                 .foregroundColor(.primary)) {
                         Zone3View()
                     }
-                    .onChange(of: cabin.zone3.seatsOccupied, perform: cabin.overSeatingCheck)
+                    .onChange(of: cabin.zone3.totalPax, perform: cabin.validPaxLoad)
+                   // .onChange(of: cabin.zone3.infants, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone3Unlocked)
 
                     Section {
@@ -64,7 +71,8 @@ struct PaxCabinView: View {
                                 .foregroundColor(.primary)) {
                         Zone4View()
                     }
-                    .onChange(of: cabin.zone4.seatsOccupied, perform: cabin.overSeatingCheck)
+                    .onChange(of: cabin.zone4.totalPax, perform: cabin.validPaxLoad)
+//                    .onChange(of: cabin.zone4.infants, perform: cabin.validPaxLoad)
                     .allowsHitTesting(cabin.zone4Unlocked)
 
                     Section {
@@ -86,7 +94,9 @@ struct PaxCabinView: View {
             })
             .alert(item: $cabin.seatingError) { seatingError in
                 Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .default(Text("OK")))
+
             }
+
         }
     }
 }

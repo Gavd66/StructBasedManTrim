@@ -18,7 +18,6 @@ struct YFemale: View {
     var body: some View {
         //MARK:- Females
         withAnimation {
-
             HStack {
                 Button(action: hideKeyboard) {
                     if zone.hasFemalesInZone {
@@ -31,6 +30,7 @@ struct YFemale: View {
                             .capsuleStyle()
                     }
                 }
+                
                 TextField("0 x \(PaxWeight.yFemale.weight) kg", text: boundTo.femaleStringNumber
                             .animation()
                             .onChange(

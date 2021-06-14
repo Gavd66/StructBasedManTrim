@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 // TwoStraws generic binding to monitor changes to any bindings
 extension Binding {
     func onChange(_ handler: @escaping(Value) -> Void) -> Binding<Value> {
@@ -57,4 +58,3 @@ extension View {
     }
 }
 #endif
-

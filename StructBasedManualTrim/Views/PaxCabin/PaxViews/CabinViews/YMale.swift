@@ -27,6 +27,7 @@ struct YMale: View {
                             .capsuleStyle()
                     }
                 }
+                
                 TextField("0 x \(PaxWeight.yMale.weight) kg", text: boundTo.maleStringNumber
                             .animation()
                             .onChange(

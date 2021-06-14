@@ -10,6 +10,7 @@ import SwiftUI
 struct Zone1View: View {
 
     @EnvironmentObject var cabin: Cabin
+
     var body: some View {
         JModel(cabin: _cabin, number: 1, bindingZone: $cabin.zone1, zone: cabin.zone1)
     }
