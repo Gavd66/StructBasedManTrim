@@ -10,128 +10,128 @@ import SwiftUI
 
 
 
-// MARK:- Enum Aircraft Jweight setting
-enum JWeightConfiguration: String, Identifiable, CaseIterable {
-    var id: JWeightConfiguration { self }
-    case buisness = "Buisness"
-    case ecconomy = "Ecconomy"
-}
-//MARK: - Enum Pax Weights
-enum PaxWeight: Identifiable {
-    var id: PaxWeight { self }
-    case jMale
-    case jFemale
-    case yMale
-    case yFemale
-    case jChild
-    case yChild
-    case infant
-
-    var weight: Int {
-        switch self {
-        case .jMale:
-            return 101
-        case .jFemale:
-            return 86
-        case .yMale:
-            return 93
-        case .yFemale:
-            return 78
-        case .jChild:
-            return 48
-        case .yChild:
-            return 49
-        case .infant:
-            return 16
-        }
-    }
-
-    
-}
-// MARK: Cabin Occupency Enums
-enum CabinOccupency: String, Identifiable, CaseIterable {
-    var id: CabinOccupency { self }
-    case empty = " Empty"
-    case paxCarried = " Load Pax"
-}
-
-enum HasMales: String, Identifiable {
-    var id: HasMales { self }
-    case some = "  Males  "
-    case none = "  No Males  "
-}
-
-enum HasFemales: String, Identifiable {
-    var id: HasFemales { self }
-    case some = "Females"
-    case none = "No Females"
-}
-
-enum HasChildren: String, Identifiable {
-    var id: HasChildren { self }
-    case some = "Children"
-    case none = "No Children"
-}
-
-enum HasInfants: String, Identifiable {
-    var id: HasInfants { self }
-    case some = " Infants "
-    case none = " No Infants "
-}
-
-enum Seats: String, Identifiable {
-    var id: Seats { self }
-    case inZone1 = "Zone 1"
-    case inZone2 = "Zone 2"
-    case inZone3 = "Zone 3"
-    case inZone4 = "Zone 4"
-    case infants = "Infants"
-
-    var maxNumber: Int {
-        switch self {
-        case .inZone1:
-            return 21
-        case .inZone2:
-            return 27
-        case .inZone3:
-            return 177
-        case .inZone4:
-            return 110
-        case .infants:
-            return 22
-        }
-    }
-
-    var message: String {
-        switch self{
-        case .inZone1:
-            return """
-                    Too many pax.
-                    There are \(self.maxNumber) seats in this zone.
-                    """
-        case .inZone2:
-            return """
-                    Too many pax.
-                    There are \(self.maxNumber) seats in this zone.
-                    """
-        case .inZone3:
-            return """
-                    Too many pax.
-                    There are \(self.maxNumber) seats in this zone.
-                    """
-        case .inZone4:
-            return """
-                    Too many pax.
-                    There are \(self.maxNumber) seats in this zone.
-                    """
-        case .infants:
-            return """
-                    There are too many infants on board.
-
-                    """
-        }
-    }
-}
+//// MARK:- Enum Aircraft Jweight setting
+//enum JWeightConfiguration: String, Identifiable, CaseIterable {
+//    var id: JWeightConfiguration { self }
+//    case buisness = "Buisness"
+//    case ecconomy = "Ecconomy"
+//}
+////MARK: - Enum Pax Weights
+//enum PaxWeight: Identifiable {
+//    var id: PaxWeight { self }
+//    case jMale
+//    case jFemale
+//    case yMale
+//    case yFemale
+//    case jChild
+//    case yChild
+//    case infant
+//
+//    var weight: Int {
+//        switch self {
+//        case .jMale:
+//            return 101
+//        case .jFemale:
+//            return 86
+//        case .yMale:
+//            return 93
+//        case .yFemale:
+//            return 78
+//        case .jChild:
+//            return 48
+//        case .yChild:
+//            return 49
+//        case .infant:
+//            return 16
+//        }
+//    }
+//
+//
+//}
+//// MARK: Cabin Occupency Enums
+//enum CabinOccupency: String, Identifiable, CaseIterable {
+//    var id: CabinOccupency { self }
+//    case empty = " Empty"
+//    case paxCarried = " Load Pax"
+//}
+//
+//enum HasMales: String, Identifiable {
+//    var id: HasMales { self }
+//    case some = "  Males  "
+//    case none = "  No Males  "
+//}
+//
+//enum HasFemales: String, Identifiable {
+//    var id: HasFemales { self }
+//    case some = "Females"
+//    case none = "No Females"
+//}
+//
+//enum HasChildren: String, Identifiable {
+//    var id: HasChildren { self }
+//    case some = "Children"
+//    case none = "No Children"
+//}
+//
+//enum HasInfants: String, Identifiable {
+//    var id: HasInfants { self }
+//    case some = " Infants "
+//    case none = " No Infants "
+//}
+//
+//enum Seats: String, Identifiable {
+//    var id: Seats { self }
+//    case inZone1 = "Zone 1"
+//    case inZone2 = "Zone 2"
+//    case inZone3 = "Zone 3"
+//    case inZone4 = "Zone 4"
+//    case infants = "Infants"
+//
+//    var maxNumber: Int {
+//        switch self {
+//        case .inZone1:
+//            return 21
+//        case .inZone2:
+//            return 27
+//        case .inZone3:
+//            return 177
+//        case .inZone4:
+//            return 110
+//        case .infants:
+//            return 22
+//        }
+//    }
+//
+//    var message: String {
+//        switch self{
+//        case .inZone1:
+//            return """
+//                    Too many pax.
+//                    There are \(self.maxNumber) seats in this zone.
+//                    """
+//        case .inZone2:
+//            return """
+//                    Too many pax.
+//                    There are \(self.maxNumber) seats in this zone.
+//                    """
+//        case .inZone3:
+//            return """
+//                    Too many pax.
+//                    There are \(self.maxNumber) seats in this zone.
+//                    """
+//        case .inZone4:
+//            return """
+//                    Too many pax.
+//                    There are \(self.maxNumber) seats in this zone.
+//                    """
+//        case .infants:
+//            return """
+//                    There are too many infants on board.
+//
+//                    """
+//        }
+//    }
+//}
 
 
 //MARK: - Class Pax
@@ -141,7 +141,7 @@ class Pax: ObservableObject, Equatable {
         lhs.id == rhs.id
     }
 
-    var id = UUID() // needed to differntiate with abstracted code
+    var id = UUID() // Be identifiable with abstracted code
     var maleStringNumber = ""
     var femaleStringNumber = ""
     var childrenStringNumber = ""
@@ -279,15 +279,13 @@ class Cabin: ObservableObject {
     @Published var zone2 = Pax()
     @Published var zone3 = Pax()
     @Published var zone4 = Pax()
-    @Published var cabinCrew = CabinCrew.zero
     @Published var jWeight: JWeightConfiguration = .buisness
     @Published var seatingError: Seats? = nil
     @Published var zone1Unlocked = true
     @Published var zone2Unlocked = true
     @Published var zone3Unlocked = true
     @Published var zone4Unlocked = true
-    @Published var jumpseat: Jumpseat = .none
-    @Published var reduceInfantMaxNumber = 0
+    @Published var cabinCrew = CabinCrew.zero
     @Published var moveCabinCrew = false {
         didSet { // Set to same zone so no weight adjustment
             if moveCabinCrew == false {
@@ -298,6 +296,7 @@ class Cabin: ObservableObject {
     }
     @Published var moveFrom = CrewMoveFrom.L2
     @Published var moveTo = CrewMoveTo.L2
+    @Published var jumpseat: Jumpseat = .none
 
     var hasPax: Bool {
         if (zone1.hasPaxInZone || zone2.hasPaxInZone || zone3.hasPaxInZone || zone4.hasPaxInZone) {
@@ -408,7 +407,7 @@ class Cabin: ObservableObject {
         if totalInfants > permittedInfantNumber {
           seatingError = .infants
         }
-        
+
 // Disable other zones until the seating error is corrected in the current zone. Infants are across all zones, that requires a Bool in the Pax class see infant has changed.
         zone1Unlocked = (
             seatingError == .inZone1
@@ -501,6 +500,5 @@ static var example = Pax()
         zone4 = Pax.init()
         }
     }
-
 }
 
