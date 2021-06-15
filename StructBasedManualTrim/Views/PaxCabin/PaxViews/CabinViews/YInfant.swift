@@ -10,43 +10,46 @@ import SwiftUI
 struct YInfant: View {
 
     @EnvironmentObject  var cabin: Cabin
-
+    
     var boundTo: Binding<Pax>
     var zone: Pax
     
     var body: some View {
-        HStack {
-            Button(action: hideKeyboard) {
+        
+        withAnimation {
+            HStack {
+                Button(action: hideKeyboard) {
+                    if zone.hasInfantsInZone {
+                        Text("\(HasInfants.some.rawValue)")
+                            .loadedStyle()
+                            .capsuleStyle()
+                    } else {
+                        Text("\(HasInfants.none.rawValue)")
+                            .emptyStyle()
+                            .capsuleStyle()
+                    }
+                }
+                
+                TextField("0 x \(PaxWeight.infant.weight)", text:
+                            boundTo.infantStringNumber
+                            .animation()
+                            .onChange(
+                                withAnimation(.default) {
+                                    zone.updateInfantLables
+                                }
+                            ))
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numberPad)
+                
                 if zone.hasInfantsInZone {
-                    Text("\(HasInfants.some.rawValue)")
+                    Text("\(zone.infantWeight) kg")
                         .loadedStyle()
-                        .capsuleStyle()
                 } else {
-                    Text("\(HasInfants.none.rawValue)")
+                    Text("0 kg ")
                         .emptyStyle()
-                        .capsuleStyle()
                 }
             }
-            
-            TextField("0 x \(PaxWeight.infant.weight)", text:
-                        boundTo.infantStringNumber
-                        .animation()
-                        .onChange(
-                            withAnimation(.easeIn(duration: 2)) {
-                                zone.updateInfantLables
-                            }
-                        ))
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-            
-            if zone.hasInfantsInZone {
-                Text("\(zone.infantWeight) kg")
-                    .loadedStyle()
-            } else {
-                Text("0 kg ")
-                    .emptyStyle()
-            }
+            .font(.system(size: 18))
         }
-        .font(.system(size: 18))
     }
 }

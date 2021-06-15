@@ -13,7 +13,7 @@ struct YMale: View {
     var zone: Pax
 
     var body: some View {
-        withAnimation(.easeIn) {
+        withAnimation(.default) {
 
             HStack {
                 Button(action: hideKeyboard) {
@@ -31,7 +31,7 @@ struct YMale: View {
                 TextField("0 x \(PaxWeight.yMale.weight) kg", text: boundTo.maleStringNumber
                             .animation()
                             .onChange(
-                                withAnimation(.easeIn(duration: 2)) {
+                                withAnimation(.default) {
                                     zone.updateMaleLables
                                 }
                             ))

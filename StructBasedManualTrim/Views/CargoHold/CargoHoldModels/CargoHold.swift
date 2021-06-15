@@ -112,9 +112,7 @@ class MainHold {
     }
 
     var totalWeight: Int {
-        let weight = totalBagWeight + totalCargoWeight
-        print(weight)
-        return weight
+        totalBagWeight + totalCargoWeight
     }
 
 

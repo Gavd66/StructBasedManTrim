@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct JTotals: View {
+
     @EnvironmentObject var cabin: Cabin
     var zone: Pax
     var zoneLimit: Seats
-
 
     var body: some View {
 
@@ -30,6 +30,7 @@ struct JTotals: View {
                     Text(" Total Pax")
                     Text("\(zone.totalPax)")
                         .capsuleStyle()
+                        .animation(.default)
                 }
                 .multilineTextAlignment(.center)
                 Spacer()
@@ -39,29 +40,26 @@ struct JTotals: View {
                         Text("Total Weight")
                         Text("\(cabin.zoneBuisnessWeight(for: zone)) kg")
                             .capsuleStyle()
+                            .animation(.default)
                     }
-                    .animation(.default)
                     .multilineTextAlignment(.center)
                 } else {
                     VStack {
                         Text("Total Weight")
                         Text("\(cabin.zoneEcconomylWeight(for: zone)) kg")
                             .capsuleStyle()
+                            .animation(.default)
                     }
-                    .animation(.default)
                     .multilineTextAlignment(.center)
                 }
                 Spacer()
             }
         }
-        .animation(.easeIn)
         .contextMenu {
             VStack {
                 Text("Seating Capacities")
                 Text("Zone 1: 21")
-                Text("Zone 2: 27")
-                Text("Zone 3: 177")
-                Text("Zone 4: 110")
+                
             }
         }
     }// end body

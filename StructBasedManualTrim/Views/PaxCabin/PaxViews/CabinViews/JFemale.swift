@@ -14,7 +14,6 @@ struct JFemale: View {
     var boundTo: Binding<Pax>
     var zone: Pax
     
-    
     var body: some View {
         withAnimation {
             
@@ -33,7 +32,7 @@ struct JFemale: View {
                 TextField("0 x \(PaxWeight.jFemale.weight) kg", text: boundTo.femaleStringNumber
                             .animation()
                             .onChange(
-                                withAnimation(.easeIn(duration: 2)) {
+                                withAnimation(.default) {
                                     zone.updateFemaleLables
                                 }
                             ))

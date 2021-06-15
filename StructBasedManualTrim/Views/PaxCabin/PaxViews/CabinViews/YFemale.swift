@@ -34,7 +34,7 @@ struct YFemale: View {
                 TextField("0 x \(PaxWeight.yFemale.weight) kg", text: boundTo.femaleStringNumber
                             .animation()
                             .onChange(
-                                withAnimation(.easeIn(duration: 2)) {
+                                withAnimation(.default) {
                                     zone.updateFemaleLables
                                 }
                             ))

@@ -29,25 +29,25 @@ struct YChild: View {
                             .capsuleStyle()
                     }
                 }
-            TextField("0 x \(PaxWeight.yChild.weight) kg", text: boundTo.childrenStringNumber
-                        .animation()
-                        .onChange(
-                            withAnimation(.easeIn(duration: 2)) {
-                                zone.updateChildLables
-                            }
-                        ))
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
+                TextField("0 x \(PaxWeight.yChild.weight) kg", text: boundTo.childrenStringNumber
+                            .animation()
+                            .onChange(
+                                withAnimation(.easeIn(duration: 2)) {
+                                    zone.updateChildLables
+                                }
+                            ))
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numberPad)
 
-            if zone.hasChildrenInZone {
-                Text("\(zone.yChildWeight) kg")
-                    .loadedStyle()
-            } else {
-                Text("0 kg ")
-                    .emptyStyle()
+                if zone.hasChildrenInZone {
+                    Text("\(zone.yChildWeight) kg")
+                        .loadedStyle()
+                } else {
+                    Text("0 kg ")
+                        .emptyStyle()
+                }
             }
-        }
-        .font(.system(size: 18))
+            .font(.system(size: 18))
         }
     }
 }

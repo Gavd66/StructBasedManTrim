@@ -46,10 +46,20 @@ struct YTotals: View {
         .contextMenu {
             VStack {
                 Text("Seating Capacities")
-                Text("Zone 1: 21")
-                Text("Zone 2: 27")
-                Text("Zone 3: 177")
-                Text("Zone 4: 110")
+                if zone == cabin.zone1 {
+                    Text("Zone 1:  21")
+                }
+                if zone == cabin.zone2 {
+                    Text("Zone 2:  27")
+                }
+                if zone == cabin.zone3 {
+                    Text("Zone 3:  177")
+                }
+                if zone == cabin.zone4 {
+                    Text("Zone 4:  110")
+                }
+                Text("Max infants:  22")
+                Text("Infants reduced with pax  >  322")
             }
         }
     }

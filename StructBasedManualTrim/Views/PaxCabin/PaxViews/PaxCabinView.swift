@@ -7,10 +7,12 @@
 
 import SwiftUI
 
-//TODO:- Add infant logic, cabin tables, cabin crew picker and jumpseat picker
+//TODO:- Clean up // comments cabin crew picker and jumpseat picker
 struct PaxCabinView: View {
 
     @EnvironmentObject var cabin: Cabin
+    //Haptic for pax overload. Prewarm engine as each View Appears
+    @State private var feedBack = UINotificationFeedbackGenerator()
 
     var body: some View {
 
@@ -32,11 +34,9 @@ struct PaxCabinView: View {
                         Zone1View()
 
                     }
+                    .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone1.totalPax, perform: cabin.validPaxLoad)
-//                    .onChange(of: cabin.zone1.infants, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone1Unlocked)
-                   // .adaptsToKeyboard()
-
 
                     Section {
                         JTotals(cabin: _cabin, zone: cabin.zone1, zoneLimit: Seats.inZone1)
@@ -47,8 +47,9 @@ struct PaxCabinView: View {
                         Zone2View()
                             
                     }
+                    .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone2.totalPax, perform: cabin.validPaxLoad)
-                   // .onChange(of: cabin.zone2.infants, perform: cabin.overSeatingCheck)
+                  
                     .allowsHitTesting(cabin.zone2Unlocked)
 
                     Section {
@@ -59,8 +60,8 @@ struct PaxCabinView: View {
                                 .foregroundColor(.primary)) {
                         Zone3View()
                     }
+                    .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone3.totalPax, perform: cabin.validPaxLoad)
-                   // .onChange(of: cabin.zone3.infants, perform: cabin.overSeatingCheck)
                     .allowsHitTesting(cabin.zone3Unlocked)
 
                     Section {
@@ -71,8 +72,8 @@ struct PaxCabinView: View {
                                 .foregroundColor(.primary)) {
                         Zone4View()
                     }
+                    .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone4.totalPax, perform: cabin.validPaxLoad)
-//                    .onChange(of: cabin.zone4.infants, perform: cabin.validPaxLoad)
                     .allowsHitTesting(cabin.zone4Unlocked)
 
                     Section {
@@ -80,11 +81,24 @@ struct PaxCabinView: View {
                     }
                 }// End Pax Cabin Group
 
-                Section {
+                Section(header: Text("Pob total")
+                            .foregroundColor(.primary)) {
                     EmptyCabinView()
                 }
+                Group {
+                    Section(header: Text("Cabin Crew") .foregroundColor(.primary)) {
 
-            }
+                        CrewAdjustmentView()
+                    }
+
+                    Section(header: Text("Jump Seat")
+                        .foregroundColor(.primary)) {
+                        
+
+                    }
+                } // End Crew Group
+
+            } // End Form
             .navigationTitle("Persons on Board")
             .navigationBarItems(trailing: Button(action: cabin.resetCabin) {
                 Image(systemName: "trash")
@@ -93,11 +107,10 @@ struct PaxCabinView: View {
                     .padding()
             })
             .alert(item: $cabin.seatingError) { seatingError in
-                Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .default(Text("OK")))
-
+                self.feedBack.notificationOccurred(.error)
+                return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .default(Text("OK")))
             }
-
-        }
+        } // End Navigation View
     }
 }
 

@@ -27,7 +27,7 @@ struct EmptyCabinView: View {
                     Spacer()
                     VStack(alignment:.center, spacing: 5) {
                         Text("Pax")
-                        Text("\(cabin.totalInfants)")
+                        Text("\(cabin.totalPaxNumbers)")
                             .capsuleStyle()
                             .multilineTextAlignment(.center)
                     }
@@ -52,7 +52,8 @@ struct EmptyCabinView: View {
                 VStack(alignment: .center) {
                     Text("Max Pax Capacity 354 including Infants")
                     Text("Max Infants 22")
-                    Text("Max Cabin Crew Seats 12")
+                    Text("Max Cabin Crew Seats 11")
+                    Text("Max Cabin Crew 12 using 42C")
                 }
                 .multilineTextAlignment(.center)
             }

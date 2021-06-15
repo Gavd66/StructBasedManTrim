@@ -39,27 +39,10 @@ struct YModel: View {
             //MARK:- Males
 
             YMale(boundTo: bindingZone, zone: zone)
-//                .gesture(
-//                    TapGesture()
-//                        .onEnded({ _ in
-//                            print("Y female zone\(zoneNumber) tapped")
-//                            setTappedZone(for: zone)
-//                            hideKeyboard()
-//
-//                        })
-//                )
+
             //MARK:- Females
 
             YFemale(boundTo: bindingZone, zone: zone)
-//                .gesture(
-//                    TapGesture()
-//                        .onEnded({ _ in
-//                            print("Zone 1 infant tapped")
-//                            setTappedZone(for: zone)
-//                            hideKeyboard()
-//
-//                        })
-//                )
 
             //MARK:- Children
 
@@ -67,27 +50,13 @@ struct YModel: View {
 
             //MARK:- Infants
             YInfant(boundTo: bindingZone, zone: zone)
-                
-        
+
         }// End Zone 2
     }
+    
     func dismissCabinKeyBoard(_ paxInCabin: CabinOccupency) {
         if cabin.zone2.hideKeyboard {
             hideKeyboard()
         }
     }
-//    func setTappedZone(for zone: Pax) {
-//        if zone == cabin.zone1 {
-//            cabin.zoneTapped = .zone1
-//        }
-//        if zone == cabin.zone2 {
-//            cabin.zoneTapped = .zone2
-//        }
-//        if zone == cabin.zone3 {
-//            cabin.zoneTapped = .zone3
-//        }
-//        if zone == cabin.zone4 {
-//            cabin.zoneTapped = .zone4
-//        }
-//    }
 }
