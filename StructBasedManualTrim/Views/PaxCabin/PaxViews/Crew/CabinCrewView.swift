@@ -17,6 +17,7 @@ struct CabinCrewView: View {
             ForEach(CabinCrew.allCases, id: \.self) {
                 Text("\($0.rawValue)")
             }
+            .onChange(of: cabin.cabinCrew, perform: dismissKeyboard)
         }
 
         Toggle("MEL 25-25-01-01A", isOn: $cabin.moveCabinCrew.animation())
@@ -34,6 +35,9 @@ struct CabinCrewView: View {
                 }
             }
         }
+    }
+    func dismissKeyboard(crew: CabinCrew) {
+        hideKeyboard()
     }
 }
 

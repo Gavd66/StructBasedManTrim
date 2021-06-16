@@ -58,6 +58,7 @@
 		52BC328A26788B67000D3A19 /* CrewEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC328926788B67000D3A19 /* CrewEnum.swift */; };
 		52BC328E2678CEBE000D3A19 /* PaxCabinEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC328D2678CEBE000D3A19 /* PaxCabinEnums.swift */; };
 		52BC32912678DC2D000D3A19 /* JumpseatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC32902678DC2D000D3A19 /* JumpseatView.swift */; };
+		52BC32932679BB19000D3A19 /* ZoneIndexUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC32922679BB19000D3A19 /* ZoneIndexUnit.swift */; };
 		52F1A3B8266F1A13001A9ECC /* EmptyLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1A3B7266F1A13001A9ECC /* EmptyLoadView.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		52BC328926788B67000D3A19 /* CrewEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewEnum.swift; sourceTree = "<group>"; };
 		52BC328D2678CEBE000D3A19 /* PaxCabinEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaxCabinEnums.swift; sourceTree = "<group>"; };
 		52BC32902678DC2D000D3A19 /* JumpseatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpseatView.swift; sourceTree = "<group>"; };
+		52BC32922679BB19000D3A19 /* ZoneIndexUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneIndexUnit.swift; sourceTree = "<group>"; };
 		52F1A3B7266F1A13001A9ECC /* EmptyLoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLoadView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				524DCE412671A94F0020410B /* Pax.swift */,
+				52BC32922679BB19000D3A19 /* ZoneIndexUnit.swift */,
 				52BC328F2678D2C2000D3A19 /* Enums */,
 			);
 			path = Models;
@@ -433,6 +436,7 @@
 				521DA44D2675599300FBC225 /* JChild.swift in Sources */,
 				521DA4452675514500FBC225 /* YMale.swift in Sources */,
 				521DA443267546B300FBC225 /* YTotals.swift in Sources */,
+				52BC32932679BB19000D3A19 /* ZoneIndexUnit.swift in Sources */,
 				5220076826690D720089A8C1 /* Position31View.swift in Sources */,
 				5220075A26690CE10089A8C1 /* Position12View.swift in Sources */,
 				524DCE3B2670AB570020410B /* MainTabView.swift in Sources */,

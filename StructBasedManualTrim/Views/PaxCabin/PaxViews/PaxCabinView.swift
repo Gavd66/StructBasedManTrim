@@ -32,9 +32,12 @@ struct PaxCabinView: View {
                         CabinCrewView()
                     }
                 } // End Crew Group
+
+
+
                 Group { // Pax Cabin Group
 
-                    Section(header: Text("J Class Weights")
+                    Section(header: Text("Zone 1 Pax Weight")
                                 .foregroundColor(.primary)) {
                         ConfigurationView()
                     }
@@ -45,7 +48,7 @@ struct PaxCabinView: View {
                     }
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone1.totalPax, perform: cabin.validPaxLoad)
-                   // .allowsHitTesting(cabin.zone1Unlocked)
+
 
                     Section {
                         JTotals(cabin: _cabin, zone: cabin.zone1, zoneLimit: SeatingLogic.forZone1)
@@ -58,8 +61,6 @@ struct PaxCabinView: View {
                     }
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone2.totalPax, perform: cabin.validPaxLoad)
-                  
-                    //.allowsHitTesting(cabin.zone2Unlocked)
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone2, zoneLimit: SeatingLogic.forZone2)
@@ -71,7 +72,6 @@ struct PaxCabinView: View {
                     }
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone3.totalPax, perform: cabin.validPaxLoad)
-                   // .allowsHitTesting(cabin.zone3Unlocked)
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone3, zoneLimit: SeatingLogic.forZone3)
@@ -83,7 +83,7 @@ struct PaxCabinView: View {
                     }
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone4.totalPax, perform: cabin.validPaxLoad)
-                   // .allowsHitTesting(cabin.zone4Unlocked)
+
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone4, zoneLimit: SeatingLogic.forZone4)

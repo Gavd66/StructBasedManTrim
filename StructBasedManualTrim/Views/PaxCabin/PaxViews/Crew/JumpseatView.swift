@@ -13,11 +13,16 @@ struct JumpseatView: View {
 
     var body: some View {
         Picker("Jumpseat", selection: $cabin.jumpseat.animation(), content: {
-            ForEach(Jumpseat.allCases, id:\.self) {
+            ForEach(Jumpseat.allCases, id:\.self){
                 Text("\($0.rawValue)")
             }
+            .onChange(of: cabin.jumpseat, perform: dismissKeyboard)
         })
         .pickerStyle(SegmentedPickerStyle())
+    }
+    // Required to prevent bug of blackedout keyboard area on change
+    func dismissKeyboard(_ jumpseat: Jumpseat) {
+        hideKeyboard()
     }
 }
 

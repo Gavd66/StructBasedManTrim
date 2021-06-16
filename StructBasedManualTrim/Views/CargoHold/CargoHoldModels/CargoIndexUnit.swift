@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CargoIndexUnit {
 
+    // MARK:- Compartment 1
     func forCompartment1(using weight: Int) -> Double {
 
         switch weight {
@@ -119,7 +120,7 @@ struct CargoIndexUnit {
             return 0
         }
     }
-
+    // MARK:- Compartment 2
     func forCompartment2(using weight: Int) -> Double {
 
         switch weight {
@@ -213,7 +214,7 @@ struct CargoIndexUnit {
             return 0
         }
     }
-
+    // MARK:- Compartment 3
     func forCompartment3(using weight: Int) -> Double {
 
         switch weight {
@@ -293,7 +294,7 @@ struct CargoIndexUnit {
             return 0.0
         }
     }
-
+    // MARK:- Compartment 4
     func forCompartment4(using weight: Int) -> Double {
         switch weight {
         case 1...199:
@@ -396,7 +397,7 @@ struct CargoIndexUnit {
             return 0.0
         }
     }
-
+    // MARK:- Compartment 5
     func forCompartment5(using weight: Int) -> Double {
         switch weight {
         case 1...199:

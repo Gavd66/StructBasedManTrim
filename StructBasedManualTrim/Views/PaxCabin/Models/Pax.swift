@@ -227,24 +227,7 @@ class Cabin: ObservableObject {
             return false
         }
     }
-    //MARK: - Pax Zone Weight Calculations
 
-    var totalPaxWeight: Int {
-        zone1.buisnessWeight
-            + zone1.ecconomyWeight
-            + zone2.ecconomyWeight
-            + zone3.ecconomyWeight
-            + zone4.ecconomyWeight
-    }
-
-// To allow abstracted generic labels in J and Y models to display weights
-    func zoneBuisnessWeight(for zone: Pax) -> Int {
-        zone.buisnessWeight
-    }
-
-    func zoneEcconomylWeight(for zone: Pax) -> Int {
-        zone.ecconomyWeight
-    }
     // MARK:- POB Number Calulation
 
     var totalPaxNumbers: Int {
@@ -302,6 +285,45 @@ class Cabin: ObservableObject {
         totalPaxNumbers + totalCrewNumber
     }
 
+    //MARK: - Pax Zone Weight Calculations
+
+    var totalPaxWeight: Int {
+        switch jWeight {
+        case .buisness:
+            return zone1.buisnessWeight
+                + zone2.ecconomyWeight
+                + zone3.ecconomyWeight
+                + zone4.ecconomyWeight
+
+        case .ecconomy:
+            return zone1.ecconomyWeight
+                + zone2.ecconomyWeight
+                + zone3.ecconomyWeight
+                + zone4.ecconomyWeight
+        }
+    }
+
+    // To allow abstracted generic labels in J and Y models to display weights
+    func zoneBuisnessWeight(for zone: Pax) -> Int {
+        zone.buisnessWeight
+    }
+
+    func zoneEcconomylWeight(for zone: Pax) -> Int {
+        zone.ecconomyWeight
+    }
+
+    // MARK:- Index Unit Calculations
+
+    var indexUnit = ZoneIndexUnit()
+
+    var zone1IndexUnit: Double {
+        switch jWeight {
+        case .buisness:
+            return indexUnit.zone1(using: zone1.buisnessWeight)
+        case .ecconomy:
+            return indexUnit.zone1(using: zone1.ecconomyWeight)
+        }
+    }
 
 
 // MARK: - Seating Logic
@@ -472,6 +494,7 @@ static var example = Pax()
     func resetAlert() {
         seatingError = .none
     }
+
 
     //MARK:- Cabin Reset
     func resetCabin() {

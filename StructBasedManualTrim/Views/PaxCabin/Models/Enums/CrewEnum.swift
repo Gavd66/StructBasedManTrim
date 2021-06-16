@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 //MARK: Cabin Crew
 
@@ -62,4 +63,8 @@ enum Jumpseat: String, Identifiable, CaseIterable {
     case none = "0"
     case one = "1"
     case two = "2"
+
+    func dismissKeyboard() {
+        
+    }
 }

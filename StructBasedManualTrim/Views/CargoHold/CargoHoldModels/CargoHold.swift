@@ -435,9 +435,6 @@ class CargoHold: ObservableObject {
 
     //MARK:- Weight Protection Methods
 // If any limits are exceeded, use logic to disable all other compartments until the overweight condition is rectified.
-// TODO:-rework logic to maybe reset to nil or the optional alert
-    // DO we even need to set the bool, could we just link directly to the weight alert itself using $weight alert ? if it were optional ?
-    // investigate
     
     func checkCompartment1Weight(int: Int) {
         if compartment1TotalWeight >
