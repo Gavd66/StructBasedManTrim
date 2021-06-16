@@ -18,11 +18,21 @@ struct PaxCabinView: View {
 
         NavigationView {
             Form {
-                Group { // Pax Cabin Group
-
+                Group {
                     Section {
                         EmptyCabinView()
                     }
+
+                    Section(header: Text("Jump Seats Used")
+                                .foregroundColor(.primary)) {
+                        JumpseatView()
+                    }
+
+                    Section(header: Text("Cabin Crew") .foregroundColor(.primary)) {
+                        CabinCrewView()
+                    }
+                } // End Crew Group
+                Group { // Pax Cabin Group
 
                     Section(header: Text("J Class Weights")
                                 .foregroundColor(.primary)) {
@@ -32,11 +42,10 @@ struct PaxCabinView: View {
                     Section(header: Text("Cabin Zone 1")
                                 .foregroundColor(.primary)) {
                         Zone1View()
-
                     }
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone1.totalPax, perform: cabin.validPaxLoad)
-                    .allowsHitTesting(cabin.zone1Unlocked)
+                   // .allowsHitTesting(cabin.zone1Unlocked)
 
                     Section {
                         JTotals(cabin: _cabin, zone: cabin.zone1, zoneLimit: Seats.inZone1)
@@ -50,7 +59,7 @@ struct PaxCabinView: View {
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone2.totalPax, perform: cabin.validPaxLoad)
                   
-                    .allowsHitTesting(cabin.zone2Unlocked)
+                    //.allowsHitTesting(cabin.zone2Unlocked)
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone2, zoneLimit: Seats.inZone2)
@@ -62,7 +71,7 @@ struct PaxCabinView: View {
                     }
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone3.totalPax, perform: cabin.validPaxLoad)
-                    .allowsHitTesting(cabin.zone3Unlocked)
+                   // .allowsHitTesting(cabin.zone3Unlocked)
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone3, zoneLimit: Seats.inZone3)
@@ -74,7 +83,7 @@ struct PaxCabinView: View {
                     }
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone4.totalPax, perform: cabin.validPaxLoad)
-                    .allowsHitTesting(cabin.zone4Unlocked)
+                   // .allowsHitTesting(cabin.zone4Unlocked)
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone4, zoneLimit: Seats.inZone4)
@@ -85,19 +94,6 @@ struct PaxCabinView: View {
                             .foregroundColor(.primary)) {
                     EmptyCabinView()
                 }
-                Group {
-                    Section(header: Text("Cabin Crew") .foregroundColor(.primary)) {
-
-                        CrewAdjustmentView()
-                    }
-
-                    Section(header: Text("Jump Seat")
-                        .foregroundColor(.primary)) {
-                        
-
-                    }
-                } // End Crew Group
-
             } // End Form
             .navigationTitle("Persons on Board")
             .navigationBarItems(trailing: Button(action: cabin.resetCabin) {
@@ -108,7 +104,8 @@ struct PaxCabinView: View {
             })
             .alert(item: $cabin.seatingError) { seatingError in
                 self.feedBack.notificationOccurred(.error)
-                return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .default(Text("OK")))
+//                return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .default(Text("OK")))
+                return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .destructive(Text("Remove Last Entry"), action: cabin.removeLastEntry))
             }
         } // End Navigation View
     }

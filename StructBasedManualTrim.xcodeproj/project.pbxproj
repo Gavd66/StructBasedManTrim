@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		521DA42D26749BC100FBC225 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA42C26749BC100FBC225 /* ConfigurationView.swift */; };
-		521DA43B2674C94700FBC225 /* CrewAdjustmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA43A2674C94700FBC225 /* CrewAdjustmentView.swift */; };
+		521DA43B2674C94700FBC225 /* CabinCrewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA43A2674C94700FBC225 /* CabinCrewView.swift */; };
 		521DA43D2675275500FBC225 /* YModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA43C2675275500FBC225 /* YModel.swift */; };
 		521DA43F2675399300FBC225 /* JModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA43E2675399300FBC225 /* JModel.swift */; };
 		521DA44126753A2900FBC225 /* JTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DA44026753A2900FBC225 /* JTotals.swift */; };
@@ -56,14 +56,14 @@
 		52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78413266E016800D05247 /* CargoIndexUnit.swift */; };
 		52A78416266EBB8A00D05247 /* CargoHoldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78415266EBB8A00D05247 /* CargoHoldView.swift */; };
 		52BC328A26788B67000D3A19 /* CrewEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC328926788B67000D3A19 /* CrewEnum.swift */; };
-		52BC328C267895C0000D3A19 /* JumpSeatEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC328B267895C0000D3A19 /* JumpSeatEnum.swift */; };
 		52BC328E2678CEBE000D3A19 /* PaxCabinEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC328D2678CEBE000D3A19 /* PaxCabinEnums.swift */; };
+		52BC32912678DC2D000D3A19 /* JumpseatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC32902678DC2D000D3A19 /* JumpseatView.swift */; };
 		52F1A3B8266F1A13001A9ECC /* EmptyLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1A3B7266F1A13001A9ECC /* EmptyLoadView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		521DA42C26749BC100FBC225 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
-		521DA43A2674C94700FBC225 /* CrewAdjustmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewAdjustmentView.swift; sourceTree = "<group>"; };
+		521DA43A2674C94700FBC225 /* CabinCrewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewView.swift; sourceTree = "<group>"; };
 		521DA43C2675275500FBC225 /* YModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YModel.swift; sourceTree = "<group>"; };
 		521DA43E2675399300FBC225 /* JModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JModel.swift; sourceTree = "<group>"; };
 		521DA44026753A2900FBC225 /* JTotals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JTotals.swift; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 		52A78413266E016800D05247 /* CargoIndexUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoIndexUnit.swift; sourceTree = "<group>"; };
 		52A78415266EBB8A00D05247 /* CargoHoldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoHoldView.swift; sourceTree = "<group>"; };
 		52BC328926788B67000D3A19 /* CrewEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewEnum.swift; sourceTree = "<group>"; };
-		52BC328B267895C0000D3A19 /* JumpSeatEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpSeatEnum.swift; sourceTree = "<group>"; };
 		52BC328D2678CEBE000D3A19 /* PaxCabinEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaxCabinEnums.swift; sourceTree = "<group>"; };
+		52BC32902678DC2D000D3A19 /* JumpseatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpseatView.swift; sourceTree = "<group>"; };
 		52F1A3B7266F1A13001A9ECC /* EmptyLoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLoadView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,7 +146,8 @@
 		521DA4352674C8CD00FBC225 /* Crew */ = {
 			isa = PBXGroup;
 			children = (
-				521DA43A2674C94700FBC225 /* CrewAdjustmentView.swift */,
+				52BC32902678DC2D000D3A19 /* JumpseatView.swift */,
+				521DA43A2674C94700FBC225 /* CabinCrewView.swift */,
 			);
 			path = Crew;
 			sourceTree = "<group>";
@@ -296,8 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				524DCE3D2670AC190020410B /* PaxCabinView.swift */,
-				524DCE432671B5DB0020410B /* CabinViews */,
 				521DA4352674C8CD00FBC225 /* Crew */,
+				524DCE432671B5DB0020410B /* CabinViews */,
 			);
 			path = PaxViews;
 			sourceTree = "<group>";
@@ -352,7 +353,6 @@
 			children = (
 				52BC328D2678CEBE000D3A19 /* PaxCabinEnums.swift */,
 				52BC328926788B67000D3A19 /* CrewEnum.swift */,
-				52BC328B267895C0000D3A19 /* JumpSeatEnum.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -442,7 +442,6 @@
 				52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */,
 				5220075C26690CF30089A8C1 /* Position13View.swift in Sources */,
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
-				52BC328C267895C0000D3A19 /* JumpSeatEnum.swift in Sources */,
 				521DA46B267687C400FBC225 /* Zone3View.swift in Sources */,
 				521DA46726763AF800FBC225 /* Zone1View.swift in Sources */,
 				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,
@@ -450,12 +449,13 @@
 				521DA4472675531300FBC225 /* JMale.swift in Sources */,
 				524DCE422671A94F0020410B /* Pax.swift in Sources */,
 				5220076226690D2C0089A8C1 /* Position22View.swift in Sources */,
-				521DA43B2674C94700FBC225 /* CrewAdjustmentView.swift in Sources */,
+				521DA43B2674C94700FBC225 /* CabinCrewView.swift in Sources */,
 				521DA42D26749BC100FBC225 /* ConfigurationView.swift in Sources */,
 				52BC328A26788B67000D3A19 /* CrewEnum.swift in Sources */,
 				523A9F6926646521009DC1BA /* CargoHold.swift in Sources */,
 				5220075E26690D050089A8C1 /* Position14View.swift in Sources */,
 				521DA44B267555A100FBC225 /* JFemale.swift in Sources */,
+				52BC32912678DC2D000D3A19 /* JumpseatView.swift in Sources */,
 				52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */,
 				5220076C26690D960089A8C1 /* Position33View.swift in Sources */,
 				5220077026690DC90089A8C1 /* Positon42View.swift in Sources */,

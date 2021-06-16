@@ -45,21 +45,25 @@ struct YTotals: View {
         .animation(.easeIn)
         .contextMenu {
             VStack {
-                Text("Seating Capacities")
+                Text("Seating Capacity")
                 if zone == cabin.zone1 {
-                    Text("Zone 1:  21")
+                    Text("Zone 1:  21 seats")
                 }
                 if zone == cabin.zone2 {
-                    Text("Zone 2:  27")
+                    Text("Zone 2:  27 seats")
                 }
                 if zone == cabin.zone3 {
-                    Text("Zone 3:  177")
+                    Text("Zone 3:  177 seats")
                 }
                 if zone == cabin.zone4 {
-                    Text("Zone 4:  110")
+                    Text("Zone 4:  110 seats")
                 }
-                Text("Max infants:  22")
-                Text("Infants reduced with pax  >  322")
+//                Text("Max permitted infants")
+//                if cabin.permittedInfantNumber == 22 {
+//                    Text("Currently: \(cabin.permittedInfantNumber)")
+//                } else {
+//                    Text("Reduced to \(cabin.permittedInfantNumber) due pax numbers")
+//                }
             }
         }
     }

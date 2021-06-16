@@ -12,9 +12,8 @@ struct EmptyCabinView: View {
     @EnvironmentObject var cabin: Cabin
     var body: some View {
 
-        if cabin.hasPax {
+        if cabin.hasPax || cabin.totalCrewNumber > 2 {
             VStack {
-
                 HStack {
                     Spacer()
                     Text("Totals")
@@ -50,23 +49,26 @@ struct EmptyCabinView: View {
             }// End main Vstack
             .contextMenu {
                 VStack(alignment: .center) {
-                    Text("Max Pax Capacity 354 including Infants")
-                    Text("Max Infants 22")
-                    Text("Max Cabin Crew Seats 11")
-                    Text("Max Cabin Crew 12 using 42C")
+                    Text("Max Pax Total: 354")
+                    Text("Max Cabin Crew Seats: 11")
+                    Text("Max Cabin Crew: 12 using seat 42C")
+                    Text("Max permitted infants:")
+                    if cabin.permittedInfantNumber == 22 {
+                        Text("Currently \(cabin.permittedInfantNumber)")
+                    } else {
+                        Text("Reduced to \(cabin.permittedInfantNumber) due pax numbers")
+                    }
                 }
                 .multilineTextAlignment(.center)
             }
-
         } else {
-
             VStack(alignment: .center) {
-
                 HStack {
                     Spacer()
                     VStack(alignment: .center) {
                         Text("POB 2")
-                        Text("No Cabin Crew or Passengers Carried")
+                            .transition(.scale)
+                        Text("No Extra Crew, Cabin Crew or Passengers Carried")
                             .multilineTextAlignment(.center)
                         Spacer()
                     }
@@ -79,8 +81,8 @@ struct EmptyCabinView: View {
                     Text("Trash Sets POB to 2")
                 }
             }
-        }// End if
-    }
+        }// End else
+    }// Body
 }
 
 struct EmptyCabinView_Previews: PreviewProvider {

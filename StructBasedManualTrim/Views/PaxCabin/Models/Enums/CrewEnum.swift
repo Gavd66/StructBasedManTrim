@@ -18,8 +18,6 @@ enum CabinCrew: String, Identifiable, CaseIterable {
     case ten = "10"
     case eleven = "11"
     case twelve = "12"
-
-
 }
 
 enum CrewMoveTo: String, Identifiable, CaseIterable {
@@ -59,7 +57,7 @@ enum CrewMoveFrom: String, Identifiable, CaseIterable {
 
 //MARK: Enum Jumpseat Configuration
 
-enum Jumpseat: String, Identifiable {
+enum Jumpseat: String, Identifiable, CaseIterable {
     var id: Jumpseat { self }
     case none = "0"
     case one = "1"

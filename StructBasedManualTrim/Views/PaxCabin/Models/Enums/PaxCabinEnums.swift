@@ -85,6 +85,7 @@ enum Seats: String, Identifiable {
     case inZone3 = "Zone 3"
     case inZone4 = "Zone 4"
     case infants = "Infants"
+    case cabinCrew = "Cabin Crew number not entered"
 
     var maxNumber: Int {
         switch self {
@@ -98,36 +99,27 @@ enum Seats: String, Identifiable {
             return 110
         case .infants:
             return 22
+        case .cabinCrew:
+            return 12
         }
     }
 
     var message: String {
         switch self{
         case .inZone1:
-            return """
-                    Too many pax.
-                    There are \(self.maxNumber) seats in this zone.
-                    """
+            fallthrough
         case .inZone2:
-            return """
-                    Too many pax.
-                    There are \(self.maxNumber) seats in this zone.
-                    """
+            fallthrough
         case .inZone3:
-            return """
-                    Too many pax.
-                    There are \(self.maxNumber) seats in this zone.
-                    """
+             fallthrough
         case .inZone4:
-            return """
-                    Too many pax.
-                    There are \(self.maxNumber) seats in this zone.
-                    """
-        case .infants:
-            return """
-                    There are too many infants on board.
+            return "You have exceeded the maximum available \(self.rawValue) seats. "
 
-                    """
+        case .infants:
+            return "There are too many infants onboard. "
+        case .cabinCrew:
+            return "Enter Cabin Crew number to proceed"
+
         }
     }
 }

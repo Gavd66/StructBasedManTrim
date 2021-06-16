@@ -57,8 +57,8 @@ struct JTotals: View {
         }
         .contextMenu {
             VStack {
-                Text("Seating Capacities")
-                Text("Zone 1: 21")
+                Text("Seating Capacity")
+                Text("Zone 1:  21 seats")
                 
             }
         }
