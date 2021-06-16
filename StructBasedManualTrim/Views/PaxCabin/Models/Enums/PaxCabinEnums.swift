@@ -77,48 +77,47 @@ enum HasInfants: String, Identifiable {
     case none = " No Infants "
 }
 
-// MARK:- Zone Seating Capacity Enum
-enum Seats: String, Identifiable {
-    var id: Seats { self }
-    case inZone1 = "Zone 1"
-    case inZone2 = "Zone 2"
-    case inZone3 = "Zone 3"
-    case inZone4 = "Zone 4"
-    case infants = "Infants"
-    case cabinCrew = "Cabin Crew number not entered"
+// MARK:- Seating Logic Enum
+enum SeatingLogic: String, Identifiable {
+    var id: SeatingLogic { self }
+    case forZone1 = "Zone 1"
+    case forZone2 = "Zone 2"
+    case forZone3 = "Zone 3"
+    case forZone4 = "Zone 4"
+    case forInfants = "Infants"
+    case noCabinCrew = " No Cabin Crew"
 
     var maxNumber: Int {
         switch self {
-        case .inZone1:
+        case .forZone1:
             return 21
-        case .inZone2:
+        case .forZone2:
             return 27
-        case .inZone3:
+        case .forZone3:
             return 177
-        case .inZone4:
+        case .forZone4:
             return 110
-        case .infants:
+        case .forInfants:
             return 22
-        case .cabinCrew:
+        case .noCabinCrew:
             return 12
         }
     }
 
     var message: String {
         switch self{
-        case .inZone1:
+        case .forZone1:
             fallthrough
-        case .inZone2:
+        case .forZone2:
             fallthrough
-        case .inZone3:
+        case .forZone3:
              fallthrough
-        case .inZone4:
-            return "You have exceeded the maximum available \(self.rawValue) seats. "
-
-        case .infants:
+        case .forZone4:
+            return "You have exceeded the maximum number of \(self.rawValue) seats. "
+        case .forInfants:
             return "There are too many infants onboard. "
-        case .cabinCrew:
-            return "Enter Cabin Crew number to proceed"
+        case .noCabinCrew:
+            return "Entry for number of Cabin Crew required."
 
         }
     }

@@ -11,7 +11,7 @@ struct JTotals: View {
 
     @EnvironmentObject var cabin: Cabin
     var zone: Pax
-    var zoneLimit: Seats
+    var zoneLimit: SeatingLogic
 
     var body: some View {
 

@@ -48,7 +48,7 @@ struct PaxCabinView: View {
                    // .allowsHitTesting(cabin.zone1Unlocked)
 
                     Section {
-                        JTotals(cabin: _cabin, zone: cabin.zone1, zoneLimit: Seats.inZone1)
+                        JTotals(cabin: _cabin, zone: cabin.zone1, zoneLimit: SeatingLogic.forZone1)
                     }
 
                     Section(header: Text("Cabin Zone 2")
@@ -62,7 +62,7 @@ struct PaxCabinView: View {
                     //.allowsHitTesting(cabin.zone2Unlocked)
 
                     Section {
-                        YTotals(cabin: _cabin, zone: cabin.zone2, zoneLimit: Seats.inZone2)
+                        YTotals(cabin: _cabin, zone: cabin.zone2, zoneLimit: SeatingLogic.forZone2)
                     }
 
                     Section(header: Text("Cabin Zone 3")
@@ -74,7 +74,7 @@ struct PaxCabinView: View {
                    // .allowsHitTesting(cabin.zone3Unlocked)
 
                     Section {
-                        YTotals(cabin: _cabin, zone: cabin.zone3, zoneLimit: Seats.inZone3)
+                        YTotals(cabin: _cabin, zone: cabin.zone3, zoneLimit: SeatingLogic.forZone3)
                     }
 
                     Section(header: Text("Cabin Zone 4")
@@ -86,7 +86,7 @@ struct PaxCabinView: View {
                    // .allowsHitTesting(cabin.zone4Unlocked)
 
                     Section {
-                        YTotals(cabin: _cabin, zone: cabin.zone4, zoneLimit: Seats.inZone4)
+                        YTotals(cabin: _cabin, zone: cabin.zone4, zoneLimit: SeatingLogic.forZone4)
                     }
                 }// End Pax Cabin Group
 
@@ -104,9 +104,9 @@ struct PaxCabinView: View {
             })
             .alert(item: $cabin.seatingError) { seatingError in
                 self.feedBack.notificationOccurred(.error)
-//                return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .default(Text("OK")))
-                return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .destructive(Text("Remove Last Entry"), action: cabin.removeLastEntry))
+                return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .destructive(Text("Remove last entry"), action: cabin.removeLastEntry))
             }
+            
         } // End Navigation View
     }
 }

@@ -28,6 +28,8 @@ class Pax: ObservableObject, Equatable {
                 lastInputWasFemale = false
                 lastInputWasChild = false
                 lastInputWasInfant = false
+
+                
             }
         }
     }
@@ -38,6 +40,7 @@ class Pax: ObservableObject, Equatable {
                 lastInputWasFemale = true
                 lastInputWasChild = false
                 lastInputWasInfant = false
+
             }
         }
     }
@@ -48,6 +51,7 @@ class Pax: ObservableObject, Equatable {
                 lastInputWasFemale = false
                 lastInputWasChild = true
                 lastInputWasInfant = false
+
             }
         }
     }
@@ -58,6 +62,7 @@ class Pax: ObservableObject, Equatable {
                 lastInputWasFemale = false
                 lastInputWasChild = false
                 lastInputWasInfant = true
+
             }
         }
     }
@@ -72,7 +77,7 @@ class Pax: ObservableObject, Equatable {
     @Published var lastInputWasFemale = false
     @Published var lastInputWasChild = false
     @Published var lastInputWasInfant = false
-    @Published var readyToEnterPax = false
+
 
 
 //MARK:- Pax Number Calulations
@@ -147,7 +152,7 @@ class Pax: ObservableObject, Equatable {
             hasInfantsInZone = false
             hasPeopleInZone = false
             hideKeyboard = true
-            readyToEnterPax = false
+
 
         case .paxCarried:
             maleStringNumber = ""
@@ -160,7 +165,7 @@ class Pax: ObservableObject, Equatable {
             hasInfantsInZone = false
             hasPeopleInZone = false
             hideKeyboard = true
-            readyToEnterPax = true
+
 
         }
     }
@@ -197,7 +202,7 @@ class Cabin: ObservableObject {
     @Published var zone3 = Pax()
     @Published var zone4 = Pax()
     @Published var jWeight: JWeightConfiguration = .buisness
-    @Published var seatingError: Seats? = nil {
+    @Published var seatingError: SeatingLogic? = nil {
         willSet {
             objectWillChange.send()
         }
@@ -270,15 +275,15 @@ class Cabin: ObservableObject {
 
         switch totalSeatedPax {
         case 0...332:
-            return Seats.infants.maxNumber
+            return SeatingLogic.forInfants.maxNumber
         case 333:
-            return Seats.infants.maxNumber - 1
+            return SeatingLogic.forInfants.maxNumber - 1
         case 334:
-            return Seats.infants.maxNumber - 2
+            return SeatingLogic.forInfants.maxNumber - 2
         case 335:
-            return Seats.infants.maxNumber - 3
+            return SeatingLogic.forInfants.maxNumber - 3
         default:
-            return Seats.infants.maxNumber
+            return SeatingLogic.forInfants.maxNumber
         }
     }
 
@@ -304,31 +309,47 @@ class Cabin: ObservableObject {
     func validPaxLoad(_ seats: Int) {
         // If over seating in a zone occurs, the input is removed.
         seatingError = nil
-        if zone1.readyToEnterPax == true && cabinCrewNumber == 0 {
-            seatingError = .cabinCrew
+        if totalPaxNumbers != 0 && cabinCrewNumber == 0 {
+            seatingError = .noCabinCrew
         }
 
-        if zone1.seatedPax > Seats.inZone1.maxNumber {
-           seatingError = .inZone1
+        if zone1.seatedPax > SeatingLogic.forZone1.maxNumber {
+           seatingError = .forZone1
         }
 
-        if zone2.seatedPax > Seats.inZone2.maxNumber {
-            seatingError = .inZone2
+        if zone2.seatedPax > SeatingLogic.forZone2.maxNumber {
+            seatingError = .forZone2
         }
 
-        if zone3.seatedPax > Seats.inZone3.maxNumber {
-            seatingError = .inZone3
+        if zone3.seatedPax > SeatingLogic.forZone3.maxNumber {
+            seatingError = .forZone3
         }
 
-        if zone4.seatedPax > Seats.inZone4.maxNumber {
-            seatingError = .inZone4
+        if zone4.seatedPax > SeatingLogic.forZone4.maxNumber {
+            seatingError = .forZone4
         }
 
         if totalInfants > permittedInfantNumber {
-          seatingError = .infants
+          seatingError = .forInfants
         }
 
         if seatingError == .none {
+            zone1.lastInputWasMale = false
+            zone2.lastInputWasMale = false
+            zone3.lastInputWasMale = false
+            zone4.lastInputWasMale = false
+           
+
+            zone1.lastInputWasFemale = false
+            zone2.lastInputWasFemale = false
+            zone3.lastInputWasFemale = false
+            zone4.lastInputWasFemale = false
+
+            zone1.lastInputWasChild = false
+            zone2.lastInputWasChild = false
+            zone3.lastInputWasChild = false
+            zone4.lastInputWasChild = false
+
             zone1.lastInputWasInfant = false
             zone2.lastInputWasInfant = false
             zone3.lastInputWasInfant = false
@@ -339,9 +360,7 @@ class Cabin: ObservableObject {
     func removeLastEntry() {
         // Remove the entry that caused the seating error condition
         // Zone 1
-        if zone1.readyToEnterPax {
-            zone1.maleStringNumber = ""
-        }
+
         if zone1.lastInputWasMale {
             zone1.maleStringNumber = ""
         }
@@ -355,6 +374,7 @@ class Cabin: ObservableObject {
             zone1.infantStringNumber = ""
         }
         // Zone 2
+
         if zone2.lastInputWasMale {
             zone2.maleStringNumber = ""
         }
@@ -368,6 +388,7 @@ class Cabin: ObservableObject {
             zone2.infantStringNumber = ""
         }
         // Zone 3
+
         if zone3.lastInputWasMale {
             zone3.maleStringNumber = ""
         }
@@ -381,6 +402,7 @@ class Cabin: ObservableObject {
             zone3.infantStringNumber = ""
         }
         // Zone 4
+
         if zone4.lastInputWasMale {
             zone4.maleStringNumber = ""
         }
@@ -393,24 +415,25 @@ class Cabin: ObservableObject {
         if zone4.lastInputWasInfant {
             zone4.infantStringNumber = ""
         }
+        seatingError = .none
     }
 
     // MARK: - Seating Error Messages
 
     var zoneTitle: String {
         switch seatingError {
-        case .inZone1:
-            return Seats.inZone1.rawValue + " Seating Error"
-        case .inZone2:
-            return Seats.inZone2.rawValue + " Seating Error"
-        case .inZone3:
-            return Seats.inZone3.rawValue + " Seating Error"
-        case .inZone4:
-            return Seats.inZone4.rawValue + " Seating Error"
-        case .infants:
-            return Seats.infants.rawValue + " Seating Error"
-        case .cabinCrew:
-            return Seats.cabinCrew.rawValue
+        case .forZone1:
+            return SeatingLogic.forZone1.rawValue + " Seating Error"
+        case .forZone2:
+            return SeatingLogic.forZone2.rawValue + " Seating Error"
+        case .forZone3:
+            return SeatingLogic.forZone3.rawValue + " Seating Error"
+        case .forZone4:
+            return SeatingLogic.forZone4.rawValue + " Seating Error"
+        case .forInfants:
+            return SeatingLogic.forInfants.rawValue + " Seating Error"
+        case .noCabinCrew:
+            return SeatingLogic.noCabinCrew.rawValue
         case .none:
             return ""
         }
@@ -427,24 +450,28 @@ class Cabin: ObservableObject {
     }
     var zoneMessage: String {
         switch seatingError {
-        case .inZone1:
-            return Seats.inZone1.message + " Reduce the number you entered by  \(zone1.seatedPax - Seats.inZone1.maxNumber) to proceed "
-        case .inZone2:
-            return Seats.inZone2.message + " Reduce the number you entered by  \(zone2.seatedPax - Seats.inZone2.maxNumber) to proceed "
-        case .inZone3:
-            return Seats.inZone3.message + " Reduce the number you entered by  \(zone3.seatedPax - Seats.inZone3.maxNumber) to proceed."
-        case .inZone4:
-            return Seats.inZone4.message + " Reduce the number you entered by  \(zone4.seatedPax - Seats.inZone4.maxNumber) to proceed "
-        case .infants:
-            return Seats.infants.message + infantGrammar
-        case .cabinCrew:
-            return Seats.cabinCrew.message
+        case .forZone1:
+            return SeatingLogic.forZone1.message + " Reduce the number you entered by  \(zone1.seatedPax - SeatingLogic.forZone1.maxNumber) to proceed "
+        case .forZone2:
+            return SeatingLogic.forZone2.message + " Reduce the number you entered by  \(zone2.seatedPax - SeatingLogic.forZone2.maxNumber) to proceed "
+        case .forZone3:
+            return SeatingLogic.forZone3.message + " Reduce the number you entered by  \(zone3.seatedPax - SeatingLogic.forZone3.maxNumber) to proceed."
+        case .forZone4:
+            return SeatingLogic.forZone4.message + " Reduce the number you entered by  \(zone4.seatedPax - SeatingLogic.forZone4.maxNumber) to proceed "
+        case .forInfants:
+            return SeatingLogic.forInfants.message + infantGrammar
+        case .noCabinCrew:
+            return SeatingLogic.noCabinCrew.message
         case .none:
             return ""
         }
     }
 
 static var example = Pax()
+
+    func resetAlert() {
+        seatingError = .none
+    }
 
     //MARK:- Cabin Reset
     func resetCabin() {
