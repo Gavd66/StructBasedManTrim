@@ -47,8 +47,8 @@ enum PaxWeight: Identifiable {
 
 }
 // MARK: Cabin Occupency Enums
-enum CabinOccupency: String, Identifiable, CaseIterable {
-    var id: CabinOccupency { self }
+enum CabinStatus: String, Identifiable, CaseIterable {
+    var id: CabinStatus { self }
     case empty = " Empty"
     case paxCarried = " Load Pax"
 }

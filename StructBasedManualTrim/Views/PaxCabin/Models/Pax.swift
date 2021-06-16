@@ -19,8 +19,8 @@ class Pax: ObservableObject, Equatable {
         lhs.id == rhs.id
     }
 
-    var id = UUID() // Be identifiable for error messages & abstracted code
-    //last input for destructive
+    var id = UUID() // For error messages & abstracted code
+
     @Published var maleStringNumber = "" {
         didSet {
             if maleStringNumber != "" {
@@ -66,7 +66,7 @@ class Pax: ObservableObject, Equatable {
             }
         }
     }
-    var paxInCabin: CabinOccupency = .empty
+    var paxInCabin: CabinStatus = .empty
     var hasMalesInZone = false
     var hasFemalesInZone = false
     var hasChildrenInZone = false
@@ -139,7 +139,7 @@ class Pax: ObservableObject, Equatable {
 
 
 // MARK: - PAX Cabin Logic Methods
-    func applyCabinLogic(_ paxCarried: CabinOccupency) {
+    func applyCabinLogic(_ paxCarried: CabinStatus) {
         switch paxCarried {
         case .empty:
             maleStringNumber = ""
@@ -211,13 +211,13 @@ class Cabin: ObservableObject {
     @Published var moveCabinCrew = false {
         didSet { // Set to same zone so no weight adjustment
             if moveCabinCrew == false {
-                moveFrom = .L2
-                moveTo = .L2
+                moveFrom = .A3
+                moveTo = .A3
             }
         }
     }
-    @Published var moveFrom = CrewMoveFrom.L2
-    @Published var moveTo = CrewMoveTo.L2
+    @Published var moveFrom = CrewMoveFrom.A3
+    @Published var moveTo = CrewMoveTo.A3
     @Published var jumpseat: Jumpseat = .none
 
     var hasPax: Bool {
@@ -314,15 +314,24 @@ class Cabin: ObservableObject {
 
     // MARK:- Index Unit Calculations
 
-    var indexUnit = ZoneIndexUnit()
-
-    var zone1IndexUnit: Double {
+    var indexZone1: Double {
+        let indexUnit = ZoneIndexUnit()
         switch jWeight {
         case .buisness:
             return indexUnit.zone1(using: zone1.buisnessWeight)
         case .ecconomy:
             return indexUnit.zone1(using: zone1.ecconomyWeight)
         }
+    }
+
+    var cabinCrewWeightIndex: (weight: Int, indexUnit: Double) {
+        let weightIndex = CabinCrewIndex()
+       return weightIndex.cabinCrew(using: cabinCrew.number)
+    }
+
+    var jumpseatWeightIndex: (weight:Int, indexUnit:Double) {
+        let weightIndex = JumpSeatAdjustment()
+        return weightIndex.jumpSeatAdjustment(using: jumpseat.number)
     }
 
 

@@ -20,7 +20,7 @@ struct JModel: View {
         Picker("Zone\(number)", selection: bindingZone.paxInCabin
                 .animation()
                 .onChange(zone.applyCabinLogic)) {
-            ForEach(CabinOccupency.allCases, id: \.self){
+            ForEach(CabinStatus.allCases, id: \.self){
                 Text("\($0.rawValue)")
             }
         }
@@ -71,7 +71,7 @@ struct JModel: View {
         }// End Zone 2
     }
 
-    func dismissCabinKeyBoard(_ paxInCabin: CabinOccupency) {
+    func dismissCabinKeyBoard(_ paxInCabin: CabinStatus) {
         if cabin.zone2.hideKeyboard {
             hideKeyboard()
         }

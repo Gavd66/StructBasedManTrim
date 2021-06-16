@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//TODO:- Clean up // comments cabin crew picker and jumpseat picker
+
 struct PaxCabinView: View {
 
     @EnvironmentObject var cabin: Cabin
@@ -33,8 +33,6 @@ struct PaxCabinView: View {
                     }
                 } // End Crew Group
 
-
-
                 Group { // Pax Cabin Group
 
                     Section(header: Text("Zone 1 Pax Weight")
@@ -48,7 +46,6 @@ struct PaxCabinView: View {
                     }
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone1.totalPax, perform: cabin.validPaxLoad)
-
 
                     Section {
                         JTotals(cabin: _cabin, zone: cabin.zone1, zoneLimit: SeatingLogic.forZone1)
@@ -84,7 +81,6 @@ struct PaxCabinView: View {
                     .onAppear(perform: feedBack.prepare)
                     .onChange(of: cabin.zone4.totalPax, perform: cabin.validPaxLoad)
 
-
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone4, zoneLimit: SeatingLogic.forZone4)
                     }
@@ -106,7 +102,6 @@ struct PaxCabinView: View {
                 self.feedBack.notificationOccurred(.error)
                 return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .destructive(Text("Remove last entry"), action: cabin.removeLastEntry))
             }
-            
         } // End Navigation View
     }
 }

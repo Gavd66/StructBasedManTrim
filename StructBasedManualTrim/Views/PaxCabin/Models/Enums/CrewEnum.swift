@@ -19,21 +19,25 @@ enum CabinCrew: String, Identifiable, CaseIterable {
     case ten = "10"
     case eleven = "11"
     case twelve = "12"
+
+    var number: Int {
+        return Int(self.rawValue) ?? 0
+    }
 }
 
 enum CrewMoveTo: String, Identifiable, CaseIterable {
     var id: CrewMoveTo { self }
-    case L1 = "L1 (A1)"
-    case L2 = "L2 (A3)"
-    case L3 = "L3 (A5)"
-    case L4 = "L4 (A7)"
-    case R1 = "R1 (A2)"
-    case R2 = "R2 (A4)"
-    case R3 = "R3 (A6)"
-    case R4 = "R4 (A8)"
-    case L1assist = "A9"
-    case R4assist = "A11"
-    case L4assist = "A10"
+    case A1 = "L1 (A1)"
+    case A3 = "L2 (A3)"
+    case A5 = "L3 (A5)"
+    case A7 = "L4 (A7)"
+    case A2 = "R1 (A2)"
+    case A4 = "R2 (A4)"
+    case A6 = "R3 (A6)"
+    case A8 = "R4 (A8)"
+    case A9 = "A9"
+    case A11 = "A11"
+    case A10 = "A10"
     case zone1 = "Zone 1"
     case zone2 = "Zone 2"
     case zone3 = "Zone 3"
@@ -42,17 +46,17 @@ enum CrewMoveTo: String, Identifiable, CaseIterable {
 
 enum CrewMoveFrom: String, Identifiable, CaseIterable {
     var id: CrewMoveFrom { self }
-    case L1 = "L1 (A1)"
-    case L2 = "L2 (A3)"
-    case L3 = "L3 (A5)"
-    case L4 = "L4 (A7)"
-    case R1 = "R1 (A2)"
-    case R2 = "R2 (A4)"
-    case R3 = "R3 (A6)"
-    case R4 = "R4 (A8)"
-    case L1assist = "A9"
-    case R4assist = "A11"
-    case L4assist = "A10"
+    case A1 = "L1 (A1)"
+    case A3 = "L2 (A3)"
+    case A5 = "L3 (A5)"
+    case A7 = "L4 (A7)"
+    case A2 = "R1 (A2)"
+    case A4 = "R2 (A4)"
+    case A6 = "R3 (A6)"
+    case A8 = "R4 (A8)"
+    case A9 = "A9"
+    case A11 = "A11"
+    case A10 = "A10"
 }
 
 
@@ -64,7 +68,9 @@ enum Jumpseat: String, Identifiable, CaseIterable {
     case one = "1"
     case two = "2"
 
-    func dismissKeyboard() {
-        
+    var number: Int {
+        Int(self.rawValue) ?? 0
     }
+
+
 }

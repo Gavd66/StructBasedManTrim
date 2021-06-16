@@ -20,7 +20,7 @@ struct JumpseatView: View {
         })
         .pickerStyle(SegmentedPickerStyle())
     }
-    // Required to prevent bug of blackedout keyboard area on change
+    // Required to prevent bug of blacked out keyboard area on change
     func dismissKeyboard(_ jumpseat: Jumpseat) {
         hideKeyboard()
     }

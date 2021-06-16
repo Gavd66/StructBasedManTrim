@@ -20,7 +20,7 @@ struct YModel: View {
         Picker("Zone\(zoneNumber)", selection: bindingZone.paxInCabin
                 .animation()
                 .onChange(zone.applyCabinLogic)) {
-            ForEach(CabinOccupency.allCases, id: \.self){
+            ForEach(CabinStatus.allCases, id: \.self) {
                 Text("\($0.rawValue)")
             }
         }
@@ -54,7 +54,7 @@ struct YModel: View {
         }// End Zone 2
     }
     
-    func dismissCabinKeyBoard(_ paxInCabin: CabinOccupency) {
+    func dismissCabinKeyBoard(_ paxInCabin: CabinStatus) {
         if cabin.zone2.hideKeyboard {
             hideKeyboard()
         }
