@@ -50,14 +50,14 @@ struct EmptyCabinView: View {
             .contextMenu {
                 VStack(alignment: .center) {
                     Text("Max Pax Total: 354")
-                    Text("Max Cabin Crew Seats: 11")
-                    Text("Max Cabin Crew: 12 using seat 42C")
                     Text("Max permitted infants:")
                     if cabin.permittedInfantNumber == 22 {
                         Text("Currently \(cabin.permittedInfantNumber)")
                     } else {
                         Text("Reduced to \(cabin.permittedInfantNumber) due pax numbers")
                     }
+                    Text("Max Cabin Crew Seats: 11")
+                    Text("Max Cabin Crew: 12 using seat 42C")
                 }
                 .multilineTextAlignment(.center)
             }

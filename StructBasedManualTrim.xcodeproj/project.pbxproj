@@ -50,6 +50,14 @@
 		524DCE3E2670AC190020410B /* PaxCabinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE3D2670AC190020410B /* PaxCabinView.swift */; };
 		524DCE422671A94F0020410B /* Pax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE412671A94F0020410B /* Pax.swift */; };
 		524DCE4D2671B98B0020410B /* EmptyCabinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE4C2671B98B0020410B /* EmptyCabinView.swift */; };
+		527D2328267AF1DA003926E6 /* AircraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2327267AF1DA003926E6 /* AircraftView.swift */; };
+		527D232B267AF224003926E6 /* Aircraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D232A267AF224003926E6 /* Aircraft.swift */; };
+		527D232D267AF266003926E6 /* FuelWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D232C267AF266003926E6 /* FuelWeightIndex.swift */; };
+		527D232F267AF2B1003926E6 /* GalleyWaterWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D232E267AF2B1003926E6 /* GalleyWaterWeightIndex.swift */; };
+		527D2332267AF2E6003926E6 /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2331267AF2E6003926E6 /* Registration.swift */; };
+		527D2334267AF2F4003926E6 /* Galley.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2333267AF2F4003926E6 /* Galley.swift */; };
+		527D2336267AF301003926E6 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2335267AF301003926E6 /* Water.swift */; };
+		527D2338267AFB0B003926E6 /* ExtraSeatWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2337267AFB0B003926E6 /* ExtraSeatWeightIndex.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -59,8 +67,8 @@
 		52BC328E2678CEBE000D3A19 /* PaxCabinEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC328D2678CEBE000D3A19 /* PaxCabinEnums.swift */; };
 		52BC32912678DC2D000D3A19 /* JumpseatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC32902678DC2D000D3A19 /* JumpseatView.swift */; };
 		52BC32932679BB19000D3A19 /* ZoneIndexUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC32922679BB19000D3A19 /* ZoneIndexUnit.swift */; };
-		52BC3295267A00B1000D3A19 /* CabinCrewIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC3294267A00B1000D3A19 /* CabinCrewIndex.swift */; };
-		52E5C985267A0B5600EFD495 /* JumpseatAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E5C984267A0B5600EFD495 /* JumpseatAdjustment.swift */; };
+		52BC3295267A00B1000D3A19 /* CabinCrewWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BC3294267A00B1000D3A19 /* CabinCrewWeightIndex.swift */; };
+		52E5C985267A0B5600EFD495 /* JumpseatWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E5C984267A0B5600EFD495 /* JumpseatWeightIndex.swift */; };
 		52F1A3B8266F1A13001A9ECC /* EmptyLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1A3B7266F1A13001A9ECC /* EmptyLoadView.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +118,14 @@
 		524DCE3D2670AC190020410B /* PaxCabinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaxCabinView.swift; sourceTree = "<group>"; };
 		524DCE412671A94F0020410B /* Pax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pax.swift; sourceTree = "<group>"; };
 		524DCE4C2671B98B0020410B /* EmptyCabinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCabinView.swift; sourceTree = "<group>"; };
+		527D2327267AF1DA003926E6 /* AircraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftView.swift; sourceTree = "<group>"; };
+		527D232A267AF224003926E6 /* Aircraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aircraft.swift; sourceTree = "<group>"; };
+		527D232C267AF266003926E6 /* FuelWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelWeightIndex.swift; sourceTree = "<group>"; };
+		527D232E267AF2B1003926E6 /* GalleyWaterWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleyWaterWeightIndex.swift; sourceTree = "<group>"; };
+		527D2331267AF2E6003926E6 /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
+		527D2333267AF2F4003926E6 /* Galley.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Galley.swift; sourceTree = "<group>"; };
+		527D2335267AF301003926E6 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
+		527D2337267AFB0B003926E6 /* ExtraSeatWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraSeatWeightIndex.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -119,8 +135,8 @@
 		52BC328D2678CEBE000D3A19 /* PaxCabinEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaxCabinEnums.swift; sourceTree = "<group>"; };
 		52BC32902678DC2D000D3A19 /* JumpseatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpseatView.swift; sourceTree = "<group>"; };
 		52BC32922679BB19000D3A19 /* ZoneIndexUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneIndexUnit.swift; sourceTree = "<group>"; };
-		52BC3294267A00B1000D3A19 /* CabinCrewIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewIndex.swift; sourceTree = "<group>"; };
-		52E5C984267A0B5600EFD495 /* JumpseatAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpseatAdjustment.swift; sourceTree = "<group>"; };
+		52BC3294267A00B1000D3A19 /* CabinCrewWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinCrewWeightIndex.swift; sourceTree = "<group>"; };
+		52E5C984267A0B5600EFD495 /* JumpseatWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpseatWeightIndex.swift; sourceTree = "<group>"; };
 		52F1A3B7266F1A13001A9ECC /* EmptyLoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyLoadView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +180,7 @@
 				524DCE392670AB1D0020410B /* MainView */,
 				52200775266984DB0089A8C1 /* CargoHold */,
 				524DCE3C2670ABD60020410B /* PaxCabin */,
+				527D2325267AF178003926E6 /* AircraftView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,8 +312,9 @@
 			children = (
 				524DCE412671A94F0020410B /* Pax.swift */,
 				52BC32922679BB19000D3A19 /* ZoneIndexUnit.swift */,
-				52BC3294267A00B1000D3A19 /* CabinCrewIndex.swift */,
-				52E5C984267A0B5600EFD495 /* JumpseatAdjustment.swift */,
+				52BC3294267A00B1000D3A19 /* CabinCrewWeightIndex.swift */,
+				52E5C984267A0B5600EFD495 /* JumpseatWeightIndex.swift */,
+				527D2337267AFB0B003926E6 /* ExtraSeatWeightIndex.swift */,
 				52BC328F2678D2C2000D3A19 /* Enums */,
 			);
 			path = Models;
@@ -335,6 +353,44 @@
 				521DA46E26772CCE00FBC225 /* YInfant.swift */,
 			);
 			path = CabinViews;
+			sourceTree = "<group>";
+		};
+		527D2325267AF178003926E6 /* AircraftView */ = {
+			isa = PBXGroup;
+			children = (
+				527D2326267AF19B003926E6 /* AircraftViews */,
+				527D2329267AF1ED003926E6 /* Models */,
+			);
+			path = AircraftView;
+			sourceTree = "<group>";
+		};
+		527D2326267AF19B003926E6 /* AircraftViews */ = {
+			isa = PBXGroup;
+			children = (
+				527D2327267AF1DA003926E6 /* AircraftView.swift */,
+			);
+			path = AircraftViews;
+			sourceTree = "<group>";
+		};
+		527D2329267AF1ED003926E6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				527D232A267AF224003926E6 /* Aircraft.swift */,
+				527D232C267AF266003926E6 /* FuelWeightIndex.swift */,
+				527D232E267AF2B1003926E6 /* GalleyWaterWeightIndex.swift */,
+				527D2330267AF2B7003926E6 /* Enums */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		527D2330267AF2B7003926E6 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				527D2331267AF2E6003926E6 /* Registration.swift */,
+				527D2333267AF2F4003926E6 /* Galley.swift */,
+				527D2335267AF301003926E6 /* Water.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		52A78408266C8D5700D05247 /* HoldTotalViews */ = {
@@ -448,17 +504,23 @@
 				524DCE3B2670AB570020410B /* MainTabView.swift in Sources */,
 				521DA43F2675399300FBC225 /* JModel.swift in Sources */,
 				521DA43D2675275500FBC225 /* YModel.swift in Sources */,
+				527D2336267AF301003926E6 /* Water.swift in Sources */,
 				5220076626690D5B0089A8C1 /* Position24View.swift in Sources */,
 				52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */,
 				5220075C26690CF30089A8C1 /* Position13View.swift in Sources */,
+				527D2332267AF2E6003926E6 /* Registration.swift in Sources */,
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
+				527D232F267AF2B1003926E6 /* GalleyWaterWeightIndex.swift in Sources */,
 				521DA46B267687C400FBC225 /* Zone3View.swift in Sources */,
 				521DA46726763AF800FBC225 /* Zone1View.swift in Sources */,
 				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,
+				527D232D267AF266003926E6 /* FuelWeightIndex.swift in Sources */,
 				521DA46D267687D500FBC225 /* Zone4View.swift in Sources */,
+				527D2338267AFB0B003926E6 /* ExtraSeatWeightIndex.swift in Sources */,
 				521DA4472675531300FBC225 /* JMale.swift in Sources */,
 				524DCE422671A94F0020410B /* Pax.swift in Sources */,
 				5220076226690D2C0089A8C1 /* Position22View.swift in Sources */,
+				527D2328267AF1DA003926E6 /* AircraftView.swift in Sources */,
 				521DA43B2674C94700FBC225 /* CabinCrewView.swift in Sources */,
 				521DA42D26749BC100FBC225 /* ConfigurationView.swift in Sources */,
 				52BC328A26788B67000D3A19 /* CrewEnum.swift in Sources */,
@@ -468,7 +530,8 @@
 				52BC32912678DC2D000D3A19 /* JumpseatView.swift in Sources */,
 				52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */,
 				5220076C26690D960089A8C1 /* Position33View.swift in Sources */,
-				52BC3295267A00B1000D3A19 /* CabinCrewIndex.swift in Sources */,
+				527D2334267AF2F4003926E6 /* Galley.swift in Sources */,
+				52BC3295267A00B1000D3A19 /* CabinCrewWeightIndex.swift in Sources */,
 				5220077026690DC90089A8C1 /* Positon42View.swift in Sources */,
 				5220076426690D480089A8C1 /* Positon23View.swift in Sources */,
 				521DA469267687B100FBC225 /* Zone2View.swift in Sources */,
@@ -479,8 +542,9 @@
 				523A9F5A26646507009DC1BA /* StructBasedManualTrimApp.swift in Sources */,
 				5220076A26690D820089A8C1 /* Positon32View.swift in Sources */,
 				5220077226690DE30089A8C1 /* Position43View.swift in Sources */,
-				52E5C985267A0B5600EFD495 /* JumpseatAdjustment.swift in Sources */,
+				52E5C985267A0B5600EFD495 /* JumpseatWeightIndex.swift in Sources */,
 				521DA44126753A2900FBC225 /* JTotals.swift in Sources */,
+				527D232B267AF224003926E6 /* Aircraft.swift in Sources */,
 				5220077426690DF60089A8C1 /* BulkView.swift in Sources */,
 				523A9F6B2664819C009DC1BA /* Extensions.swift in Sources */,
 				523A9F9426682BE0009DC1BA /* Position11View.swift in Sources */,

@@ -17,18 +17,18 @@ struct JModel: View {
     var body: some View {
 
         //MARK:- Zone 1
-        Picker("Zone\(number)", selection: bindingZone.paxInCabin
+        Picker("Zone\(number)", selection: bindingZone.paxLoadedStatus
                 .animation()
                 .onChange(zone.applyCabinLogic)) {
-            ForEach(CabinStatus.allCases, id: \.self){
+            ForEach(PaxLoadedStatus.allCases, id: \.self){
                 Text("\($0.rawValue)")
             }
         }
         .pickerStyle(SegmentedPickerStyle())
-        .onChange(of: zone.paxInCabin, perform: dismissCabinKeyBoard)
+        .onChange(of: zone.paxLoadedStatus, perform: dismissCabinKeyBoard)
 
-        switch zone.paxInCabin {
-        case .empty:
+        switch zone.paxLoadedStatus {
+        case .noPaxOnboard:
             HStack {
                 Spacer()
                 Text("Zone\(number) Empty")
@@ -71,7 +71,7 @@ struct JModel: View {
         }// End Zone 2
     }
 
-    func dismissCabinKeyBoard(_ paxInCabin: CabinStatus) {
+    func dismissCabinKeyBoard(_ paxInCabin: PaxLoadedStatus) {
         if cabin.zone2.hideKeyboard {
             hideKeyboard()
         }

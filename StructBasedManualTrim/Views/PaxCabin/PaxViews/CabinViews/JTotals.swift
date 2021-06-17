@@ -46,7 +46,7 @@ struct JTotals: View {
                 } else {
                     VStack {
                         Text("Total Weight")
-                        Text("\(cabin.zoneEcconomylWeight(for: zone)) kg")
+                        Text("\(cabin.zoneEcconomyWeight(for: zone)) kg")
                             .capsuleStyle()
                             .animation(.default)
                     }

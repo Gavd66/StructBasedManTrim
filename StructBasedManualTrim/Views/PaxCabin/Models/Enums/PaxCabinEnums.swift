@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-// MARK:- Enum Aircraft Jweight setting
+// MARK:- Enum Aircraft J setting
 enum JWeightConfiguration: String, Identifiable, CaseIterable {
     var id: JWeightConfiguration { self }
     case buisness = "Buisness"
@@ -46,10 +46,10 @@ enum PaxWeight: Identifiable {
 
 
 }
-// MARK: Cabin Occupency Enums
-enum CabinStatus: String, Identifiable, CaseIterable {
-    var id: CabinStatus { self }
-    case empty = " Empty"
+// MARK: Pax LoadedStatus Enums
+enum PaxLoadedStatus: String, Identifiable, CaseIterable {
+    var id: PaxLoadedStatus { self }
+    case noPaxOnboard = " No Pax Onboard"
     case paxCarried = " Load Pax"
 }
 //MARK:- Pax Label Enums
@@ -117,8 +117,36 @@ enum SeatingLogic: String, Identifiable {
         case .forInfants:
             return "There are too many infants onboard. "
         case .noCabinCrew:
-            return "Entry for number of Cabin Crew required."
+            return """
+                   Entry for Number of Cabin Crew required.
+                   Pax cannot be onboard without Cabin Crew
+                   """
 
         }
+    }
+
+    // MARK: - Extra Seat Adjustments
+
+    enum ExtraSeatAdjustment: String, Identifiable, CaseIterable {
+        var id: ExtraSeatAdjustment { self }
+        case instrument = "Instrument"
+        case serviceDog = "Service Dog"
+        case oversizePax = "Oversize Pax"
+        case none
+        var weight: Int {
+            switch self {
+            case .instrument:
+                return 15
+            case .serviceDog:
+                return 30
+            case .oversizePax:
+                return 50
+            case .none:
+                return 0
+
+            }
+        }
+
+
     }
 }

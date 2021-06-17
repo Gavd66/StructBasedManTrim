@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct JumpSeatAdjustment {
+struct JumpSeatWeightIndex {
 
-    func jumpSeatAdjustment(using weight: Int) -> (Int, Double) {
+    func forJumpSeat(using weight: Int) -> (Int, Double) {
         switch weight {
         case 0:
             return (0,0)

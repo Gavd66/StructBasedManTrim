@@ -9,7 +9,7 @@ import Foundation
 
 struct CabinCrewIndex {
 
-    func cabinCrew(using number: Int) -> (Int, Double) {
+    func forCabinCrewNumber(using number: Int) -> (Int, Double) {
         switch number {
         case 0:
             return (-576, 0.4)

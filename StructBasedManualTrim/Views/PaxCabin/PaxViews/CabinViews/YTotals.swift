@@ -35,7 +35,7 @@ struct YTotals: View {
                 Spacer()
                 VStack {
                     Text("Total Weight")
-                    Text("\(cabin.zoneEcconomylWeight(for: zone)) kg")
+                    Text("\(cabin.zoneEcconomyWeight(for: zone)) kg")
                         .capsuleStyle()
                 }
                 .multilineTextAlignment(.center)
@@ -58,12 +58,6 @@ struct YTotals: View {
                 if zone == cabin.zone4 {
                     Text("Zone 4:  110 seats")
                 }
-//                Text("Max permitted infants")
-//                if cabin.permittedInfantNumber == 22 {
-//                    Text("Currently: \(cabin.permittedInfantNumber)")
-//                } else {
-//                    Text("Reduced to \(cabin.permittedInfantNumber) due pax numbers")
-//                }
             }
         }
     }

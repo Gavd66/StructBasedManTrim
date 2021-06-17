@@ -32,7 +32,7 @@ struct YChild: View {
                 TextField("0 x \(PaxWeight.yChild.weight) kg", text: boundTo.childrenStringNumber
                             .animation()
                             .onChange(
-                                withAnimation(.easeIn(duration: 2)) {
+                                withAnimation(.default) {
                                     zone.updateChildLables
                                 }
                             ))

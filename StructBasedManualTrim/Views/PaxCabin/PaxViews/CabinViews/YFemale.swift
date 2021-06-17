@@ -10,10 +10,9 @@ import SwiftUI
 struct YFemale: View {
 
     @EnvironmentObject  var cabin: Cabin
-    
     var boundTo: Binding<Pax>
     var zone: Pax
-    //var zoneTotal: Seats
+ 
 
     var body: some View {
         //MARK:- Females

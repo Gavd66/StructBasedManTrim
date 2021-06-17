@@ -100,7 +100,11 @@ struct PaxCabinView: View {
             })
             .alert(item: $cabin.seatingError) { seatingError in
                 self.feedBack.notificationOccurred(.error)
-                return Alert(title: Text(cabin.zoneTitle), message: Text(cabin.zoneMessage), dismissButton: .destructive(Text("Remove last entry"), action: cabin.removeLastEntry))
+                return Alert(
+                    title: Text(cabin.zoneTitle),
+                    message: Text(cabin.zoneMessage),
+                    dismissButton: .destructive(Text("Remove last entry"),
+                    action: cabin.removeLastEntry))
             }
         } // End Navigation View
     }

@@ -32,7 +32,7 @@ struct JMale: View {
                 TextField("0 x \(PaxWeight.jMale.weight) kg", text: boundTo.maleStringNumber
                             .animation()
                             .onChange(
-                                withAnimation(.easeIn(duration: 2)) {
+                                withAnimation(.default) {
                                     zone.updateMaleLables
                                 }
                             ))

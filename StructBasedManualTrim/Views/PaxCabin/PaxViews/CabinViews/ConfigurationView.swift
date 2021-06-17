@@ -11,22 +11,23 @@ struct ConfigurationView: View {
 
     @EnvironmentObject var cabin: Cabin
     var body: some View {
-        Picker("Pax Weight", selection: $cabin.jWeight ){
+        Picker("Pax Weight", selection: $cabin.jWeight.animation()){
             ForEach(JWeightConfiguration.allCases, id: \.self) {
                 Text("\($0.rawValue)")
             }
         }
-        //.pickerStyle(SegmentedPickerStyle())
-//        .contextMenu {
-//            VStack(alignment: .center) {
-//                Text("For Domestic")
-//                Text("and Trans Tasman operations")
-//                Text("weights are generally set to ecconomy")
-//            }
-//            .multilineTextAlignment(.center)
-//        }
+        .onChange(of: cabin.jWeight, perform: dismissKeyboard)
+        .pickerStyle(SegmentedPickerStyle())
+        .contextMenu {
+            VStack(alignment: .center) {
+                Text("For Domestic")
+                Text("and Trans Tasman operations")
+                Text("weights are generally set to ecconomy")
+            }
+            .multilineTextAlignment(.center)
+        }
     }
-    // used to prevent bug
+    // used to try and prevent bug of keyboard black space with change of non segmented picker style
     func dismissKeyboard(_ weight: JWeightConfiguration) {
         hideKeyboard()
     }

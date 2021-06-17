@@ -11,7 +11,7 @@ import SwiftUI
 struct ZoneIndexUnit {
 
     //MARK:- Zone1
-    func zone1(using weight: Int) -> Double {
+    func forZone1(using weight: Int) -> Double {
         switch weight {
         case 1...99:
             return -1.2
@@ -63,7 +63,7 @@ struct ZoneIndexUnit {
         }
     }
     // MARK:- Zone 2
-    func zone2(using weight: Int) -> Double {
+    func forZone2(using weight: Int) -> Double {
         switch weight {
         case 1...149:
             return -0.2
@@ -105,7 +105,7 @@ struct ZoneIndexUnit {
     }
 
     //MARK:- Zone 3
-    func zone3(using weight: Int) -> Double {
+    func forZone3(using weight: Int) -> Double {
         switch weight {
         case 1...699:
             return -0.2
@@ -159,7 +159,7 @@ struct ZoneIndexUnit {
     }
 
     // MARK:- Zone 4
-    func zone4(using weight: Int) -> Double {
+    func forZone4(using weight: Int) -> Double {
         switch weight {
         case 1...299:
             return 0.3

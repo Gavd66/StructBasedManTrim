@@ -8,10 +8,6 @@
 import Foundation
 import SwiftUI
 
-
-
-
-
 //MARK: - Class Pax
 class Pax: ObservableObject, Equatable {
 
@@ -28,8 +24,6 @@ class Pax: ObservableObject, Equatable {
                 lastInputWasFemale = false
                 lastInputWasChild = false
                 lastInputWasInfant = false
-
-                
             }
         }
     }
@@ -40,7 +34,6 @@ class Pax: ObservableObject, Equatable {
                 lastInputWasFemale = true
                 lastInputWasChild = false
                 lastInputWasInfant = false
-
             }
         }
     }
@@ -51,7 +44,6 @@ class Pax: ObservableObject, Equatable {
                 lastInputWasFemale = false
                 lastInputWasChild = true
                 lastInputWasInfant = false
-
             }
         }
     }
@@ -62,11 +54,10 @@ class Pax: ObservableObject, Equatable {
                 lastInputWasFemale = false
                 lastInputWasChild = false
                 lastInputWasInfant = true
-
             }
         }
     }
-    var paxInCabin: CabinStatus = .empty
+    var paxLoadedStatus: PaxLoadedStatus = .noPaxOnboard
     var hasMalesInZone = false
     var hasFemalesInZone = false
     var hasChildrenInZone = false
@@ -77,8 +68,6 @@ class Pax: ObservableObject, Equatable {
     @Published var lastInputWasFemale = false
     @Published var lastInputWasChild = false
     @Published var lastInputWasInfant = false
-
-
 
 //MARK:- Pax Number Calulations
     var males: Int {
@@ -99,17 +88,13 @@ class Pax: ObservableObject, Equatable {
     var seatedPax: Int {
         males + females + children
     }
-
     var totalInfants: Int {
         infants
     }
 
-
-
 // MARK: - Weight Calculations
     var jMaleWeight: Int {
-        objectWillChange.send()
-       return males * PaxWeight.jMale.weight
+        males * PaxWeight.jMale.weight
     }
     var jFemaleWeight: Int {
         females * PaxWeight.jFemale.weight
@@ -127,7 +112,6 @@ class Pax: ObservableObject, Equatable {
         children * PaxWeight.yChild.weight
     }
     var infantWeight: Int {
-
         infants * PaxWeight.infant.weight
     }
     var buisnessWeight: Int {
@@ -137,11 +121,11 @@ class Pax: ObservableObject, Equatable {
         yMaleWeight + yFemaleWeight + yChildWeight + infantWeight
     }
 
-
 // MARK: - PAX Cabin Logic Methods
-    func applyCabinLogic(_ paxCarried: CabinStatus) {
+    // Reset all values and dismiss keyboard on change
+    func applyCabinLogic(_ paxCarried: PaxLoadedStatus) {
         switch paxCarried {
-        case .empty:
+        case .noPaxOnboard:
             maleStringNumber = ""
             femaleStringNumber = ""
             childrenStringNumber = ""
@@ -152,7 +136,6 @@ class Pax: ObservableObject, Equatable {
             hasInfantsInZone = false
             hasPeopleInZone = false
             hideKeyboard = true
-
 
         case .paxCarried:
             maleStringNumber = ""
@@ -165,8 +148,6 @@ class Pax: ObservableObject, Equatable {
             hasInfantsInZone = false
             hasPeopleInZone = false
             hideKeyboard = true
-
-
         }
     }
 
@@ -183,16 +164,15 @@ class Pax: ObservableObject, Equatable {
         hasInfantsInZone = (infantStringNumber != "") ?  true: false
     }
     var hasPaxInZone: Bool {
-       // objectWillChange.send()
-        if hasMalesInZone || hasFemalesInZone || hasChildrenInZone || hasInfantsInZone {
+        if hasMalesInZone
+            || hasFemalesInZone
+            || hasChildrenInZone
+            || hasInfantsInZone {
             return true
         } else {
             return false
         }
     }
-
-    static var example = Pax()
-
 }
 //MARK:- Class Cabin
 class Cabin: ObservableObject {
@@ -209,7 +189,7 @@ class Cabin: ObservableObject {
     }
     @Published var cabinCrew = CabinCrew.zero
     @Published var moveCabinCrew = false {
-        didSet { // Set to same zone so no weight adjustment
+        didSet { // On hide set to same zone so no weight adjustment
             if moveCabinCrew == false {
                 moveFrom = .A3
                 moveTo = .A3
@@ -221,7 +201,10 @@ class Cabin: ObservableObject {
     @Published var jumpseat: Jumpseat = .none
 
     var hasPax: Bool {
-        if (zone1.hasPaxInZone || zone2.hasPaxInZone || zone3.hasPaxInZone || zone4.hasPaxInZone) {
+        if (zone1.hasPaxInZone
+                || zone2.hasPaxInZone
+                || zone3.hasPaxInZone
+                || zone4.hasPaxInZone) {
             return true
         } else {
             return false
@@ -234,18 +217,8 @@ class Cabin: ObservableObject {
         zone1.totalPax + zone2.totalPax + zone3.totalPax + zone4.totalPax
     }
 
-    func totalPax() -> Int {
-        zone1.totalPax + zone2.totalPax + zone3.totalPax + zone4.totalPax
-    }
-
-    func totalInfantNumbers() -> Int {
-        zone1.infants + zone2.infants + zone3.infants + zone4.infants
-    }
-
     var totalInfants: Int {
-
-        let total = zone1.infants + zone2.infants + zone3.infants + zone4.infants
-        return total
+       zone1.infants + zone2.infants + zone3.infants + zone4.infants
     }
 
     var permittedInfantNumber: Int {
@@ -270,16 +243,8 @@ class Cabin: ObservableObject {
         }
     }
 
-    var cabinCrewNumber: Int {
-        Int(cabinCrew.rawValue) ?? 0
-    }
-
-    var jumpseatNumber: Int {
-        Int(jumpseat.rawValue) ?? 0
-    }
-
     var totalCrewNumber: Int {
-        cabinCrewNumber + jumpseatNumber + 2
+        cabinCrew.number + jumpseat.number + 2
     }
     var totalPOB: Int {
         totalPaxNumbers + totalCrewNumber
@@ -303,35 +268,49 @@ class Cabin: ObservableObject {
         }
     }
 
-    // To allow abstracted generic labels in J and Y models to display weights
+    // To allow abstracted generic labels in Zone 1 model to display weights
     func zoneBuisnessWeight(for zone: Pax) -> Int {
         zone.buisnessWeight
     }
 
-    func zoneEcconomylWeight(for zone: Pax) -> Int {
+    func zoneEcconomyWeight(for zone: Pax) -> Int {
         zone.ecconomyWeight
     }
 
     // MARK:- Index Unit Calculations
 
-    var indexZone1: Double {
+    var indexUnitZone1: Double {
         let indexUnit = ZoneIndexUnit()
         switch jWeight {
         case .buisness:
-            return indexUnit.zone1(using: zone1.buisnessWeight)
+            return indexUnit.forZone1(using: zone1.buisnessWeight)
         case .ecconomy:
-            return indexUnit.zone1(using: zone1.ecconomyWeight)
+            return indexUnit.forZone1(using: zone1.ecconomyWeight)
         }
+    }
+    var indexUnitZone2: Double {
+        let indexUnit = ZoneIndexUnit()
+        return indexUnit.forZone2(using: zone2.ecconomyWeight)
+    }
+
+    var indexUnitZone3: Double {
+        let indexUnit = ZoneIndexUnit()
+        return indexUnit.forZone2(using: zone3.ecconomyWeight)
+    }
+
+    var indexUnitZone4: Double {
+        let indexUnit = ZoneIndexUnit()
+        return indexUnit.forZone2(using: zone4.ecconomyWeight)
     }
 
     var cabinCrewWeightIndex: (weight: Int, indexUnit: Double) {
         let weightIndex = CabinCrewIndex()
-       return weightIndex.cabinCrew(using: cabinCrew.number)
+       return weightIndex.forCabinCrewNumber(using: cabinCrew.number)
     }
 
     var jumpseatWeightIndex: (weight:Int, indexUnit:Double) {
-        let weightIndex = JumpSeatAdjustment()
-        return weightIndex.jumpSeatAdjustment(using: jumpseat.number)
+        let weightIndex = JumpSeatWeightIndex()
+        return weightIndex.forJumpSeat(using: jumpseat.number)
     }
 
 
@@ -340,7 +319,7 @@ class Cabin: ObservableObject {
     func validPaxLoad(_ seats: Int) {
         // If over seating in a zone occurs, the input is removed.
         seatingError = nil
-        if totalPaxNumbers != 0 && cabinCrewNumber == 0 {
+        if totalPaxNumbers != 0 && cabinCrew.number == 0 {
             seatingError = .noCabinCrew
         }
 
@@ -365,88 +344,47 @@ class Cabin: ObservableObject {
         }
 
         if seatingError == .none {
-            zone1.lastInputWasMale = false
-            zone2.lastInputWasMale = false
-            zone3.lastInputWasMale = false
-            zone4.lastInputWasMale = false
-           
 
-            zone1.lastInputWasFemale = false
-            zone2.lastInputWasFemale = false
-            zone3.lastInputWasFemale = false
-            zone4.lastInputWasFemale = false
-
-            zone1.lastInputWasChild = false
-            zone2.lastInputWasChild = false
-            zone3.lastInputWasChild = false
-            zone4.lastInputWasChild = false
-
-            zone1.lastInputWasInfant = false
-            zone2.lastInputWasInfant = false
-            zone3.lastInputWasInfant = false
-            zone4.lastInputWasInfant = false
+            resetLastInput(for: zone1)
+            resetLastInput(for: zone2)
+            resetLastInput(for: zone3)
+            resetLastInput(for: zone4)
         }
     }
+    // Reset all to register the next number that is entered
+    func resetLastInput(for zone: Pax) {
+        zone.lastInputWasMale = false
+        zone.lastInputWasFemale = false
+        zone.lastInputWasChild = false
+        zone.lastInputWasInfant = false
+    }
 
+
+
+    // Animate the removal of the entry that created the error
     func removeLastEntry() {
         // Remove the entry that caused the seating error condition
-        // Zone 1
-
-        if zone1.lastInputWasMale {
-            zone1.maleStringNumber = ""
-        }
-        if zone1.lastInputWasFemale {
-            zone1.femaleStringNumber = ""
-        }
-        if zone1.lastInputWasChild {
-            zone1.childrenStringNumber = ""
-        }
-        if zone1.lastInputWasInfant {
-            zone1.infantStringNumber = ""
-        }
-        // Zone 2
-
-        if zone2.lastInputWasMale {
-            zone2.maleStringNumber = ""
-        }
-        if zone2.lastInputWasFemale {
-            zone2.femaleStringNumber = ""
-        }
-        if zone2.lastInputWasChild {
-            zone2.childrenStringNumber = ""
-        }
-        if zone2.lastInputWasInfant {
-            zone2.infantStringNumber = ""
-        }
-        // Zone 3
-
-        if zone3.lastInputWasMale {
-            zone3.maleStringNumber = ""
-        }
-        if zone3.lastInputWasFemale {
-            zone3.femaleStringNumber = ""
-        }
-        if zone3.lastInputWasChild {
-            zone3.childrenStringNumber = ""
-        }
-        if zone3.lastInputWasInfant {
-            zone3.infantStringNumber = ""
-        }
-        // Zone 4
-
-        if zone4.lastInputWasMale {
-            zone4.maleStringNumber = ""
-        }
-        if zone4.lastInputWasFemale {
-            zone4.femaleStringNumber = ""
-        }
-        if zone4.lastInputWasChild {
-            zone4.childrenStringNumber = ""
-        }
-        if zone4.lastInputWasInfant {
-            zone4.infantStringNumber = ""
-        }
+        removeLastInput(for: zone1)
+        removeLastInput(for: zone2)
+        removeLastInput(for: zone3)
+        removeLastInput(for: zone4)
+        // after removal there is no seating error, reset it to nil
         seatingError = .none
+    }
+
+    func removeLastInput(for zone: Pax) {
+        if zone.lastInputWasMale {
+            zone.maleStringNumber = ""
+        }
+        if zone.lastInputWasFemale {
+            zone.femaleStringNumber = ""
+        }
+        if zone.lastInputWasChild {
+            zone.childrenStringNumber = ""
+        }
+        if zone.lastInputWasInfant {
+            zone.infantStringNumber = ""
+        }
     }
 
     // MARK: - Seating Error Messages
@@ -497,13 +435,6 @@ class Cabin: ObservableObject {
             return ""
         }
     }
-
-static var example = Pax()
-
-    func resetAlert() {
-        seatingError = .none
-    }
-
 
     //MARK:- Cabin Reset
     func resetCabin() {
