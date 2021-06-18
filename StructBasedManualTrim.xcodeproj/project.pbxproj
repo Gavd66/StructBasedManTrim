@@ -58,6 +58,7 @@
 		527D2334267AF2F4003926E6 /* Galley.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2333267AF2F4003926E6 /* Galley.swift */; };
 		527D2336267AF301003926E6 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2335267AF301003926E6 /* Water.swift */; };
 		527D2338267AFB0B003926E6 /* ExtraSeatWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2337267AFB0B003926E6 /* ExtraSeatWeightIndex.swift */; };
+		527D233A267B0448003926E6 /* ExtraSeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2339267B0448003926E6 /* ExtraSeatView.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -126,6 +127,7 @@
 		527D2333267AF2F4003926E6 /* Galley.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Galley.swift; sourceTree = "<group>"; };
 		527D2335267AF301003926E6 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		527D2337267AFB0B003926E6 /* ExtraSeatWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraSeatWeightIndex.swift; sourceTree = "<group>"; };
+		527D2339267B0448003926E6 /* ExtraSeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraSeatView.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				521DA44E267559AC00FBC225 /* YChild.swift */,
 				521DA45026755B4F00FBC225 /* JInfant.swift */,
 				521DA46E26772CCE00FBC225 /* YInfant.swift */,
+				527D2339267B0448003926E6 /* ExtraSeatView.swift */,
 			);
 			path = CabinViews;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */,
 				523A9F5A26646507009DC1BA /* StructBasedManualTrimApp.swift in Sources */,
 				5220076A26690D820089A8C1 /* Positon32View.swift in Sources */,
+				527D233A267B0448003926E6 /* ExtraSeatView.swift in Sources */,
 				5220077226690DE30089A8C1 /* Position43View.swift in Sources */,
 				52E5C985267A0B5600EFD495 /* JumpseatWeightIndex.swift in Sources */,
 				521DA44126753A2900FBC225 /* JTotals.swift in Sources */,

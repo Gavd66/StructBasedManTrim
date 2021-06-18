@@ -124,29 +124,88 @@ enum SeatingLogic: String, Identifiable {
 
         }
     }
-
+}
     // MARK: - Extra Seat Adjustments
 
-    enum ExtraSeatAdjustment: String, Identifiable, CaseIterable {
-        var id: ExtraSeatAdjustment { self }
-        case instrument = "Instrument"
-        case serviceDog = "Service Dog"
-        case oversizePax = "Oversize Pax"
-        case none
+    enum Instrument: String, Identifiable, CaseIterable {
+
+        var id: Instrument { self }
+        case one = "1"
+        case two = "2"
+        case three = "3"
+        case four = "4"
+
         var weight: Int {
-            switch self {
-            case .instrument:
-                return 15
-            case .serviceDog:
-                return 30
-            case .oversizePax:
-                return 50
-            case .none:
-                return 0
-
-            }
+          let number = Int(self.rawValue) ?? 0
+          return number * 15
         }
+}
 
+enum ServiceDog: String, Identifiable, CaseIterable {
 
+    var id: ServiceDog { self }
+    case one = "1"
+    case two = "2"
+    case three = "3"
+    case four = "4"
+
+    var number: Int {
+        Int(self.rawValue) ?? 0
     }
+
+    var weight: Int {
+        self.number * 30
+    }
+
+    var indexForZone1: Double {
+        let indexUnit = -0.1
+        return Double(self.number) * indexUnit
+    }
+    var indexForZone2: Double {
+        let indexUnit = -0.1
+        return Double(self.number) * indexUnit
+    }
+    var indexForZone3: Double {
+        let indexUnit = -0.0
+        return Double(self.number) * indexUnit
+    }
+    var indexForZone4: Double {
+        let indexUnit =  0.1
+        return Double(self.number) * indexUnit
+    }
+}
+
+enum OverSizePax: String, Identifiable, CaseIterable {
+
+    var id: OverSizePax { self }
+    case one = "1"
+    case two = "2"
+    case three = "3"
+    case four = "4"
+
+    var number: Int {
+        Int(self.rawValue) ?? 0
+    }
+
+    var weight: Int {
+        self.number * 50
+    }
+
+    var indexForZone1: Double {
+        let indexUnit = -0.2
+        return Double(self.number) * indexUnit
+    }
+    var indexForZone2: Double {
+        let indexUnit = -0.1
+        return Double(self.number) * indexUnit
+    }
+    var indexForZone3: Double {
+        let indexUnit = -0.0
+        return Double(self.number) * indexUnit
+    }
+    var indexForZone4: Double {
+        let indexUnit =  0.1
+        return Double(self.number) * indexUnit
+    }
+
 }

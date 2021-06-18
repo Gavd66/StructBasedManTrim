@@ -57,6 +57,28 @@ class Pax: ObservableObject, Equatable {
             }
         }
     }
+
+    @Published var lastInputWasMale = false
+    @Published var lastInputWasFemale = false
+    @Published var lastInputWasChild = false
+    @Published var lastInputWasInfant = false
+    @Published var serviceDog = ServiceDog.one
+    @Published var hasServiceDogInZone = false {
+        didSet {
+            if hasServiceDogInZone == false {
+                serviceDog = .one
+            }
+        }
+    }
+    @Published var oversizePax = OverSizePax.one
+    @Published var hasOversizePaxInZone = false {
+        didSet {
+            if hasOversizePaxInZone {
+                oversizePax = .one
+            }
+        }
+    }
+
     var paxLoadedStatus: PaxLoadedStatus = .noPaxOnboard
     var hasMalesInZone = false
     var hasFemalesInZone = false
@@ -64,10 +86,6 @@ class Pax: ObservableObject, Equatable {
     var hasInfantsInZone = false
     var hasPeopleInZone = false
     var hideKeyboard = true
-    @Published var lastInputWasMale = false
-    @Published var lastInputWasFemale = false
-    @Published var lastInputWasChild = false
-    @Published var lastInputWasInfant = false
 
 //MARK:- Pax Number Calulations
     var males: Int {
@@ -177,16 +195,12 @@ class Pax: ObservableObject, Equatable {
 //MARK:- Class Cabin
 class Cabin: ObservableObject {
 
+    // Create an instance for each zone
     @Published var zone1 = Pax()
     @Published var zone2 = Pax()
     @Published var zone3 = Pax()
     @Published var zone4 = Pax()
-    @Published var jWeight: JWeightConfiguration = .buisness
-    @Published var seatingError: SeatingLogic? = nil {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    @Published var jumpseat: Jumpseat = .none
     @Published var cabinCrew = CabinCrew.zero
     @Published var moveCabinCrew = false {
         didSet { // On hide set to same zone so no weight adjustment
@@ -198,8 +212,52 @@ class Cabin: ObservableObject {
     }
     @Published var moveFrom = CrewMoveFrom.A3
     @Published var moveTo = CrewMoveTo.A3
-    @Published var jumpseat: Jumpseat = .none
+    @Published var extraSeatAdjustment = false {
+        didSet {
+            if extraSeatAdjustment == false {
+                instrumentOnSeat = false
+                serviceDogInCabin = false
+                oversizePaxInCabin = false
+            }
+        }
+    }
+    @Published var instrument = Instrument.one
+    @Published var instrumentOnSeat = false {
+        didSet {
+            if instrumentOnSeat == false {
+                instrument = .one
+            }
+        }
+    }
+    @Published var serviceDogInCabin = false {
+        didSet {
+            if serviceDogInCabin == false {
+                zone1.hasServiceDogInZone = false
+                zone2.hasServiceDogInZone = false
+                zone3.hasServiceDogInZone = false
+                zone4.hasServiceDogInZone = false
+            }
+        }
+    }
+    @Published var oversizePaxInCabin = false {
+        didSet {
+            if oversizePaxInCabin == false {
+                zone1.hasOversizePaxInZone = false
+                zone2.hasOversizePaxInZone = false
+                zone3.hasOversizePaxInZone = false
+                zone4.hasOversizePaxInZone = false
+            }
+        }
+    }
+    @Published var jWeight: JWeightConfiguration = .buisness
+    // To display the alert for errors
+    @Published var seatingError: SeatingLogic? = nil {
+        willSet {
+            objectWillChange.send()
+        }
+    }
 
+// To determine if there are any pax onboard
     var hasPax: Bool {
         if (zone1.hasPaxInZone
                 || zone2.hasPaxInZone
@@ -216,11 +274,9 @@ class Cabin: ObservableObject {
     var totalPaxNumbers: Int {
         zone1.totalPax + zone2.totalPax + zone3.totalPax + zone4.totalPax
     }
-
     var totalInfants: Int {
        zone1.infants + zone2.infants + zone3.infants + zone4.infants
     }
-
     var permittedInfantNumber: Int {
         // Max infant number depends on total seated pax load
         let totalSeatedPax =
@@ -272,13 +328,13 @@ class Cabin: ObservableObject {
     func zoneBuisnessWeight(for zone: Pax) -> Int {
         zone.buisnessWeight
     }
-
     func zoneEcconomyWeight(for zone: Pax) -> Int {
         zone.ecconomyWeight
     }
 
-    // MARK:- Index Unit Calculations
+    // MARK:- Weight Index Unit Calculations
 
+// MARK: Zones
     var indexUnitZone1: Double {
         let indexUnit = ZoneIndexUnit()
         switch jWeight {
@@ -302,17 +358,77 @@ class Cabin: ObservableObject {
         let indexUnit = ZoneIndexUnit()
         return indexUnit.forZone2(using: zone4.ecconomyWeight)
     }
-
+// MARK: Cabin Crew Index
     var cabinCrewWeightIndex: (weight: Int, indexUnit: Double) {
         let weightIndex = CabinCrewIndex()
        return weightIndex.forCabinCrewNumber(using: cabinCrew.number)
     }
-
+// MARK: Jumpseat index
     var jumpseatWeightIndex: (weight:Int, indexUnit:Double) {
         let weightIndex = JumpSeatWeightIndex()
         return weightIndex.forJumpSeat(using: jumpseat.number)
     }
+// MARK: Extra Seat Index's
+    var instrumentWeightIndex:
+        (weight: Int, indexUnit: Double) {
 
+        // instrument has no idex units, but gets annoted in adjustments that requires and index so return 0 all weights
+        if instrumentOnSeat == true {
+            return  (instrument.weight, 0.0)
+        } else {
+            return (0, 0.0)
+        }
+    }
+
+    var serviceDogWeightIndex: (weight: Int, indexUnit: Double) {
+
+        // Add totals to return one adjustment 
+        var totalDogWeight = 0
+        var totalDogIndexUnit = 0.0
+
+        if zone1.hasServiceDogInZone {
+              totalDogWeight += zone1.serviceDog.weight
+              totalDogIndexUnit  += zone1.serviceDog.indexForZone1
+        }
+        if zone2.hasServiceDogInZone {
+             totalDogWeight += zone2.serviceDog.weight
+              totalDogIndexUnit += zone2.serviceDog.indexForZone2
+        }
+        if zone3.hasServiceDogInZone {
+            totalDogWeight += zone3.serviceDog.weight
+            totalDogIndexUnit += zone3.serviceDog.indexForZone3
+        }
+        if zone4.hasServiceDogInZone {
+            totalDogWeight += zone4.serviceDog.weight
+            totalDogIndexUnit += zone4.serviceDog.indexForZone4
+        }
+        return (totalDogWeight, totalDogIndexUnit)
+    }
+
+    var oversizePaxWeightIndex: (weight: Int, indexUnit: Double) {
+
+        // Add totals to return one adjustment
+        var totalOversizePaxWeight = 0
+        var totalOversizePaxIndexUnit = 0.0
+
+        if zone1.hasOversizePaxInZone {
+            totalOversizePaxWeight += zone1.oversizePax.weight
+            totalOversizePaxIndexUnit += zone1.oversizePax.indexForZone1
+        }
+        if zone2.hasOversizePaxInZone {
+            totalOversizePaxWeight += zone2.oversizePax.weight
+            totalOversizePaxIndexUnit += zone2.oversizePax.indexForZone2
+        }
+        if zone3.hasOversizePaxInZone {
+            totalOversizePaxWeight += zone3.oversizePax.weight
+            totalOversizePaxIndexUnit += zone3.oversizePax.indexForZone3
+        }
+        if zone4.hasOversizePaxInZone{
+            totalOversizePaxWeight += zone4.oversizePax.weight
+            totalOversizePaxIndexUnit += zone4.oversizePax.indexForZone4
+        }
+        return (totalOversizePaxWeight, totalOversizePaxIndexUnit)
+    }
 
 // MARK: - Seating Logic
 
@@ -358,8 +474,6 @@ class Cabin: ObservableObject {
         zone.lastInputWasChild = false
         zone.lastInputWasInfant = false
     }
-
-
 
     // Animate the removal of the entry that created the error
     func removeLastEntry() {

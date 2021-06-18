@@ -32,6 +32,10 @@ struct PaxCabinView: View {
                         CabinCrewView()
                     }
                 } // End Crew Group
+                Section(header: Text("Extra Seat Adjustment:")
+                            .foregroundColor(.primary)) {
+                    ExtraSeatView()
+                }
 
                 Group { // Pax Cabin Group
 
