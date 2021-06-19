@@ -61,7 +61,6 @@ struct Capsule: ViewModifier {
             )
 
             .foregroundColor(.accentColor)
-
             .padding(.bottom, 3)
             .transition(.scale)
     }

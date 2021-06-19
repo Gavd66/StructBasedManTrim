@@ -59,6 +59,16 @@
 		527D2336267AF301003926E6 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2335267AF301003926E6 /* Water.swift */; };
 		527D2338267AFB0B003926E6 /* ExtraSeatWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2337267AFB0B003926E6 /* ExtraSeatWeightIndex.swift */; };
 		527D233A267B0448003926E6 /* ExtraSeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2339267B0448003926E6 /* ExtraSeatView.swift */; };
+		527D233C267C706D003926E6 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D233B267C706D003926E6 /* RegistrationView.swift */; };
+		527D233E267C764D003926E6 /* GalleyConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D233D267C764D003926E6 /* GalleyConfigurationView.swift */; };
+		527D2340267C78A5003926E6 /* FuelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D233F267C78A5003926E6 /* FuelView.swift */; };
+		527D2343267C7B88003926E6 /* LeftTankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2342267C7B88003926E6 /* LeftTankView.swift */; };
+		527D2348267C8216003926E6 /* Fuel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2347267C8216003926E6 /* Fuel.swift */; };
+		527D234A267C8479003926E6 /* CentreTankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2349267C8479003926E6 /* CentreTankView.swift */; };
+		527D234C267C8534003926E6 /* RightTankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D234B267C8534003926E6 /* RightTankView.swift */; };
+		527D2352267D7406003926E6 /* TankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2351267D7406003926E6 /* TankViewModel.swift */; };
+		527D2354267D7D50003926E6 /* EICASDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2353267D7D50003926E6 /* EICASDisplayView.swift */; };
+		527D2356267DCC8F003926E6 /* FuelBurnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2355267DCC8F003926E6 /* FuelBurnView.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -128,6 +138,16 @@
 		527D2335267AF301003926E6 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
 		527D2337267AFB0B003926E6 /* ExtraSeatWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraSeatWeightIndex.swift; sourceTree = "<group>"; };
 		527D2339267B0448003926E6 /* ExtraSeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraSeatView.swift; sourceTree = "<group>"; };
+		527D233B267C706D003926E6 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		527D233D267C764D003926E6 /* GalleyConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleyConfigurationView.swift; sourceTree = "<group>"; };
+		527D233F267C78A5003926E6 /* FuelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelView.swift; sourceTree = "<group>"; };
+		527D2342267C7B88003926E6 /* LeftTankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftTankView.swift; sourceTree = "<group>"; };
+		527D2347267C8216003926E6 /* Fuel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fuel.swift; sourceTree = "<group>"; };
+		527D2349267C8479003926E6 /* CentreTankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentreTankView.swift; sourceTree = "<group>"; };
+		527D234B267C8534003926E6 /* RightTankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightTankView.swift; sourceTree = "<group>"; };
+		527D2351267D7406003926E6 /* TankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankViewModel.swift; sourceTree = "<group>"; };
+		527D2353267D7D50003926E6 /* EICASDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EICASDisplayView.swift; sourceTree = "<group>"; };
+		527D2355267DCC8F003926E6 /* FuelBurnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelBurnView.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -371,6 +391,11 @@
 			isa = PBXGroup;
 			children = (
 				527D2327267AF1DA003926E6 /* AircraftView.swift */,
+				527D233B267C706D003926E6 /* RegistrationView.swift */,
+				527D233D267C764D003926E6 /* GalleyConfigurationView.swift */,
+				527D233F267C78A5003926E6 /* FuelView.swift */,
+				527D2341267C7B67003926E6 /* FuelTanks */,
+				527D2355267DCC8F003926E6 /* FuelBurnView.swift */,
 			);
 			path = AircraftViews;
 			sourceTree = "<group>";
@@ -392,8 +417,21 @@
 				527D2331267AF2E6003926E6 /* Registration.swift */,
 				527D2333267AF2F4003926E6 /* Galley.swift */,
 				527D2335267AF301003926E6 /* Water.swift */,
+				527D2347267C8216003926E6 /* Fuel.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		527D2341267C7B67003926E6 /* FuelTanks */ = {
+			isa = PBXGroup;
+			children = (
+				527D2342267C7B88003926E6 /* LeftTankView.swift */,
+				527D2349267C8479003926E6 /* CentreTankView.swift */,
+				527D234B267C8534003926E6 /* RightTankView.swift */,
+				527D2351267D7406003926E6 /* TankViewModel.swift */,
+				527D2353267D7D50003926E6 /* EICASDisplayView.swift */,
+			);
+			path = FuelTanks;
 			sourceTree = "<group>";
 		};
 		52A78408266C8D5700D05247 /* HoldTotalViews */ = {
@@ -513,8 +551,10 @@
 				5220075C26690CF30089A8C1 /* Position13View.swift in Sources */,
 				527D2332267AF2E6003926E6 /* Registration.swift in Sources */,
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
+				527D2340267C78A5003926E6 /* FuelView.swift in Sources */,
 				527D232F267AF2B1003926E6 /* GalleyWaterWeightIndex.swift in Sources */,
 				521DA46B267687C400FBC225 /* Zone3View.swift in Sources */,
+				527D234C267C8534003926E6 /* RightTankView.swift in Sources */,
 				521DA46726763AF800FBC225 /* Zone1View.swift in Sources */,
 				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,
 				527D232D267AF266003926E6 /* FuelWeightIndex.swift in Sources */,
@@ -524,14 +564,18 @@
 				524DCE422671A94F0020410B /* Pax.swift in Sources */,
 				5220076226690D2C0089A8C1 /* Position22View.swift in Sources */,
 				527D2328267AF1DA003926E6 /* AircraftView.swift in Sources */,
+				527D233C267C706D003926E6 /* RegistrationView.swift in Sources */,
 				521DA43B2674C94700FBC225 /* CabinCrewView.swift in Sources */,
 				521DA42D26749BC100FBC225 /* ConfigurationView.swift in Sources */,
 				52BC328A26788B67000D3A19 /* CrewEnum.swift in Sources */,
 				523A9F6926646521009DC1BA /* CargoHold.swift in Sources */,
 				5220075E26690D050089A8C1 /* Position14View.swift in Sources */,
+				527D234A267C8479003926E6 /* CentreTankView.swift in Sources */,
 				521DA44B267555A100FBC225 /* JFemale.swift in Sources */,
 				52BC32912678DC2D000D3A19 /* JumpseatView.swift in Sources */,
 				52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */,
+				527D2352267D7406003926E6 /* TankViewModel.swift in Sources */,
+				527D2356267DCC8F003926E6 /* FuelBurnView.swift in Sources */,
 				5220076C26690D960089A8C1 /* Position33View.swift in Sources */,
 				527D2334267AF2F4003926E6 /* Galley.swift in Sources */,
 				52BC3295267A00B1000D3A19 /* CabinCrewWeightIndex.swift in Sources */,
@@ -543,15 +587,19 @@
 				5220076E26690DAC0089A8C1 /* Positon41View.swift in Sources */,
 				52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */,
 				523A9F5A26646507009DC1BA /* StructBasedManualTrimApp.swift in Sources */,
+				527D233E267C764D003926E6 /* GalleyConfigurationView.swift in Sources */,
 				5220076A26690D820089A8C1 /* Positon32View.swift in Sources */,
+				527D2348267C8216003926E6 /* Fuel.swift in Sources */,
 				527D233A267B0448003926E6 /* ExtraSeatView.swift in Sources */,
 				5220077226690DE30089A8C1 /* Position43View.swift in Sources */,
 				52E5C985267A0B5600EFD495 /* JumpseatWeightIndex.swift in Sources */,
 				521DA44126753A2900FBC225 /* JTotals.swift in Sources */,
+				527D2354267D7D50003926E6 /* EICASDisplayView.swift in Sources */,
 				527D232B267AF224003926E6 /* Aircraft.swift in Sources */,
 				5220077426690DF60089A8C1 /* BulkView.swift in Sources */,
 				523A9F6B2664819C009DC1BA /* Extensions.swift in Sources */,
 				523A9F9426682BE0009DC1BA /* Position11View.swift in Sources */,
+				527D2343267C7B88003926E6 /* LeftTankView.swift in Sources */,
 				52F1A3B8266F1A13001A9ECC /* EmptyLoadView.swift in Sources */,
 				524DCE3E2670AC190020410B /* PaxCabinView.swift in Sources */,
 				521DA45126755B4F00FBC225 /* JInfant.swift in Sources */,

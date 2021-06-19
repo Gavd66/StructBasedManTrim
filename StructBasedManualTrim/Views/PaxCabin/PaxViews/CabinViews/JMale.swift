@@ -14,20 +14,17 @@ struct JMale: View {
     var zone: Pax
 
     var body: some View {
-        withAnimation {
-
             HStack {
                 Button(action: hideKeyboard) {
                     if zone.hasMalesInZone {
                         Text("\(HasMales.some.rawValue)")
                             .loadedStyle()
-                            .capsuleStyle()
                     } else {
                         Text("\(HasMales.none.rawValue)")
                             .emptyStyle()
-                            .capsuleStyle()
                     }
                 }
+                .capsuleStyle()
 
                 TextField("0 x \(PaxWeight.jMale.weight) kg", text: boundTo.maleStringNumber
                             .animation()
@@ -50,7 +47,6 @@ struct JMale: View {
                 }
             }
             .font(.system(size: 18))
-        }        
     }
 }
 

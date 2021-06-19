@@ -49,7 +49,7 @@ struct PaxCabinView: View {
                         Zone1View()
                     }
                     .onAppear(perform: feedBack.prepare)
-                    .onChange(of: cabin.zone1.totalPax, perform: cabin.validPaxLoad)
+                    .onChange(of: cabin.zone1.totalPax, perform: cabin.validatePaxLoad)
 
                     Section {
                         JTotals(cabin: _cabin, zone: cabin.zone1, zoneLimit: SeatingLogic.forZone1)
@@ -61,7 +61,7 @@ struct PaxCabinView: View {
                             
                     }
                     .onAppear(perform: feedBack.prepare)
-                    .onChange(of: cabin.zone2.totalPax, perform: cabin.validPaxLoad)
+                    .onChange(of: cabin.zone2.totalPax, perform: cabin.validatePaxLoad)
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone2, zoneLimit: SeatingLogic.forZone2)
@@ -72,7 +72,7 @@ struct PaxCabinView: View {
                         Zone3View()
                     }
                     .onAppear(perform: feedBack.prepare)
-                    .onChange(of: cabin.zone3.totalPax, perform: cabin.validPaxLoad)
+                    .onChange(of: cabin.zone3.totalPax, perform: cabin.validatePaxLoad)
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone3, zoneLimit: SeatingLogic.forZone3)
@@ -83,7 +83,7 @@ struct PaxCabinView: View {
                         Zone4View()
                     }
                     .onAppear(perform: feedBack.prepare)
-                    .onChange(of: cabin.zone4.totalPax, perform: cabin.validPaxLoad)
+                    .onChange(of: cabin.zone4.totalPax, perform: cabin.validatePaxLoad)
 
                     Section {
                         YTotals(cabin: _cabin, zone: cabin.zone4, zoneLimit: SeatingLogic.forZone4)
@@ -95,7 +95,7 @@ struct PaxCabinView: View {
                     EmptyCabinView()
                 }
             } // End Form
-            .navigationTitle("Persons on Board")
+            .navigationTitle("Crew and Pax")
             .navigationBarItems(trailing: Button(action: cabin.resetCabin) {
                 Image(systemName: "trash")
                     .font(.system(size: 30))

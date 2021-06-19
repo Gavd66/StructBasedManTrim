@@ -432,7 +432,7 @@ class Cabin: ObservableObject {
 
 // MARK: - Seating Logic
 
-    func validPaxLoad(_ seats: Int) {
+    func validatePaxLoad(_ seats: Int) {
         // If over seating in a zone occurs, the input is removed.
         seatingError = nil
         if totalPaxNumbers != 0 && cabinCrew.number == 0 {

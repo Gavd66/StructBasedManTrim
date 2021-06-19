@@ -8,8 +8,34 @@
 import SwiftUI
 
 struct AircraftView: View {
+
+    @EnvironmentObject var aircraft: Aircraft
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+        NavigationView {
+            Form {
+                Section(header: Text("Aircraft Registration")
+                            .foregroundColor(.primary)) {
+                    RegistrationView()
+                }
+                Section(header: Text("Galley Configuration")
+                            .foregroundColor(.primary)) {
+                    GalleyConfigurationView()
+                }
+                Section(header: Text("Fuel on EICAS Display")
+                            .foregroundColor(.primary)) {
+                    FuelView()
+                }
+                Section(header: Text("Flight Plan Fuel Burn")
+                            .foregroundColor(.primary)) {
+                    FuelBurnView()
+                }
+            }// Form
+            .navigationTitle("Aircraft")
+            .alert(item: $aircraft.fuelError) { fuelError in
+                Alert(title: Text(aircraft.fuelError?.rawValue ?? ""), message: Text(aircraft.fuelError?.message ?? ""), dismissButton: .destructive(Text("Remove last entry")))
+            }
+        }
     }
 }
 
