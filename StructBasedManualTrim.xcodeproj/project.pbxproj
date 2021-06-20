@@ -73,6 +73,7 @@
 		527D235B267F2009003926E6 /* PotableWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D235A267F2009003926E6 /* PotableWaterView.swift */; };
 		527D235F267FF40F003926E6 /* NonStandardFuelDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D235E267FF40F003926E6 /* NonStandardFuelDistribution.swift */; };
 		527D236126800469003926E6 /* PotableWaterWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D236026800469003926E6 /* PotableWaterWeightIndex.swift */; };
+		527D236526800C68003926E6 /* NoRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D236426800C68003926E6 /* NoRegistrationView.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -156,6 +157,7 @@
 		527D235A267F2009003926E6 /* PotableWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotableWaterView.swift; sourceTree = "<group>"; };
 		527D235E267FF40F003926E6 /* NonStandardFuelDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonStandardFuelDistribution.swift; sourceTree = "<group>"; };
 		527D236026800469003926E6 /* PotableWaterWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotableWaterWeightIndex.swift; sourceTree = "<group>"; };
+		527D236426800C68003926E6 /* NoRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRegistrationView.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -399,10 +401,9 @@
 			isa = PBXGroup;
 			children = (
 				527D2327267AF1DA003926E6 /* AircraftView.swift */,
-				527D233B267C706D003926E6 /* RegistrationView.swift */,
-				527D233D267C764D003926E6 /* GalleyConfigurationView.swift */,
+				527D236326800C08003926E6 /* RegistrationViews */,
+				527D236226800BE4003926E6 /* GalleyWaterViews */,
 				527D2341267C7B67003926E6 /* FuelViews */,
-				527D235A267F2009003926E6 /* PotableWaterView.swift */,
 			);
 			path = AircraftViews;
 			sourceTree = "<group>";
@@ -444,6 +445,24 @@
 				527D2355267DCC8F003926E6 /* FuelBurnView.swift */,
 			);
 			path = FuelViews;
+			sourceTree = "<group>";
+		};
+		527D236226800BE4003926E6 /* GalleyWaterViews */ = {
+			isa = PBXGroup;
+			children = (
+				527D235A267F2009003926E6 /* PotableWaterView.swift */,
+				527D233D267C764D003926E6 /* GalleyConfigurationView.swift */,
+			);
+			path = GalleyWaterViews;
+			sourceTree = "<group>";
+		};
+		527D236326800C08003926E6 /* RegistrationViews */ = {
+			isa = PBXGroup;
+			children = (
+				527D236426800C68003926E6 /* NoRegistrationView.swift */,
+				527D233B267C706D003926E6 /* RegistrationView.swift */,
+			);
+			path = RegistrationViews;
 			sourceTree = "<group>";
 		};
 		52A78408266C8D5700D05247 /* HoldTotalViews */ = {
@@ -596,6 +615,7 @@
 				52BC3295267A00B1000D3A19 /* CabinCrewWeightIndex.swift in Sources */,
 				527D235F267FF40F003926E6 /* NonStandardFuelDistribution.swift in Sources */,
 				5220077026690DC90089A8C1 /* Positon42View.swift in Sources */,
+				527D236526800C68003926E6 /* NoRegistrationView.swift in Sources */,
 				5220076426690D480089A8C1 /* Positon23View.swift in Sources */,
 				521DA469267687B100FBC225 /* Zone2View.swift in Sources */,
 				52A78416266EBB8A00D05247 /* CargoHoldView.swift in Sources */,

@@ -24,12 +24,12 @@ struct AircraftView: View {
                             .foregroundColor(.primary)) {
                     GalleyConfigurationView()
                 }
-                Section(header: Text("Weight: \(aircraft.water.weight)")
+                Section(header: Text("Potable Water")
                             .foregroundColor(.primary)) {
                     PotableWaterView()
                 }
 
-                Section(header: Text("Index:\(aircraft.water.indexUnit)")
+                Section(header: Text("Fuel on EICAS")
                             .foregroundColor(.primary)) {
                     FuelView()
                 }
