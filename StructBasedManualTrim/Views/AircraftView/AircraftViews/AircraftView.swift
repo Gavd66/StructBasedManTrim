@@ -10,6 +10,7 @@ import SwiftUI
 struct AircraftView: View {
 
     @EnvironmentObject var aircraft: Aircraft
+    var feedback = UINotificationFeedbackGenerator()
     var body: some View {
 
         NavigationView {
@@ -26,14 +27,23 @@ struct AircraftView: View {
                             .foregroundColor(.primary)) {
                     FuelView()
                 }
+                .onAppear(perform: feedback.prepare)
+                .onChange(of: aircraft.fuelValue, perform: aircraft.checkForFuelError)
+                
                 Section(header: Text("Flight Plan Fuel Burn")
                             .foregroundColor(.primary)) {
                     FuelBurnView()
                 }
+                .onAppear(perform: feedback.prepare)
+                .onChange(of: aircraft.fuelValue, perform: aircraft.checkForFuelError)
             }// Form
             .navigationTitle("Aircraft")
             .alert(item: $aircraft.fuelError) { fuelError in
-                Alert(title: Text(aircraft.fuelError?.rawValue ?? ""), message: Text(aircraft.fuelError?.message ?? ""), dismissButton: .destructive(Text("Remove last entry")))
+                self.feedback.notificationOccurred(.error)
+                return Alert(
+                    title: Text(aircraft.errorTitle),
+                    message: Text(aircraft.errorMessage),
+                    dismissButton: .destructive(Text("Remove Last Input"), action: aircraft.removeFuel))
             }
         }
     }
