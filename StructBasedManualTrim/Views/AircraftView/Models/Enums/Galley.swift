@@ -9,10 +9,10 @@ import Foundation
 
     enum GalleyConfiguration: String, CaseIterable, Identifiable {
         var id: GalleyConfiguration { self }
-        case full = "Full"
+        case full = "Full Cater"
         case dom = "Domestic"
-        case empty = "Empty"
-        case nilCarts = "Nil Carts"
+        case empty = "Nil Cater"
+        case nilCarts = "No Carts"
 
 
     }

@@ -23,12 +23,22 @@ struct AircraftView: View {
                             .foregroundColor(.primary)) {
                     GalleyConfigurationView()
                 }
+                Section(header: Text("Potable Water")
+                            .foregroundColor(.primary)) {
+                    PotableWaterView()
+                }
+
                 Section(header: Text("Fuel on EICAS Display")
                             .foregroundColor(.primary)) {
                     FuelView()
                 }
                 .onAppear(perform: feedback.prepare)
                 .onChange(of: aircraft.fuelValue, perform: aircraft.checkForFuelError)
+
+                Section(header: Text("Fuel Distribution")
+                            .foregroundColor(.primary)) {
+                    FuelDistributionViews()
+                }
                 
                 Section(header: Text("Flight Plan Fuel Burn")
                             .foregroundColor(.primary)) {

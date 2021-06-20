@@ -40,7 +40,7 @@ enum FuelError: String, Identifiable, CaseIterable {
     case centreTankOverLimit = "Centre Tank OverFilled"
     case rightTankOverLimit = "Right Tank OverFilled"
     case fuelBurn = "Fuel Burn too high"
-
+    
     var message: String {
         switch self {
         case .leftTankOverLimit:

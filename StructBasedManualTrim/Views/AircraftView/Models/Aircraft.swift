@@ -44,12 +44,11 @@ class Aircraft: ObservableObject {
     @Published var centreTankHasFuel = false
     @Published var rightTankHasFuel = false
     @Published var fuelBurnEntered = false
-    @Published var fuelError: FuelError? = nil {
-        didSet {
-            objectWillChange.send()
-        }
-    }
+    @Published var fuelError: FuelError?
     @Published var lastInput = LastInput.leftTank
+    @Published var nonStandardFuelDistribution = false
+    @Published var fuelInCentreMessage = false
+    @Published var potableWater = PotableWater.from284Litres
 
 //MARK:- Fuel Calculations and Logic
     var leftTank: Int {
@@ -83,7 +82,7 @@ class Aircraft: ObservableObject {
         Int(fuelBurnStringNumber) ?? 0
     }
 
-    // Used as a value to check for fuel errors
+// Used as a value to check for fuel errors with checkForFuelError()
     var fuelValue: Int {
         switch lastInput {
         case .leftTank:

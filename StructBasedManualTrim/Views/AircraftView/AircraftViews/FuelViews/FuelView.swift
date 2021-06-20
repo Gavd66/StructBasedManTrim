@@ -16,7 +16,6 @@ struct FuelView: View {
             CentreTankView()
             RightTankView()
             EICASDisplayView()
-
         }
     }
 }

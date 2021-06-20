@@ -69,6 +69,8 @@
 		527D2352267D7406003926E6 /* TankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2351267D7406003926E6 /* TankViewModel.swift */; };
 		527D2354267D7D50003926E6 /* EICASDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2353267D7D50003926E6 /* EICASDisplayView.swift */; };
 		527D2356267DCC8F003926E6 /* FuelBurnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2355267DCC8F003926E6 /* FuelBurnView.swift */; };
+		527D2359267F17E0003926E6 /* FuelDistributionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2358267F17E0003926E6 /* FuelDistributionViews.swift */; };
+		527D235B267F2009003926E6 /* PotableWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D235A267F2009003926E6 /* PotableWaterView.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -148,6 +150,8 @@
 		527D2351267D7406003926E6 /* TankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankViewModel.swift; sourceTree = "<group>"; };
 		527D2353267D7D50003926E6 /* EICASDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EICASDisplayView.swift; sourceTree = "<group>"; };
 		527D2355267DCC8F003926E6 /* FuelBurnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelBurnView.swift; sourceTree = "<group>"; };
+		527D2358267F17E0003926E6 /* FuelDistributionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDistributionViews.swift; sourceTree = "<group>"; };
+		527D235A267F2009003926E6 /* PotableWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotableWaterView.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -393,9 +397,8 @@
 				527D2327267AF1DA003926E6 /* AircraftView.swift */,
 				527D233B267C706D003926E6 /* RegistrationView.swift */,
 				527D233D267C764D003926E6 /* GalleyConfigurationView.swift */,
-				527D233F267C78A5003926E6 /* FuelView.swift */,
-				527D2341267C7B67003926E6 /* FuelTanks */,
-				527D2355267DCC8F003926E6 /* FuelBurnView.swift */,
+				527D2341267C7B67003926E6 /* FuelViews */,
+				527D235A267F2009003926E6 /* PotableWaterView.swift */,
 			);
 			path = AircraftViews;
 			sourceTree = "<group>";
@@ -422,16 +425,19 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		527D2341267C7B67003926E6 /* FuelTanks */ = {
+		527D2341267C7B67003926E6 /* FuelViews */ = {
 			isa = PBXGroup;
 			children = (
+				527D233F267C78A5003926E6 /* FuelView.swift */,
 				527D2342267C7B88003926E6 /* LeftTankView.swift */,
 				527D2349267C8479003926E6 /* CentreTankView.swift */,
 				527D234B267C8534003926E6 /* RightTankView.swift */,
 				527D2351267D7406003926E6 /* TankViewModel.swift */,
 				527D2353267D7D50003926E6 /* EICASDisplayView.swift */,
+				527D2358267F17E0003926E6 /* FuelDistributionViews.swift */,
+				527D2355267DCC8F003926E6 /* FuelBurnView.swift */,
 			);
-			path = FuelTanks;
+			path = FuelViews;
 			sourceTree = "<group>";
 		};
 		52A78408266C8D5700D05247 /* HoldTotalViews */ = {
@@ -552,6 +558,7 @@
 				527D2332267AF2E6003926E6 /* Registration.swift in Sources */,
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
 				527D2340267C78A5003926E6 /* FuelView.swift in Sources */,
+				527D235B267F2009003926E6 /* PotableWaterView.swift in Sources */,
 				527D232F267AF2B1003926E6 /* GalleyWaterWeightIndex.swift in Sources */,
 				521DA46B267687C400FBC225 /* Zone3View.swift in Sources */,
 				527D234C267C8534003926E6 /* RightTankView.swift in Sources */,
@@ -575,6 +582,7 @@
 				52BC32912678DC2D000D3A19 /* JumpseatView.swift in Sources */,
 				52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */,
 				527D2352267D7406003926E6 /* TankViewModel.swift in Sources */,
+				527D2359267F17E0003926E6 /* FuelDistributionViews.swift in Sources */,
 				527D2356267DCC8F003926E6 /* FuelBurnView.swift in Sources */,
 				5220076C26690D960089A8C1 /* Position33View.swift in Sources */,
 				527D2334267AF2F4003926E6 /* Galley.swift in Sources */,
