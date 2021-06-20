@@ -10,6 +10,7 @@ import SwiftUI
 struct AircraftView: View {
 
     @EnvironmentObject var aircraft: Aircraft
+
     var feedback = UINotificationFeedbackGenerator()
     var body: some View {
 
@@ -23,12 +24,12 @@ struct AircraftView: View {
                             .foregroundColor(.primary)) {
                     GalleyConfigurationView()
                 }
-                Section(header: Text("Potable Water")
+                Section(header: Text("Weight: \(aircraft.water.weight)")
                             .foregroundColor(.primary)) {
                     PotableWaterView()
                 }
 
-                Section(header: Text("Fuel on EICAS Display")
+                Section(header: Text("Index:\(aircraft.water.indexUnit)")
                             .foregroundColor(.primary)) {
                     FuelView()
                 }

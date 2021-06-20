@@ -44,11 +44,11 @@ enum FuelError: String, Identifiable, CaseIterable {
     var message: String {
         switch self {
         case .leftTankOverLimit:
-            return "The Left Tank maximum capacity is 17.0T"
+            return "The Left Tank maximum capacity is 17.7T"
         case .centreTankOverLimit:
-            return "The Centre Tank maximum capacity is 67.5T"
+            return "The Centre Tank maximum capacity is 70.5T"
         case .rightTankOverLimit:
-            return "The Right Tank maximum capacity is 17.0T"
+            return "The Right Tank maximum capacity is 17.7T"
         case .fuelBurn:
             return "Fuel Burn is greater than fuel on board"
         }

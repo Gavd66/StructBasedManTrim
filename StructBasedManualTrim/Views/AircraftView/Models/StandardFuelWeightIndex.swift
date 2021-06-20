@@ -1,0 +1,232 @@
+//
+//  FuelWeightIndex.swift
+//  StructBasedManualTrim
+//
+//  Created by Gavin Dorward on 17/6/21.
+//
+
+import Foundation
+import SwiftUI
+
+// TODO:- import the fuel distribution tables and create functions to calculate the weight and index required
+
+// TODO:- Refactor cabin to use the last input enum and remove all the bools
+
+//TODO:- Refactor Underfloor to use generic models for all positions, and change the logic to show alerts and remove text as per aircraft
+
+struct StandardFuelWeightIndex {
+
+    func forStandardFuelDistribution(using takeOffFuel: Int) ->  Double  {
+
+        switch takeOffFuel {
+        case 1...1999:
+            return  0.1
+        case 2000...3999:
+            return  0.3
+        case 4000...5999:
+            return  0.4
+        case 6000...7999:
+            return  0.6
+        case 8000...9999:
+            return  0.8
+        case 10000...11999:
+            return  1.0
+        case 12000...13999:
+            return  1.2
+        case 14000...15999:
+            return  1.4
+        case 16000...17999:
+            return  1.8
+        case 18000...19999:
+            return  2.3
+        case 20000...21999:
+            return  2.8
+        case 22000...22999:
+            return  3.3
+        case 23000...23499:
+            return  3.5
+        case 23500...23999:
+            return  3.8
+        case 24000...24499:
+            return  4.0
+        case 24500...24999:
+            return  4.3
+        case 25000...25499:
+            return  4.5
+        case 25500...25599:
+            return  4.8
+        case 26000...26499:
+            return  5.1
+        case 26500...26999:
+            return  5.4
+        case 27000...27499:
+            return  5.7
+        case 27500...27999:
+            return  6.0
+        case 28000...28499:
+            return  6.4
+        case 28500...28999:
+            return  6.8
+        case 29000...29499:
+            return  7.2
+        case 29500...29999:
+            return  7.5
+        case 30000...30499:
+            return  8.0
+        case 30500...30999:
+            return  8.4
+        case 31000...31499:
+            return  8.9
+        case 31500...31999:
+            return  9.4
+        case 32000...32499:
+            return  9.9
+        case 32500...32999:
+            return  10.4
+        case 33000...33499:
+            return  11.0
+        case 33500...33999:
+            return  11.6
+        case 34000...34999:
+            return  11.8
+        case 35000...35999:
+            return  11.5
+        case 36000...36999:
+            return  11.1
+        case 37000...37999:
+            return  10.7
+        case 38000...38999:
+            return  10.3
+        case 39000...39999:
+            return  9.9
+        case 40000...40999:
+            return  9.5
+        case 41000...41999:
+            return  9.0
+        case 42000...42999:
+            return  8.5
+        case 43000...43999:
+            return  8.0
+        case 44000...44999:
+            return  7.5
+        case 45000...45999:
+            return  7.0
+        case 46000...46999:
+            return  6.6
+        case 47000...47999:
+            return  6.1
+        case 48000...48999:
+            return  5.6
+        case 49000...49999:
+            return  5.1
+        case 50000...50999:
+            return  4.6
+        case 51000...51999:
+            return  4.1
+        case 52000...52999:
+            return  3.7
+        case 53000...53999:
+            return  3.2
+        case 54000...54999:
+            return  2.8
+        case 55000...55999:
+            return  2.3
+        case 56000...56999:
+            return  1.9
+        case 57000...57999:
+            return  1.4
+        case 58000...58999:
+            return  0.9
+        case 59000...59999:
+            return  0.5
+        case 60000...60999:
+            return  0.0
+        case 61000...61999:
+            return  -0.4
+        case 62000...62999:
+            return  -0.9
+        case 63000...63999:
+            return  -1.3
+        case 64000...64999:
+            return  -1.7
+        case 65000...65999:
+            return  -2.2
+        case 66000...66999:
+            return  -2.6
+        case 67000...67999:
+            return  -3.0
+        case 68000...68999:
+            return  -3.5
+        case 69000...69999:
+            return  -3.9
+        case 70000...70999:
+            return  -4.3
+        case 71000...71999:
+            return  -4.7
+        case 72000...72999:
+            return  -5.2
+        case 73000...73999:
+            return  -5.6
+        case 74000...74999:
+            return  -6.0
+        case 75000...75999:
+            return  -6.5
+        case 76000...76999:
+            return  -6.9
+        case 77000...77999:
+            return  -7.3
+        case 78000...78999:
+            return  -7.8
+        case 79000...79999:
+            return  -8.2
+        case 80000...80999:
+            return  -8.6
+        case 81000...81999:
+            return  -9.0
+        case 82000...82999:
+            return  -9.5
+        case 83000...83999:
+            return  -9.9
+        case 84000...84999:
+            return  -10.3
+        case 85000...85999:
+            return  -10.8
+        case 86000...86999:
+            return  -11.2
+        case 87000...87999:
+            return  -11.7
+        case 88000...88999:
+            return  -12.1
+        case 89000...89999:
+            return  -12.5
+        case 90000...90999:
+            return  -13.0
+        case 91000...91999:
+            return  -13.4
+        case 92000...92999:
+            return  -13.9
+        case 93000...93999:
+            return  -14.3
+        case 94000...94999:
+            return  -14.8
+        case 95000...95999:
+            return  -15.2
+        case 96000...96999:
+            return  -15.7
+        case 97000...97999:
+            return  -16.2
+        case 98000...98999:
+            return  -16.7
+        case 99000...99999:
+            return  -17.1
+        case 100000...100999:
+            return  -17.6
+        case 101000...101911:
+            return  -18.0
+        case 101912...106012:
+            return  -18.6
+        default:
+            return 0
+        }
+    }
+}

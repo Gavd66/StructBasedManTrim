@@ -10,7 +10,7 @@ import SwiftUI
 
 class Aircraft: ObservableObject {
 
-    @Published var registration = Registration.vkh
+    @Published var registration = Registration.none
     @Published var galleyConfiguration = GalleyConfiguration.dom
     @Published var leftTankStringNumber = "" {
         didSet {
@@ -55,17 +55,14 @@ class Aircraft: ObservableObject {
         let double = Double(leftTankStringNumber) ?? 0
         return Int(double * 1000)
     }
-
     var centreTank: Int {
         let double = Double(centreTankStringNumber) ?? 0
         return Int(double * 1000)
     }
-
     var rightTank: Int {
         let double = Double(rightTankStringNumber) ?? 0
         return Int(double * 1000)
     }
-
     var hasFuelLoaded: Bool {
         if leftTank == 0 && centreTank == 0 && rightTank == 0 {
             return false
@@ -73,11 +70,12 @@ class Aircraft: ObservableObject {
             return true
         }
     }
-
     var totalFuel: Int {
         leftTank + centreTank + rightTank
     }
-
+    var takeoffFuel: Int {
+        totalFuel - 400
+    }
     var fuelBurn: Int {
         Int(fuelBurnStringNumber) ?? 0
     }
@@ -96,6 +94,58 @@ class Aircraft: ObservableObject {
         }
     }
 
+// MARK:- Index Unit Methods
+//    //Standard Fuel Distribution
+    var takeoffFuelIndexUnit: Double {
+        let indexUnit = StandardFuelWeightIndex()
+        return indexUnit.forStandardFuelDistribution(using: takeoffFuel)
+    }
+    // NonStandard Fuel Distribution
+
+    var leftTankTakeoff: (weight: Int, indexUnit: Double) {
+        let weightIndex =
+            NonStandardFuelDistribution(message: fuelInCentreMessage)
+        let takeoff = weightIndex.forLeftTank(using: leftTank)
+        return (takeoff.weight, takeoff.indexUnit)
+    }
+    var centreTankTakeoff: (weight: Int, indexUnit: Double) {
+        let weightIndex =
+            NonStandardFuelDistribution(message: fuelInCentreMessage)
+        let takeoff = weightIndex.forCentreTank(using: centreTank)
+        return (takeoff.weight, takeoff.indexUnit)
+    }
+    var rightTankTakeoff: (weight: Int, indexUnit: Double) {
+        let weightIndex =
+            NonStandardFuelDistribution(message: fuelInCentreMessage)
+        let takeoff = weightIndex.forRightTank(using: rightTank)
+        return (takeoff.weight, takeoff.indexUnit)
+    }
+
+    var nonStandardTakeoffFuel: Int {
+        leftTankTakeoff.weight
+            + centreTankTakeoff.weight
+            + rightTankTakeoff.weight
+    }
+
+    var nonStandardTakeoffIndexUnit: Double {
+        leftTankTakeoff.indexUnit
+            + centreTankTakeoff.indexUnit
+            + rightTankTakeoff.indexUnit
+    }
+
+    // Galley
+    var galley: (weight: Int, indexUnit: Double) {
+        let weightIndex = GalleyWeightIndex()
+        let galley = weightIndex.forGalley(using: galleyConfiguration)
+        return (galley.weight, galley.indexUnit)
+    }
+    // Water
+    var water: (weight: Int, indexUnit: Double) {
+        let weightIndex = PotableWaterWeightIndex()
+        let water = weightIndex.forWaterLevel(using: potableWater)
+        return (water.weight, water.indexUnit)
+    }
+
     //MARK:- Logic Methods
 
     func updateLeftTankLabel() {
@@ -103,25 +153,21 @@ class Aircraft: ObservableObject {
             (leftTankStringNumber != "")
             ? true: false
     }
-
     func updateCentreLabel() {
         centreTankHasFuel
             = (centreTankStringNumber != "")
             ? true : false
     }
-
     func updateRightTankLabel() {
         rightTankHasFuel =
             (rightTankStringNumber != "")
             ? true : false
     }
-
     func updateFuelBurnLabel() {
         fuelBurnEntered =
             (fuelBurnStringNumber != "")
             ? true : false
     }
-
 
    // MARK:- Error Methods
 
@@ -130,15 +176,15 @@ class Aircraft: ObservableObject {
 
         switch lastInput {
         case .leftTank:
-            if fuelInput > 17000 {
+            if fuelInput > 17711 {
                 fuelError = .leftTankOverLimit
             }
         case .centreTank:
-            if fuelInput > 67500 {
+            if fuelInput > 70590 {
                 fuelError = .centreTankOverLimit
             }
         case .rightTank:
-            if fuelInput > 17000 {
+            if fuelInput > 17711 {
                 fuelError = .rightTankOverLimit
             }
         case .fuelBurn:

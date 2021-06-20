@@ -335,8 +335,8 @@ class Cabin: ObservableObject {
     // MARK:- Weight Index Unit Calculations
 
 // MARK: Zones
+    let indexUnit = ZoneIndexUnit()
     var indexUnitZone1: Double {
-        let indexUnit = ZoneIndexUnit()
         switch jWeight {
         case .buisness:
             return indexUnit.forZone1(using: zone1.buisnessWeight)
@@ -345,18 +345,15 @@ class Cabin: ObservableObject {
         }
     }
     var indexUnitZone2: Double {
-        let indexUnit = ZoneIndexUnit()
-        return indexUnit.forZone2(using: zone2.ecconomyWeight)
+        indexUnit.forZone2(using: zone2.ecconomyWeight)
     }
 
     var indexUnitZone3: Double {
-        let indexUnit = ZoneIndexUnit()
-        return indexUnit.forZone2(using: zone3.ecconomyWeight)
+        indexUnit.forZone2(using: zone3.ecconomyWeight)
     }
 
     var indexUnitZone4: Double {
-        let indexUnit = ZoneIndexUnit()
-        return indexUnit.forZone2(using: zone4.ecconomyWeight)
+        indexUnit.forZone2(using: zone4.ecconomyWeight)
     }
 // MARK: Cabin Crew Index
     var cabinCrewWeightIndex: (weight: Int, indexUnit: Double) {

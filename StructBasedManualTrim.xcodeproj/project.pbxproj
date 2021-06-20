@@ -52,8 +52,8 @@
 		524DCE4D2671B98B0020410B /* EmptyCabinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524DCE4C2671B98B0020410B /* EmptyCabinView.swift */; };
 		527D2328267AF1DA003926E6 /* AircraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2327267AF1DA003926E6 /* AircraftView.swift */; };
 		527D232B267AF224003926E6 /* Aircraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D232A267AF224003926E6 /* Aircraft.swift */; };
-		527D232D267AF266003926E6 /* FuelWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D232C267AF266003926E6 /* FuelWeightIndex.swift */; };
-		527D232F267AF2B1003926E6 /* GalleyWaterWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D232E267AF2B1003926E6 /* GalleyWaterWeightIndex.swift */; };
+		527D232D267AF266003926E6 /* StandardFuelWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D232C267AF266003926E6 /* StandardFuelWeightIndex.swift */; };
+		527D232F267AF2B1003926E6 /* GalleyWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D232E267AF2B1003926E6 /* GalleyWeightIndex.swift */; };
 		527D2332267AF2E6003926E6 /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2331267AF2E6003926E6 /* Registration.swift */; };
 		527D2334267AF2F4003926E6 /* Galley.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2333267AF2F4003926E6 /* Galley.swift */; };
 		527D2336267AF301003926E6 /* Water.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2335267AF301003926E6 /* Water.swift */; };
@@ -71,6 +71,8 @@
 		527D2356267DCC8F003926E6 /* FuelBurnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2355267DCC8F003926E6 /* FuelBurnView.swift */; };
 		527D2359267F17E0003926E6 /* FuelDistributionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2358267F17E0003926E6 /* FuelDistributionViews.swift */; };
 		527D235B267F2009003926E6 /* PotableWaterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D235A267F2009003926E6 /* PotableWaterView.swift */; };
+		527D235F267FF40F003926E6 /* NonStandardFuelDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D235E267FF40F003926E6 /* NonStandardFuelDistribution.swift */; };
+		527D236126800469003926E6 /* PotableWaterWeightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D236026800469003926E6 /* PotableWaterWeightIndex.swift */; };
 		52A78407266C89D000D05247 /* ForwardHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */; };
 		52A7840A266C9F7C00D05247 /* AftHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */; };
 		52A7840F266DF72B00D05247 /* BulkHoldTotalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */; };
@@ -133,8 +135,8 @@
 		524DCE4C2671B98B0020410B /* EmptyCabinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCabinView.swift; sourceTree = "<group>"; };
 		527D2327267AF1DA003926E6 /* AircraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftView.swift; sourceTree = "<group>"; };
 		527D232A267AF224003926E6 /* Aircraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aircraft.swift; sourceTree = "<group>"; };
-		527D232C267AF266003926E6 /* FuelWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelWeightIndex.swift; sourceTree = "<group>"; };
-		527D232E267AF2B1003926E6 /* GalleyWaterWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleyWaterWeightIndex.swift; sourceTree = "<group>"; };
+		527D232C267AF266003926E6 /* StandardFuelWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardFuelWeightIndex.swift; sourceTree = "<group>"; };
+		527D232E267AF2B1003926E6 /* GalleyWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleyWeightIndex.swift; sourceTree = "<group>"; };
 		527D2331267AF2E6003926E6 /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
 		527D2333267AF2F4003926E6 /* Galley.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Galley.swift; sourceTree = "<group>"; };
 		527D2335267AF301003926E6 /* Water.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Water.swift; sourceTree = "<group>"; };
@@ -152,6 +154,8 @@
 		527D2355267DCC8F003926E6 /* FuelBurnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelBurnView.swift; sourceTree = "<group>"; };
 		527D2358267F17E0003926E6 /* FuelDistributionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelDistributionViews.swift; sourceTree = "<group>"; };
 		527D235A267F2009003926E6 /* PotableWaterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotableWaterView.swift; sourceTree = "<group>"; };
+		527D235E267FF40F003926E6 /* NonStandardFuelDistribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonStandardFuelDistribution.swift; sourceTree = "<group>"; };
+		527D236026800469003926E6 /* PotableWaterWeightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotableWaterWeightIndex.swift; sourceTree = "<group>"; };
 		52A78406266C89D000D05247 /* ForwardHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A78409266C9F7C00D05247 /* AftHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AftHoldTotalsView.swift; sourceTree = "<group>"; };
 		52A7840E266DF72B00D05247 /* BulkHoldTotalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkHoldTotalsView.swift; sourceTree = "<group>"; };
@@ -407,8 +411,10 @@
 			isa = PBXGroup;
 			children = (
 				527D232A267AF224003926E6 /* Aircraft.swift */,
-				527D232C267AF266003926E6 /* FuelWeightIndex.swift */,
-				527D232E267AF2B1003926E6 /* GalleyWaterWeightIndex.swift */,
+				527D232C267AF266003926E6 /* StandardFuelWeightIndex.swift */,
+				527D235E267FF40F003926E6 /* NonStandardFuelDistribution.swift */,
+				527D232E267AF2B1003926E6 /* GalleyWeightIndex.swift */,
+				527D236026800469003926E6 /* PotableWaterWeightIndex.swift */,
 				527D2330267AF2B7003926E6 /* Enums */,
 			);
 			path = Models;
@@ -544,6 +550,7 @@
 				524DCE4D2671B98B0020410B /* EmptyCabinView.swift in Sources */,
 				521DA44D2675599300FBC225 /* JChild.swift in Sources */,
 				521DA4452675514500FBC225 /* YMale.swift in Sources */,
+				527D236126800469003926E6 /* PotableWaterWeightIndex.swift in Sources */,
 				521DA443267546B300FBC225 /* YTotals.swift in Sources */,
 				52BC32932679BB19000D3A19 /* ZoneIndexUnit.swift in Sources */,
 				5220076826690D720089A8C1 /* Position31View.swift in Sources */,
@@ -559,12 +566,12 @@
 				52200778266AF6A60089A8C1 /* Modifiers.swift in Sources */,
 				527D2340267C78A5003926E6 /* FuelView.swift in Sources */,
 				527D235B267F2009003926E6 /* PotableWaterView.swift in Sources */,
-				527D232F267AF2B1003926E6 /* GalleyWaterWeightIndex.swift in Sources */,
+				527D232F267AF2B1003926E6 /* GalleyWeightIndex.swift in Sources */,
 				521DA46B267687C400FBC225 /* Zone3View.swift in Sources */,
 				527D234C267C8534003926E6 /* RightTankView.swift in Sources */,
 				521DA46726763AF800FBC225 /* Zone1View.swift in Sources */,
 				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,
-				527D232D267AF266003926E6 /* FuelWeightIndex.swift in Sources */,
+				527D232D267AF266003926E6 /* StandardFuelWeightIndex.swift in Sources */,
 				521DA46D267687D500FBC225 /* Zone4View.swift in Sources */,
 				527D2338267AFB0B003926E6 /* ExtraSeatWeightIndex.swift in Sources */,
 				521DA4472675531300FBC225 /* JMale.swift in Sources */,
@@ -587,6 +594,7 @@
 				5220076C26690D960089A8C1 /* Position33View.swift in Sources */,
 				527D2334267AF2F4003926E6 /* Galley.swift in Sources */,
 				52BC3295267A00B1000D3A19 /* CabinCrewWeightIndex.swift in Sources */,
+				527D235F267FF40F003926E6 /* NonStandardFuelDistribution.swift in Sources */,
 				5220077026690DC90089A8C1 /* Positon42View.swift in Sources */,
 				5220076426690D480089A8C1 /* Positon23View.swift in Sources */,
 				521DA469267687B100FBC225 /* Zone2View.swift in Sources */,
