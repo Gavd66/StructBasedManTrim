@@ -29,7 +29,7 @@ struct TankViewModel: View {
             }
             .capsuleStyle()
             .layoutPriority(2)
-            TextField("Fuel Quantity kg", text: tankValue
+            TextField("Tonnes kg", text: tankValue
                         .animation())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.decimalPad)

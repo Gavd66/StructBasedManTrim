@@ -52,8 +52,12 @@ struct FuelBurnView: View {
                     .loadedStyle()
                     .capsuleStyle()
                 } else {
-                    Text("No Fuel Burn ")
-                        .nilFitStyle()
+                    HStack {
+                        Spacer()
+                        Text("No Fuel Burn ")
+                            .nilFitStyle()
+                        Spacer()
+                    }
                 }
             }
             .font(.system(size: 18))
