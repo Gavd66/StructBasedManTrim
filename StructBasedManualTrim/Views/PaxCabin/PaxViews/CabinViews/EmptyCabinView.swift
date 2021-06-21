@@ -77,7 +77,8 @@ struct EmptyCabinView: View {
             .foregroundColor(.accentColor)
             .contextMenu {
                 VStack {
-                    Text("Only displyed if Cabin has no occupants")
+                    Text("Cabin has no occupants")
+                    Text("Capt and FO only onboard")
                     Text("Trash Sets POB to 2")
                 }
             }

@@ -56,8 +56,8 @@ struct EmptyLoadView: View {
             } // End H
             .contextMenu {
                 VStack {
-                Text("Only displyed if all holds are empty")
-                Text("Use trash to reset to empty when required")
+                Text("All cargo holds are empty")
+                Text("Use trash to empty all holds")
                 }
             }
         }

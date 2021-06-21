@@ -9,11 +9,11 @@ import Foundation
 
 enum Registration: String, Identifiable, CaseIterable {
     var id: Registration { self }
-    case vkg = "VKG"
-    case vkh = "VKH"
-    case vki = "VKI"
-    case vkj = "VKJ"
-    case vkl = "VKL"
+    case vkg = "VH-VKG"
+    case vkh = "VH-VKH"
+    case vki = "VH-VKI"
+    case vkj = "VH-VKJ"
+    case vkl = "VH-VKL"
     case none = "None Selected"
 
     var operatingWeightIndexUnit: (Int, Double) {

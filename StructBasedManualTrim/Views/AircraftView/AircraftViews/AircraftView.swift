@@ -16,9 +16,14 @@ struct AircraftView: View {
 
         NavigationView {
             Form {
-                Section(header: Text("Aircraft Registration")
-                            .foregroundColor(.primary)) {
-                    RegistrationView()
+                Group { // Registration Group
+                    Section {
+                        NoRegistrationView()
+                    }
+                    Section(header: Text("Aircraft Registration")
+                                .foregroundColor(.primary)) {
+                        RegistrationView()
+                    }
                 }
                 Section(header: Text("Galley Configuration")
                             .foregroundColor(.primary)) {
@@ -28,27 +33,37 @@ struct AircraftView: View {
                             .foregroundColor(.primary)) {
                     PotableWaterView()
                 }
+                Group { // Fuel Group
+                    Section(header: Text("Fuel on EICAS")
+                                .foregroundColor(.primary)) {
+                        FuelView()
+                    }
+                    .onAppear(perform: feedback.prepare)
+                    .onChange(of: aircraft.fuelValue, perform: aircraft.checkForFuelError)
 
-                Section(header: Text("Fuel on EICAS")
-                            .foregroundColor(.primary)) {
-                    FuelView()
-                }
-                .onAppear(perform: feedback.prepare)
-                .onChange(of: aircraft.fuelValue, perform: aircraft.checkForFuelError)
+                    Section(header: Text("Fuel Distribution")
+                                .foregroundColor(.primary)) {
+                        FuelDistributionViews()
+                    }
 
-                Section(header: Text("Fuel Distribution")
-                            .foregroundColor(.primary)) {
-                    FuelDistributionViews()
+                    Section(header: Text("Flight Plan Fuel Burn")
+                                .foregroundColor(.primary)) {
+                        FuelBurnView()
+                    }
+                    .onAppear(perform: feedback.prepare)
+                    .onChange(of: aircraft.fuelValue, perform: aircraft.checkForFuelError)
                 }
-                
-                Section(header: Text("Flight Plan Fuel Burn")
-                            .foregroundColor(.primary)) {
-                    FuelBurnView()
+                Section {
+                    NoRegistrationView()
                 }
-                .onAppear(perform: feedback.prepare)
-                .onChange(of: aircraft.fuelValue, perform: aircraft.checkForFuelError)
             }// Form
             .navigationTitle("Aircraft")
+            .navigationBarItems(trailing: Button(action: aircraft.reset) {
+                Image(systemName: "trash")
+                    .font(.system(size: 30))
+                    .foregroundColor(.accentColor)
+                    .padding()
+            })
             .alert(item: $aircraft.fuelError) { fuelError in
                 self.feedback.notificationOccurred(.error)
                 return Alert(

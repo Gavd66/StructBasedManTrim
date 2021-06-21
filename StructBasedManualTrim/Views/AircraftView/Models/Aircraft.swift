@@ -73,11 +73,17 @@ class Aircraft: ObservableObject {
     var totalFuel: Int {
         leftTank + centreTank + rightTank
     }
+    var totalFuelTonnes: Double {
+        Double(totalFuel / 1000)
+    }
     var takeoffFuel: Int {
         totalFuel - 400
     }
     var fuelBurn: Int {
         Int(fuelBurnStringNumber) ?? 0
+    }
+    var fuelBurnTonnes: Double {
+        Double(fuelBurn / 1000)
     }
 
 // Used as a value to check for fuel errors with checkForFuelError()
@@ -220,5 +226,19 @@ class Aircraft: ObservableObject {
     }
     var errorMessage: String {
         fuelError?.message ?? ""
+    }
+
+// MARK:- Reset Method
+
+    func reset() {
+        withAnimation {
+            registration = .none
+            leftTankStringNumber = ""
+            centreTankStringNumber = ""
+            rightTankStringNumber = ""
+            fuelBurnStringNumber = ""
+            galleyConfiguration = .dom
+            potableWater = .from284Litres
+        }
     }
 }
