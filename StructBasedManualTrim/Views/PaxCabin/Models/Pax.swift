@@ -358,11 +358,11 @@ class Cabin: ObservableObject {
     }
 
     var indexUnitZone3: Double {
-        indexUnit.forZone2(using: zone3.ecconomyWeight)
+        indexUnit.forZone3(using: zone3.ecconomyWeight)
     }
 
     var indexUnitZone4: Double {
-        indexUnit.forZone2(using: zone4.ecconomyWeight)
+        indexUnit.forZone4(using: zone4.ecconomyWeight)
     }
 
     var totalPaxIndexUnit: Double {
