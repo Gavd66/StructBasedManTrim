@@ -23,6 +23,23 @@ enum CabinCrew: String, Identifiable, CaseIterable {
     var number: Int {
         return Int(self.rawValue) ?? 0
     }
+
+    var numbers: (weight: Int, indexUnit: Double) {
+        switch self {
+        case .zero:
+            return (-576, 0.4)
+        case .eight:
+            return (-64, 0.2)
+        case .nine:
+            return (0,0)
+        case .ten:
+            return (64, 0.2)
+        case .eleven:
+            return (128, 0.5)
+        case .twelve:
+            return (192, 0.5)
+        }
+    }
 }
 
 enum CrewMoveTo: String, Identifiable, CaseIterable {
@@ -42,6 +59,41 @@ enum CrewMoveTo: String, Identifiable, CaseIterable {
     case zone2 = "Zone 2"
     case zone3 = "Zone 3"
     case zone4 = "Zone 4"
+
+    var position: (weight: Int, indexUnit: Double) {
+        switch self {
+        case .A1:
+            return (64, -0.3)
+        case .A2:
+            return (64, -0.2)
+        case .A9:
+            return (64, -0.2)
+        case .A3:
+            return (64, -0.1)
+        case .A4:
+            return (64, -0.1)
+        case .A5:
+            return (64, 0.1)
+        case .A6:
+            return (64, 0.1)
+        case .A7:
+            return (64, 0.2)
+        case .A8:
+            return (64, 0.2)
+        case .A10:
+            return (64, 0.2)
+        case .A11:
+            return (64, 0.2)
+        case .zone1:
+            return (64, -0.2)
+        case .zone2:
+            return (64, -0.2)
+        case .zone3:
+            return (64, 0.0)
+        case .zone4:
+            return (64, 0.1)
+        }
+    }
 }
 
 enum CrewMoveFrom: String, Identifiable, CaseIterable {
@@ -57,6 +109,33 @@ enum CrewMoveFrom: String, Identifiable, CaseIterable {
     case A9 = "A9"
     case A11 = "A11"
     case A10 = "A10"
+
+    var position: (weight: Int, indexUnit: Double) {
+        switch self {
+        case .A1:
+            return (-64, 0.3)
+        case .A2:
+            return (-64, 0.2)
+        case .A9:
+            return (-64, 0.2)
+        case .A3:
+            return (-64, 0.1)
+        case .A4:
+            return (-64, 0.1)
+        case .A5:
+            return (-64, -0.1)
+        case .A6:
+            return (-64, -0.1)
+        case .A7:
+            return (-64, -0.2)
+        case .A8:
+            return (-64, -0.2)
+        case .A10:
+            return (-64, -0.2)
+        case .A11:
+            return (-64, -0.2)
+        }
+    }
 }
 
 
@@ -72,5 +151,14 @@ enum Jumpseat: String, Identifiable, CaseIterable {
         Int(self.rawValue) ?? 0
     }
 
-
+    var numbers: (weight: Int, indexUnit: Double) {
+        switch self {
+        case .none:
+            return (0,0)
+        case .one:
+            return (82, -0.4)
+        case .two:
+            return (164, -0.7)
+        }
+    }
 }

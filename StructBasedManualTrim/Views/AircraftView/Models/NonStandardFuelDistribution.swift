@@ -95,6 +95,7 @@ struct NonStandardFuelDistribution {
         }
 
     }
+
     func forCentreTank(using centreTank: Int) -> (weight: Int, indexUnit: Double) {
         var mainTank = 0
         // If fuelInCentreMessage taxiFuel is removed from centre tank
@@ -244,6 +245,7 @@ struct NonStandardFuelDistribution {
 
 
     }
+    
     func forRightTank(using rightTank: Int) -> (weight: Int, indexUnit: Double) {
         var wingTank = 0
         wingTank = (message) ? rightTank :  rightTank - 200

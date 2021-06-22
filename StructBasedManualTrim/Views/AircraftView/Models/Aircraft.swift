@@ -101,12 +101,15 @@ class Aircraft: ObservableObject {
     }
 
 // MARK:- Index Unit Methods
-//    //Standard Fuel Distribution
+   
+
+    //MARK: Standard Fuel
     var takeoffFuelIndexUnit: Double {
         let indexUnit = StandardFuelWeightIndex()
         return indexUnit.forStandardFuelDistribution(using: takeoffFuel)
     }
-    // NonStandard Fuel Distribution
+
+    // MARK: NonStandard Fuel
 
     var leftTankTakeoff: (weight: Int, indexUnit: Double) {
         let weightIndex =
@@ -139,18 +142,17 @@ class Aircraft: ObservableObject {
             + rightTankTakeoff.indexUnit
     }
 
-    // Galley
-    var galley: (weight: Int, indexUnit: Double) {
-        let weightIndex = GalleyWeightIndex()
-        let galley = weightIndex.forGalley(using: galleyConfiguration)
-        return (galley.weight, galley.indexUnit)
+    var totalAdjustment: (weight: Int, indexUnit: Double) {
+        let weight = registration.details.weight
+            + galleyConfiguration.details.weight
+            + potableWater.amount.weight
+        let indexUnit = registration.details.indexUnit
+            + galleyConfiguration.details.indexUnit
+            + potableWater.amount.indexUnit
+
+        return (weight, indexUnit)
     }
-    // Water
-    var water: (weight: Int, indexUnit: Double) {
-        let weightIndex = PotableWaterWeightIndex()
-        let water = weightIndex.forWaterLevel(using: potableWater)
-        return (water.weight, water.indexUnit)
-    }
+
 
     //MARK:- Logic Methods
 

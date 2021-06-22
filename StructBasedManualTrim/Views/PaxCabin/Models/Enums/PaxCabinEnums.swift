@@ -127,18 +127,19 @@ enum SeatingLogic: String, Identifiable {
 }
     // MARK: - Extra Seat Adjustments
 
-    enum Instrument: String, Identifiable, CaseIterable {
+enum Instrument: String, Identifiable, CaseIterable {
 
-        var id: Instrument { self }
-        case one = "1"
-        case two = "2"
-        case three = "3"
-        case four = "4"
+    var id: Instrument { self }
+    case one = "1"
+    case two = "2"
+    case three = "3"
+    case four = "4"
 
-        var weight: Int {
-          let number = Int(self.rawValue) ?? 0
-          return number * 15
-        }
+    var number: (weight:Int, indexUnit: Double) {
+        let number = Int(self.rawValue) ?? 0
+        let weight = number * 15
+        return (weight, 0)
+    }
 }
 
 enum ServiceDog: String, Identifiable, CaseIterable {

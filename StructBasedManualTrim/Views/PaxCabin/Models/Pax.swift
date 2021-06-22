@@ -305,8 +305,16 @@ class Cabin: ObservableObject {
     var totalPOB: Int {
         totalPaxNumbers + totalCrewNumber
     }
+//MARK: - Pax Zone Weight
 
-    //MARK: - Pax Zone Weight Calculations
+    var zone1Weight: Int {
+        switch jWeight {
+        case .buisness:
+            return zone1.buisnessWeight
+        case .ecconomy:
+            return zone1.ecconomyWeight
+        }
+    }
 
     var totalPaxWeight: Int {
         switch jWeight {
@@ -332,7 +340,8 @@ class Cabin: ObservableObject {
         zone.ecconomyWeight
     }
 
-    // MARK:- Weight Index Unit Calculations
+// MARK:- Weight Index Units
+
 
 // MARK: Zones
     let indexUnit = ZoneIndexUnit()
@@ -355,29 +364,36 @@ class Cabin: ObservableObject {
     var indexUnitZone4: Double {
         indexUnit.forZone2(using: zone4.ecconomyWeight)
     }
-// MARK: Cabin Crew Index
-    var cabinCrewWeightIndex: (weight: Int, indexUnit: Double) {
-        let weightIndex = CabinCrewIndex()
-       return weightIndex.forCabinCrewNumber(using: cabinCrew.number)
-    }
-// MARK: Jumpseat index
-    var jumpseatWeightIndex: (weight:Int, indexUnit:Double) {
-        let weightIndex = JumpSeatWeightIndex()
-        return weightIndex.forJumpSeat(using: jumpseat.number)
-    }
-// MARK: Extra Seat Index's
-    var instrumentWeightIndex:
-        (weight: Int, indexUnit: Double) {
 
-        // instrument has no idex units, but gets annoted in adjustments that requires and index so return 0 all weights
+    var totalPaxIndexUnit: Double {
+        return indexUnitZone1
+            + indexUnitZone2
+            + indexUnitZone3
+            + indexUnitZone4
+    }
+
+    // MARK: Cabin Crew Shift
+    var cabinCrewShift: (weight: Int, indexUnit: Double) {
+        let weight = moveFrom.position.weight
+            + moveTo.position.weight
+        let indexUnit = moveFrom.position.indexUnit
+            + moveTo.position.indexUnit
+
+        return (weight, indexUnit)
+    }
+
+    // MARK: Instrument
+
+    var instrumentNumber: (weight: Int, indexUnit: Double) {
         if instrumentOnSeat == true {
-            return  (instrument.weight, 0.0)
+            return (instrument.number.weight, instrument.number.indexUnit)
         } else {
-            return (0, 0.0)
+            return (0,0)
         }
-    }
 
-    var serviceDogWeightIndex: (weight: Int, indexUnit: Double) {
+    }
+    //MARK: Service Dog
+    var serviceDogNumber: (weight: Int, indexUnit: Double) {
 
         // Add totals to return one adjustment 
         var totalDogWeight = 0
@@ -401,8 +417,8 @@ class Cabin: ObservableObject {
         }
         return (totalDogWeight, totalDogIndexUnit)
     }
-
-    var oversizePaxWeightIndex: (weight: Int, indexUnit: Double) {
+    // MARK: Oversize Pax
+    var oversizePaxNumber: (weight: Int, indexUnit: Double) {
 
         // Add totals to return one adjustment
         var totalOversizePaxWeight = 0
@@ -425,6 +441,45 @@ class Cabin: ObservableObject {
             totalOversizePaxIndexUnit += zone4.oversizePax.indexForZone4
         }
         return (totalOversizePaxWeight, totalOversizePaxIndexUnit)
+    }
+
+    var crewAndExtraSeatAdjustment:(weight: Int, indexUnit: Double) {
+        let weight = jumpseat.numbers.weight
+        + cabinCrew.numbers.weight
+        + cabinCrewShift.weight
+        + instrumentNumber.weight
+        + serviceDogNumber.weight
+        + oversizePaxNumber.weight
+
+        let indexUnit = jumpseat.numbers.indexUnit
+        + cabinCrew.numbers.indexUnit
+        + cabinCrewShift.indexUnit
+        + instrumentNumber.indexUnit
+        + serviceDogNumber.indexUnit
+        + oversizePaxNumber.indexUnit
+
+        return (weight, indexUnit)
+
+    }
+
+    var totalAdjustment:(weight: Int, indexUnit: Double) {
+        let weight = jumpseat.numbers.weight
+        + cabinCrew.numbers.weight
+        + cabinCrewShift.weight
+        + instrumentNumber.weight
+        + serviceDogNumber.weight
+        + oversizePaxNumber.weight
+        + totalPaxWeight
+
+        let indexUnit = jumpseat.numbers.indexUnit
+            + cabinCrew.numbers.indexUnit
+            + cabinCrewShift.indexUnit
+            + instrumentNumber.indexUnit
+            + serviceDogNumber.indexUnit
+            + oversizePaxNumber.indexUnit
+            + totalPaxIndexUnit
+
+        return (weight, indexUnit)
     }
 
 // MARK: - Seating Logic

@@ -14,9 +14,9 @@ enum Registration: String, Identifiable, CaseIterable {
     case vki = "VH-VKI"
     case vkj = "VH-VKJ"
     case vkl = "VH-VKL"
-    case none = "None Selected"
+    case none = "No Selection"
 
-    var operatingWeightIndexUnit: (Int, Double) {
+    var details: (weight:Int, indexUnit: Double) {
         switch self {
         case .vkg:
             return (115841, 46.0)

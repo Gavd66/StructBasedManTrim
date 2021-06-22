@@ -413,8 +413,10 @@ class CargoHold: ObservableObject {
         bulkHold.totalWeight
     }
 
+
+
 // MARK: Index Unit Calculations
-    var returnIndex = CargoIndexUnit()
+    let returnIndex = CargoIndexUnit()
 
     var compartment1IndexUnit: Double {
         returnIndex.forCompartment1(using: compartment1TotalWeight)
@@ -430,6 +432,18 @@ class CargoHold: ObservableObject {
     }
     var compartment5IndexUnit: Double {
         returnIndex.forCompartment5(using: compartment5TotalWeight)
+    }
+
+    var totalAdjustment: (weight: Int, indexUnit: Double) {
+         let weight = forwardHoldTotalWeight
+            + aftHoldTotalWeight
+            + compartment5TotalWeight
+        let indexUnit = compartment1IndexUnit
+            + compartment2IndexUnit
+            + compartment3IndexUnit
+            + compartment4IndexUnit
+            + compartment5IndexUnit
+        return (weight, indexUnit)
     }
 
 

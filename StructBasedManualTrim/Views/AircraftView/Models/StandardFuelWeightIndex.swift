@@ -8,8 +8,6 @@
 import Foundation
 import SwiftUI
 
-// TODO:- import the fuel distribution tables and create functions to calculate the weight and index required
-
 // TODO:- Refactor cabin to use the last input enum and remove all the bools
 
 //TODO:- Refactor Underfloor to use generic models for all positions, and change the logic to show alerts and remove text as per aircraft

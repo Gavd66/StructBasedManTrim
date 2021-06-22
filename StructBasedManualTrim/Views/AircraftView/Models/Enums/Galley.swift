@@ -13,5 +13,16 @@ import Foundation
         case dom = "Domestic"
         case empty = "Nil Cater"
         case nilCarts = "No Carts"
+
+        var details:(weight: Int, indexUnit: Double) {
+            switch self {
+            case .dom:
+                return (0,0)
+            case .empty:
+                return (-871, -0.3)
+            case .nilCarts:
+                return (-1398, -0.4)
+            }
+        }
     }
 

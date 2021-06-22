@@ -25,13 +25,20 @@ struct AircraftView: View {
                         RegistrationView()
                     }
                 }
-                Section(header: Text("Galley Configuration")
-                            .foregroundColor(.primary)) {
-                    GalleyConfigurationView()
-                }
-                Section(header: Text("Potable Water")
-                            .foregroundColor(.primary)) {
-                    PotableWaterView()
+                Group { // Weight Group
+                    Section(header: Text("Galley Configuration")
+                                .foregroundColor(.primary)) {
+                        GalleyConfigurationView()
+                    }
+                    Section(header: Text("Potable Water")
+                                .foregroundColor(.primary)) {
+                        PotableWaterView()
+                    }
+                    Section(header: Text("Operating Weights")
+                                .foregroundColor(.primary)) {
+                        OperatingWeightView()
+                    }
+
                 }
                 Group { // Fuel Group
                     Section(header: Text("Fuel on EICAS")
