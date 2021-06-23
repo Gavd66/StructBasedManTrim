@@ -9,8 +9,7 @@ import SwiftUI
 
 struct JChild: View {
 
-  //  @EnvironmentObject  var cabin: Cabin
-    var boundTo: Binding<Pax>
+  
     var zone: Pax
 
     var body: some View {
