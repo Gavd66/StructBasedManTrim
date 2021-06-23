@@ -12,7 +12,7 @@ struct Zone4View: View {
     @EnvironmentObject var cabin: Cabin
 
     var body: some View {
-        YModel(cabin: _cabin, zoneNumber: 4, bindingZone: $cabin.zone4, zone: cabin.zone4)
+        YModel(cabin: cabin, zoneNumber: 4, bindingZone: $cabin.zone4, zone: cabin.zone4)
     }
 }
 

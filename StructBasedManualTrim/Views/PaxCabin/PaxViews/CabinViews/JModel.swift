@@ -9,11 +9,11 @@ import SwiftUI
 
 struct JModel: View {
 
-    @EnvironmentObject  var cabin: Cabin
+    var cabin: Cabin
     var number: Int
     var bindingZone: Binding<Pax>
     var zone: Pax
-   
+    
     var body: some View {
 
         //MARK:- Zone 1
@@ -72,7 +72,7 @@ struct JModel: View {
     }
 
     func dismissCabinKeyBoard(_ paxInCabin: PaxLoadedStatus) {
-        if cabin.zone2.hideKeyboard {
+        if zone.hideKeyboard {
             hideKeyboard()
         }
     }

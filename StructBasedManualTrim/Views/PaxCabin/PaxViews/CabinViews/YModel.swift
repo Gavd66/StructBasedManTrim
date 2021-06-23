@@ -9,7 +9,7 @@ import SwiftUI
 
 struct YModel: View {
 
-    @EnvironmentObject  var cabin: Cabin
+    var cabin: Cabin
     var zoneNumber: Int
     var bindingZone: Binding<Pax>
     var zone: Pax
