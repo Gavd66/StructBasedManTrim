@@ -73,7 +73,7 @@ class MainHold {
     var hasBagsInRight = false
     var hasCargoInLeft = false
     var hasCargoInRight = false
-    var hasCargoInPosition = false
+    var hasCargoInNumberOnly = false
     var hasCargoInPapa = false
     var hideKeyboard = false
 
@@ -122,7 +122,7 @@ class MainHold {
         case .leftAndRight:
             cargoStringWeight = ""
             cargoPapaStringWeight = ""
-            hasCargoInPosition = false
+            hasCargoInNumberOnly = false
             hasCargoInPapa = false
             hideKeyboard = true
 
@@ -143,7 +143,7 @@ class MainHold {
 
         case .numberPapa:
             cargoStringWeight = ""
-            hasCargoInPosition = false
+            hasCargoInNumberOnly = false
             bagCountLeft = ""
             cargoLeft = ""
             bagCountRight = ""
@@ -215,7 +215,7 @@ class MainHold {
     }
 
     func updateCargoLabel(_ cargoWeight: String) {
-        hasCargoInPosition = (cargoStringWeight == "") ? false: true
+        hasCargoInNumberOnly = (cargoStringWeight == "") ? false: true
     }
 
     func updateCargoPapaLabel(_ cargoPapaWeight: String) {

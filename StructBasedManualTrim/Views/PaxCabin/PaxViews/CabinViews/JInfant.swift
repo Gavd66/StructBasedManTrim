@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JInfant: View {
     
-    @EnvironmentObject  var cabin: Cabin
+  //  @EnvironmentObject  var cabin: Cabin
     var boundTo: Binding<Pax>
     var zone: Pax
     

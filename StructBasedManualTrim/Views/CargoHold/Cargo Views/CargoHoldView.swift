@@ -12,12 +12,12 @@ import SwiftUI
 struct CargoHoldView: View {
    // @ObservedObject var cargoHold: CargoHold
 
-    @EnvironmentObject var cargoHold: CargoHold
+    @EnvironmentObject var cargo: CargoHold
     //Haptic for overweight condition. Prewarm engine as each View Appears
     @State private var feedBack = UINotificationFeedbackGenerator()
 
     var total: Text {
-        Text("\(cargoHold.overWeightAmount)")
+        Text("\(cargo.overWeightAmount)")
     }
 
     var body: some View {
@@ -42,9 +42,9 @@ struct CargoHoldView: View {
                 .onAppear(perform: feedBack.prepare)
                 // Weight Validations against limits
                 // Modifier order matters, check individual limits first
-                .onChange(of: cargoHold.compartment1TotalWeight, perform: cargoHold.checkCompartment1Weight)
-                .onChange(of: cargoHold.forwardHoldTotalWeight, perform: cargoHold.checkForwardHoldWeight)
-                .allowsHitTesting(cargoHold.compartment1Enabled)
+                .onChange(of: cargo.compartment1TotalWeight, perform: cargo.checkCompartment1Weight)
+                .onChange(of: cargo.forwardHoldTotalWeight, perform: cargo.checkForwardHoldWeight)
+                .allowsHitTesting(cargo.compartment1Enabled)
 
                 Section(header: Text("Compartment 2").foregroundColor(.primary)) {
                     Position21View()
@@ -57,9 +57,9 @@ struct CargoHoldView: View {
                     Spacer()
                 }
                 .onAppear(perform: feedBack.prepare)
-                .onChange(of: cargoHold.compartment2TotalWeight, perform: cargoHold.checkCompartment2Weight)
-                .onChange(of: cargoHold.forwardHoldTotalWeight, perform: cargoHold.checkForwardHoldWeight)
-                .allowsHitTesting(cargoHold.compartment2Enabled)
+                .onChange(of: cargo.compartment2TotalWeight, perform: cargo.checkCompartment2Weight)
+                .onChange(of: cargo.forwardHoldTotalWeight, perform: cargo.checkForwardHoldWeight)
+                .allowsHitTesting(cargo.compartment2Enabled)
 
                 Section(header: Text("Forward Hold Totals").foregroundColor(.primary)) {
                     ForwardHoldTotalsView()
@@ -74,9 +74,9 @@ struct CargoHoldView: View {
                     Spacer()
                 }
                 .onAppear(perform: feedBack.prepare)
-                .onChange(of: cargoHold.compartment3TotalWeight, perform: cargoHold.checkCompartment3Weight)
-                .onChange(of: cargoHold.aftHoldTotalWeight, perform: cargoHold.checkAftHoldWeight)
-                .allowsHitTesting(cargoHold.compartment3Enabled)
+                .onChange(of: cargo.compartment3TotalWeight, perform: cargo.checkCompartment3Weight)
+                .onChange(of: cargo.aftHoldTotalWeight, perform: cargo.checkAftHoldWeight)
+                .allowsHitTesting(cargo.compartment3Enabled)
 
                 Section(header: Text("Compartment 4").foregroundColor(.primary)) {
                     Position41View()
@@ -87,9 +87,9 @@ struct CargoHoldView: View {
                     Spacer()
                 }
                 .onAppear(perform: feedBack.prepare)
-                .onChange(of: cargoHold.compartment4TotalWeight, perform: cargoHold.checkCompartment4Weight)
-                .onChange(of: cargoHold.aftHoldTotalWeight, perform: cargoHold.checkAftHoldWeight)
-                .allowsHitTesting(cargoHold.compartment4Enabled)
+                .onChange(of: cargo.compartment4TotalWeight, perform: cargo.checkCompartment4Weight)
+                .onChange(of: cargo.aftHoldTotalWeight, perform: cargo.checkAftHoldWeight)
+                .allowsHitTesting(cargo.compartment4Enabled)
 
                 Section(header: Text("Aft Hold Totals").foregroundColor(.primary)) {
                     AftHoldTotalsView()
@@ -100,8 +100,8 @@ struct CargoHoldView: View {
                     BulkView()
                 }
                 .onAppear(perform: feedBack.prepare)
-                .onChange(of: cargoHold.compartment5TotalWeight, perform: cargoHold.checkCompartment5Weight)
-                .allowsHitTesting(cargoHold.compartment5Enabled)
+                .onChange(of: cargo.compartment5TotalWeight, perform: cargo.checkCompartment5Weight)
+                .allowsHitTesting(cargo.compartment5Enabled)
 
                 Section(header: Text("Bulk Hold Totals").foregroundColor(.primary)) {
                     BulkHoldTotalView()
@@ -109,15 +109,15 @@ struct CargoHoldView: View {
                 .onAppear(perform: feedBack.prepare)
             }
             .navigationBarTitle("Cargo Hold")
-            .navigationBarItems(trailing: Button(action: cargoHold.resetCargoToEmpty) {
+            .navigationBarItems(trailing: Button(action: cargo.resetCargoToEmpty) {
                 Image(systemName: "trash")
                     .font(.system(size: 30))
                     .foregroundColor(.accentColor)
                     .padding()
             })
-            .alert(item: $cargoHold.overWeightAlert) { weighAlert in
+            .alert(item: $cargo.overWeightAlert) { weighAlert in
                 self.feedBack.notificationOccurred(.error)
-                switch cargoHold.overWeightAlert {
+                switch cargo.overWeightAlert {
                 case .compartment1:
                     return Alert(
                         title: Text("Compartment 1 Overweight"),

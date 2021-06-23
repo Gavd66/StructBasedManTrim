@@ -55,7 +55,7 @@ struct YModel: View {
     }
     
     func dismissCabinKeyBoard(_ paxInCabin: PaxLoadedStatus) {
-        if cabin.zone2.hideKeyboard {
+        if zone.hideKeyboard {
             hideKeyboard()
         }
     }

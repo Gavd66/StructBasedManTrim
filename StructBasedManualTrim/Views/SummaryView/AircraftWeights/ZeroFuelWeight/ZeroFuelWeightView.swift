@@ -12,6 +12,7 @@ struct ZeroFuelWeightView: View {
     @EnvironmentObject var cargoHold: CargoHold
     @EnvironmentObject var cabin: Cabin
     @EnvironmentObject var aircraft: Aircraft
+    var zfwOverweight = false
 
     var zeroFuel: (weight: Int, indexUnti: Double) {
         let weight = aircraft.totalAdjustment.weight
@@ -24,6 +25,8 @@ struct ZeroFuelWeightView: View {
         return (weight, indexUnit)
     }
 
+
+
     var body: some View {
         WeightIndexFormatView(
             title: "\(aircraft.registration.rawValue)",
@@ -31,6 +34,8 @@ struct ZeroFuelWeightView: View {
             indexUnit: zeroFuel.indexUnti)
     }
 }
+
+
 
 struct ZeroFuelWeightView_Previews: PreviewProvider {
     static var previews: some View {
