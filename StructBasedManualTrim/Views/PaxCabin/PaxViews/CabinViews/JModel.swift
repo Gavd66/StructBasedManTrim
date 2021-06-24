@@ -58,7 +58,7 @@ struct JModel: View {
             //MARK:- Children
 
                 if cabin.jWeight == .buisness {
-                    JChild(boundTo: bindingZone, zone: zone)
+                    JChild(zone: zone, boundTo: bindingZone)
 
                 } else {
                     YChild(boundTo: bindingZone, zone: zone)
