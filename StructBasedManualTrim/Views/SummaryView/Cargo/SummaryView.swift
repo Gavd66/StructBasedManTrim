@@ -9,11 +9,10 @@ import SwiftUI
 
 struct SummaryView: View {
 
-    @EnvironmentObject var cargoHold: CargoHold
+    @EnvironmentObject var cargo: CargoHold
     @EnvironmentObject var cabin: Cabin
     @EnvironmentObject var aircraft: Aircraft
     
-
     var body: some View {
         NavigationView {
             Form {
@@ -46,12 +45,29 @@ struct SummaryView: View {
 
                 } // Cargo Cabin Group
 
-                Section(header: Text("Zero Fuel Weight")
-                            .foregroundColor(.primary)) {
-                    ZeroFuelWeightView()
+                Group { // Limit Weight Group
+                    Section(header: Text("Zero Fuel Weight")
+                                .foregroundColor(.primary)) {
+                        ZeroFuelWeightView()
+                    }
+
+                    Section(header: Text("TaxiWeight")
+                                .foregroundColor(.primary)) {
+                        TaxiWeightView()
+                    }
+
+                    Section(header: Text("Takeoff Weight")
+                                .foregroundColor(.primary)) {
+                        TakeoffWeightView()
+                    }
+
+                    Section(header: Text("Landing Weight")
+                                .foregroundColor(.primary)) {
+                        LandingWeightView()
+                    }
                 }
-            }
-        
+            } // EndForm
+
         }
     }
 }

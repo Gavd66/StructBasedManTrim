@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class Aircraft: ObservableObject {
-
     @Published var registration = Registration.none
     @Published var galleyConfiguration = GalleyConfiguration.dom
     @Published var leftTankStringNumber = "" {

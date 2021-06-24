@@ -9,29 +9,20 @@ import SwiftUI
 
 struct ZeroFuelWeightView: View {
 
-    @EnvironmentObject var cargoHold: CargoHold
+    @EnvironmentObject var cargo: CargoHold
     @EnvironmentObject var cabin: Cabin
     @EnvironmentObject var aircraft: Aircraft
-    var zfwOverweight = false
-
-    var zeroFuel: (weight: Int, indexUnti: Double) {
-        let weight = aircraft.totalAdjustment.weight
-            + cargoHold.totalAdjustment.weight
-            + cabin.totalAdjustment.weight
-        let indexUnit = aircraft.totalAdjustment.indexUnit
-            + cargoHold.totalAdjustment.indexUnit
-            + cabin.totalAdjustment.indexUnit
-
-        return (weight, indexUnit)
+    
+    var jet: Jet {
+         Jet(cargo: cargo, cabin: cabin, aircraft: aircraft)
     }
 
-
-
     var body: some View {
-        WeightIndexFormatView(
-            title: "\(aircraft.registration.rawValue)",
-            weightType: zeroFuel.weight,
-            indexUnit: zeroFuel.indexUnti)
+
+        HighlightView(
+            title: "\(jet.aircraft.registration.rawValue)",
+            weightType: jet.zeroFuel.weight,
+            indexUnit: jet.zeroFuel.indexUntit)
     }
 }
 

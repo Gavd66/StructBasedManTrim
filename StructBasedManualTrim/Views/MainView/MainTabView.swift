@@ -12,7 +12,6 @@ struct MainTabView: View {
     @StateObject var cabin = Cabin()
     @StateObject var aircraft = Aircraft()
 
-
     var body: some View {
         TabView {
 
@@ -39,13 +38,10 @@ struct MainTabView: View {
                     Image(systemName: "note.text")
                     Text("Manual Chart")
                 }
-
         }
         .environmentObject(cargo)
         .environmentObject(cabin)
         .environmentObject(aircraft)
-
-
 
     }
 }

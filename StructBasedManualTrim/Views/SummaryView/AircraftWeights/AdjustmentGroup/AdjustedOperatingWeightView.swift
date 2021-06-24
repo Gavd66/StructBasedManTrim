@@ -22,6 +22,7 @@ struct AdjustedOperatingWeightView: View {
         return ( weight, indexUnit)
     }
 
+
     var body: some View {
         WeightIndexFormatView(
             title: aircraft.registration.rawValue,
