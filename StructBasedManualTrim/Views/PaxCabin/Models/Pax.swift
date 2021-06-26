@@ -595,12 +595,14 @@ class Cabin: ObservableObject {
     //MARK:- Cabin Reset
     func resetCabin() {
         withAnimation {
-        zone1 = Pax.init()
-        zone2 = Pax.init()
-        zone3 = Pax.init()
-        zone4 = Pax.init()
-        jumpseat = Jumpseat.none
-        cabinCrew = CabinCrew.zero
+            zone1 = Pax.init()
+            zone2 = Pax.init()
+            zone3 = Pax.init()
+            zone4 = Pax.init()
+            jumpseat = Jumpseat.none
+            cabinCrew = CabinCrew.zero
+            extraSeatAdjustment = false
+            moveCabinCrew = false
         }
     }
 }
