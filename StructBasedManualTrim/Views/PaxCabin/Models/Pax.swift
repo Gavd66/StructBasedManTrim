@@ -463,20 +463,10 @@ class Cabin: ObservableObject {
     }
 
     var totalAdjustment:(weight: Int, indexUnit: Double) {
-        let weight = jumpseat.numbers.weight
-        + cabinCrew.numbers.weight
-        + cabinCrewShift.weight
-        + instrumentNumber.weight
-        + serviceDogNumber.weight
-        + oversizePaxNumber.weight
-        + totalPaxWeight
+        let weight = crewAndExtraSeatAdjustment.weight
+            + totalPaxWeight
 
-        let indexUnit = jumpseat.numbers.indexUnit
-            + cabinCrew.numbers.indexUnit
-            + cabinCrewShift.indexUnit
-            + instrumentNumber.indexUnit
-            + serviceDogNumber.indexUnit
-            + oversizePaxNumber.indexUnit
+        let indexUnit =  crewAndExtraSeatAdjustment.indexUnit
             + totalPaxIndexUnit
 
         return (weight, indexUnit)

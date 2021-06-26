@@ -57,9 +57,8 @@ struct ZoneIndexUnit {
             return -6.8
         case 2100...2121:
             return -7.0
-
         default:
-            return 3.0
+            return 0.0
         }
     }
     // MARK:- Zone 2

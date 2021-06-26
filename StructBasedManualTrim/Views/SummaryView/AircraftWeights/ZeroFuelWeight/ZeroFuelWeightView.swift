@@ -5,7 +5,7 @@
 //  Created by Gavin Dorward on 22/6/21.
 //
 
-import SwiftUI
+import SwiftUI // INdex unit error.....
 
 struct ZeroFuelWeightView: View {
 
@@ -22,7 +22,7 @@ struct ZeroFuelWeightView: View {
         HighlightView(
             title: "\(jet.aircraft.registration.rawValue)",
             weightType: jet.zeroFuel.weight,
-            indexUnit: jet.zeroFuel.indexUntit)
+            indexUnit: jet.zeroFuel.indexUnit)
     }
 }
 

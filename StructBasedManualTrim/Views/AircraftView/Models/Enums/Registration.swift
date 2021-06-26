@@ -14,7 +14,7 @@ enum Registration: String, Identifiable, CaseIterable {
     case vki = "VH-VKI"
     case vkj = "VH-VKJ"
     case vkl = "VH-VKL"
-    case none = "No Selection"
+    case none = "Rego Not Set"
 
     var details: (weight:Int, indexUnit: Double) {
         switch self {

@@ -19,13 +19,24 @@ struct TakeoffWeightView: View {
     var body: some View {
         WeightOnlyView(title: "Taxi Fuel",
                        weightType: 400)
+        if aircraft.nonStandardFuelDistribution {
+            WeightIndexFormatView(title: "Left Tank TakeOff Fuel",
+                                  weightType: aircraft.leftTankTakeoff.weight,
+                                  indexUnit: aircraft.leftTankTakeoff.indexUnit)
+            WeightIndexFormatView(title: "Centre Tank Takeoff Fuel",
+                                  weightType: aircraft.centreTankTakeoff.weight,
+                                  indexUnit: aircraft.centreTankTakeoff.indexUnit)
+            WeightIndexFormatView(title: "Right Tank Takeoff Fuel",
+                                  weightType: aircraft.rightTankTakeoff.weight,
+                                  indexUnit: aircraft.rightTankTakeoff.indexUnit)
+        }
         WeightIndexFormatView(title: "Takeoff Fuel",
-                              weightType: jet.aircraft.takeoffFuel,
-                              indexUnit: jet.aircraft.takeoffFuelIndexUnit)
-                HighlightView(title: "Takeoff Weight",
-                              weightType: jet.takeoff.weight,
-                              indexUnit: jet.takeoff.indexUnit)
-            
+                              weightType: jet.takeoffFuel.weight,
+                              indexUnit: jet.takeoffFuel.indexUnit)
+        HighlightView(title: "Takeoff Weight",
+                      weightType: jet.takeoff.weight,
+                      indexUnit: jet.takeoff.indexUnit)
+
     }
 }
 

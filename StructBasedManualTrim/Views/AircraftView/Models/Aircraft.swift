@@ -45,7 +45,18 @@ class Aircraft: ObservableObject {
     @Published var fuelBurnEntered = false
     @Published var fuelError: FuelError?
     @Published var lastInput = LastInput.leftTank
-    @Published var nonStandardFuelDistribution = false
+    @Published var nonStandardFuelDistribution = false {
+        didSet {
+            objectWillChange.send()
+            if nonStandardFuelDistribution == true {
+                fuelDistribution = .nonStandard
+            } else {
+                fuelDistribution = .standard
+            }
+
+        }
+    }
+    @Published var fuelDistribution = FuelDistribution.standard
     @Published var fuelInCentreMessage = false
     @Published var potableWater = PotableWater.from284Litres
 

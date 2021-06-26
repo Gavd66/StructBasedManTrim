@@ -62,3 +62,9 @@ enum LastInput: Identifiable {
     case rightTank
     case fuelBurn
 }
+
+enum FuelDistribution: Identifiable {
+    var id: FuelDistribution { self }
+    case nonStandard
+    case standard
+}

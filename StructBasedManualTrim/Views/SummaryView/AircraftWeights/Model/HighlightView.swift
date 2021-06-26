@@ -19,11 +19,12 @@ struct HighlightView: View {
                 .bold()
             HStack {
                 Text("\(weightType) kg")
-                    .capsuleStyle()
+                    .weightCapsule()
+                  
 
                 Spacer()
                 Text("\(indexUnit, specifier: "%.1f") IU")
-                    .capsuleStyle()
+                    .weightCapsule()
             }
         }
         .loadedStyle()

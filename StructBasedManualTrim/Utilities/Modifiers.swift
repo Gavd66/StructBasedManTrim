@@ -88,3 +88,25 @@ struct POB: ViewModifier {
     }
 }
 
+struct weightCapsule: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .layoutPriority(1)
+            .font(.system(size: 40))
+            .padding([.leading, .trailing], 10)
+            .padding([.top,.bottom], 5)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray, lineWidth: 1)
+                    .shadow(radius: 3)
+
+            )
+
+            .foregroundColor(.accentColor)
+
+            .padding(.bottom, 3)
+            .transition(.scale)
+    }
+}
+

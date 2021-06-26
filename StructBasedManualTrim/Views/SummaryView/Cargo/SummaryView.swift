@@ -46,7 +46,7 @@ struct SummaryView: View {
                 } // Cargo Cabin Group
 
                 Group { // Limit Weight Group
-                    Section(header: Text("Zero Fuel Weight")
+                    Section(header: Text("Zero Fuel Weight and Index")
                                 .foregroundColor(.primary)) {
                         ZeroFuelWeightView()
                     }
@@ -56,7 +56,7 @@ struct SummaryView: View {
                         TaxiWeightView()
                     }
 
-                    Section(header: Text("Takeoff Weight")
+                    Section(header: Text("Takeoff Weight and Index")
                                 .foregroundColor(.primary)) {
                         TakeoffWeightView()
                     }
@@ -67,6 +67,7 @@ struct SummaryView: View {
                     }
                 }
             } // EndForm
+            .navigationTitle("Summary")
 
         }
     }
