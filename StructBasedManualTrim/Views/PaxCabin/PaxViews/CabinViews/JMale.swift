@@ -9,7 +9,6 @@ import SwiftUI
 
 struct JMale: View {
 
-   
     var boundTo: Binding<Pax>
     var zone: Pax
 
@@ -26,24 +25,16 @@ struct JMale: View {
                 }
                 .capsuleStyle()
 
-                TextField("0 x \(PaxWeight.jMale.weight) kg", text: boundTo.maleStringNumber
-                            .animation()
-                            .onChange(
-                                withAnimation(.default) {
-                                    zone.updateMaleLables
-                                }
-                            ))
+                TextField("0 x \(PaxWeight.jMale.weight) kg", text: boundTo.maleStringNumber.animation())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
                 if zone.hasMalesInZone {
                     Text("\(zone.jMaleWeight) kg")
                         .loadedStyle()
-                        .animation(.default)
                 } else {
                     Text("0 kg ")
                         .emptyStyle()
-                        .animation(.default)
                 }
             }
             .font(.system(size: 18))

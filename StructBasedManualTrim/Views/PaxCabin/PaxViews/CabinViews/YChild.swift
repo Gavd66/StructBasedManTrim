@@ -22,20 +22,13 @@ struct YChild: View {
                     if zone.hasChildrenInZone {
                         Text("\(HasChildren.some.rawValue)")
                             .loadedStyle()
-                            .capsuleStyle()
                     } else {
                         Text("\(HasChildren.none.rawValue)")
                             .emptyStyle()
-                            .capsuleStyle()
                     }
                 }
-                TextField("0 x \(PaxWeight.yChild.weight) kg", text: boundTo.childrenStringNumber
-                            .animation()
-                            .onChange(
-                                withAnimation(.default) {
-                                    zone.updateChildLables
-                                }
-                            ))
+                .capsuleStyle()
+                TextField("0 x \(PaxWeight.yChild.weight) kg", text: boundTo.childStringNumber.animation())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 

@@ -43,8 +43,13 @@ enum PaxWeight: Identifiable {
             return 16
         }
     }
-
-
+}
+enum LastSelection: Identifiable {
+    var id: LastSelection { self }
+    case male
+    case female
+    case child
+    case infant
 }
 // MARK: Pax LoadedStatus Enums
 enum PaxLoadedStatus: String, Identifiable, CaseIterable {

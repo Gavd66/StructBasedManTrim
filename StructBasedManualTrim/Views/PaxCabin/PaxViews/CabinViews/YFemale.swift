@@ -22,21 +22,14 @@ struct YFemale: View {
                     if zone.hasFemalesInZone {
                         Text("\(HasFemales.some.rawValue)")
                             .loadedStyle()
-                            .capsuleStyle()
                     } else {
                         Text("\(HasFemales.none.rawValue)")
                             .emptyStyle()
-                            .capsuleStyle()
                     }
                 }
+                .capsuleStyle()
                 
-                TextField("0 x \(PaxWeight.yFemale.weight) kg", text: boundTo.femaleStringNumber
-                            .animation()
-                            .onChange(
-                                withAnimation(.default) {
-                                    zone.updateFemaleLables
-                                }
-                            ))
+                TextField("0 x \(PaxWeight.yFemale.weight) kg", text: boundTo.femaleStringNumber.animation())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 

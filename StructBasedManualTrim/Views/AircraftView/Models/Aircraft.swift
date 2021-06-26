@@ -191,7 +191,7 @@ class Aircraft: ObservableObject {
 
     func checkForFuelError(_ fuelInput: Int)  {
         fuelError = .none // Start with no error, only set if true
-
+        // fuel values are as per OM5D fuel index tables max value
         switch lastInput {
         case .leftTank:
             if fuelInput > 17711 {
