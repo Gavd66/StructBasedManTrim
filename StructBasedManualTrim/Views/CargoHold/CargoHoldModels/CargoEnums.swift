@@ -55,3 +55,37 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
     }
 }
 
+//MARK:- Enum Underfloor
+
+enum Underfloor: Identifiable {
+    var id: Underfloor { self }
+
+    case compartment1
+    case compartment2
+    case compartment3
+    case compartment4
+    case compartment5
+    case forwardHold
+    case aftHold
+
+    var limitWeight: Int {
+        switch self {
+        case .compartment1:
+            return 15306
+        case .compartment2:
+            return 12700
+        case .compartment3:
+            return 10771
+        case .compartment4:
+            return 9525
+        case .compartment5:
+            return 2735
+        case .forwardHold:
+            return 25514
+        case .aftHold:
+            return 19132
+        }
+    }
+// if didn't need computed property for overweight amount then could also make entire alert here and call on one line as per https://www.hackingwithswift.com/books/ios-swiftui/binding-an-alert-to-an-optional-string
+}
+
