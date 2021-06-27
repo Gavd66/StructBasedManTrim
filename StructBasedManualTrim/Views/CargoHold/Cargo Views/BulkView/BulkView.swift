@@ -15,7 +15,7 @@ struct BulkView: View {
         Group {
             HStack {
                 Button(action: hideKeyboard) {
-                    if cargoHold.bulkHold.hasItemsLoaded {
+                    if cargoHold.bulkHold.itemWeight != 0 {
                         Text("\(position) Items:")
                             .loadedStyle()
                     } else {
@@ -26,12 +26,10 @@ struct BulkView: View {
                 .capsuleStyle()
 
                 TextField("0 Items", text: $cargoHold.bulkHold.itemStringCount
-                            .animation()
-                            .onChange(cargoHold.bulkHold.updateItemLabels))
+                            .animation())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
-
-                if cargoHold.bulkHold.hasItemsLoaded {
+                if cargoHold.bulkHold.itemWeight != 0 {
                     Text("\(cargoHold.bulkHold.itemWeight) kg")
                         .loadedStyle()
                 } else {
@@ -43,7 +41,7 @@ struct BulkView: View {
 
             HStack {
                 Button(action: hideKeyboard) {
-                    if cargoHold.bulkHold.hasCargoLoaded {
+                    if cargoHold.bulkHold.cargoWeight != 0 {
                         Text("\(position) Cargo")
                             .loadedStyle()
                     } else {
@@ -54,12 +52,10 @@ struct BulkView: View {
                 .capsuleStyle()
 
                 TextField("0 kg", text: $cargoHold.bulkHold.cargoStringWeight
-                            .animation()
-                            .onChange(cargoHold.bulkHold.updateCargoLabels))
+                            .animation())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
-
-                if cargoHold.bulkHold.hasCargoLoaded {
+                if cargoHold.bulkHold.cargoWeight != 0 {
                     Text("kg")
                         .loadedStyle()
                 } else {

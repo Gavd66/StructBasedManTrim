@@ -10,8 +10,6 @@ import Foundation
 class BulkHold {
     var itemStringCount = ""
     var cargoStringWeight = ""
-    var hasItemsLoaded = false
-    var hasCargoLoaded = false
 
     func resetBulkToEmpty() {
         itemStringCount = ""
@@ -29,16 +27,7 @@ class BulkHold {
     var itemWeight: Int {
         bagCount * 18
     }
-
     var totalWeight: Int {
         itemWeight + cargoWeight
-    }
-
-    func updateItemLabels(_ itemLabel: String) {
-        hasItemsLoaded = (itemStringCount == "") ? false: true
-    }
-
-    func updateCargoLabels(_ cargoLabel: String) {
-        hasCargoLoaded = (cargoStringWeight == "") ? false: true
     }
 }

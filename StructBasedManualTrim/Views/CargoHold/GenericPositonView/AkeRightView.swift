@@ -16,7 +16,7 @@ struct AkeRightView: View {
     var body: some View {
         HStack {
             Button(action: hideKeyboard) {
-                if mainHoldInstance.hasBagsInRight {
+                if mainHoldInstance.bagWeightRight != 0 {
                     Text("\(position)R Bags")
                         .loadedStyle()
                         .capsuleStyle()
@@ -28,16 +28,10 @@ struct AkeRightView: View {
             }
 
             TextField("0 Bags", text: bindingMainHoldInstance.bagCountRight
-                        .animation()
-                        .onChange(
-                            withAnimation(.easeIn(duration: 2)) {
-                                mainHoldInstance.updateRightLabels
-                            }
-                        ))
+                        .animation())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
-
-            if mainHoldInstance.hasBagsInRight {
+            if mainHoldInstance.bagWeightRight != 0 {
                 Text("\(mainHoldInstance.bagWeightRight) kg")
                     .loadedStyle()
             } else {

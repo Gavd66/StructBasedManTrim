@@ -18,15 +18,7 @@ class MainHold {
     var cargoRight = ""
     var left: Ake = .nilFit
     var right: Ake = .nilFit
-    var hasBagsInLeft = false
-    var hasBagsInRight = false
-    var hasCargoInLeft = false
-    var hasCargoInRight = false
-    var hasCargoInNumberOnly = false
-    var hasCargoInPapa = false
     var hideKeyboard = false
-
-
 
     //MARK:- Weight Calculations
     var bagWeightLeft: Int {
@@ -71,38 +63,26 @@ class MainHold {
         case .leftAndRight:
             cargoStringWeight = ""
             cargoPapaStringWeight = ""
-            hasCargoInNumberOnly = false
-            hasCargoInPapa = false
             hideKeyboard = true
 
         case .numberOnly:
             cargoPapaStringWeight = ""
-            hasCargoInPapa = false
             bagCountLeft = ""
             cargoLeft = ""
             bagCountRight = ""
             cargoRight = ""
             left = .nilFit
             right = .nilFit
-            hasBagsInLeft = false
-            hasBagsInRight = false
-            hasCargoInLeft = false
-            hasCargoInRight = false
             hideKeyboard = true
 
         case .numberPapa:
             cargoStringWeight = ""
-            hasCargoInNumberOnly = false
             bagCountLeft = ""
             cargoLeft = ""
             bagCountRight = ""
             cargoRight = ""
             left = .nilFit
             right = .nilFit
-            hasBagsInLeft = false
-            hasBagsInRight = false
-            hasCargoInLeft = false
-            hasCargoInRight = false
             hideKeyboard = true
         }
     }
@@ -112,16 +92,12 @@ class MainHold {
         case .nilFit:
             cargoLeft = ""
             bagCountLeft = ""
-            hasBagsInLeft = false
-            hasCargoInLeft = false
             hideKeyboard = true
         case .ake:
             cargoLeft = ""
-            hasCargoInLeft = false
             hideKeyboard = true
         case .cargo:
             bagCountLeft = ""
-            hasBagsInLeft = false
             hideKeyboard = true
         }
     }
@@ -131,43 +107,12 @@ class MainHold {
         case .nilFit:
             cargoRight = ""
             bagCountRight = ""
-            hasBagsInRight = false
-            hasCargoInRight = false
         case .ake:
             cargoRight = ""
-            hasCargoInRight = false
             hideKeyboard = true
         case .cargo:
             bagCountRight = ""
-            hasBagsInRight = false
             hideKeyboard = true
         }
-    }
-
-    // MARK:- Label functions
-    // Set the bool condition to enable change in display between nil value text( black) and value text(blue)
-
-    func updateLeftLabels(_ bagCount: String) {
-        hasBagsInLeft = (bagCount == "") ? false: true
-    }
-
-    func updateRightLabels(_ bagCount: String) {
-        hasBagsInRight = (bagCount == "") ? false: true
-    }
-
-    func updateCargoRightLabels(_ cargoRight: String) {
-        hasCargoInLeft = (cargoLeft == "") ? false: true
-    }
-
-    func updateCargoLeftLabels(_ cargoLeft: String) {
-        hasCargoInRight = (cargoRight == "") ? false: true
-    }
-
-    func updateCargoLabel(_ cargoWeight: String) {
-        hasCargoInNumberOnly = (cargoStringWeight == "") ? false: true
-    }
-
-    func updateCargoPapaLabel(_ cargoPapaWeight: String) {
-        hasCargoInPapa = (cargoPapaStringWeight == "") ? false: true
     }
 }

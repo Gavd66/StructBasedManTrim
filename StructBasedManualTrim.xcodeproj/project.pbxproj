@@ -72,8 +72,8 @@
 		527D236526800C68003926E6 /* NoRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D236426800C68003926E6 /* NoRegistrationView.swift */; };
 		527D236826801CC0003926E6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D236726801CC0003926E6 /* SummaryView.swift */; };
 		527D236C26806E6E003926E6 /* WeightIndexFormatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D236B26806E6E003926E6 /* WeightIndexFormatView.swift */; };
-		527D4EC826829947008FDB9E /* NumberPapaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D4EC726829947008FDB9E /* NumberPapaView.swift */; };
-		527D4ECA26829F61008FDB9E /* NumberOnlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D4EC926829F61008FDB9E /* NumberOnlyView.swift */; };
+		527D4EC826829947008FDB9E /* CargoPapaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D4EC726829947008FDB9E /* CargoPapaView.swift */; };
+		527D4ECA26829F61008FDB9E /* CargoNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D4EC926829F61008FDB9E /* CargoNumberView.swift */; };
 		527D4ECE2682A503008FDB9E /* AkeLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D4ECD2682A503008FDB9E /* AkeLeftView.swift */; };
 		527D4ED02682A5A2008FDB9E /* AkeRightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D4ECF2682A5A2008FDB9E /* AkeRightView.swift */; };
 		527D4ED22682A6A1008FDB9E /* CargoLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D4ED12682A6A1008FDB9E /* CargoLeftView.swift */; };
@@ -180,8 +180,8 @@
 		527D236426800C68003926E6 /* NoRegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRegistrationView.swift; sourceTree = "<group>"; };
 		527D236726801CC0003926E6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		527D236B26806E6E003926E6 /* WeightIndexFormatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightIndexFormatView.swift; sourceTree = "<group>"; };
-		527D4EC726829947008FDB9E /* NumberPapaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPapaView.swift; sourceTree = "<group>"; };
-		527D4EC926829F61008FDB9E /* NumberOnlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberOnlyView.swift; sourceTree = "<group>"; };
+		527D4EC726829947008FDB9E /* CargoPapaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoPapaView.swift; sourceTree = "<group>"; };
+		527D4EC926829F61008FDB9E /* CargoNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoNumberView.swift; sourceTree = "<group>"; };
 		527D4ECD2682A503008FDB9E /* AkeLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeLeftView.swift; sourceTree = "<group>"; };
 		527D4ECF2682A5A2008FDB9E /* AkeRightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AkeRightView.swift; sourceTree = "<group>"; };
 		527D4ED12682A6A1008FDB9E /* CargoLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoLeftView.swift; sourceTree = "<group>"; };
@@ -510,8 +510,8 @@
 			isa = PBXGroup;
 			children = (
 				527D4ED92682A8C3008FDB9E /* PositionView.swift */,
-				527D4EC926829F61008FDB9E /* NumberOnlyView.swift */,
-				527D4EC726829947008FDB9E /* NumberPapaView.swift */,
+				527D4EC926829F61008FDB9E /* CargoNumberView.swift */,
+				527D4EC726829947008FDB9E /* CargoPapaView.swift */,
 				527D4ED52682A806008FDB9E /* NilFitLeftView.swift */,
 				527D4ECD2682A503008FDB9E /* AkeLeftView.swift */,
 				527D4ED12682A6A1008FDB9E /* CargoLeftView.swift */,
@@ -774,9 +774,9 @@
 				527D2340267C78A5003926E6 /* FuelView.swift in Sources */,
 				527D235B267F2009003926E6 /* PotableWaterView.swift in Sources */,
 				521DA46B267687C400FBC225 /* Zone3View.swift in Sources */,
-				527D4ECA26829F61008FDB9E /* NumberOnlyView.swift in Sources */,
+				527D4ECA26829F61008FDB9E /* CargoNumberView.swift in Sources */,
 				527D234C267C8534003926E6 /* RightTankView.swift in Sources */,
-				527D4EC826829947008FDB9E /* NumberPapaView.swift in Sources */,
+				527D4EC826829947008FDB9E /* CargoPapaView.swift in Sources */,
 				527E33B4268400A7008535AB /* MainTabView.swift in Sources */,
 				521DA46726763AF800FBC225 /* Zone1View.swift in Sources */,
 				52A78414266E016800D05247 /* CargoIndexUnit.swift in Sources */,

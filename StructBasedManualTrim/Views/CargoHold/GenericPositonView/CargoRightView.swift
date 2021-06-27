@@ -15,7 +15,7 @@ struct CargoRightView: View {
     var body: some View {
         HStack {
             Button(action: hideKeyboard) {
-                if mainHoldInstance.hasCargoInRight {
+                if mainHoldInstance.cargoWeightRight != 0 {
                     Text("\(position)R Cargo")
                         .loadedStyle()
                 } else {
@@ -26,16 +26,10 @@ struct CargoRightView: View {
             .capsuleStyle()
 
             TextField("0 kg" , text: bindingMainHoldInstance.cargoRight
-                        .animation()
-                        .onChange(
-                            withAnimation(.easeInOut) {
-                                mainHoldInstance.updateCargoRightLabels
-                            }
-                        ))
+                        .animation())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad).onAppear()
-
-            if mainHoldInstance.hasCargoInLeft {
+            if mainHoldInstance.cargoWeightRight != 0 {
                 Text("kg")
                     .loadedStyle()
             }

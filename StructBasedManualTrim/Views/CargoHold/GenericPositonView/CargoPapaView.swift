@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NumberPapaView: View {
+struct CargoPapaView: View {
 
     var position: Int
     var bindingMainHoldInstance: Binding<MainHold>
@@ -17,7 +17,7 @@ struct NumberPapaView: View {
 
         HStack {
             Button(action: hideKeyboard) {
-                if mainHoldInstance.hasCargoInPapa {
+                if mainHoldInstance.cargoPapaWeight != 0 {
                     Text("\(position)P Cargo")
                         .loadedStyle()
                 } else {
@@ -26,15 +26,12 @@ struct NumberPapaView: View {
                 }
             }
             .capsuleStyle()
-            
             TextField("0 kg",
                       text: bindingMainHoldInstance.cargoPapaStringWeight
-                        .animation()
-                        .onChange(mainHoldInstance.updateCargoPapaLabel))
+                        .animation())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
-
-            if mainHoldInstance.hasCargoInPapa {
+            if mainHoldInstance.cargoPapaWeight != 0 {
                 Text("kg")
                     .loadedStyle()
             }

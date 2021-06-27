@@ -29,13 +29,13 @@ struct PositionView: View {
 
         case .numberOnly:
 
-            NumberOnlyView(position: position,
+            CargoNumberView(position: position,
                            bindingMainHoldInstance: bindingCargoPosition,
                            mainHoldInstance: cargoPosition)
 
         case .numberPapa:
 
-            NumberPapaView(position: position,
+            CargoPapaView(position: position,
                            bindingMainHoldInstance: bindingCargoPosition,
                            mainHoldInstance: cargoPosition)
                 .onChange(of: cargoPosition.container,

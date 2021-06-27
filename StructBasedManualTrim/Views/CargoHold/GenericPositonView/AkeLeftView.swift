@@ -16,7 +16,8 @@ struct AkeLeftView: View {
     var body: some View {
         HStack {
             Button(action: hideKeyboard) {
-                if mainHoldInstance.hasBagsInLeft {
+//                if mainHoldInstance.hasBagsInLeft {
+                if mainHoldInstance.bagWeightLeft != 0 {
                     Text("\(position)L Bags")
                         .loadedStyle()
                 } else {
@@ -28,12 +29,14 @@ struct AkeLeftView: View {
 
             TextField("0 bags", text: bindingMainHoldInstance.bagCountLeft
                         .animation()
-                        .onChange(mainHoldInstance.updateLeftLabels))
+//                        .onChange(mainHoldInstance.updateLeftLabels)
+            )
 
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
 
-            if mainHoldInstance.hasBagsInLeft {
+//            if mainHoldInstance.hasBagsInLeft {
+            if mainHoldInstance.bagWeightLeft != 0 {
                 Text("\(mainHoldInstance.bagWeightLeft) kg")
                     .loadedStyle()
             } else {
