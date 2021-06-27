@@ -19,7 +19,8 @@ struct YFemale: View {
         withAnimation {
             HStack {
                 Button(action: hideKeyboard) {
-                    if zone.hasFemalesInZone {
+//                    if zone.hasFemalesInZone {
+                    if zone.females != 0 {
                         Text("\(HasFemales.some.rawValue)")
                             .loadedStyle()
                     } else {
@@ -33,7 +34,8 @@ struct YFemale: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if zone.hasFemalesInZone {
+//                if zone.hasFemalesInZone {
+                if zone.females != 0 {
                     Text("\(zone.yFemaleWeight) kg")
                         .loadedStyle()
                 } else {

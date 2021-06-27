@@ -19,7 +19,8 @@ struct YChild: View {
         withAnimation {
             HStack {
                 Button(action: hideKeyboard) {
-                    if zone.hasChildrenInZone {
+//                    if zone.hasChildrenInZone {
+                    if zone.children != 0 {
                         Text("\(HasChildren.some.rawValue)")
                             .loadedStyle()
                     } else {
@@ -32,7 +33,8 @@ struct YChild: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if zone.hasChildrenInZone {
+//                if zone.hasChildrenInZone {
+                if zone.children != 0 {
                     Text("\(zone.yChildWeight) kg")
                         .loadedStyle()
                 } else {

@@ -19,7 +19,8 @@ struct JFemale: View {
             
             HStack {
                 Button(action: hideKeyboard) {
-                    if zone.hasFemalesInZone {
+//                    if zone.hasFemalesInZone {
+                    if zone.females != 0 {
                         Text("\(HasFemales.some.rawValue)")
                             .loadedStyle()
                     } else {
@@ -32,7 +33,8 @@ struct JFemale: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
                 
-                if zone.hasFemalesInZone {
+//                if zone.hasFemalesInZone {
+                if zone.females != 0 {
                     Text("\(zone.jFemaleWeight) kg")
                         .loadedStyle()
                 } else {

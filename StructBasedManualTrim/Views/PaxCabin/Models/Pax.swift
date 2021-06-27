@@ -19,52 +19,30 @@ class Pax: ObservableObject, Equatable {
 
     @Published var maleStringNumber = "" {
         didSet {
-            maleSelected()
+//            maleSelected()
+            lastSelection = .male
         }
     }
     @Published var femaleStringNumber = "" {
         didSet {
-//            if femaleStringNumber != "" {
-//                lastInputWasMale = false
-//                lastInputWasFemale = true
-//                lastInputWasChild = false
-//                lastInputWasInfant = false
-//                lastSelection = .female
-//            }
-            femaleSelected()
+//            femaleSelected()
+            lastSelection = .female
         }
     }
     @Published var childStringNumber = "" {
         didSet {
-//            if childNumber != "" {
-//                lastInputWasMale = false
-//                lastInputWasFemale = false
-//                lastInputWasChild = true
-//                lastInputWasInfant = false
-//                lastSelection = .child
-//            }
-            childSelected()
+//            childSelected()
+            lastSelection = .child
         }
     }
     @Published var infantStringNumber = "" {
         didSet {
-//            if infantStringNumber != "" {
-//                lastInputWasMale = false
-//                lastInputWasFemale = false
-//                lastInputWasChild = false
-//                lastInputWasInfant = true
-//                lastSelection = .infant
-//            }
-            infantSelected()
+//            infantSelected()
+            lastSelection = .infant
         }
     }
 
-    @Published var lastSelection: LastSelection?
-    
-//    @Published var lastInputWasMale = false
-//    @Published var lastInputWasFemale = false
-//    @Published var lastInputWasChild = false
-//    @Published var lastInputWasInfant = false
+    @Published var lastSelection: LastSelection = .male
     @Published var serviceDog = ServiceDog.one
     @Published var hasServiceDogInZone = false {
         didSet {
@@ -83,10 +61,10 @@ class Pax: ObservableObject, Equatable {
     }
 
     var paxLoadedStatus: PaxLoadedStatus = .noPaxOnboard
-    var hasMalesInZone = false
-    var hasFemalesInZone = false
-    var hasChildrenInZone = false
-    var hasInfantsInZone = false
+//    var hasMalesInZone = false
+//    var hasFemalesInZone = false
+//    var hasChildrenInZone = false
+//    var hasInfantsInZone = false
     var hideKeyboard = true
 
 //MARK:- Pax Number Calulations
@@ -152,24 +130,29 @@ class Pax: ObservableObject, Equatable {
         }
     }
 
-    func maleSelected() {
-        hasMalesInZone = (maleStringNumber != "") ? true : false
-        lastSelection = .male
-    }
-    func femaleSelected() {
-        hasFemalesInZone = (femaleStringNumber != "") ? true : false
-        lastSelection = .female
-    }
-    func childSelected() {
-        hasChildrenInZone = (childStringNumber != "") ? true : false
-        lastSelection = .child
-    }
-    func infantSelected() {
-        hasInfantsInZone = (infantStringNumber != "") ? true : false
-        lastSelection = .infant
-    }
+//    func maleSelected() {
+//        hasMalesInZone = (maleStringNumber != "") ? true : false
+//        lastSelection = .male
+//    }
+//    func femaleSelected() {
+//        hasFemalesInZone = (femaleStringNumber != "") ? true : false
+//        lastSelection = .female
+//    }
+//    func childSelected() {
+//        hasChildrenInZone = (childStringNumber != "") ? true : false
+//        lastSelection = .child
+//    }
+//    func infantSelected() {
+//        hasInfantsInZone = (infantStringNumber != "") ? true : false
+//        lastSelection = .infant
+//    }
     var hasPaxInZone: Bool {
-        lastSelection != .none ? true: false
+//        lastSelection != .none ? true: false
+        if buisnessWeight == 0 && ecconomyWeight == 0 {
+            return false
+        } else {
+            return true
+        }
     }
 
     func resetValues() {
@@ -177,7 +160,7 @@ class Pax: ObservableObject, Equatable {
         femaleStringNumber = ""
         childStringNumber = ""
         infantStringNumber = ""
-        lastSelection = nil
+//        lastSelection = nil
         hideKeyboard = true
     }
 }
@@ -240,11 +223,7 @@ class Cabin: ObservableObject {
     }
     @Published var jWeight: JWeightConfiguration = .buisness
     // To display the alert for errors
-    @Published var seatingError: SeatingLogic? //= nil {
-//        willSet {
-//            objectWillChange.send()
-//        }
-//    }
+    @Published var seatingError: SeatingLogic?
 
 // To determine if there are any pax onboard
     var hasPax: Bool {
@@ -489,32 +468,19 @@ class Cabin: ObservableObject {
         if totalInfants > permittedInfantNumber {
           seatingError = .forInfants
         }
-
-//        if seatingError == .none {
-//
-//            resetLastInput(for: zone1)
-//            resetLastInput(for: zone2)
-//            resetLastInput(for: zone3)
-//            resetLastInput(for: zone4)
-//        }
     }
-    // Reset all to register the next number that is entered
-//    func resetLastInput(for zone: Pax) {
-//        zone.lastInputWasMale = false
-//        zone.lastInputWasFemale = false
-//        zone.lastInputWasChild = false
-//        zone.lastInputWasInfant = false
-//    }
 
     // Animate the removal of the entry that created the error
     func removeLastEntry() {
         // Remove the entry that caused the seating error condition
+      
         removeLastInput(for: zone1)
         removeLastInput(for: zone2)
         removeLastInput(for: zone3)
         removeLastInput(for: zone4)
         // after removal there is no seating error, reset it to nil
         seatingError = .none
+
     }
 
     func removeLastInput(for zone: Pax) {
@@ -535,27 +501,9 @@ class Cabin: ObservableObject {
             withAnimation {
                 zone.infantStringNumber = ""
             }
-        case .none:
-            print("nothing")
+//        case .none:
+//            print("nothing")
         }
-
-////        if zone.lastInputWasMale {
-//        if zone.lastSelection == .male {
-//            withAnimation {
-//            zone.maleStringNumber = ""
-//            }
-//
-//        }
-//        if zone.lastInputWasFemale {
-//            zone.femaleStringNumber = ""
-//        }
-//        if zone.lastInputWasChild {
-//            zone.childNumber = ""
-//        }
-//        if zone.lastInputWasInfant {
-//            zone.infantStringNumber = ""
-//        }
-
     }
 
     // MARK: - Seating Error Messages

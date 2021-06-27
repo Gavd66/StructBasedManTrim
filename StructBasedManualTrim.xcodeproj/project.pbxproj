@@ -92,6 +92,7 @@
 		527E33CA26843BA0008535AB /* TakeoffWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E33C926843BA0008535AB /* TakeoffWeightView.swift */; };
 		527E33CC2684454E008535AB /* HighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E33CB2684454E008535AB /* HighlightView.swift */; };
 		527E33CF268446F3008535AB /* LandingWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E33CE268446F3008535AB /* LandingWeightView.swift */; };
+		527E33D1268917F5008535AB /* CargoEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E33D0268917F5008535AB /* CargoEnums.swift */; };
 		528CB02226815F9B007378B9 /* ZeroFuelWeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528CB02126815F9B007378B9 /* ZeroFuelWeightView.swift */; };
 		528CB0282681746C007378B9 /* CargoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528CB0272681746C007378B9 /* CargoView.swift */; };
 		528CB02D26817899007378B9 /* CabinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528CB02C26817899007378B9 /* CabinView.swift */; };
@@ -197,6 +198,7 @@
 		527E33C926843BA0008535AB /* TakeoffWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeoffWeightView.swift; sourceTree = "<group>"; };
 		527E33CB2684454E008535AB /* HighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightView.swift; sourceTree = "<group>"; };
 		527E33CE268446F3008535AB /* LandingWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingWeightView.swift; sourceTree = "<group>"; };
+		527E33D0268917F5008535AB /* CargoEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoEnums.swift; sourceTree = "<group>"; };
 		528CB02126815F9B007378B9 /* ZeroFuelWeightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZeroFuelWeightView.swift; sourceTree = "<group>"; };
 		528CB0272681746C007378B9 /* CargoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CargoView.swift; sourceTree = "<group>"; };
 		528CB02C26817899007378B9 /* CabinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabinView.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				523A9F6826646521009DC1BA /* CargoHold.swift */,
 				52A78413266E016800D05247 /* CargoIndexUnit.swift */,
+				527E33D0268917F5008535AB /* CargoEnums.swift */,
 			);
 			path = CargoHoldModels;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				527D235F267FF40F003926E6 /* NonStandardFuelDistribution.swift in Sources */,
 				527E33C42684382F008535AB /* TaxiWeightView.swift in Sources */,
 				5220077026690DC90089A8C1 /* Positon42View.swift in Sources */,
+				527E33D1268917F5008535AB /* CargoEnums.swift in Sources */,
 				527D236526800C68003926E6 /* NoRegistrationView.swift in Sources */,
 				5220076426690D480089A8C1 /* Positon23View.swift in Sources */,
 				527E33C126842F40008535AB /* WeightError.swift in Sources */,

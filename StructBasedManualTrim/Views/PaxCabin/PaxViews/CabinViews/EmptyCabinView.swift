@@ -70,8 +70,9 @@ struct EmptyCabinView: View {
                             .transition(.scale)
                         Text("No Extra Crew, Cabin Crew or Passengers Carried")
                             .multilineTextAlignment(.center)
-                        Spacer()
+
                     }
+                    Spacer()
                 }
             }
             .foregroundColor(.accentColor)

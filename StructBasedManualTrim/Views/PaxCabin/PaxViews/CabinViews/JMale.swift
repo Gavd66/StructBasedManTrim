@@ -15,7 +15,7 @@ struct JMale: View {
     var body: some View {
             HStack {
                 Button(action: hideKeyboard) {
-                    if zone.hasMalesInZone {
+                    if zone.males != 0 {
                         Text("\(HasMales.some.rawValue)")
                             .loadedStyle()
                     } else {
@@ -29,7 +29,8 @@ struct JMale: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
 
-                if zone.hasMalesInZone {
+//                if zone.hasMalesInZone {
+                if zone.males != 0 {
                     Text("\(zone.jMaleWeight) kg")
                         .loadedStyle()
                 } else {
