@@ -10,8 +10,8 @@ import SwiftUI
 struct PositionView: View {
 
     var position: Int
-    var bindingCargoPosition: Binding<MainHold>
-    var cargoPosition: MainHold
+    var bindingCargoPosition: Binding<UnderFloor>
+    var cargoPosition: UnderFloor
 
     var body: some View {
 

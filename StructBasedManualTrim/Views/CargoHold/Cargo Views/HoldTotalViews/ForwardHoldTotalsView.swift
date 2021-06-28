@@ -41,7 +41,7 @@ struct ForwardHoldTotalsView: View {
     }
         }
         .contextMenu {
-            Text("Compartment 1 Limit \(Underfloor.compartment1.limitWeight) kg")
+            Text("Compartment 1 Limit \(WeightLimit.compartment1.maxWeight) kg")
         }
         VStack {
             HStack {
@@ -70,7 +70,7 @@ struct ForwardHoldTotalsView: View {
             }
         }//
         .contextMenu {
-            Text("Compartment 2 limit \(Underfloor.compartment2.limitWeight) kg")
+            Text("Compartment 2 limit \(WeightLimit.compartment2.maxWeight) kg")
         }
         HStack {
             Spacer()
@@ -84,7 +84,7 @@ struct ForwardHoldTotalsView: View {
             Spacer()
         }
         .contextMenu {
-            Text("FWD Hold limit \(Underfloor.forwardHold.limitWeight) kg")
+            Text("FWD Hold limit \(WeightLimit.forwardHold.maxWeight) kg")
         }
         
     } 

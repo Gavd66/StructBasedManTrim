@@ -8,26 +8,35 @@
 import Foundation
 // MARK:- Bulk Hold
 class BulkHold {
-    var itemStringCount = ""
-    var cargoStringWeight = ""
+    var itemBulkStringCount = "" {
+        didSet {
+            lastSelection = .itemsBulk
+        }
+    }
+    var cargoBulkStringWeight = "" {
+        didSet {
+            lastSelection = .cargoBulk
+        }
+    }
+    var lastSelection = UnderfloorSelection.itemsBulk
 
     func resetBulkToEmpty() {
-        itemStringCount = ""
-        cargoStringWeight = ""
+        itemBulkStringCount = ""
+        cargoBulkStringWeight = ""
     }
 
-    var bagCount: Int {
-        Int(itemStringCount) ?? 0
+    var bulkBagCount: Int {
+        Int(itemBulkStringCount) ?? 0
     }
 
-    var cargoWeight: Int {
-        Int(cargoStringWeight) ?? 0
+    var bulkCargoWeight: Int {
+        Int(cargoBulkStringWeight) ?? 0
     }
 
-    var itemWeight: Int {
-        bagCount * 18
+    var bulkItemWeight: Int {
+        bulkBagCount * 18
     }
-    var totalWeight: Int {
-        itemWeight + cargoWeight
+    var bulkTotalWeight: Int {
+        bulkItemWeight + bulkCargoWeight
     }
 }

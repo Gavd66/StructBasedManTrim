@@ -38,7 +38,7 @@ struct AftHoldTotalsView: View {
             }
         }//
         .contextMenu {
-            Text("Compartment 3 Limit \(Underfloor.compartment3.limitWeight) kg")
+            Text("Compartment 3 Limit \(WeightLimit.compartment3.maxWeight) kg")
         }
         VStack {
             HStack {
@@ -67,7 +67,7 @@ struct AftHoldTotalsView: View {
             }
         }
         .contextMenu{
-            Text("Compartment 4 limit \(Underfloor.compartment4.limitWeight) kg")
+            Text("Compartment 4 limit \(WeightLimit.compartment4.maxWeight) kg")
         }
         HStack {
             Spacer()
@@ -81,7 +81,7 @@ struct AftHoldTotalsView: View {
             Spacer()
         }
         .contextMenu {
-            Text("Aft Hold limit \(Underfloor.aftHold.limitWeight) kg")
+            Text("Aft Hold limit \(WeightLimit.aftHold.maxWeight) kg")
         }
     }
 }

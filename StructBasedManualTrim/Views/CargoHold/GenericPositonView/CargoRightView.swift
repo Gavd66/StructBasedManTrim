@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CargoRightView: View {
     var position: Int
-    var bindingMainHoldInstance: Binding<MainHold>
-    var mainHoldInstance: MainHold
+    var bindingMainHoldInstance: Binding<UnderFloor>
+    var mainHoldInstance: UnderFloor
 
     var body: some View {
         HStack {

@@ -105,10 +105,11 @@ struct PaxCabinView: View {
             .alert(item: $cabin.seatingError) { seatingError in
                 self.feedBack.notificationOccurred(.error)
                 return Alert(
-                    title: Text(cabin.zoneTitle),
+                    title: Text(seatingError.rawValue),
                     message: Text(cabin.zoneMessage),
-                    dismissButton: .destructive(Text("Remove last entry"),
-                    action: cabin.removeLastEntry))
+                    dismissButton: .destructive(Text("Remove selection"),action: {
+                        cabin.removeLastEntry(for: seatingError)
+                    }))
             }
         } // End Navigation View
     }

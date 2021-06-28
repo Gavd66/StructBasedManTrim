@@ -7,20 +7,54 @@
 
 import Foundation
 
-class MainHold {
+class UnderFloor: Equatable {
 
+    
+    static func == (lhs: UnderFloor, rhs: UnderFloor) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    //MARK: MainHold Properties
+    var id = UUID()
     var container: Container = .leftAndRight
-    var cargoStringWeight = ""
-    var cargoPapaStringWeight = ""
-    var bagCountLeft = ""
-    var bagCountRight = ""
-    var cargoLeft = ""
-    var cargoRight = ""
+    var lastSelection = UnderfloorSelection.bagsLeft
     var left: Ake = .nilFit
     var right: Ake = .nilFit
+
+    var cargoStringWeight = "" {
+        didSet {
+            lastSelection = .cargoNumber
+        }
+    }
+    var cargoPapaStringWeight = "" {
+        didSet {
+            lastSelection = .cargoPapa
+        }
+    }
+    var bagCountLeft = "" {
+        didSet {
+            lastSelection = .bagsLeft
+        }
+    }
+    var bagCountRight = "" {
+        didSet {
+            lastSelection = .bagsRight
+        }
+    }
+    var cargoLeft = "" {
+        didSet {
+            lastSelection = .cargoLeft
+        }
+    }
+    var cargoRight = "" {
+        didSet {
+            lastSelection = .cargoRight
+        }
+    }
+
     var hideKeyboard = false
 
-    //MARK:- Weight Calculations
+    // MARK: Main Hold Weight Calculations
     var bagWeightLeft: Int {
         let bagNumbers = Int(bagCountLeft) ?? 0
         return bagNumbers * 18 + left.setAKEWeightLeft
@@ -56,8 +90,40 @@ class MainHold {
         totalBagWeight + totalCargoWeight
     }
 
+    // MARK:- Bulk Hold Properties
 
-    // MARK:-Logic Functions
+    var itemBulkStringCount = "" {
+        didSet {
+            lastSelection = .itemsBulk
+        }
+    }
+    var cargoBulkStringWeight = "" {
+        didSet {
+            lastSelection = .cargoBulk
+        }
+    }
+
+    func resetBulkToEmpty() {
+        itemBulkStringCount = ""
+        cargoBulkStringWeight = ""
+    }
+
+    var bulkBagCount: Int {
+        Int(itemBulkStringCount) ?? 0
+    }
+
+    var bulkCargoWeight: Int {
+        Int(cargoBulkStringWeight) ?? 0
+    }
+
+    var bulkItemWeight: Int {
+        bulkBagCount * 18
+    }
+    var bulkTotalWeight: Int {
+        bulkItemWeight + bulkCargoWeight
+    }
+    
+    // MARK:- Main Hold Logic Functions
     func applyContainerLogic(_ container: Container) {
         switch container {
         case .leftAndRight:

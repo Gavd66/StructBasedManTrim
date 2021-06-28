@@ -13,27 +13,28 @@ import SwiftUI
 class CargoHold: ObservableObject {
 
     //MARK:- Properties
-    @Published var position11 = MainHold()
-    @Published var position12 = MainHold() 
-    @Published var position13 = MainHold()
-    @Published var position14 = MainHold()
-    @Published var position21 = MainHold()
-    @Published var position22 = MainHold()
-    @Published var position23 = MainHold()
-    @Published var position24 = MainHold()
-    @Published var position31 = MainHold()
-    @Published var position32 = MainHold()
-    @Published var position33 = MainHold()
-    @Published var position41 = MainHold()
-    @Published var position42 = MainHold()
-    @Published var position43 = MainHold()
-    @Published var bulkHold = BulkHold()
-    @Published var overWeightAlert: Underfloor? = nil
-    @Published var compartment1Enabled = true
-    @Published var compartment2Enabled = true
-    @Published var compartment3Enabled = true
-    @Published var compartment4Enabled = true
-    @Published var compartment5Enabled = true
+    @Published var position11 = UnderFloor()
+    @Published var position12 = UnderFloor() 
+    @Published var position13 = UnderFloor()
+    @Published var position14 = UnderFloor()
+    @Published var position21 = UnderFloor()
+    @Published var position22 = UnderFloor()
+    @Published var position23 = UnderFloor()
+    @Published var position24 = UnderFloor()
+    @Published var position31 = UnderFloor()
+    @Published var position32 = UnderFloor()
+    @Published var position33 = UnderFloor()
+    @Published var position41 = UnderFloor()
+    @Published var position42 = UnderFloor()
+    @Published var position43 = UnderFloor()
+//    @Published var bulkHold = BulkHold()
+    @Published var bulkHold = UnderFloor()
+    @Published var overWeightAlert: WeightLimit? = nil
+//    @Published var compartment1Enabled = true
+//    @Published var compartment2Enabled = true
+//    @Published var compartment3Enabled = true
+//    @Published var compartment4Enabled = true
+//    @Published var compartment5Enabled = true
     @Published var overWeightAmount = 0
 
 
@@ -123,7 +124,7 @@ class CargoHold: ObservableObject {
         compartment3TotalWeight + compartment4TotalWeight
     }
     var compartment5TotalWeight: Int {
-        bulkHold.totalWeight
+        bulkHold.bulkTotalWeight
     }
 
 
@@ -162,90 +163,219 @@ class CargoHold: ObservableObject {
 
     //MARK:- Weight Protection Methods
 // If any limits are exceeded, use logic to disable all other compartments until the overweight condition is rectified.
-    
-    func checkCompartment1Weight(int: Int) {
+
+    func validateCompartmentWeight(_ compartmentWeight: Int) {
+        overWeightAlert = nil
+
         if compartment1TotalWeight >
-            Underfloor.compartment1.limitWeight {
+            WeightLimit.compartment1.maxWeight {
 
             overWeightAlert = .compartment1
-            overWeightAmount = compartment1TotalWeight - Underfloor.compartment1.limitWeight
-            compartment1Enabled = true
-            compartment2Enabled = false
-            compartment3Enabled = false
-            compartment4Enabled = false
-            compartment5Enabled = false
-        } else {
-            compartment1Enabled = true
-            compartment2Enabled = true
-            compartment3Enabled = true
-            compartment4Enabled = true
-            compartment5Enabled = true
-            overWeightAmount = 0
-            overWeightAlert = nil
+            overWeightAmount = compartment1TotalWeight - WeightLimit.compartment1.maxWeight
+        }
+
+        if compartment2TotalWeight >
+            WeightLimit.compartment2.maxWeight {
+
+            overWeightAlert = .compartment2
+            overWeightAmount = compartment2TotalWeight -
+                WeightLimit.compartment2.maxWeight
+        }
+        if compartment3TotalWeight >
+            WeightLimit.compartment3.maxWeight {
+
+            overWeightAlert = .compartment3
+            overWeightAmount = compartment3TotalWeight -
+                WeightLimit.compartment3.maxWeight
+        }
+        if compartment4TotalWeight >
+            WeightLimit.compartment4.maxWeight {
+
+            overWeightAlert = .compartment4
+            overWeightAmount = compartment4TotalWeight -
+                WeightLimit.compartment4.maxWeight
+        }
+        if compartment5TotalWeight >
+            WeightLimit.compartment5.maxWeight {
+
+            overWeightAlert = .compartment5
+            overWeightAmount = compartment5TotalWeight -
+                WeightLimit.compartment5.maxWeight
+        }
+
+        if overWeightAlert == .compartment1 ||
+            overWeightAlert == .compartment2 {
+            return
+        }
+        if forwardHoldTotalWeight >
+            WeightLimit.forwardHold.maxWeight {
+
+            overWeightAlert = .forwardHold
+            overWeightAmount = forwardHoldTotalWeight -
+                WeightLimit.forwardHold.maxWeight
+        }
+
+        if overWeightAlert == .compartment3 ||
+            overWeightAlert == .compartment4 {
+            return
+        }
+        if aftHoldTotalWeight >
+            WeightLimit.aftHold.maxWeight {
+
+            overWeightAlert = .aftHold
+            overWeightAmount = aftHoldTotalWeight -
+                WeightLimit.aftHold.maxWeight
+        }
+    }
+
+    func removeOverWeightEntry() {
+        removeOverweightInput(for: position11)
+        removeOverweightInput(for: position12)
+        removeOverweightInput(for: position13)
+        removeOverweightInput(for: position14)
+        removeOverweightInput(for: position21)
+        removeOverweightInput(for: position22)
+        removeOverweightInput(for: position23)
+        removeOverweightInput(for: position24)
+        removeOverweightInput(for: position31)
+        removeOverweightInput(for: position32)
+        removeOverweightInput(for: position33)
+        removeOverweightInput(for: position41)
+        removeOverweightInput(for: position42)
+        removeOverweightInput(for: position42)
+        removeOverweightInput(for: bulkHold)
+        overWeightAlert = .none
+    }
+
+    func removeOverweightInput(for compartment: UnderFloor) {
+        switch compartment.lastSelection {
+        case .bagsLeft:
+            withAnimation {
+                compartment.bagCountLeft = ""
+            }
+        case .bagsRight:
+            withAnimation {
+                compartment.bagCountRight = ""
+            }
+        case .cargoLeft:
+            withAnimation {
+                compartment.cargoLeft = ""
+            }
+        case .cargoRight:
+            withAnimation {
+                compartment.cargoRight = ""
+            }
+        case .cargoNumber:
+            withAnimation {
+                compartment.cargoStringWeight = ""
+            }
+        case .cargoPapa:
+            withAnimation {
+                compartment.cargoStringWeight = ""
+            }
+        case .itemsBulk:
+            withAnimation {
+                compartment.itemBulkStringCount = ""
+            }
+        case .cargoBulk:
+            withAnimation {
+                compartment.cargoBulkStringWeight = ""
+            }
+    }
+    }
+
+    var title: String {
+        overWeightAlert?.rawValue ?? ""
+    }
+    var message: String {
+        overWeightAlert?.message ?? ""
+    }
+
+
+
+    func checkCompartment1Weight(int: Int) {
+        if compartment1TotalWeight >
+            WeightLimit.compartment1.maxWeight {
+
+            overWeightAlert = .compartment1
+            overWeightAmount = compartment1TotalWeight - WeightLimit.compartment1.maxWeight
+//            compartment1Enabled = true
+//            compartment2Enabled = false
+//            compartment3Enabled = false
+//            compartment4Enabled = false
+//            compartment5Enabled = false
+//        } else {
+//            compartment1Enabled = true
+//            compartment2Enabled = true
+//            compartment3Enabled = true
+//            compartment4Enabled = true
+//            compartment5Enabled = true
+//            overWeightAmount = 0
+//            overWeightAlert = nil
      }
     }
     func checkCompartment2Weight(int: Int) {
         if compartment2TotalWeight >
-            Underfloor.compartment2.limitWeight {
+            WeightLimit.compartment2.maxWeight {
 
             overWeightAlert = .compartment2
             overWeightAmount = compartment2TotalWeight -
-                Underfloor.compartment2.limitWeight
-            compartment1Enabled = false
-            compartment2Enabled = true
-            compartment3Enabled = false
-            compartment4Enabled = false
-            compartment5Enabled = false
-        } else {
-            compartment1Enabled = true
-            compartment2Enabled = true
-            compartment3Enabled = true
-            compartment4Enabled = true
-            compartment5Enabled = true
+                WeightLimit.compartment2.maxWeight
+//            compartment1Enabled = false
+//            compartment2Enabled = true
+//            compartment3Enabled = false
+//            compartment4Enabled = false
+//            compartment5Enabled = false
+//        } else {
+//            compartment1Enabled = true
+//            compartment2Enabled = true
+//            compartment3Enabled = true
+//            compartment4Enabled = true
+//            compartment5Enabled = true
             overWeightAmount = 0
             overWeightAlert = nil
         }
     }
     func checkCompartment3Weight(int: Int) {
         if compartment3TotalWeight >
-            Underfloor.compartment3.limitWeight {
+            WeightLimit.compartment3.maxWeight {
 
             overWeightAlert = .compartment3
             overWeightAmount = compartment3TotalWeight -
-                Underfloor.compartment3.limitWeight
-            compartment1Enabled = false
-            compartment2Enabled = false
-            compartment3Enabled = true
-            compartment4Enabled = false
-            compartment5Enabled = false
-        } else {
-            compartment1Enabled = true
-            compartment2Enabled = true
-            compartment3Enabled = true
-            compartment4Enabled = true
-            compartment5Enabled = true
+                WeightLimit.compartment3.maxWeight
+//            compartment1Enabled = false
+//            compartment2Enabled = false
+//            compartment3Enabled = true
+//            compartment4Enabled = false
+//            compartment5Enabled = false
+//        } else {
+//            compartment1Enabled = true
+//            compartment2Enabled = true
+//            compartment3Enabled = true
+//            compartment4Enabled = true
+//            compartment5Enabled = true
             overWeightAmount = 0
             overWeightAlert = nil
         }
     }
     func checkCompartment4Weight(int: Int) {
         if compartment4TotalWeight >
-            Underfloor.compartment4.limitWeight {
+            WeightLimit.compartment4.maxWeight {
 
             overWeightAlert = .compartment4
             overWeightAmount = compartment4TotalWeight -
-                Underfloor.compartment4.limitWeight
-            compartment1Enabled = false
-            compartment2Enabled = false
-            compartment3Enabled = false
-            compartment4Enabled = true
-            compartment5Enabled = false
-        } else {
-            compartment1Enabled = true
-            compartment2Enabled = true
-            compartment3Enabled = true
-            compartment4Enabled = true
-            compartment5Enabled = true
+                WeightLimit.compartment4.maxWeight
+//            compartment1Enabled = false
+//            compartment2Enabled = false
+//            compartment3Enabled = false
+//            compartment4Enabled = true
+//            compartment5Enabled = false
+//        } else {
+//            compartment1Enabled = true
+//            compartment2Enabled = true
+//            compartment3Enabled = true
+//            compartment4Enabled = true
+//            compartment5Enabled = true
             overWeightAmount = 0
             overWeightAlert = nil
         }
@@ -253,22 +383,22 @@ class CargoHold: ObservableObject {
 
     func checkCompartment5Weight(int: Int) {
         if compartment5TotalWeight >
-            Underfloor.compartment5.limitWeight {
+            WeightLimit.compartment5.maxWeight {
 
             overWeightAlert = .compartment5
             overWeightAmount = compartment5TotalWeight -
-                Underfloor.compartment5.limitWeight
-            compartment1Enabled = false
-            compartment2Enabled = false
-            compartment3Enabled = false
-            compartment4Enabled = false
-            compartment5Enabled = true
-        } else {
-            compartment1Enabled = true
-            compartment2Enabled = true
-            compartment3Enabled = true
-            compartment4Enabled = true
-            compartment5Enabled = true
+                WeightLimit.compartment5.maxWeight
+//            compartment1Enabled = false
+//            compartment2Enabled = false
+//            compartment3Enabled = false
+//            compartment4Enabled = false
+//            compartment5Enabled = true
+//        } else {
+//            compartment1Enabled = true
+//            compartment2Enabled = true
+//            compartment3Enabled = true
+//            compartment4Enabled = true
+//            compartment5Enabled = true
             overWeightAmount = 0
             overWeightAlert = nil
         }
@@ -280,22 +410,22 @@ class CargoHold: ObservableObject {
             return
         }
         if forwardHoldTotalWeight >
-            Underfloor.forwardHold.limitWeight {
+            WeightLimit.forwardHold.maxWeight {
 
             overWeightAlert = .forwardHold
             overWeightAmount = forwardHoldTotalWeight -
-                Underfloor.forwardHold.limitWeight
-            compartment1Enabled = true
-            compartment2Enabled = true
-            compartment3Enabled = false
-            compartment4Enabled = false
-            compartment5Enabled = false
-        } else {
-            compartment1Enabled = true
-            compartment2Enabled = true
-            compartment3Enabled = true
-            compartment4Enabled = true
-            compartment5Enabled = true
+                WeightLimit.forwardHold.maxWeight
+//            compartment1Enabled = true
+//            compartment2Enabled = true
+//            compartment3Enabled = false
+//            compartment4Enabled = false
+//            compartment5Enabled = false
+//        } else {
+//            compartment1Enabled = true
+//            compartment2Enabled = true
+//            compartment3Enabled = true
+//            compartment4Enabled = true
+//            compartment5Enabled = true
             overWeightAmount = 0
             overWeightAlert = nil
         }
@@ -306,22 +436,22 @@ class CargoHold: ObservableObject {
             return
         }
         if aftHoldTotalWeight >
-            Underfloor.aftHold.limitWeight {
+            WeightLimit.aftHold.maxWeight {
 
             overWeightAlert = .aftHold
             overWeightAmount = aftHoldTotalWeight -
-                Underfloor.aftHold.limitWeight
-            compartment1Enabled = false
-            compartment2Enabled = false
-            compartment3Enabled = true
-            compartment4Enabled = true
-            compartment5Enabled = false
-        } else {
-            compartment1Enabled = true
-            compartment2Enabled = true
-            compartment3Enabled = true
-            compartment4Enabled = true
-            compartment5Enabled = true
+                WeightLimit.aftHold.maxWeight
+//            compartment1Enabled = false
+//            compartment2Enabled = false
+//            compartment3Enabled = true
+//            compartment4Enabled = true
+//            compartment5Enabled = false
+//        } else {
+//            compartment1Enabled = true
+//            compartment2Enabled = true
+//            compartment3Enabled = true
+//            compartment4Enabled = true
+//            compartment5Enabled = true
             overWeightAmount = 0
             overWeightAlert = nil
         }
@@ -330,24 +460,24 @@ class CargoHold: ObservableObject {
 //MARK:- Reset Methods
     func resetCargoToEmpty() {
         withAnimation {
-            position11 = MainHold()
-            position12 = MainHold()
-            position13 = MainHold()
-            position14 = MainHold()
-            position21 = MainHold()
-            position22 = MainHold()
-            position23 = MainHold()
-            position24 = MainHold()
-            position31 = MainHold()
-            position32 = MainHold()
-            position33 = MainHold()
-            position41 = MainHold()
-            position42 = MainHold()
-            position43 = MainHold()
-            bulkHold = BulkHold()
+            position11 = UnderFloor()
+            position12 = UnderFloor()
+            position13 = UnderFloor()
+            position14 = UnderFloor()
+            position21 = UnderFloor()
+            position22 = UnderFloor()
+            position23 = UnderFloor()
+            position24 = UnderFloor()
+            position31 = UnderFloor()
+            position32 = UnderFloor()
+            position33 = UnderFloor()
+            position41 = UnderFloor()
+            position42 = UnderFloor()
+            position43 = UnderFloor()
+            bulkHold = UnderFloor()
         }
     }
-    static let example = CargoHold()
+//    static let example = CargoHold()
 }
 
 

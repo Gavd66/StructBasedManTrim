@@ -41,9 +41,9 @@ struct EmptyLoadView: View {
         .contextMenu {
             VStack {
             Text("Limits for each Hold")
-                Text("Fwd: \(Underfloor.forwardHold.limitWeight) kg")
-                Text("Aft: \(Underfloor.aftHold.limitWeight) kg")
-                Text("Bulk: \(Underfloor.compartment5.limitWeight) kg")
+                Text("Fwd: \(WeightLimit.forwardHold.maxWeight) kg")
+                Text("Aft: \(WeightLimit.aftHold.maxWeight) kg")
+                Text("Bulk: \(WeightLimit.compartment5.maxWeight) kg")
             }
         }
         } else {

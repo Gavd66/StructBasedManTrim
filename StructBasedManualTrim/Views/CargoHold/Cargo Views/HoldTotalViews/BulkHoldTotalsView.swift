@@ -22,12 +22,12 @@ struct BulkHoldTotalView: View {
             HStack {
                 VStack(alignment: .center, spacing: 5) {
                     Text("Items")
-                    Text("\(cargo.bulkHold.itemWeight) kg")
+                    Text("\(cargo.bulkHold.bulkItemWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
                     Text("Cargo")
-                    Text("\(cargo.bulkHold.cargoWeight) kg")
+                    Text("\(cargo.bulkHold.bulkCargoWeight) kg")
                         .capsuleStyle()
                 }
                 VStack(alignment: .center, spacing: 5) {
@@ -38,7 +38,7 @@ struct BulkHoldTotalView: View {
             }
         }
         .contextMenu {
-            Text("Bulk Hold limit \(Underfloor.compartment5.limitWeight) kg")
+            Text("Bulk Hold limit \(WeightLimit.compartment5.maxWeight) kg")
         }
     }
 }

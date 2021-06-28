@@ -55,20 +55,34 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
     }
 }
 
-//MARK:- Enum Underfloor
+//MARK:- Enum  Underfloor Selection
 
-enum Underfloor: Identifiable {
-    var id: Underfloor { self }
+enum UnderfloorSelection: Identifiable {
+    var id: UnderfloorSelection { self }
+    case cargoNumber
+    case cargoPapa
+    case bagsLeft
+    case bagsRight
+    case cargoLeft
+    case cargoRight
+    case itemsBulk
+    case cargoBulk
+}
 
-    case compartment1
-    case compartment2
-    case compartment3
-    case compartment4
-    case compartment5
-    case forwardHold
-    case aftHold
+//MARK:- Enum WeightLimit
 
-    var limitWeight: Int {
+enum WeightLimit: String, Identifiable, CaseIterable {
+    var id: WeightLimit { self }
+
+    case compartment1 = "Compartment 1 Overweight"
+    case compartment2 = "Compartment 2 Overweight"
+    case compartment3 = "Compartment 3 Overweight"
+    case compartment4 = "Compartment 4 Overweight"
+    case compartment5 = "Bulk Hold Overweight"
+    case forwardHold = "Forward Hold Overweight"
+    case aftHold = "Aft Hold Overweight"
+
+    var maxWeight: Int {
         switch self {
         case .compartment1:
             return 15306
@@ -86,6 +100,23 @@ enum Underfloor: Identifiable {
             return 19132
         }
     }
-// if didn't need computed property for overweight amount then could also make entire alert here and call on one line as per https://www.hackingwithswift.com/books/ios-swiftui/binding-an-alert-to-an-optional-string
+    var message: String {
+        switch self {
+        case .compartment1:
+            fallthrough
+        case .compartment2:
+            fallthrough
+        case .compartment3:
+            fallthrough
+        case .compartment4:
+            fallthrough
+        case .compartment5:
+            return "The max weight for this compartment has been exceeded"
+        case .forwardHold:
+            return "The combined weights of compartments 1 & 2, exceeds the maximum for this hold"
+        case .aftHold:
+            return "The combined weights of compartments 3 & 4, exceeds the maximum for this hold"
+        }
+    }
 }
 

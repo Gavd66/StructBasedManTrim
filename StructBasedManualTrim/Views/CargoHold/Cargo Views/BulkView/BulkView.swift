@@ -15,7 +15,7 @@ struct BulkView: View {
         Group {
             HStack {
                 Button(action: hideKeyboard) {
-                    if cargoHold.bulkHold.itemWeight != 0 {
+                    if cargoHold.bulkHold.bulkItemWeight != 0 {
                         Text("\(position) Items:")
                             .loadedStyle()
                     } else {
@@ -25,12 +25,12 @@ struct BulkView: View {
                 }
                 .capsuleStyle()
 
-                TextField("0 Items", text: $cargoHold.bulkHold.itemStringCount
+                TextField("0 Items", text: $cargoHold.bulkHold.itemBulkStringCount
                             .animation())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
-                if cargoHold.bulkHold.itemWeight != 0 {
-                    Text("\(cargoHold.bulkHold.itemWeight) kg")
+                if cargoHold.bulkHold.bulkItemWeight != 0 {
+                    Text("\(cargoHold.bulkHold.bulkItemWeight) kg")
                         .loadedStyle()
                 } else {
                     Text("No Items")
@@ -41,7 +41,7 @@ struct BulkView: View {
 
             HStack {
                 Button(action: hideKeyboard) {
-                    if cargoHold.bulkHold.cargoWeight != 0 {
+                    if cargoHold.bulkHold.bulkCargoWeight != 0 {
                         Text("\(position) Cargo")
                             .loadedStyle()
                     } else {
@@ -51,11 +51,11 @@ struct BulkView: View {
                 }
                 .capsuleStyle()
 
-                TextField("0 kg", text: $cargoHold.bulkHold.cargoStringWeight
+                TextField("0 kg", text: $cargoHold.bulkHold.cargoBulkStringWeight
                             .animation())
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.numberPad)
-                if cargoHold.bulkHold.cargoWeight != 0 {
+                if cargoHold.bulkHold.bulkCargoWeight != 0 {
                     Text("kg")
                         .loadedStyle()
                 } else {
