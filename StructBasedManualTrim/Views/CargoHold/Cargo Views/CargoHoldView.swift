@@ -141,16 +141,23 @@ struct CargoHoldView: View {
                 }
             }
             .navigationBarTitle("Cargo Hold")
-            .navigationBarItems(trailing: Button(action: cargo.resetCargoToEmpty) {
-                Image(systemName: "trash")
-                    .font(.system(size: 30))
-                    .foregroundColor(.accentColor)
-                    .padding()
-            })
+            .navigationBarItems(
+                leading: Button(action: hideKeyboard) {
+                    Image(systemName: "keyboard")
+                        .font(.system(size: 30))
+                        .foregroundColor(.accentColor)
+                        .padding()
+                },
+                trailing: Button(action: cargo.resetCargoToEmpty) {
+                    Image(systemName: "trash")
+                        .font(.system(size: 30))
+                        .foregroundColor(.accentColor)
+                        .padding()
+                })
             .alert(item: $cargo.overWeightAlert) { overWeight in
                 self.feedBack.notificationOccurred(.error)
                 return Alert(title: Text(overWeight.rawValue),
-                             message: Text(overWeight.message),
+                             message: Text(cargo.message),
                              dismissButton: .destructive(Text("Remove last input"), action: {
                                 cargo.removeOverWeightEntry(for: overWeight)
                              }) )

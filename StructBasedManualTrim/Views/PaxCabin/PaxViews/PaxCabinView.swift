@@ -96,12 +96,19 @@ struct PaxCabinView: View {
                 }
             } // End Form
             .navigationTitle("Crew and Pax")
-            .navigationBarItems(trailing: Button(action: cabin.resetCabin) {
-                Image(systemName: "trash")
-                    .font(.system(size: 30))
-                    .foregroundColor(.accentColor)
-                    .padding()
-            })
+            .navigationBarItems(
+                leading: Button(action: hideKeyboard) {
+                    Image(systemName: "keyboard")
+                        .font(.system(size: 30))
+                        .foregroundColor(.accentColor)
+                        .padding()
+                },
+                trailing: Button(action: cabin.resetCabin) {
+                    Image(systemName: "trash")
+                        .font(.system(size: 30))
+                        .foregroundColor(.accentColor)
+                        .padding()
+                })
             .alert(item: $cabin.seatingError) { seatingError in
                 self.feedBack.notificationOccurred(.error)
                 return Alert(

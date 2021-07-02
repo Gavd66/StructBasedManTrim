@@ -116,9 +116,9 @@ enum WeightLimit: String, Identifiable, CaseIterable {
         case .compartment5:
             return "The max weight for this compartment has been exceeded"
         case .forwardHold:
-            return "The combined weights of compartments 1 & 2, exceeds the maximum for this hold"
+            return "The combined weights of compartments 1 & 2, exceeds the limit weight of the forward hold"
         case .aftHold:
-            return "The combined weights of compartments 3 & 4, exceeds the maximum for this hold"
+            return "The combined weights of compartments 3 & 4, exceeds the limit weight of the aft hold"
         }
     }
 }

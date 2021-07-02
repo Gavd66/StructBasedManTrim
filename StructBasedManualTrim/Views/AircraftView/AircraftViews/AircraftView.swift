@@ -34,10 +34,6 @@ struct AircraftView: View {
                                 .foregroundColor(.primary)) {
                         PotableWaterView()
                     }
-                    Section(header: Text("Operating Weights")
-                                .foregroundColor(.primary)) {
-                        OperatingWeightView()
-                    }
 
                 }
                 Group { // Fuel Group
@@ -65,12 +61,19 @@ struct AircraftView: View {
                 }
             }// Form
             .navigationTitle("Aircraft")
-            .navigationBarItems(trailing: Button(action: aircraft.reset) {
-                Image(systemName: "trash")
-                    .font(.system(size: 30))
-                    .foregroundColor(.accentColor)
-                    .padding()
-            })
+            .navigationBarItems(
+                leading: Button(action: hideKeyboard) {
+                    Image(systemName: "keyboard")
+                        .font(.system(size: 30))
+                        .foregroundColor(.accentColor)
+                        .padding()
+                },
+                trailing: Button(action: aircraft.reset) {
+                    Image(systemName: "trash")
+                        .font(.system(size: 30))
+                        .foregroundColor(.accentColor)
+                        .padding()
+                })
             .alert(item: $aircraft.fuelError) { fuelError in
                 self.feedback.notificationOccurred(.error)
                 return Alert(

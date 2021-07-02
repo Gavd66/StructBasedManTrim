@@ -30,6 +30,11 @@ class CargoHold: ObservableObject {
     @Published var bulkHold = UnderFloor()
     @Published var overWeightAlert: WeightLimit? = nil
     @Published var overWeightAmount = 0
+    var compartment1 = Compartment1.position11
+    var compartment2 = Compartment2.position21
+    var compartment3 = Compartment3.position31
+    var compartment4 = Compartment4.position41
+
 
 
 //MARK:- Cargo Loaded Logic
@@ -156,20 +161,16 @@ class CargoHold: ObservableObject {
 
 
     //MARK:- Weight Protection Methods
-// If any limits are exceeded, use logic to disable all other compartments until the overweight condition is rectified.
+// If any limits are exceeded, use logic to remove the last input that caused the overweight condition
 
-    var compartment1 = Compartment1.position11
-    var compartment2 = Compartment2.position21
-    var compartment3 = Compartment3.position31
-    var compartment4 = Compartment4.position41
 
 
     func validateCompartmentWeight(_ compartmentWeight: Int) {
         overWeightAlert = nil
-
+// MARK: Compartment1
         if compartment1TotalWeight >
             WeightLimit.compartment1.maxWeight {
-            // get the position that cause the alert
+            // assign the position that causes the overweight condition
             if compartmentWeight == position11.totalWeight {
                 compartment1 = .position11
             }
@@ -186,7 +187,7 @@ class CargoHold: ObservableObject {
             overWeightAlert = .compartment1
             overWeightAmount = compartment1TotalWeight - WeightLimit.compartment1.maxWeight
         }
-
+//MARK: Compartment2
         if compartment2TotalWeight >
             WeightLimit.compartment2.maxWeight {
             if compartmentWeight == position21.totalWeight {
@@ -206,6 +207,7 @@ class CargoHold: ObservableObject {
             overWeightAmount = compartment2TotalWeight -
                 WeightLimit.compartment2.maxWeight
         }
+ // MARK: Compartment3
         if compartment3TotalWeight >
             WeightLimit.compartment3.maxWeight {
             if compartmentWeight == position31.totalWeight {
@@ -223,6 +225,7 @@ class CargoHold: ObservableObject {
             overWeightAmount = compartment3TotalWeight -
                 WeightLimit.compartment3.maxWeight
         }
+        // MARK: Compartment4
         if compartment4TotalWeight >
             WeightLimit.compartment4.maxWeight {
             if compartmentWeight == position41.totalWeight {
@@ -239,6 +242,7 @@ class CargoHold: ObservableObject {
             overWeightAmount = compartment4TotalWeight -
                 WeightLimit.compartment4.maxWeight
         }
+        //MARK: Compartment5
         if compartment5TotalWeight >
             WeightLimit.compartment5.maxWeight {
 
@@ -246,7 +250,8 @@ class CargoHold: ObservableObject {
             overWeightAmount = compartment5TotalWeight -
                 WeightLimit.compartment5.maxWeight
         }
-
+        //MARK: Forward Hold
+        // Rectify individual compartments before the forward hold
         if overWeightAlert == .compartment1 ||
             overWeightAlert == .compartment2 {
             return
@@ -278,11 +283,12 @@ class CargoHold: ObservableObject {
                 compartment2 = .position24
             }
 
-
             overWeightAlert = .forwardHold
             overWeightAmount = forwardHoldTotalWeight -
                 WeightLimit.forwardHold.maxWeight
         }
+        //MARK: Aft Hold
+        // Rectify individual compartments before the Aft hold
 
         if overWeightAlert == .compartment3 ||
             overWeightAlert == .compartment4 {
@@ -314,7 +320,7 @@ class CargoHold: ObservableObject {
                 WeightLimit.aftHold.maxWeight
         }
     }
-    
+//MARK: Removal Methods
     func removeOverWeightEntry(for weightAlert: WeightLimit) {
         switch weightAlert {
         case .compartment1:
@@ -399,6 +405,7 @@ class CargoHold: ObservableObject {
             case .position43:
                 removeOverweightInput(for: position43)
             }
+            // Compartment 5 only has two inputs, they are removed directly
         }
         overWeightAlert = .none
     }
@@ -437,14 +444,16 @@ class CargoHold: ObservableObject {
             withAnimation {
                 compartment.cargoBulkStringWeight = ""
             }
-    }
+        }
     }
 
     var title: String {
         overWeightAlert?.rawValue ?? ""
     }
     var message: String {
-        overWeightAlert?.message ?? ""
+       let message = overWeightAlert?.message ?? ""
+       let weightToRemove = " by \(overWeightAmount) kg."
+       return message + weightToRemove
     }
 
 //MARK:- Reset Methods
