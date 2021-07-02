@@ -106,7 +106,7 @@ struct PaxCabinView: View {
                 self.feedBack.notificationOccurred(.error)
                 return Alert(
                     title: Text(seatingError.rawValue),
-                    message: Text(cabin.zoneMessage),
+                    message: Text(seatingError.message),
                     dismissButton: .destructive(Text("Remove selection"),action: {
                         cabin.removeLastEntry(for: seatingError)
                     }))

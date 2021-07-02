@@ -10,13 +10,13 @@ import SwiftUI
 struct AkeRightView: View {
 
     var position: Int
-    var bindingMainHoldInstance: Binding<UnderFloor>
-    var mainHoldInstance: UnderFloor
+    var bindingCargoPosition: Binding<UnderFloor>
+    var cargoPosition: UnderFloor
 
     var body: some View {
         HStack {
             Button(action: hideKeyboard) {
-                if mainHoldInstance.bagWeightRight != 0 {
+                if cargoPosition.bagWeightRight != 0 {
                     Text("\(position)R Bags")
                         .loadedStyle()
                         .capsuleStyle()
@@ -27,12 +27,12 @@ struct AkeRightView: View {
                 }
             }
 
-            TextField("0 Bags", text: bindingMainHoldInstance.bagCountRight
+            TextField("0 Bags", text: bindingCargoPosition.bagCountRight
                         .animation())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
-            if mainHoldInstance.bagWeightRight != 0 {
-                Text("\(mainHoldInstance.bagWeightRight) kg")
+            if cargoPosition.bagWeightRight != 0 {
+                Text("\(cargoPosition.bagWeightRight) kg")
                     .loadedStyle()
             } else {
                 Text("AKE: 71kg ")

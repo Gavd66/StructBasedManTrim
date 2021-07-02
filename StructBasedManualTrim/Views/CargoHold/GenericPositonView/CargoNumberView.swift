@@ -11,13 +11,13 @@ struct CargoNumberView: View {
 
    
     var position: Int
-    var bindingMainHoldInstance: Binding<UnderFloor>
-    var mainHoldInstance: UnderFloor
+    var bindingCargoPosition: Binding<UnderFloor>
+    var cargoPosition: UnderFloor
 
     var body: some View {
         HStack {
             Button(action: hideKeyboard) {
-                if mainHoldInstance.cargoWeight != 0 {
+                if cargoPosition.cargoWeight != 0 {
                     Text("\(position) Cargo")
                         .loadedStyle()
                 } else {
@@ -27,11 +27,11 @@ struct CargoNumberView: View {
             }
             .capsuleStyle()
             TextField("0 kg",
-                      text: bindingMainHoldInstance.cargoStringWeight
+                      text: bindingCargoPosition.cargoStringWeight
                         .animation())
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
-            if mainHoldInstance.cargoWeight != 0 {
+            if cargoPosition.cargoWeight != 0 {
                 Text("kg")
                     .loadedStyle()
             }

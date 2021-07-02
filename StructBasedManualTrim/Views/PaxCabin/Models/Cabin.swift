@@ -357,16 +357,6 @@ class Cabin: ObservableObject {
         }
     }
 
-    // MARK: - Seating Error Messages
-    var zoneTitle: String {
-        seatingError?.rawValue ?? ""
-    }
-
-    var zoneMessage: String {
-        seatingError?.message ?? ""
-    }
-
-
     //MARK:- Cabin Reset
     func resetCabin() {
         withAnimation {

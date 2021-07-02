@@ -10,14 +10,14 @@ import SwiftUI
 struct AkeLeftView: View {
 
     var position: Int
-    var bindingMainHoldInstance: Binding<UnderFloor>
-    var mainHoldInstance: UnderFloor
+    var bindingCargoPosition: Binding<UnderFloor>
+    var cargoPosition: UnderFloor
 
     var body: some View {
         HStack {
             Button(action: hideKeyboard) {
 //                if mainHoldInstance.hasBagsInLeft {
-                if mainHoldInstance.bagWeightLeft != 0 {
+                if cargoPosition.bagWeightLeft != 0 {
                     Text("\(position)L Bags")
                         .loadedStyle()
                 } else {
@@ -27,7 +27,7 @@ struct AkeLeftView: View {
             }
             .capsuleStyle()
 
-            TextField("0 bags", text: bindingMainHoldInstance.bagCountLeft
+            TextField("0 bags", text: bindingCargoPosition.bagCountLeft
                         .animation()
 //                        .onChange(mainHoldInstance.updateLeftLabels)
             )
@@ -36,8 +36,8 @@ struct AkeLeftView: View {
                 .keyboardType(.numberPad)
 
 //            if mainHoldInstance.hasBagsInLeft {
-            if mainHoldInstance.bagWeightLeft != 0 {
-                Text("\(mainHoldInstance.bagWeightLeft) kg")
+            if cargoPosition.bagWeightLeft != 0 {
+                Text("\(cargoPosition.bagWeightLeft) kg")
                     .loadedStyle()
             } else {
                 Text("AKE: 71kg ")

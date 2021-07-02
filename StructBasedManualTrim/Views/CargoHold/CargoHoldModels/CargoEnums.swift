@@ -58,6 +58,7 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
 //MARK:- Enum  Underfloor Selection
 
 enum UnderfloorSelection: Identifiable {
+
     var id: UnderfloorSelection { self }
     case cargoNumber
     case cargoPapa
@@ -68,6 +69,8 @@ enum UnderfloorSelection: Identifiable {
     case itemsBulk
     case cargoBulk
 }
+
+
 
 //MARK:- Enum WeightLimit
 
@@ -118,5 +121,33 @@ enum WeightLimit: String, Identifiable, CaseIterable {
             return "The combined weights of compartments 3 & 4, exceeds the maximum for this hold"
         }
     }
+}
+
+//MARK:- Compartments used for overweight identification
+enum Compartment1: Identifiable {
+    var id: Compartment1 { self }
+    case position11
+    case position12
+    case position13
+    case position14
+}
+enum Compartment2: Identifiable {
+    var id: Compartment2 { self }
+    case position21
+    case position22
+    case position23
+    case position24
+}
+enum Compartment3: Identifiable {
+    var id: Compartment3 { self }
+    case position31
+    case position32
+    case position33
+}
+enum Compartment4: Identifiable {
+    var id: Compartment4 { self }
+    case position41
+    case position42
+    case position43
 }
 

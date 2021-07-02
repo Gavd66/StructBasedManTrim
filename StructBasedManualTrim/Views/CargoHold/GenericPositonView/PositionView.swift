@@ -30,14 +30,14 @@ struct PositionView: View {
         case .numberOnly:
 
             CargoNumberView(position: position,
-                           bindingMainHoldInstance: bindingCargoPosition,
-                           mainHoldInstance: cargoPosition)
+                           bindingCargoPosition: bindingCargoPosition,
+                           cargoPosition: cargoPosition)
 
         case .numberPapa:
 
             CargoPapaView(position: position,
-                           bindingMainHoldInstance: bindingCargoPosition,
-                           mainHoldInstance: cargoPosition)
+                           bindingCargoPosition: bindingCargoPosition,
+                           cargoPosition: cargoPosition)
                 .onChange(of: cargoPosition.container,
                           perform: dismissContainerKeyBoard)
 
@@ -59,12 +59,12 @@ struct PositionView: View {
 
                     case .ake:
                         AkeLeftView(position: position,
-                                    bindingMainHoldInstance: bindingCargoPosition,
-                                    mainHoldInstance: cargoPosition)
+                                    bindingCargoPosition: bindingCargoPosition,
+                                    cargoPosition: cargoPosition)
                     case .cargo:
                         CargoLeftView(position: position,
-                                      bindingMainHoldInstance:  bindingCargoPosition,
-                                      mainHoldInstance: cargoPosition)
+                                      bindingCargoPosition:  bindingCargoPosition,
+                                      cargoPosition: cargoPosition)
                     }
                 } // End Left Group
                 // dismiss the number pad automatically when changing selections
@@ -85,12 +85,12 @@ struct PositionView: View {
                         NilFitRightView(position: position)
                     case .ake:
                         AkeRightView(position: position,
-                                     bindingMainHoldInstance: bindingCargoPosition,
-                                     mainHoldInstance: cargoPosition)
+                                     bindingCargoPosition: bindingCargoPosition,
+                                     cargoPosition: cargoPosition)
                     case .cargo:
                         CargoRightView(position: position,
-                                       bindingMainHoldInstance: bindingCargoPosition,
-                                       mainHoldInstance: cargoPosition)
+                                       bindingCargoPosition: bindingCargoPosition,
+                                       cargoPosition: cargoPosition)
                     }
                 } // End Right Group
                 .onChange(of: cargoPosition.right, perform: dismissAKEKeyBoard)
