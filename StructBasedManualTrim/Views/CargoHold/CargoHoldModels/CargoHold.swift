@@ -34,6 +34,8 @@ class CargoHold: ObservableObject {
     var compartment2 = Compartment2.position21
     var compartment3 = Compartment3.position31
     var compartment4 = Compartment4.position41
+    var forwardHold = ForwardHold.position11
+    var aftHold = AftHold.position31
 
 
 
@@ -219,8 +221,6 @@ class CargoHold: ObservableObject {
             if compartmentWeight == position33.totalWeight {
                 compartment3 = .position33
             }
-
-
             overWeightAlert = .compartment3
             overWeightAmount = compartment3TotalWeight -
                 WeightLimit.compartment3.maxWeight
@@ -259,30 +259,29 @@ class CargoHold: ObservableObject {
         if forwardHoldTotalWeight >
             WeightLimit.forwardHold.maxWeight {
             if compartmentWeight == position11.totalWeight {
-                compartment1 = .position11
+                forwardHold = .position11
             }
             if compartmentWeight == position12.totalWeight {
-                compartment1 = .position12
+                forwardHold = .position12
             }
             if compartmentWeight == position13.totalWeight {
-                compartment1 = .position13
+                forwardHold = .position13
             }
             if compartmentWeight == position14.totalWeight {
-                compartment1 = .position14
+                forwardHold = .position14
             }
             if compartmentWeight == position21.totalWeight {
-                compartment2 = .position21
+                forwardHold = .position21
             }
             if compartmentWeight == position22.totalWeight {
-                compartment2 = .position22
+                forwardHold = .position22
             }
             if compartmentWeight == position23.totalWeight {
-                compartment2 = .position23
+                forwardHold = .position23
             }
             if compartmentWeight == position24.totalWeight {
-                compartment2 = .position24
+                forwardHold = .position24
             }
-
             overWeightAlert = .forwardHold
             overWeightAmount = forwardHoldTotalWeight -
                 WeightLimit.forwardHold.maxWeight
@@ -297,22 +296,22 @@ class CargoHold: ObservableObject {
         if aftHoldTotalWeight >
             WeightLimit.aftHold.maxWeight {
             if compartmentWeight == position31.totalWeight {
-                compartment3 = .position31
+                aftHold = .position31
             }
             if compartmentWeight == position32.totalWeight {
-                compartment3 = .position32
+                aftHold = .position32
             }
             if compartmentWeight == position33.totalWeight {
-                compartment3 = .position33
+                aftHold = .position33
             }
             if compartmentWeight == position41.totalWeight {
-                compartment4 = .position41
+                aftHold = .position41
             }
             if compartmentWeight == position42.totalWeight {
-                compartment4 = .position42
+                aftHold = .position42
             }
             if compartmentWeight == position43.totalWeight {
-                compartment4 = .position43
+                aftHold = .position43
             }
 
             overWeightAlert = .aftHold
@@ -367,7 +366,7 @@ class CargoHold: ObservableObject {
         case .compartment5:
             removeOverweightInput(for: bulkHold)
         case .forwardHold:
-            switch compartment1 {
+            switch forwardHold {
             case .position11:
                 removeOverweightInput(for: position11)
             case .position12:
@@ -376,8 +375,6 @@ class CargoHold: ObservableObject {
                 removeOverweightInput(for: position13)
             case .position14:
                 removeOverweightInput(for: position14)
-            }
-            switch compartment2 {
             case .position21:
                 removeOverweightInput(for: position21)
             case .position22:
@@ -389,15 +386,13 @@ class CargoHold: ObservableObject {
             }
 
         case .aftHold:
-            switch compartment3 {
+            switch aftHold {
             case .position31:
                 removeOverweightInput(for: position31)
             case .position32:
                 removeOverweightInput(for: position32)
             case .position33:
                 removeOverweightInput(for: position33)
-            }
-            switch compartment4 {
             case .position41:
                 removeOverweightInput(for: position41)
             case .position42:

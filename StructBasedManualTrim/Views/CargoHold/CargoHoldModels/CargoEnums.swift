@@ -151,3 +151,24 @@ enum Compartment4: Identifiable {
     case position43
 }
 
+enum ForwardHold: Identifiable {
+    var id: ForwardHold { self }
+    case position11
+    case position12
+    case position13
+    case position14
+    case position21
+    case position22
+    case position23
+    case position24
+}
+enum AftHold: Identifiable {
+    var id: AftHold { self }
+    case position31
+    case position32
+    case position33
+    case position41
+    case position42
+    case position43
+}
+
