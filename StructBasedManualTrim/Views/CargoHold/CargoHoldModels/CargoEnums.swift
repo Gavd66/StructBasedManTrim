@@ -57,17 +57,17 @@ enum Ake: String, Identifiable, CaseIterable, Codable {
 
 //MARK:- Enum  Underfloor Selection
 
-enum UnderfloorSelection: Identifiable {
+enum UnderfloorSelection: String, Identifiable {
 
     var id: UnderfloorSelection { self }
-    case cargoNumber
-    case cargoPapa
-    case bagsLeft
-    case bagsRight
-    case cargoLeft
-    case cargoRight
-    case itemsBulk
-    case cargoBulk
+    case cargoNumber = "Cargo"
+    case cargoPapa = "Cargo from Papa"
+    case bagsLeft = "Bags from left"
+    case bagsRight = "Bags from right"
+    case cargoLeft = "Cargo from left"
+    case cargoRight = "Cargo from right"
+    case itemsBulk = "Items from Bulk"
+    case cargoBulk = "Cargo from Bulk"
 }
 
 

@@ -44,12 +44,12 @@ enum PaxWeight: Identifiable {
         }
     }
 }
-enum LastSelection: Identifiable {
+enum LastSelection: String, Identifiable {
     var id: LastSelection { self }
-    case male
-    case female
-    case child
-    case infant
+    case male = "Male"
+    case female = "Female"
+    case child = "Child"
+    case infant = "Infant"
 }
 // MARK: Pax LoadedStatus Enums
 enum PaxLoadedStatus: String, Identifiable, CaseIterable {
@@ -117,9 +117,9 @@ enum SeatingLogic: String, Identifiable {
         case .forZone3:
             fallthrough
         case .forZone4:
-            return "You have exceeded the maximum number of seats in this Zone. "
+            return "You have exceeded the maximum number of seats in this Zone"
         case .forInfants:
-            return "The maximum number of infants onboard exceeds, the permitted amount. All infant numbers will be removed"
+            return "The number of infants onboard exceeds, the number permitted "
         case .noCabinCrew:
             return """
                    Entry for Number of Cabin Crew required.
@@ -128,6 +128,13 @@ enum SeatingLogic: String, Identifiable {
 
         }
     }
+}
+enum InfantZone: Identifiable {
+    var id: InfantZone { self }
+    case zone1
+    case zone2
+    case zone3
+    case zone4
 }
     // MARK: - Extra Seat Adjustments
 

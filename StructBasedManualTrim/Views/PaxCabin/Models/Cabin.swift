@@ -68,6 +68,8 @@ class Cabin: ObservableObject {
     @Published var jWeight: JWeightConfiguration = .buisness
     // To display the alert for errors
     @Published var seatingError: SeatingLogic?
+    var paxToRemove = 0
+    var infantZone = InfantZone.zone1 // To determine zone that infant is in
 
     // To determine if there are any pax onboard
     var hasPax: Bool {
@@ -295,22 +297,39 @@ class Cabin: ObservableObject {
 
         if zone1.seatedPax > SeatingLogic.forZone1.maxNumber {
             seatingError = .forZone1
+            paxToRemove = zone1.seatedPax - SeatingLogic.forZone1.maxNumber
         }
 
         if zone2.seatedPax > SeatingLogic.forZone2.maxNumber {
             seatingError = .forZone2
+            paxToRemove = zone2.seatedPax - SeatingLogic.forZone2.maxNumber
         }
 
         if zone3.seatedPax > SeatingLogic.forZone3.maxNumber {
             seatingError = .forZone3
+            paxToRemove = zone2.seatedPax - SeatingLogic.forZone2.maxNumber
         }
 
         if zone4.seatedPax > SeatingLogic.forZone4.maxNumber {
             seatingError = .forZone4
+            paxToRemove = zone4.seatedPax - SeatingLogic.forZone4.maxNumber
         }
 
         if totalInfants > permittedInfantNumber {
+            if seats == zone1.totalPax {
+                infantZone = .zone1
+            }
+            if seats == zone2.totalPax {
+                infantZone = .zone2
+            }
+            if seats == zone3.totalPax {
+                infantZone = .zone3
+            }
+            if seats == zone4.totalPax {
+                infantZone = .zone4
+            }
             seatingError = .forInfants
+            paxToRemove = totalInfants - SeatingLogic.forInfants.maxNumber
         }
     }
 
@@ -327,7 +346,16 @@ class Cabin: ObservableObject {
         case .forZone4:
             removeLastInput(for: zone4)
         case .forInfants:
-            fallthrough
+            switch infantZone {
+            case .zone1:
+                removeLastInput(for: zone1)
+            case .zone2:
+                removeLastInput(for: zone2)
+            case .zone3:
+                removeLastInput(for: zone3)
+            case .zone4:
+                removeLastInput(for: zone4)
+            }
         case .noCabinCrew:
             removeLastInput(for: zone1)
             removeLastInput(for: zone2)
@@ -356,6 +384,46 @@ class Cabin: ObservableObject {
             }
         }
     }
+
+    var passenger: String {
+        switch seatingError {
+        case .forZone1:
+            return zone1.lastSelection.rawValue
+        case .forZone2:
+            return zone2.lastSelection.rawValue
+        case .forZone3:
+            return zone3.lastSelection.rawValue
+        case .forZone4:
+            return zone3.lastSelection.rawValue
+        case .forInfants:
+            return "Infants"
+        case .noCabinCrew:
+            return "All passengers"
+        case .none:
+            return ""
+        }
+    }
+
+    var message: String {
+        let message = seatingError?.message ?? ""
+        switch seatingError {
+        case .forZone1:
+            fallthrough
+        case .forZone2:
+            fallthrough
+        case .forZone3:
+            fallthrough
+        case .forZone4:
+            return message + " by \(paxToRemove)."
+        case .forInfants:
+            return message + " by \(paxToRemove). Infants for this zone will be removed."
+        case .noCabinCrew:
+            return message
+        case .none:
+            return ""
+        }
+    }
+
 
     //MARK:- Cabin Reset
     func resetCabin() {

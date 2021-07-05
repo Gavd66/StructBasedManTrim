@@ -451,6 +451,99 @@ class CargoHold: ObservableObject {
        return message + weightToRemove
     }
 
+    var cargo: String {
+        switch overWeightAlert {
+        case .compartment1:
+            switch compartment1 {
+            case .position11:
+                return position11.lastSelection.rawValue
+            case .position12:
+                return position12.lastSelection.rawValue
+            case .position13:
+                return position13.lastSelection.rawValue
+            case .position14:
+                return position14.lastSelection.rawValue
+            }
+        case .compartment2:
+            switch compartment2 {
+            case .position21:
+                return position21.lastSelection.rawValue
+            case .position22:
+                return position22.lastSelection.rawValue
+            case .position23:
+                return position23.lastSelection.rawValue
+            case .position24:
+                return position24.lastSelection.rawValue
+
+            }
+        case .compartment3:
+            switch compartment3 {
+            case .position31:
+                return position31.lastSelection.rawValue
+            case .position32:
+                return position32.lastSelection.rawValue
+            case .position33:
+                return position33.lastSelection.rawValue
+
+            }
+        case .compartment4:
+            switch compartment4 {
+            case .position41:
+                return position41.lastSelection.rawValue
+            case .position42:
+                return position42.lastSelection.rawValue
+            case .position43:
+                return position43.lastSelection.rawValue
+
+            }
+        case .compartment5:
+            if bulkHold.lastSelection == .itemsBulk {
+                return "Items from Bulk"
+            }
+            if bulkHold.lastSelection == .cargoBulk {
+                return "Cargo from Bulk"
+            }
+        case .forwardHold:
+            switch forwardHold {
+            case .position11:
+                return position11.lastSelection.rawValue
+            case .position12:
+                return position12.lastSelection.rawValue
+            case .position13:
+                return position13.lastSelection.rawValue
+            case .position14:
+                return position14.lastSelection.rawValue
+            case .position21:
+                return position21.lastSelection.rawValue
+            case .position22:
+                return position22.lastSelection.rawValue
+            case .position23:
+                return position23.lastSelection.rawValue
+            case .position24:
+                return position24.lastSelection.rawValue
+
+            }
+        case .aftHold:
+            switch aftHold {
+            case .position31:
+                return position31.lastSelection.rawValue
+            case .position32:
+                return position32.lastSelection.rawValue
+            case .position33:
+                return position33.lastSelection.rawValue
+            case .position41:
+                return position41.lastSelection.rawValue
+            case .position42:
+                return position42.lastSelection.rawValue
+            case .position43:
+                return position43.lastSelection.rawValue
+            }
+        case .none:
+            return ""
+        }// End
+            return ""
+    }
+
 //MARK:- Reset Methods
     func resetCargoToEmpty() {
         withAnimation {
