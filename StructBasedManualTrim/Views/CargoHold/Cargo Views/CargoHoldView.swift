@@ -158,7 +158,7 @@ struct CargoHoldView: View {
                 self.feedBack.notificationOccurred(.error)
                 return Alert(title: Text(overWeight.rawValue),
                              message: Text(cargo.message),
-                             dismissButton: .destructive(Text("Remove last input"), action: {
+                             dismissButton: .destructive(Text("Remove last entry"), action: {
                                 cargo.removeOverWeightEntry(for: overWeight)
                              }) )
             }
