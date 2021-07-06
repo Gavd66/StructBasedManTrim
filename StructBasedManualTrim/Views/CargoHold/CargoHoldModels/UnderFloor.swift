@@ -123,7 +123,7 @@ class UnderFloor: Equatable {
         cargoBulkStringWeight = ""
     }
 
-    var bulkBagCount: Int {
+    var bulkItemCount: Int {
         Int(itemBulkStringCount) ?? 0
     }
 
@@ -132,7 +132,7 @@ class UnderFloor: Equatable {
     }
 
     var bulkItemWeight: Int {
-        bulkBagCount * 18
+        bulkItemCount * bagWeight.value
     }
     var bulkTotalWeight: Int {
         bulkItemWeight + bulkCargoWeight
