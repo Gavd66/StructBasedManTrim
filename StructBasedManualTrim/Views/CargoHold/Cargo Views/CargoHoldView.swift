@@ -23,11 +23,22 @@ struct CargoHoldView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Cargo Overview").foregroundColor(.primary)) {
+                Section(header: Text("Cargo Overview")
+                            .foregroundColor(.primary)) {
                     EmptyLoadView()
 
                 }
-                Section(header: Text("Compartment 1").foregroundColor(.primary)) {
+                Section(header: Text("Standard Bag Weight")
+                            .foregroundColor(.primary)) {
+                    Picker("BagWeight", selection: $cargo.bagWeight.animation()) {
+                        ForEach(BagWeight.allCases, id: \.self) {
+                            Text($0.rawValue)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                Section(header: Text("Compartment 1")
+                            .foregroundColor(.primary)) {
                     Position11View()
                         .onChange(
                             of: cargo.position11.totalWeight,

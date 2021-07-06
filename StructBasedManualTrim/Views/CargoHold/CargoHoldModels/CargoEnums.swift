@@ -67,9 +67,23 @@ enum UnderfloorSelection: Identifiable {
     case cargoLeft
     case cargoRight
     case itemsBulk
-    case cargoBulk 
+    case cargoBulk
 }
 
+enum BagWeight: String, CaseIterable, Identifiable {
+    var id: BagWeight { self }
+    case domestic = "Domestic"
+    case international = "International"
+
+    var value: Int {
+        switch self {
+        case .domestic:
+            return 14
+        case .international:
+            return 18
+        }
+    }
+}
 
 
 //MARK:- Enum WeightLimit

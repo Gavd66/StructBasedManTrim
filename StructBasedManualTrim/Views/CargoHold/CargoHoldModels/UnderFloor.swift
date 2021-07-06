@@ -20,6 +20,7 @@ class UnderFloor: Equatable {
     var lastSelection = UnderfloorSelection.bagsLeft
     var left: Ake = .nilFit
     var right: Ake = .nilFit
+    var bagWeight: BagWeight = .domestic
 
     var cargoStringWeight = "" {
         didSet {
@@ -34,11 +35,17 @@ class UnderFloor: Equatable {
     var bagCountLeft = "" {
         didSet {
             lastSelection = .bagsLeft
+            if bagNumbersLeft == 0 {
+                bagCountLeft = ""
+            }
         }
     }
     var bagCountRight = "" {
         didSet {
             lastSelection = .bagsRight
+            if bagNumbersRight == 0 {
+                bagCountRight = ""
+            }
         }
     }
     var cargoLeft = "" {
@@ -53,15 +60,23 @@ class UnderFloor: Equatable {
     }
 
     var hideKeyboard = false
+    // MARK: Number Calculations
+    // limit bag numbers to the max allowable of 40
+    var bagNumbersLeft: Int {
+        let numbers = Int(bagCountLeft) ?? 0
+        return numbers <= 40 ? numbers: 0
+    }
+    var bagNumbersRight: Int {
+        let numbers = Int(bagCountRight) ?? 0
+        return numbers <= 40 ? numbers: 0
+    }
 
     // MARK: Main Hold Weight Calculations
     var bagWeightLeft: Int {
-        let bagNumbers = Int(bagCountLeft) ?? 0
-        return bagNumbers * 18 + left.setAKEWeightLeft
+        bagNumbersLeft * bagWeight.value + left.setAKEWeightLeft
     }
     var bagWeightRight : Int {
-        let bagNumbers = Int(bagCountRight) ?? 0
-        return  bagNumbers * 18 + right.setAKEWeightRight
+        bagNumbersRight * bagWeight.value + right.setAKEWeightRight
     }
     var cargoWeightLeft: Int {
         Int(cargoLeft) ?? 0

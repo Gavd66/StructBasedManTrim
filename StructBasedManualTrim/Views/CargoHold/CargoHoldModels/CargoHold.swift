@@ -30,6 +30,44 @@ class CargoHold: ObservableObject {
     @Published var bulkHold = UnderFloor()
     @Published var overWeightAlert: WeightLimit? = nil
     @Published var overWeightAmount = 0
+    @Published var bagWeight = BagWeight.domestic {
+        didSet {
+            switch bagWeight {
+            case .domestic:
+                position11.bagWeight = .domestic
+                position12.bagWeight = .domestic
+                position13.bagWeight = .domestic
+                position14.bagWeight = .domestic
+                position21.bagWeight = .domestic
+                position22.bagWeight = .domestic
+                position23.bagWeight = .domestic
+                position24.bagWeight = .domestic
+                position31.bagWeight = .domestic
+                position32.bagWeight = .domestic
+                position33.bagWeight = .domestic
+                position41.bagWeight = .domestic
+                position42.bagWeight = .domestic
+                position43.bagWeight = .domestic
+                bulkHold.bagWeight = .domestic
+            case .international:
+                position11.bagWeight = .international
+                position12.bagWeight = .international
+                position13.bagWeight = .international
+                position14.bagWeight = .international
+                position21.bagWeight = .international
+                position22.bagWeight = .international
+                position23.bagWeight = .international
+                position24.bagWeight = .international
+                position31.bagWeight = .international
+                position32.bagWeight = .international
+                position33.bagWeight = .international
+                position41.bagWeight = .international
+                position42.bagWeight = .international
+                position43.bagWeight = .international
+                bulkHold.bagWeight = .international
+            }
+        }
+    }
     var compartment1 = Compartment1.position11
     var compartment2 = Compartment2.position21
     var compartment3 = Compartment3.position31
