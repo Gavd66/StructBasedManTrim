@@ -101,10 +101,7 @@ class CargoHold: ObservableObject {
 
     }
     var compartment1TotalWeight: Int {
-        position11.totalWeight
-            + position12.totalWeight
-            + position13.totalWeight
-            + position14.totalWeight
+        compartment1TotalBagWeight + compartment1TotalCargoWeight
     }
     var compartment2TotalBagWeight: Int {
         position21.totalBagWeight
@@ -119,10 +116,7 @@ class CargoHold: ObservableObject {
             + position24.totalCargoWeight
     }
     var compartment2TotalWeight: Int {
-        position21.totalWeight
-            + position22.totalWeight
-            + position23.totalWeight
-            + position24.totalWeight
+        compartment2TotalBagWeight + compartment2TotalCargoWeight
     }
     var forwardHoldTotalWeight: Int {
        compartment1TotalWeight + compartment2TotalWeight
@@ -138,9 +132,7 @@ class CargoHold: ObservableObject {
             + position33.totalCargoWeight
     }
     var compartment3TotalWeight: Int {
-        position31.totalWeight
-            + position32.totalWeight
-            + position33.totalWeight
+        compartment3TotalBagWeight + compartment3TotalCargoWeight
     }
     var compartment4TotalBagWeight: Int {
         position41.totalBagWeight
@@ -153,15 +145,19 @@ class CargoHold: ObservableObject {
             + position43.totalCargoWeight
     }
     var compartment4TotalWeight: Int {
-        position41.totalWeight
-            + position42.totalWeight
-            + position43.totalWeight
+        compartment4TotalBagWeight + compartment4TotalCargoWeight
     }
     var aftHoldTotalWeight: Int {
         compartment3TotalWeight + compartment4TotalWeight
     }
+    var compartment5ItemWeight: Int {
+        bulkHold.bulkItemWeight
+    }
+    var compartment5CargoWeight: Int {
+        bulkHold.bulkCargoWeight
+    }
     var compartment5TotalWeight: Int {
-        bulkHold.bulkTotalWeight
+        compartment5ItemWeight + compartment5CargoWeight
     }
 
 
@@ -199,9 +195,7 @@ class CargoHold: ObservableObject {
 
 
     //MARK:- Weight Protection Methods
-// If any limits are exceeded, use logic to remove the last input that caused the overweight condition
-
-
+    // If any limits are exceeded, use logic to remove the last input that caused the exceedance
 
     func validateCompartmentWeight(_ compartmentWeight: Int) {
         overWeightAlert = nil
